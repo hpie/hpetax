@@ -11,9 +11,9 @@ CREATE TABLE IF NOT EXISTS `hpet_tax_commodity` (
   `tax_commodity_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `tax_commodity_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tax_commodity_rate` DOUBLE(10, 2) NOT NULL DEFAULT '0.00',  
-  `tax_commodity_rate_unit` NOT NULL DEFAULT '10', -- minimum requires and in multiples of
-  `tax_commodity_unit_measure` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Kg', -- pull from central table
-  `tax_commodity_taxcalculation` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'BY_WEIGHT', -- By_Weight, By_Count, Flat_Rate
+  `tax_commodity_rate_unit` int NOT NULL DEFAULT '10' COMMENT "minimum requires and in multiples of",
+  `tax_commodity_unit_measure` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Kg' COMMENT "pull from central table",
+  `tax_commodity_taxcalculation` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'BY_WEIGHT' COMMENT "By_Weight, By_Count, Flat_Rate",
   `tax_commodity_isdistancedependent` varchar(10) NOT NULL DEFAULT 'NO',
   `tax_commodity_status` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 'ACTIVE',
   `tax_type_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL, 

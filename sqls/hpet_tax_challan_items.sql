@@ -38,12 +38,12 @@ CREATE TABLE IF NOT EXISTS `hpet_tax_challan_items` (
 -- Indexes for table `hpet_tax_challan_items`
 --
 ALTER TABLE `hpet_tax_challan_items`
-  ADD PRIMARY KEY (`row_id`),
+  ADD PRIMARY KEY (`tax_challan_item_id`),
   ADD UNIQUE KEY `tax_challan_vehicle_UK` (`tax_vehicle_number`, `tax_challan_code`, `tax_commodity_name`);
   
   
 --
--- AUTO_INCREMENT for table `arc_book_stock`
+-- AUTO_INCREMENT for table `hpet_tax_challan_items`
 --
 ALTER TABLE `hpet_tax_challan_items`
   MODIFY `tax_challan_item_id` bigint(20) NOT NULL AUTO_INCREMENT;
