@@ -1,12 +1,12 @@
 -- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `hpet_tax_master` ;
+DROP TABLE IF EXISTS `tax_master` ;
 
 --
--- Table structure for table `hpet_tax_master`
+-- Table structure for table `tax_master`
 -- This table masters the Transaction Heads under which the transactions will recorded
 
-CREATE TABLE IF NOT EXISTS `hpet_tax_master` (
+CREATE TABLE IF NOT EXISTS `tax_master` (
   `tax_master_id` bigint(20) NOT NULL,		
   `tax_transaction_head` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT "fixed Main Scheme under which payment is made, should be unique",
   `tax_transaction_dept` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT "fixed value for department who will receive paymnet",
@@ -24,9 +24,9 @@ CREATE TABLE IF NOT EXISTS `hpet_tax_master` (
 --
 
 --
--- Indexes for table `hpet_tax_master`
+-- Indexes for table `tax_master`
 --
-ALTER TABLE `hpet_tax_master`
+ALTER TABLE `tax_master`
   ADD PRIMARY KEY (`tax_master_id`),
   ADD UNIQUE KEY `tax_transaction_head_UK` (`tax_transaction_head`),
   ADD UNIQUE KEY `tax_transaction_UK` (`tax_transaction_dept`, `tax_transaction_ddo`, `tax_transaction_head`);

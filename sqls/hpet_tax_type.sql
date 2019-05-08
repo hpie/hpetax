@@ -1,13 +1,13 @@
 -- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `hpet_tax_type`;
+DROP TABLE IF EXISTS `tax_type`;
 
 --
--- Table structure for table `hpet_tax_type`
+-- Table structure for table `tax_type`
 -- Main tax type for which challan will be generated
 
-CREATE TABLE IF NOT EXISTS `hpet_tax_type` (
-  `tax_type_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+CREATE TABLE IF NOT EXISTS `tax_type` (
+  `tax_type_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT "AG, PGT, PTCG, CGCR",
   `tax_type_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `tax_type_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tax_type_status` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 'ACTIVE',
@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS `hpet_tax_type` (
 --
 
 --
--- Indexes for table `hpet_tax_type`
+-- Indexes for table `tax_type`
 --
-ALTER TABLE `hpet_tax_type`
-  ADD PRIMARY KEY (`tax_type_code`),
+ALTER TABLE `tax_type`
+  ADD PRIMARY KEY (`tax_type_id`),
   ADD UNIQUE KEY `tax_type_name_UK` (`tax_type_name`);
