@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `tax_challan_item` (
 --
 ALTER TABLE `tax_challan_item`
   ADD PRIMARY KEY (`tax_challan_item_id`),
-  ADD UNIQUE KEY `tax_challan_vehicle_UK` (`tax_vehicle_number`, `tax_challan_code`, `tax_commodity_name`);
+  ADD UNIQUE KEY `tax_challan_vehicle_UK` (`tax_vehicle_number`, `tax_challan_id`, `tax_commodity_name`);
   
   
 --

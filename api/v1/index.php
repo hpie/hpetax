@@ -26,7 +26,7 @@ include_once("../config/init.php");
 
 
 /* * ***************************************************************************************** */
-/* * ************************************************insert data in hpet_tax_challan ****************************** */
+/* * ************************************************insert data in tax_challan ****************************** */
 /* * ***************************************************************************************** */
 $APP->post('add-tax-challan', false, function() use($APP) {
             $data = array();
@@ -35,19 +35,17 @@ $APP->post('add-tax-challan', false, function() use($APP) {
             global $VARS;
             global $ID;
 //            $APP->generateApiKey();
-//             promocode();
-            
-            
-            verifyRequiredParams(array('code', 'title', 'depositors_name', 'depositors_phone', 'depositors_address','challan_location','challan_duration','challan_from_dt','challan_to_dt','challan_purpose','challan_amount','transaction_no','transaction_status','challan_status','type_code','created_by','modified_by'));
+//             promocode();                        
+            verifyRequiredParams(array('code', 'title', 'depositors_name', 'depositors_phone', 'depositors_address','challan_location','challan_duration','challan_from_dt','challan_to_dt','challan_purpose','challan_amount','transaction_no','transaction_status','challan_status','type_code','created_by','modified_by', 'token', 'device'));
             if (!in_array($VARS['device'], array('iphone', 'android'))) {
                 return array(false, "device name is invalid", $data);
             }
-            $params = array();
-            $params['tax_challan_code'] = $VARS['code'];
+            $params = array();            
+            $params['tax_challan_id'] = $VARS['code'];
             $params['tax_challan_title'] = $VARS['title'];
-            $params['tax_challan_name'] = $VARS['depositors_name'];
+            $params['tax_depositors_name'] = $VARS['depositors_name'];
             $params['tax_depositors_phone'] = $VARS['depositors_phone'];           
-            $params['tax_depositors_address'] =       $VARS['depositors_address'];                 
+            $params['tax_depositors_address'] =$VARS['depositors_address'];                 
             $params['tax_challan_location'] =$VARS['challan_location']; 
             $params['tax_challan_duration'] = $VARS['challan_duration'];
             $params['tax_challan_from_dt'] = $VARS['challan_from_dt'];
@@ -57,28 +55,89 @@ $APP->post('add-tax-challan', false, function() use($APP) {
             $params['tax_transaction_no'] = $VARS['transaction_no'];
             $params['tax_challan_status'] = $VARS['challan_status'];            
             $params['tax_transaction_status'] = $VARS['transaction_status'];           
-            $params['tax_type_code'] = $VARS['type_code'];
-            $params['created_by'] =       $VARS['created_by'];  
-            $params['modified_by'] = $VARS['modified_by'];           
+            $params['tax_type_id'] = $VARS['type_code'];
+            $params['created_by'] =$VARS['created_by'];  
+            $params['modified_by'] = $VARS['modified_by'];                           
+            $res = $controller->addData($params,'tax_challan');              
+            if($res==0 || !empty($res)){                
+                return array(true, "Tax challan inserted successfully", $data);
+            }                    
+            return array(false, "Tax challan process failed", $data);
+        }); 
 
-            $res = $controller->addData($params);
-                if ($res) {
-                    $userprofile= $controller->getUserProfile($user);
-                    $email = $userprofile['user_email'];
-                    $name = $userprofile['user_name'];
-                    $params = array();
-                    $params['refUser_id'] = $userprofile['user_id'];
-                    $params['token_url'] = token($email);
-                    $controller->tokenInsert($params);
-//                    $smtp = new SMTP_mail();
-//                $mail_res = $smtp->send_email_Confirmation($email, $params['token_url'], $name);   
-                 //echo"<prE>";print_r($mail_res);die;
-                    $data['Result'] = $controller->getUserProfile($user);
-                    return array(true, "Registration successfully", $data);
-                }
+/******************************************************************************************* */
+/************************************GET Tax challan****************************** */
+/******************************************************************************************* */
+$APP->get('get-tax-challan', false, function() use($APP) {
+            $data = array();
+            global $USERID;
+            global $controller;
+            global $VARS;
+            global $ID;
+            issetID();            
+            verifyRequiredParams(array('token', 'device'));
+            if (!in_array($VARS['device'], array('iphone', 'android'))) {
+                return array(false, "device name is invalid", $data);
+            }                                  
+            $result=$controller->getSingleRecordById('tax_challan',$ID);
+            if ($result) {
+                $data['Result']=$result;
+                return array(true, "Data Loaded successfully", $data);
+            }
+            return array(false, "No Record found", $data);
+        });  
+        
+/* * ***************************************************************************************** */
+/* * ************************************************Delete Tax challan****************************** */
+/* * ***************************************************************************************** */
+$APP->delete('delete-tax-challan', false, function() use($APP) {
+            $data = array();
+            global $USERID;
+            global $controller;
+            global $VARS;
+            global $ID;
+            issetID();
+            verifyRequiredParams(array('token', 'device'));
+            if (!in_array($VARS['device'], array('iphone', 'android'))) {
+                return array(false, "device name is invalid", $data);
+            } 
+            return DEFAULT_DELETE_METHOD('tax_challan',$ID);
+        });
+        
+/* * ****************************************************************************************** */
+/* * ************************************Update Tax challan************************************ */
+/* * ****************************************************************************************** */
+$APP->put('update-tax-challan', false, function() {
+            $data = array();
+            global $USERID;
+            global $controller;
+            global $VARS;
+            global $ID;            
+            issetID(); 
             
-            return array(false, "Registration failed", $data);
-        });       
+            verifyRequiredParams(array('title', 'depositors_name', 'depositors_phone', 'depositors_address','challan_location','challan_duration','challan_from_dt','challan_to_dt','challan_purpose','challan_amount','transaction_no','transaction_status','challan_status','type_code','created_by','modified_by', 'token', 'device'));
+            if (!in_array($VARS['device'], array('iphone', 'android'))) {
+                return array(false, "device name is invalid", $data);
+            }
+            $params = array();                        
+            $params['tax_challan_title'] = $VARS['title'];
+            $params['tax_depositors_name'] = $VARS['depositors_name'];
+            $params['tax_depositors_phone'] = $VARS['depositors_phone'];           
+            $params['tax_depositors_address'] =$VARS['depositors_address'];                 
+            $params['tax_challan_location'] =$VARS['challan_location']; 
+            $params['tax_challan_duration'] = $VARS['challan_duration'];
+            $params['tax_challan_from_dt'] = $VARS['challan_from_dt'];
+            $params['tax_challan_to_dt'] = $VARS['challan_to_dt'];
+            $params['tax_challan_purpose'] =   $VARS['challan_purpose'];          
+            $params['tax_challan_amount'] = $VARS['challan_amount'];
+            $params['tax_transaction_no'] = $VARS['transaction_no'];
+            $params['tax_challan_status'] = $VARS['challan_status'];            
+            $params['tax_transaction_status'] = $VARS['transaction_status'];           
+            $params['tax_type_id'] = $VARS['type_code'];
+            $params['created_by'] =$VARS['created_by'];  
+            $params['modified_by'] = $VARS['modified_by'];                      
+            return DEFAULT_PUT_METHOD('tax_challan',$params,$ID,false,"tax_challan_id");
+        });        
 $APP->stop();
 /* * *******
  * * finish all the function working

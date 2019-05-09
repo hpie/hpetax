@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `tax_commodity` (
   `tax_commodity_taxcalculation` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'BY_WEIGHT' COMMENT "By_Weight, By_Count, Flat_Rate",
   `tax_commodity_isdistancedependent` varchar(10) NOT NULL DEFAULT 'NO',
   `tax_commodity_status` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 'ACTIVE',
-  `tax_type_id varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT "Foreign Key from tax_type",
+  `tax_type_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT "Foreign Key from tax_type",
   `created_by` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `created_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,

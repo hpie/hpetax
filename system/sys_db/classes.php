@@ -57,7 +57,7 @@ class Query {
 			if (!$res)
 			{
 				 echo "Error Inserting: " . $q . "<br>" . mysqli_error($con);die;
-			}
+			}                                                                        
 			$id = mysqli_insert_id($con);
 			$this->db->closeConnection($con);
 			return $id;

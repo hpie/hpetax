@@ -53,12 +53,12 @@ class Query {
 			$con = $this->db->getConnection();
 			$id = 0;
 			//$res = mysql_query($q,$con);
-			$res = mysqli_query($con,$q);
+			$res = mysqli_query($con,$q);                       
 			if (!$res)
 			{
 				 echo "Error Inserting: " . $q . "<br>" . mysqli_error($con);die;
 			}
-			$id = mysqli_insert_id($con);
+			$id = mysqli_insert_id($con);                        
 			$this->db->closeConnection($con);
 			return $id;
 	}
