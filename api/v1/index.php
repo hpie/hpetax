@@ -34,12 +34,17 @@ $APP->post('add-tax-challan', false, function() use($APP) {
             global $controller;
             global $VARS;
             global $ID;
+              
+            $VARS=json_decode(file_get_contents("php://input"),true);
+//            
+            
 //            $APP->generateApiKey();
 //             promocode();                        
             verifyRequiredParams(array('code', 'title', 'depositors_name', 'depositors_phone', 'depositors_address','challan_location','challan_duration','challan_from_dt','challan_to_dt','challan_purpose','challan_amount','transaction_no','transaction_status','challan_status','type_code','created_by','modified_by', 'token', 'device'));
             if (!in_array($VARS['device'], array('iphone', 'android'))) {
                 return array(false, "device name is invalid", $data);
             }
+           // print_r($VARS);die;
             $params = array();            
             $params['tax_challan_id'] = $VARS['code'];
             $params['tax_challan_title'] = $VARS['title'];
@@ -74,6 +79,9 @@ $APP->get('get-tax-challan', false, function() use($APP) {
             global $controller;
             global $VARS;
             global $ID;
+            
+            $VARS=json_decode(file_get_contents("php://input"),true);
+            
             issetID();            
             verifyRequiredParams(array('token', 'device'));
             if (!in_array($VARS['device'], array('iphone', 'android'))) {
@@ -96,6 +104,9 @@ $APP->delete('delete-tax-challan', false, function() use($APP) {
             global $controller;
             global $VARS;
             global $ID;
+            
+            $VARS=json_decode(file_get_contents("php://input"),true);
+            
             issetID();
             verifyRequiredParams(array('token', 'device'));
             if (!in_array($VARS['device'], array('iphone', 'android'))) {
@@ -112,7 +123,10 @@ $APP->put('update-tax-challan', false, function() {
             global $USERID;
             global $controller;
             global $VARS;
-            global $ID;            
+            global $ID;
+            
+            $VARS=json_decode(file_get_contents("php://input"),true);
+            
             issetID(); 
             
             verifyRequiredParams(array('title', 'depositors_name', 'depositors_phone', 'depositors_address','challan_location','challan_duration','challan_from_dt','challan_to_dt','challan_purpose','challan_amount','transaction_no','transaction_status','challan_status','type_code','created_by','modified_by', 'token', 'device'));

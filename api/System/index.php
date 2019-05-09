@@ -188,16 +188,15 @@ function issetID() {
  */
 function verifyRequiredParams($required_fields=false) {
     $error = false;
-    //echo "<pre>";print_r($required_fields); die;
     if ($required_fields && !empty($required_fields) && count($required_fields)) {
-
         if (count($required_fields) > 0) {
             global $APP;
             global $VARS;
-
+                  
             $error_fields = "";
             $request_params = array();
-            $request_params = $VARS;
+            $request_params = $VARS;   
+            
             //echo "<pre>";print_r($required_fields); die;
             // Handling PUT request params
 
@@ -207,8 +206,6 @@ function verifyRequiredParams($required_fields=false) {
                     $error_fields .= $field . ', ';
                 }
             }
-
-
             if ($error) {
                 // Required field(s) are missing or empty
                 // echo error json and stop the app
