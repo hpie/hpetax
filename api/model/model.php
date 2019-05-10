@@ -22,7 +22,7 @@ class Model extends Models {
     }
     
 //*******************************//  
-//*** Get Single record by id    *****//
+//***Get Single record by id*****//
 //*****************************// 
     public function getSingleRecordById($table,$id) {
         $field_id=$table.'_id';
