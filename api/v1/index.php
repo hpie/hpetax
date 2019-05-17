@@ -6,7 +6,6 @@
  */
 
 include_once("../config/init.php");
-//echo 1;die;
 /* * *******
  * * Configure to use all the function from system 
  * * (1) REQUESTED action method name
@@ -27,6 +26,7 @@ include_once("../config/init.php");
 /* * ************************************************insert data in tax_challan ****************************** */
 /* * ***************************************************************************************** */
 $APP->post('add-tax-challan', false, function() use($APP) {
+            echo 1;die;
             $data = array();
             global $USERID;
             global $controller;

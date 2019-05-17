@@ -1,7 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-	
- 
+	 
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-s
     RewriteRule ^(.*)/(.*)$ index.php?rquest=$1&id=$2 [QSA,NC,L]

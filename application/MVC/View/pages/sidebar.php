@@ -4,7 +4,10 @@
         <ul class="nav side-menu">        
             <li>
                 <a href="<?php echo ADMIN_DASHBOARD_LINK; ?>"><i class="fa fa-dashboard"></i> Dashboard <span class="fa fa-chevron-right"></span></a>                    
-            </li>                                 
+            </li>
+            <li>
+                <a href="<?php echo ADMIN_TAX_TYPE_LIST_LINK; ?>"><i class="fa fa-dashboard"></i> Tax Type <span class="fa fa-chevron-right"></span></a>                    
+            </li>
         </ul>
     </div>            
 </div>

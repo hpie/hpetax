@@ -60,7 +60,11 @@ class Query {
 			}                                                                        
 			$id = mysqli_insert_id($con);
 			$this->db->closeConnection($con);
-			return $id;
+
+                        $result=array();
+                        $result['res']=$res;
+                        $result['id']=$id;                        
+			return $result;
 	}
 	
 	public function update($q)
