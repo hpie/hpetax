@@ -7,6 +7,12 @@ $route['dashboard'] = 'admin_c';
 
 
 //**************************tax_master*******************//
+$route['tax-master-list'] = 'admin_c/taxMasterList';
+$route['tax-master-add-form'] = 'admin_c/taxMasterAddForm';
+$route['tax-master-insert'] = 'admin_c/taxMasterInsert';
+$route['tax-master-edit-form/(:any)'] = 'admin_c/taxMasterEditForm';
+$route['tax-master-edit/(:any)'] = 'admin_c/editTaxMaster';
+
 
 //**************************tax_type*******************//
 $route['tax-type-list'] = 'admin_c/taxTypeList';
@@ -14,4 +20,12 @@ $route['tax-type-add-form'] = 'admin_c/taxTypeAddForm';
 $route['tax-type-insert'] = 'admin_c/taxTypeInsert';
 $route['tax-type-edit-form/(:any)'] = 'admin_c/taxTypeEditForm';
 $route['tax-type-edit/(:any)'] = 'admin_c/editTaxType';
+
+
 //**************************tax_commodity*******************//
+$route['tax-commodity-list'] = 'admin_c/taxCommodityList';
+$route['tax-commodity-add-form'] = 'admin_c/taxCommodityAddForm';
+$route['tax-commodity-insert'] = 'admin_c/taxCommodityInsert';
+$route['tax-commodity-edit-form/(:any)'] = 'admin_c/taxCommodityEditForm';
+$route['tax-commodity-edit/(:any)'] = 'admin_c/editTaxCommodity';
+

@@ -44,7 +44,32 @@ class admin_m extends Models {
     }    
     
 //**************************tax_master*******************//
-
+ public function getTaxMasterList() {
+        $q = "SELECT * FROM tax_master";
+        $result = $this->query->select($q);
+        if ($data = $this->query->fetch_array($result)) {
+            return $data;
+        }
+        return false;
+    }
+    public function taxMasterInsert($params) {
+        $columns = $this->insertMaker($params, $values);
+        if ($columns) {
+            $q = "INSERT INTO tax_master($columns) values($values)";
+            $id = $this->query->insert($q);            
+            return $id;
+        }
+        return FALSE;
+    }
+    public function editTaxMaster($params, $id) {
+        $columnsdesc = $this->updateMaker($params);
+        if ($columnsdesc) {
+            $q = "UPDATE tax_master SET $columnsdesc WHERE tax_master_id=$id";
+            return $this->query->update($q);
+        }
+        return FALSE;
+    }
+    
     
 //**************************tax_type*******************//
     public function getTaxTypeList() {
@@ -74,6 +99,32 @@ class admin_m extends Models {
     }
 
 //**************************tax_commodity*******************//
+  public function getTaxCommodityList() {
+        $q = "SELECT * FROM tax_commodity";
+        $result = $this->query->select($q);
+        if ($data = $this->query->fetch_array($result)) {
+            return $data;
+        }
+        return false;
+    }
+    public function taxCommodityInsert($params) {
+        $columns = $this->insertMaker($params, $values);
+        if ($columns) {
+            $q = "INSERT INTO tax_commodity($columns) values($values)";
+            $id = $this->query->insert($q);            
+            return $id;
+        }
+        return FALSE;
+    }
+    public function editTaxCommodity($params, $id) {
+        $columnsdesc = $this->updateMaker($params);
+        if ($columnsdesc) {
+            $q = "UPDATE tax_commodity SET $columnsdesc WHERE tax_commodity_id=$id";
+            return $this->query->update($q);
+        }
+        return FALSE;
+    }  
+    
 }
 
 ?>

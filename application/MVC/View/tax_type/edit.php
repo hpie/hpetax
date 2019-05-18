@@ -6,11 +6,11 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Add Tax Type</h2>                    
+                        <h2>Edit Tax Type</h2>                    
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <br />
+                        <br/>
                         <form class="form-horizontal form-label-left" method="post" name="addtaxtype" action="<?php echo ADMIN_TAX_TYPE_EDIT_LINK.$result['tax_type_id']; ?>">                                                                                                                                         
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_type_id">ID<span class="required">*</span>
@@ -19,7 +19,6 @@
                                     <input type="number" value="<?php echo $result['tax_type_id']; ?>" name="tax_type_id"  placeholder="Enter tax type id" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_type_name">Name<span class="required">*</span>
                                 </label>
