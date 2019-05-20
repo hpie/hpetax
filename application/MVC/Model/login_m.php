@@ -12,26 +12,16 @@ class login_m extends Models {
         
     }
     public function login_select($email, $password) {
-        $q = "SELECT * FROM admin WHERE admin_email='$email' and admin_password='$password'";
+        $password=md5($password);
+        $q = "SELECT * FROM admin_users WHERE username='$email' and password='$password'";
         $result = $this->query->select($q);
         if ($row = $this->query->fetch($result)) {
-            if ($email == $row['admin_email'] && $password == $row['admin_password']) {
+            if ($email == $row['username'] && $password == $row['password']) {               
                 sessionAdmin($row);
                 return true;
             }
         }
         return false;
-    }
-     public function login_selectTech($email, $password) {
-        $q = "SELECT * FROM technician WHERE technician_email='$email' and technician_password='$password'";
-        $result = $this->query->select($q);
-        if ($row = $this->query->fetch($result)) {
-            if ($email == $row['technician_email'] && $password == $row['technician_password']) {
-                sessionTechnician($row);
-                return true;
-            }
-        }
-        return false;
-    }
+    }   
 }
 ?>

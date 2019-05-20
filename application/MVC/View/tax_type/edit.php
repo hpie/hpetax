@@ -11,32 +11,27 @@
                     </div>
                     <div class="x_content">
                         <br/>
-                        <form class="form-horizontal form-label-left" method="post" name="addtaxtype" action="<?php echo ADMIN_TAX_TYPE_EDIT_LINK.$result['tax_type_id']; ?>">                                                                                                                                         
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_type_id">ID<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="number" value="<?php echo $result['tax_type_id']; ?>" name="tax_type_id"  placeholder="Enter tax type id" required="required" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
+                        <form class="form-horizontal form-label-left" method="post" name="addtaxtype" action="<?php echo ADMIN_TAX_TYPE_EDIT_LINK.$result['tax_type_id']; ?>">                                                                                                                                                                     
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_type_name">Name<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" value="<?php echo $result['tax_type_name']; ?>" name="tax_type_name"  placeholder="Enter tax type name" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
-                            </div>                         
+                            </div> 
+                            
+                                          
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_type_status">Status
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select class="form-control" name="tax_type_status" required="">                                            
                                         <option class="" value="" selected="" disabled=""i>Select Status</option>                                           
-                                        <option class="" value="1" <?php echo set_selected(1, $result['tax_type_status']) ?>>True</option>   
-                                        <option class="" value="0" <?php echo set_selected(0, $result['tax_type_status']) ?>>False</option>                                           
+                                        <option class="" value="ACTIVE" <?php echo set_selected('ACTIVE', $result['tax_type_status']) ?>>ACTIVE</option>   
+                                        <option class="" value="INACTIVE" <?php echo set_selected('INACTIVE', $result['tax_type_status']) ?>>INACTIVE</option>                                           
                                     </select>
                                 </div>
-                            </div> 
+                            </div>                                                                                       
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_type_description">Description<span class="required">*</span>
                                 </label>

@@ -9,7 +9,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                     <a href="#"  class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<?php echo IMG_URL ?>original/<?php echo get_AdminName('admin_image'); ?>" alt=""><?php echo get_AdminName('admin_name'); ?>
+                    <img src="<?php echo IMG_URL ?>original/default.png" alt=""><?php echo get_AdminName('admin_name'); ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">

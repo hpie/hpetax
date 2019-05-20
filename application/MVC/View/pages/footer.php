@@ -66,7 +66,7 @@
     $(document).ready(function () {
         if (<?php if (isset($_SESSION['Error'])) { echo $_SESSION['Error']; } ?> == 1) {
             var d = new PNotify({
-                title: 'Please try again',
+                title: 'Please try again you are not change any data',
                 type: 'error',
                 styling: 'bootstrap3'
             });
@@ -106,7 +106,48 @@
                 styling: 'bootstrap3'
             });
             <?php echo $_SESSION['dataupdate'] = 0; ?>;
-        }        
+        }      
+        
+        if (<?php if (isset($_SESSION['tax_transaction_head_exisit'])) { echo $_SESSION['tax_transaction_head_exisit']; } ?> == 1) {
+            var d = new PNotify({
+                title: 'This transaction head allready exist',
+                type: 'error',
+                styling: 'bootstrap3'
+            });
+            <?php echo $_SESSION['tax_transaction_head_exisit'] = 0; ?>;
+        }   
+          if (<?php if (isset($_SESSION['tax_transaction_dept_exisit'])) { echo $_SESSION['tax_transaction_dept_exisit']; } ?> == 1) {
+            var d = new PNotify({
+                title: 'This transaction dept allready exist',
+                type: 'error',
+                styling: 'bootstrap3'
+            });
+            <?php echo $_SESSION['tax_transaction_dept_exisit'] = 0; ?>;
+        }   
+        if (<?php if (isset($_SESSION['tax_transaction_ddo_exisit'])) { echo $_SESSION['tax_transaction_ddo_exisit']; } ?> == 1) {
+            var d = new PNotify({
+                title: 'This transaction ddo allready exist',
+                type: 'error',
+                styling: 'bootstrap3'
+            });
+            <?php echo $_SESSION['tax_transaction_ddo_exisit'] = 0; ?>;
+        }  
+         if (<?php if (isset($_SESSION['tax_type_name_exist'])) { echo $_SESSION['tax_type_name_exist']; } ?> == 1) {
+            var d = new PNotify({
+                title: 'This tax type name allready exist',
+                type: 'error',
+                styling: 'bootstrap3'
+            });
+            <?php echo $_SESSION['tax_type_name_exist'] = 0; ?>;
+        }
+           if (<?php if (isset($_SESSION['tax_commodity_name'])) { echo $_SESSION['tax_commodity_name']; } ?> == 1) {
+            var d = new PNotify({
+                title: 'This tax commodity name allready exist',
+                type: 'error',
+                styling: 'bootstrap3'
+            });
+            <?php echo $_SESSION['tax_commodity_name'] = 0; ?>;
+        }
     });
 </script>
 <script>

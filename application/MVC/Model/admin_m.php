@@ -25,7 +25,7 @@ class admin_m extends Models {
         }
         return false;
     }
-     public function getExistRecordByColumnUk1($uid,$id,$column,$table) { 
+    public function getExistRecordByColumnUk1($uid,$id,$column,$table) { 
         $id_field=$table.'_id';
         $q = "SELECT * FROM $table WHERE $column='$id' AND $id_field!='$uid'";
         $result = $this->query->select($q);
@@ -61,7 +61,7 @@ class admin_m extends Models {
         }
         return FALSE;
     }
-    public function editTaxMaster($params, $id) {
+    public function editTaxMaster($params,$id) {
         $columnsdesc = $this->updateMaker($params);
         if ($columnsdesc) {
             $q = "UPDATE tax_master SET $columnsdesc WHERE tax_master_id=$id";

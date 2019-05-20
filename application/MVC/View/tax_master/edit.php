@@ -11,15 +11,7 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form class="form-horizontal form-label-left" method="post" name="edittaxmaster" action="<?php echo ADMIN_TAX_MASTER_EDIT_LINK.$result['tax_master_id']; ?>">                                                                                                                                                                                                                                                        
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_master_id">ID<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="number" value="<?php echo $result['tax_master_id']; ?>" name="tax_master_id"  placeholder="Enter tax master id" required="required" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
-                            
+                        <form class="form-horizontal form-label-left" method="post" name="edittaxmaster" action="<?php echo ADMIN_TAX_MASTER_EDIT_LINK.$result['tax_master_id']; ?>">                                                                                                                                                                                                                                                                                                              
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_transaction_head">Transaction Head<span class="required">*</span>
                                 </label>
@@ -45,13 +37,13 @@
                             </div>
                                                    
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_type_status">Status
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_master_status">Status
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control" name="tax_type_status" required="">                                            
+                                    <select class="form-control" name="tax_master_status" required="">                                            
                                         <option class="" value="" selected="" disabled=""i>Select Status</option>                                           
-                                        <option class="" value="ACTIVE" <?php echo set_selected('ACTIVE', $result['tax_master_status']) ?>>True</option>   
-                                        <option class="" value="INACTIVE" <?php echo set_selected('INACTIVE', $result['tax_master_status']) ?>>False</option>                                           
+                                        <option class="" value="ACTIVE" <?php echo set_selected('ACTIVE', $result['tax_master_status']) ?>>ACTIVE</option>   
+                                        <option class="" value="INACTIVE" <?php echo set_selected('INACTIVE', $result['tax_master_status']) ?>>INACTIVE</option>                                           
                                     </select>
                                 </div>
                             </div>                             

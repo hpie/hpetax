@@ -33,8 +33,8 @@
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <select class="form-control" name="tax_type_status" required="">                                            
                                             <option class="" value="" selected="" disabled=""i>Select Status</option>                                           
-                                            <option class="" value="1" <?php if(isset($_SESSION['data'])){ echo set_selected(1, $_SESSION['data']['tax_type_status']);} ?>>True</option>   
-                                            <option class="" value="0" <?php if(isset($_SESSION['data'])){ echo set_selected(0, $_SESSION['data']['tax_type_status']);} ?>>False</option>                                           
+                                            <option class="" value="ACTIVE" <?php if(isset($_SESSION['data'])){ echo set_selected('ACTIVE', $_SESSION['data']['tax_type_status']);} ?>>ACTIVE</option>   
+                                            <option class="" value="INACTIVE" <?php if(isset($_SESSION['data'])){ echo set_selected('INACTIVE', $_SESSION['data']['tax_type_status']);} ?>>INACTIVE</option>                                           
                                         </select>
                                     </div>
                             </div> 

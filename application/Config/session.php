@@ -18,7 +18,7 @@ function setLanguage($lang) {
 }
 
 function sessionCheck() {
-    if (!isset($_SESSION['admin_id'])) {
+    if (!isset($_SESSION['adminDetails']['admin_user_id'])) {
         redirect(LOGIN);
         return false;
     }
@@ -28,13 +28,11 @@ function sessionDestroy() {
     session_destroy();
 }
 function sessionAdmin($row) {
-    $_SESSION['admin_id'] = $row['admin_id'];
-    $_SESSION['admin_name'] = $row['admin_firstName'].' '.$row['admin_lastName'];
-    $_SESSION['admin_image']=$row['admin_image'];  
+    $_SESSION['adminDetails']=$row;
 }
 function get_AdminName($name) {
-    if (isset($_SESSION[$name])) {
-        $name = $_SESSION[$name];
+    if (isset($_SESSION['adminDetails'][$name])) {
+        $name = $_SESSION['adminDetails'][$name];
         return $name;
     }
     return FALSE;

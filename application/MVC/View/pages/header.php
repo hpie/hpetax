@@ -40,11 +40,11 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                  <a href="javascript::void(0)"> <img src="<?php echo IMG_URL ?>original/<?php echo get_AdminName('admin_image'); ?>" height="60px" alt="..." class="img-circle profile_img"></a>
+                  <a href="javascript::void(0)"> <img src="<?php echo IMG_URL ?>original/default.png" height="60px" alt="..." class="img-circle profile_img"></a>
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <a href="javascript::void(0)"> <h2><?php echo get_AdminName('admin_name'); ?></h2></a>
+                <a href="javascript::void(0)"> <h2><?php echo get_AdminName('first_name') .' '. get_AdminName('last_name'); ?></h2></a>
               </div>
             </div>
             <!-- /menu profile quick info -->
