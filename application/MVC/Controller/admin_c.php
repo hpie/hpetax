@@ -216,6 +216,18 @@ class admin_c extends Controllers {
             redirect(ADMIN_TAX_COMMODITY_EDIT_FORM_LINK.$Id);
         }
     }
+    
+    //**************************Reports*******************//
+    public function reports() {
+        $pending = $this->admin_m->getTaxTransactionStatus('PENDING');
+        $success = $this->admin_m->getTaxTransactionStatus('SUCCESS');
+        $failed = $this->admin_m->getTaxTransactionStatus('FAILED');        
+        $this->data['pending'] = $pending;
+        $this->data['success'] = $success;
+        $this->data['failed'] = $failed;
+        $this->data['TITLE'] = TITLE_TAX_TRANSACTION_REPORTS;
+        loadview('reports/', 'reports.php', $this->data);
+    }
 }
 
 ?>

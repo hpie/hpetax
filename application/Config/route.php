@@ -29,3 +29,6 @@ $route['tax-commodity-insert'] = 'admin_c/taxCommodityInsert';
 $route['tax-commodity-edit-form/(:any)'] = 'admin_c/taxCommodityEditForm';
 $route['tax-commodity-edit/(:any)'] = 'admin_c/editTaxCommodity';
 
+//**************************reports*******************//
+$route['tax-reports'] = 'admin_c/reports';
+

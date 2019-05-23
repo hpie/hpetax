@@ -11,8 +11,12 @@
             <li>
                 <a href="<?php echo ADMIN_TAX_MASTER_LIST_LINK; ?>"><i class="fa fa-dashboard"></i> Tax Master <span class="fa fa-chevron-right"></span></a>                    
             </li>
-              <li>
+            <li>
                 <a href="<?php echo ADMIN_TAX_COMMODITY_LIST_LINK; ?>"><i class="fa fa-dashboard"></i> Tax Commodity <span class="fa fa-chevron-right"></span></a>                    
+            </li>
+            
+            <li>
+                <a href="<?php echo ADMIN_TAX_REPORTS_LINK; ?>"><i class="fa fa-dashboard"></i> Reports <span class="fa fa-chevron-right"></span></a>                    
             </li>
         </ul>
     </div>            

@@ -48,4 +48,7 @@ define('ADMIN_TAX_COMMODITY_INSERT_LINK', BASE_URL."tax-commodity-insert");
 define('ADMIN_TAX_COMMODITY_EDIT_FORM_LINK', BASE_URL."tax-commodity-edit-form/");
 define('ADMIN_TAX_COMMODITY_EDIT_LINK', BASE_URL."tax-commodity-edit/");
 
+//**************************reports*******************//
+define('TITLE_TAX_TRANSACTION_REPORTS', "Tax Transaction Reports");
+define('ADMIN_TAX_REPORTS_LINK', BASE_URL."tax-reports");
 ?>

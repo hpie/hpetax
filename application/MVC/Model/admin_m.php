@@ -123,7 +123,17 @@ class admin_m extends Models {
             return $this->query->update($q);
         }
         return FALSE;
-    }  
+    } 
+    
+    //**************************tax_transaction quee*******************//
+      public function getTaxTransactionStatus($status) {
+        $q = "SELECT COUNT(tax_transaction_status) as status FROM tax_transaction_queue WHERE tax_transaction_status='$status'";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row['status'];
+        }
+        return false;
+    }
     
 }
 
