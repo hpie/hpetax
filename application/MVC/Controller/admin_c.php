@@ -9,7 +9,6 @@ class admin_c extends Controllers {
         sessionCheck();
         $this->admin_m = $this->loadModel('admin_m');
     }
-
     public function invoke() {
         $this->data['TITLE'] = TITLE_DASHBOARD;
         loadview('dashboard/', 'dashboard.php', $this->data);

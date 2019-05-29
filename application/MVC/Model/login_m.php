@@ -16,7 +16,10 @@ class login_m extends Models {
         $q = "SELECT * FROM admin_users WHERE username='$email' and password='$password'";
         $result = $this->query->select($q);
         if ($row = $this->query->fetch($result)) {
-            if ($email == $row['username'] && $password == $row['password']) {               
+            if ($email == $row['username'] && $password == $row['password']) {
+                $admin_id=$row['admin_user_id'];
+                $q = "UPDATE admin_users SET last_login=now() WHERE admin_user_id=$admin_id";
+                $this->query->update($q);
                 sessionAdmin($row);
                 return true;
             }

@@ -12,6 +12,9 @@
     <link href="<?php echo BASE_URL; ?>assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        
+   
+    
     <!-- NProgress -->
     <link href="<?php echo BASE_URL; ?>assets/nprogress/nprogress.css" rel="stylesheet">        
     <link href="<?php echo BASE_URL; ?>assets/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">    
@@ -22,7 +25,7 @@
     <link href="<?php echo BASE_URL; ?>assets/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo BASE_URL; ?>assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo BASE_URL; ?>assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">  
-       <!-- PNotify -->
+       <!-- PNotify -->             
     <link href="<?php echo BASE_URL; ?>assets/pnotify/dist/pnotifiadmin.css" rel="stylesheet">     
     <!-- Custom Theme Style -->
     <link href="<?php echo BASE_URL; ?>assets/build/css/custom.min.css" rel="stylesheet">              

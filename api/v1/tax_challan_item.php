@@ -4,7 +4,6 @@
  * System initialization
  * ---------------------------------------------------------------
  */
-
 include_once("../config/init.php");
 /* * *******
  * * Configure to use all the function from system 
