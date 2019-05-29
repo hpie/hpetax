@@ -44,6 +44,9 @@
             <div class="login_wrapper"  style="padding-top: 200px;" id="validdiv1">
                 <div class="animate form login_form">
                     <section class="login_content">
+                        
+                        <?php if($count==false){
+                            ?>
                         <form method="post">              
                           <!--<center><div id="validdiv">Invalid Username And Password</div></center>-->
                             <h1>Login Form</h1>
@@ -72,6 +75,20 @@
                                 </div>
                             </div>
                         </form>
+                        <?php
+                        }
+                        else{
+                            ?>
+                        <center><div id="validdiv" style="color:red;padding-top: 30px;"><h3>Your are allowed 3 attempts in 10 minutes</h3></div>
+                            <br><br>
+                        <div>
+                                    <h1><i class="fa fa-modx">&nbsp;</i><?php echo APPNAME ?></h1>
+                                    <p>©<?php echo date("Y"); ?> All Rights Reserved <?php echo APPNAME ?>.</p>
+                                </div>
+                        </center>
+                        <?php
+                        }
+                        ?>                                                
                     </section>
                 </div>
             </div>

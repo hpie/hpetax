@@ -1,5 +1,5 @@
 <?php
-define('APPNAME', "HpTax");
+define('APPNAME', "Hpetax");
 define('ASSETS',BASE_URL.'assets/');
 define('LOGIN', BASE_URL ."login");
 define('LOGOUT', BASE_URL ."logout");
