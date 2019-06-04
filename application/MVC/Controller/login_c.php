@@ -15,18 +15,22 @@ class login_c extends Controllers {
         $count = $this->login_m->getAttemptCount();
         if ($count==false) {        
             if (isset($_POST['email']) && isset($_POST['password'])) {
-                $result = $this->login_m->login_select($_POST['email'], $_POST['password']);
-                if($result==2){
-                    redirect(LOGIN);
-                }
-                if ($result == true) {
+                $result = $this->login_m->login_select($_POST['email'], $_POST['password']);                                
+              
+                if ($result==true) {                    
                     redirect(ADMIN_DASHBOARD_LINK);
                 }
                 if ($result == false) {
                     $_SESSION['valid'] = 1;
+                } 
+                if($result==2){
+                    redirect(LOGIN);
                 }
+               
             }
+              
         }
+      
         $this->data['count'] = $count;
         loadLoginView('login/', 'login.php', $this->data);
     }

@@ -27,7 +27,7 @@ class login_m extends Models {
     }
      
     public function login_select($email, $password) {                                
-        $password=md5($password);        
+        $password=md5($password);       
         $ip = $_SERVER["REMOTE_ADDR"];        
         $q = "INSERT INTO `ip` (`ip_address` ,`ip_update`)VALUES ('$ip',CURRENT_TIMESTAMP)";
         $res = $this->query->insert($q);               
