@@ -18,7 +18,24 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="number" <?php if(isset($_SESSION['data'])){ echo 'value="'.$_SESSION['data']['tax_commodity_id'].'"';} ?> name="tax_commodity_id"  placeholder="Enter tax commodity id" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
-                            </div>                           
+                            </div> 
+                            <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_type_id">Tax Type
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select class="form-control" name="tax_type_id" required="">                                              
+                                            <option class="" value="" selected="" disabled=""i>Select Tax Type</option>       
+                                            <?php if($result){
+                                                foreach ($result as $row){
+                                                 
+                                                    ?>
+                                            <option class="" value="<?php echo $row['tax_type_id']; ?>" <?php if(isset($_SESSION['data'])){ echo set_selected($row['tax_type_id'], $_SESSION['data']['tax_type_id']);} ?>><?php echo $row['tax_type_name']; ?></option>   
+                                            <?php
+                                                }
+                                            } ?>                                           
+                                        </select>
+                                    </div>
+                            </div>                                      
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_commodity_name">Name<span class="required">*</span>
                                 </label>
@@ -35,10 +52,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_commodity_rate_unit">Rate Unit<span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_commodity_rate_unit">Rate Unit
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" <?php if(isset($_SESSION['data'])){ echo 'value="'.$_SESSION['data']['tax_commodity_rate_unit'].'"';} ?> name="tax_commodity_rate_unit"  placeholder="Enter tax commodity rate unit" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" <?php if(isset($_SESSION['data'])){ echo 'value="'.$_SESSION['data']['tax_commodity_rate_unit'].'"';} ?> name="tax_commodity_rate_unit"  placeholder="Enter tax commodity rate unit (optional)" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="form-group">

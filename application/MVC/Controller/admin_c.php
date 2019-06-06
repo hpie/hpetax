@@ -104,7 +104,7 @@ class admin_c extends Controllers {
         loadview('tax_type/', 'list.php', $this->data);
     }
 
-    public function taxTypeAddForm() {
+    public function taxTypeAddForm() {       
         $this->data['TITLE'] = TITLE_TAX_TYPE_ADD_FORM;
         loadview('tax_type/', 'add.php', $this->data);
     }
@@ -165,6 +165,8 @@ class admin_c extends Controllers {
     }
 
     public function taxCommodityAddForm() {
+        $result = $this->admin_m->getTaxTypeList();
+        $this->data['result'] = $result;
         $this->data['TITLE'] = TITLE_TAX_COMMODITY_ADD_FORM;
         loadview('tax_commodity/', 'add.php', $this->data);
     }
@@ -194,6 +196,9 @@ class admin_c extends Controllers {
     }
 
     public function taxCommodityEditForm($id) {
+        $result1 = $this->admin_m->getTaxTypeList();
+        $this->data['result1'] = $result1;
+        
         $result = $this->admin_m->getSingleRecordById($id, 'tax_commodity_id', 'tax_commodity');
         $this->data['result'] = $result;
         $this->data['TITLE'] = TITLE_TAX_COMMODITY_EDIT_FORM;
