@@ -1,0 +1,61 @@
+<?php
+/*
+ * ---------------------------------------------------------------
+ * System initialization
+ * ---------------------------------------------------------------
+ */
+
+include_once("../config/init.php");
+/* * *******
+ * * Configure to use all the function from system 
+ * * (1) REQUESTED action method name
+ * * (2) Function name
+ * * (3) use($APP) you can use to access data from my_base
+ * * global $USERID;
+ * * global $controller;
+ * * global $VARS;
+ * * global $ID;
+ * * X-Authorization
+ * ******* */
+
+/* ################################# START REST API FROM HERE ############################ */
+        
+        
+/* * ***************************************************************************************** */
+/* * ************************************************insert data in  tax_type ****************************** */
+/* * ***************************************************************************************** */
+$APP->post('get-transaction-list', false, function() use($APP) {
+            $data = array();
+            global $USERID;
+            global $controller;
+            global $VARS;
+            global $ID;
+              
+            $VARS=json_decode(file_get_contents("php://input"),true);                   
+            verifyRequiredParams(array('token', 'device'));
+            if (!in_array($VARS['device'], array('iphone', 'android'))) {
+                return array(false, "device name is invalid", $data);
+            }
+            $from_date='';
+            $to_date='';
+            if(!empty($VARS['from_date']) && !empty($VARS['to_date'])){
+                $from_date=dateFormatterMysql($VARS['from_date']);
+                $to_date=dateFormatterMysql($VARS['to_date']);
+            }
+            $params = array();            
+            $params['tax_transaction_queue_id'] = $VARS['transaction_no'];
+            $params['tax_transaction_status'] = $VARS['transaction_status'];
+            $params['tax_payment_dt_from'] = $from_date;
+            $params['tax_payment_dt_to'] = $to_date;
+            $result= $controller->getTransactionListSearch($params);              
+            if($result){
+                $data['Result']=$result;
+                return array(true, "Data Loaded successfully", $data);
+            }                    
+            return array(false, "No Record found", $data);
+        }); 
+$APP->stop();
+/* * *******
+ * * finish all the function working
+ * ***** */
+?>

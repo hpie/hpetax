@@ -57,6 +57,44 @@ class Model extends Models {
         return false;
     }    
 
+//*******************************//  
+//***Get transaction list by search*****//
+//*****************************// 
+    public function getTransactionListSearch($params) {
+        $transactionNo=$params['tax_transaction_queue_id'];
+        $transactionStatus=$params['tax_transaction_status'];
+        $from_dt=$params['tax_payment_dt_from'];
+        $to_dt=$params['tax_payment_dt_to'];
+        
+        $query="SELECT * FROM tax_transaction_queue ";
+        
+        
+        if(!empty($transactionNo) || !empty($transactionStatus) || (!empty($from_dt) && !empty($to_dt)))
+        {
+            $query.=" WHERE ";
+            if(!empty($transactionNo)){
+                $query.=" tax_transaction_queue_id='$transactionNo' ";
+            }
+            if(!empty($transactionStatus)){
+                if(!empty($transactionNo)){
+                    $query.=" AND ";
+                }
+                $query.=" tax_transaction_status='$transactionStatus' ";
+            }
+            if((!empty($from_dt) && !empty($to_dt))){
+                    
+                if(!empty($transactionNo) || !empty($transactionStatus)){
+                    $query.=" AND ";
+                }
+                $query.=" (tax_payment_dt BETWEEN '$from_dt' AND '$to_dt') ";                
+            }
+        }                       
+        $result = $this->query->select($query);
+        if ($data = $this->query->fetch_array($result))
+            return $data;
+        return false;
+    }        
+    
 }
 
 ?>
