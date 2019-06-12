@@ -6,6 +6,17 @@ $route['logout'] = 'login_c/logout';
 $route['dashboard'] = 'admin_c';
 
 
+//**************************************************************************************//
+//********************************Front side********************************************//
+$route[''] = 'home_c';
+$route['home'] = 'home_c';
+$route['epayment'] = 'home_c/epayment';
+$route['front-commodity-list-ajax'] = 'home_c/commodityListAjax';
+$route['front-commodity-field-ajax'] = 'home_c/commodityFieldAjax';
+$route['front-add-tax-item-que'] = 'home_c/addTaxItemQueAjax';
+
+//**************************************************************************************//
+
 //**************************tax_master*******************//
 $route['tax-master-list'] = 'admin_c/taxMasterList';
 $route['tax-master-add-form'] = 'admin_c/taxMasterAddForm';

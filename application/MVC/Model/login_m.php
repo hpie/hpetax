@@ -24,8 +24,7 @@ class login_m extends Models {
                 return false;
             }
         }
-    }
-     
+    }     
     public function login_select($email, $password) {                                
         $password=md5($password);       
         $ip = $_SERVER["REMOTE_ADDR"];        

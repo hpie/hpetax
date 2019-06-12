@@ -25,12 +25,12 @@ function loadviewTechnician($dir, $filename, $data) {
     include_once(APP_INCLUDE_V . "technician/pages/footer.php");
 }
 
-function loadviewExtra($dir, $filename, $data) {
+function loadviewFront($dir, $filename, $data) {
     global $APP;
     extract($data);
-    include_once(APP_INCLUDE_V . "technician/pages/header.php");
+    include_once(APP_INCLUDE_V . "frontcommon/header.php");
     include_once(APP_INCLUDE_V . $dir . $filename);
-    include_once(APP_INCLUDE_V . "technician/pages/footer.php");
+    include_once(APP_INCLUDE_V . "frontcommon/footer.php");
 }
 
 
