@@ -20,7 +20,7 @@ class home_c extends Controllers {
         $result = $this->home_m->getTaxType();
         $this->data['TITLE'] = TITLE_FRONT_EPAYMENT_UNREGISTER;
         $this->data['result'] = $result;
-        loadviewFront('front/', 'epayment.php', $this->data);
+        loadviewFront('front/', 'ePayment.php', $this->data);
     }
 
     public function commodityListAjax() {
@@ -159,8 +159,19 @@ class home_c extends Controllers {
         $params['tax_item_status']='ACTIVE';
         $params['tax_commodity_id']=$_POST['commodityid'];
         $params['tax_type_id']=$_POST['taxtypeid'];
-    }
-    
+        $result = $this->home_m->taxItemQueueInsert($params);
+        print_r($result);die;
+        $html ='';
+        if ($result['res'] == 1 || !empty($result['id'])) {
+            $res= $this->home_m->getTaxItemQueById($result['id']); 
+        }
+        
+        $newArray = array();
+        $newArray['result'] = 'success';        
+        $newArray['html'] = $html;
+        echo json_encode($newArray);
+        die;
+    }    
 }
 
 ?>

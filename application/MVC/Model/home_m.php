@@ -36,6 +36,26 @@ class home_m extends Models {
         return $this->query->delete($q);
         return FALSE;
     }
+        
+    public function taxItemQueueInsert($params) {
+        $columns = $this->insertMaker($params, $values);
+        if ($columns) {
+            $q = "INSERT INTO tax_item_queue($columns) values($values)";
+            $id = $this->query->insert($q);            
+            return $id;
+        }
+        return FALSE;
+    }
+    
+//     public function commodityFieldAjax($commodityId){
+//        $q = "SELECT * FROM tax_item_queue WHERE tax_item_queue='ACTIVE' AND tax_commodity_id='$commodityId'";
+//        $result = $this->query->select($q);
+//        if ($row = $this->query->fetch($result)) {
+//            return $row;
+//        }
+//        return false;
+//    }
+    
 }
 
 ?>
