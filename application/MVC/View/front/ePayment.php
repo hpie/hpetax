@@ -8,14 +8,13 @@
         white-sapce: no-wrap;
         text-overflow: ellipsis;
     }        
-    td, th {
+/*    td {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
-}
-    custometd {
-    border: 1px solid #dddddd !important;
-    text-align: center !important;
+}*/
+    td, th{
+    border: 1px solid #dddddd !important;   
     padding: 8px !important;
 }
 </style>
@@ -134,18 +133,18 @@
             <thead class="sm-heading">
                 <tr class="ajaxtr">
                     <!--<th>Sr. No</th>-->
-                    <th>Delete</th>
-                    <th>Modify</th>
-                    <th>Tax Type</th>
-                    <th>Commodity / Description</th>
-                    <th>Vehicle Number</th>
-                    <th>Weight</th>
-                    <th>Unit</th>
-                    <th>Quantity</th>
-                    <th>Source Location</th>
-                    <th>Destination Location</th>
-                    <th>Distance (in Km) within HP</th>
-                    <th>Total Tax (in Rs.)</th>
+                    <th class="custometh">Delete</th>
+                    <th class="custometh">Modify</th>
+                    <th class="custometh">Tax Type</th>
+                    <th class="custometh">Commodity / Description</th>
+                    <th class="custometh">Vehicle Number</th>
+                    <th class="custometh">Weight</th>
+                    <th class="custometh">Unit</th>
+                    <th class="custometh">Quantity</th>
+                    <th class="custometh">Source Location</th>
+                    <th class="custometh">Destination Location</th>
+                    <th class="custometh">Distance (in Km) within HP</th>
+                    <th class="custometh">Total Tax (in Rs.)</th>
                 </tr>
             </thead>
             <tbody id="tbody">                

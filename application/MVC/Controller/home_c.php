@@ -53,7 +53,7 @@ class home_c extends Controllers {
                         <td><input type="text" id="distance" required="required"></td>
                         <td>&nbsp;</td>
                         <td>Total Tax (in Rs.)</td>
-                        <td><input type="text" id="totaltax" required="required"></td>
+                        <td><input type="text" id="totaltax" required="required" readonly></td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>';
@@ -62,7 +62,7 @@ class home_c extends Controllers {
              $str.='<tr class="removetr">
                         <td>&nbsp;</td>
                         <td>Total Tax (in Rs.)</td>
-                        <td><input type="text" id="totaltax" value="" required="required"></td>
+                        <td><input type="text" id="totaltax" value="" required="required" readonly></td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp</td>
@@ -87,7 +87,7 @@ class home_c extends Controllers {
                         <td><input type="text" id="distance" required="required"></td>
                         <td>&nbsp;</td>
                         <td>Total Tax (in Rs.)</td>
-                        <td><input type="text" id="totaltax" required="required"></td>
+                        <td><input type="text" id="totaltax" required="required" readonly></td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>';
@@ -109,7 +109,7 @@ class home_c extends Controllers {
                         <td><input type="text" id="distance" required="required"></td>
                         <td>&nbsp;</td>
                         <td>Total Tax (in Rs.)</td>
-                        <td><input type="text" id="totaltax" required="required"></td>
+                        <td><input type="text" id="totaltax" required="required" readonly></td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>';
@@ -160,8 +160,8 @@ class home_c extends Controllers {
         if ($result['res'] == 1 || !empty($result['id'])) {
             $res= $this->home_m->getTaxItemQueById($result['id']);
             $html.='<tr align="center">'
-                    . '<td class="custometd">Delete</td>'
-                    . '<td class="custometd">Modify</td>'
+                    .'<td class="custometd">Delete</td>'
+                    .'<td class="custometd">Modify</td>'
                     .'<td class="custometd">'.$res["tax_type_name"].'</td>'
                     .'<td class="custometd">'.$res["tax_commodity_description"].'</td>'
                     .'<td class="custometd">'.$res["tax_vehicle_number"].'</td>'
@@ -172,7 +172,7 @@ class home_c extends Controllers {
                     .'<td class="custometd">'.$res["tax_item_destination_location"].'</td>'
                     .'<td class="custometd">'.$res["tax_item_distanceinkm"].'</td>'
                     .'<td class="custometd">'.$res["tax_item_tax_amount"].'</td>'
-                    . '</tr>';
+                    .'</tr>';
         }        
         $newArray = array();
         $newArray['result'] = 'success';        
