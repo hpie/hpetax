@@ -1,8 +1,5 @@
 <script>
     $(document).ready(function () {
-
-
-
         $('#taxType').on('change', function () {
             var urlReq = '<?php echo FRONT_COMMODITY_LIST_LINK ?>';
             var id = this.value;
@@ -132,6 +129,9 @@
             if ($("#destinationlocation").length) {
                 destinationlocation = $("#destinationlocation").val();
             }
+            if ($("#distance").length) {
+                distance = $("#distance").val();
+            }
             if ($("#vehicleno").length) {
                 vehicleno = $("#vehicleno").val();
             }
@@ -150,7 +150,7 @@
                 url: urlReq,
                 success: function (_returnData) {
                     if (_returnData.result == "success") {
-                        
+                        $('#tbody').append(_returnData.html);
                     }
                 }
             });            

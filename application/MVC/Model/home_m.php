@@ -47,14 +47,19 @@ class home_m extends Models {
         return FALSE;
     }
     
-//     public function commodityFieldAjax($commodityId){
-//        $q = "SELECT * FROM tax_item_queue WHERE tax_item_queue='ACTIVE' AND tax_commodity_id='$commodityId'";
-//        $result = $this->query->select($q);
-//        if ($row = $this->query->fetch($result)) {
-//            return $row;
-//        }
-//        return false;
-//    }
+     public function getTaxItemQueById($taxItemQueId){
+        $q = "SELECT tiq.*,tt.*,tc.* FROM tax_item_queue tiq
+              LEFT JOIN tax_type tt
+              ON tt.tax_type_id=tiq.tax_type_id
+              LEFT JOIN tax_commodity tc
+              ON tc.tax_commodity_id=tiq.tax_commodity_id
+              WHERE tiq.tax_item_status='ACTIVE' AND tiq.tax_item_queue_id='$taxItemQueId'";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row;
+        }
+        return false;
+    }
     
 }
 

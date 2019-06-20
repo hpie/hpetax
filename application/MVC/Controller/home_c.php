@@ -2,9 +2,7 @@
 
 //tax_master, tax_type, tax_commodity
 class home_c extends Controllers {
-
     public $home_m;
-
     public function __construct() {
         $this->home_m = $this->loadModel('home_m');
     }
@@ -22,7 +20,6 @@ class home_c extends Controllers {
         $this->data['result'] = $result;
         loadviewFront('front/', 'ePayment.php', $this->data);
     }
-
     public function commodityListAjax() {
         $refTaxTypeId = $_POST['id'];
         $result = $this->home_m->commodityListAjax($refTaxTypeId);
@@ -94,8 +91,7 @@ class home_c extends Controllers {
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>';
-        } 
-        
+        }         
         if ($id == 'CGCR') {
             $str .= '<tr class="removetr">
                         <td>&nbsp;</td>
@@ -159,13 +155,25 @@ class home_c extends Controllers {
         $params['tax_item_status']='ACTIVE';
         $params['tax_commodity_id']=$_POST['commodityid'];
         $params['tax_type_id']=$_POST['taxtypeid'];
-        $result = $this->home_m->taxItemQueueInsert($params);
-        print_r($result);die;
+        $result = $this->home_m->taxItemQueueInsert($params);        
         $html ='';
         if ($result['res'] == 1 || !empty($result['id'])) {
-            $res= $this->home_m->getTaxItemQueById($result['id']); 
-        }
-        
+            $res= $this->home_m->getTaxItemQueById($result['id']);
+            $html.='<tr align="center">'
+                    . '<td class="custometd">Delete</td>'
+                    . '<td class="custometd">Modify</td>'
+                    .'<td class="custometd">'.$res["tax_type_name"].'</td>'
+                    .'<td class="custometd">'.$res["tax_commodity_description"].'</td>'
+                    .'<td class="custometd">'.$res["tax_vehicle_number"].'</td>'
+                    .'<td class="custometd">'.$res["tax_item_weight"].'</td>'
+                    .'<td class="custometd">'.$res["tax_commodity_unit_measure"].'</td>'
+                    .'<td class="custometd">'.$res["tax_item_quantity"].'</td>'
+                    .'<td class="custometd">'.$res["tax_item_source_location"].'</td>'
+                    .'<td class="custometd">'.$res["tax_item_destination_location"].'</td>'
+                    .'<td class="custometd">'.$res["tax_item_distanceinkm"].'</td>'
+                    .'<td class="custometd">'.$res["tax_item_tax_amount"].'</td>'
+                    . '</tr>';
+        }        
         $newArray = array();
         $newArray['result'] = 'success';        
         $newArray['html'] = $html;

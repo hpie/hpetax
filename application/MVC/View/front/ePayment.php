@@ -7,7 +7,17 @@
         overflow: hidden;
         white-sapce: no-wrap;
         text-overflow: ellipsis;
-    }
+    }        
+    td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+    custometd {
+    border: 1px solid #dddddd !important;
+    text-align: center !important;
+    padding: 8px !important;
+}
 </style>
 
 <div class="col-md-9 col-sm-12  col-12 ">
@@ -122,8 +132,8 @@
         </style>
         <table style="width:100%" border="1">
             <thead class="sm-heading">
-                <tr>
-                    <th>Sr. No</th>
+                <tr class="ajaxtr">
+                    <!--<th>Sr. No</th>-->
                     <th>Delete</th>
                     <th>Modify</th>
                     <th>Tax Type</th>
@@ -138,7 +148,7 @@
                     <th>Total Tax (in Rs.)</th>
                 </tr>
             </thead>
-            <tbody>                
+            <tbody id="tbody">                
             </tbody>
         </table>
     </div>
