@@ -170,6 +170,7 @@
                     success: function (_returnData) {
                         if (_returnData.result == "success") {
                             $("#"+id).text("deleted");
+                            $("#"+id).removeClass("deletetd");
                         }
                     }
                 });

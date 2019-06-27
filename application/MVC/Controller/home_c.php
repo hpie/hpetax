@@ -192,8 +192,7 @@ class home_c extends Controllers {
         $newArray['result'] = 'success';        
         echo json_encode($newArray);
         die;
-    }
-    
+    }    
 }
 
 ?>
