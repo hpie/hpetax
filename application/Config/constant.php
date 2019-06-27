@@ -18,6 +18,7 @@ define('FRONT_EPAYMENT_UNREGISTERE', BASE_URL.'epayment');
 define('FRONT_COMMODITY_LIST_LINK', BASE_URL ."front-commodity-list-ajax");
 define('FRONT_COMMODITY_FIELD_LINK', BASE_URL ."front-commodity-field-ajax");
 define('FRONT_ADD_TAX_ITEM_QUE_LINK', BASE_URL ."front-add-tax-item-que");
+define('FRONT_DELETE_TAX_ITEM_QUE_LINK', BASE_URL ."front-delete-tax-item-que");
 
 //**************************Front Title*********************//
 define('TITLE_FRONT_EPAYMENT_UNREGISTER', "e-payment");

@@ -19,8 +19,8 @@
                         $('.removetr2').remove();
                         $("#vehicleno").val('');
                         $('#tabledata').append($(_returnData.html));
-                        if(id==="PTCG"){                           
-                            $( ".quantity" ).text( "No of Passanger" );
+                        if (id === "PTCG") {
+                            $(".quantity").text("No of Passanger");
                         }
                     }
                 }
@@ -143,19 +143,38 @@
             if ($("#noofpassenger").length) {
                 noofpassenger = $("#noofpassenger").val();
             }
-            
-             var urlReq = '<?php echo FRONT_ADD_TAX_ITEM_QUE_LINK ?>';
+
+            var urlReq = '<?php echo FRONT_ADD_TAX_ITEM_QUE_LINK ?>';
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                data: {taxtypeid: taxtypeid,commodityid:commodityid,weight:weight,mesuare:mesuare,sourcelocation:sourcelocation,destinationlocation:destinationlocation,distance:distance,vehicleno:vehicleno,totaltax:totaltax,noofpassenger:noofpassenger},
+                data: {taxtypeid: taxtypeid, commodityid: commodityid, weight: weight, mesuare: mesuare, sourcelocation: sourcelocation, destinationlocation: destinationlocation, distance: distance, vehicleno: vehicleno, totaltax: totaltax, noofpassenger: noofpassenger},
                 url: urlReq,
                 success: function (_returnData) {
                     if (_returnData.result == "success") {
                         $('#tbody').append(_returnData.html);
                     }
                 }
-            });            
+            });
+        });
+
+        $("table").delegate(".deletetd", "click", function () {
+            if (confirm("Are you sure you want delete ?")) {                
+                var id = $(this).attr('id');
+                var urlReq = '<?php echo FRONT_DELETE_TAX_ITEM_QUE_LINK ?>';
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    data: {id:id},
+                    url: urlReq,
+                    success: function (_returnData) {
+                        if (_returnData.result == "success") {
+                            $("#"+id).text("deleted");
+                        }
+                    }
+                });
+            }
+            return false;
         });
     });
 </script>

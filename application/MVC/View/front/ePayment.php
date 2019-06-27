@@ -11,17 +11,11 @@
     .hovercs:hover {
 	color: red;
     }
-/*    td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}*/
     td, th{
     border: 1px solid #dddddd !important;   
     padding: 8px !important;
 }
 </style>
-
 <div class="col-md-9 col-sm-12  col-12 ">
     <div class="middle-area box-shadow">
         <h1 class="heading" style="text-align: center;">e-Payment (Unregistered)</h1>        

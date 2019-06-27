@@ -36,6 +36,12 @@ class home_m extends Models {
         return $this->query->delete($q);
         return FALSE;
     }
+    
+    public function deleteTaxItemQueAjax($id) {
+        $q = "DELETE FROM tax_item_queue WHERE tax_item_queue_id=$id";
+        return $this->query->delete($q);
+        return FALSE;
+    }
         
     public function taxItemQueueInsert($params) {
         $columns = $this->insertMaker($params, $values);

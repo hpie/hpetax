@@ -165,18 +165,18 @@ class home_c extends Controllers {
         if ($result['res'] == 1 || !empty($result['id'])) {
             $res= $this->home_m->getTaxItemQueById($result['id']);
             $html.='<tr align="center">'
-                    .'<td class="custometd hovercs"  id="del'.$res['tax_item_queue_id'].'">Delete</td>'
-                    .'<td class="custometd hovercs" id="md'.$res['tax_item_queue_id'].'">Modify</td>'
-                    .'<td class="custometd">'.$res["tax_type_name"].'</td>'
-                    .'<td class="custometd">'.$res["tax_commodity_description"].'</td>'
-                    .'<td class="custometd">'.$res["tax_vehicle_number"].'</td>'
-                    .'<td class="custometd">'.$res["tax_item_weight"].'</td>'
-                    .'<td class="custometd">'.$res["tax_commodity_unit_measure"].'</td>'
-                    .'<td class="custometd">'.$res["tax_item_quantity"].'</td>'
-                    .'<td class="custometd">'.$res["tax_item_source_location"].'</td>'
-                    .'<td class="custometd">'.$res["tax_item_destination_location"].'</td>'
-                    .'<td class="custometd">'.$res["tax_item_distanceinkm"].'</td>'
-                    .'<td class="custometd">'.$res["tax_item_tax_amount"].'</td>'
+                    .'<td class="deletetd hovercs"  id="del'.$res['tax_item_queue_id'].'">Delete</td>'
+                    .'<td class="modifytd hovercs" id="md'.$res['tax_item_queue_id'].'">Modify</td>'
+                    .'<td class="">'.$res["tax_type_name"].'</td>'
+                    .'<td class="">'.$res["tax_commodity_description"].'</td>'
+                    .'<td class="">'.$res["tax_vehicle_number"].'</td>'
+                    .'<td class="">'.$res["tax_item_weight"].'</td>'
+                    .'<td class="">'.$res["tax_commodity_unit_measure"].'</td>'
+                    .'<td class="">'.$res["tax_item_quantity"].'</td>'
+                    .'<td class="">'.$res["tax_item_source_location"].'</td>'
+                    .'<td class="">'.$res["tax_item_destination_location"].'</td>'
+                    .'<td class="">'.$res["tax_item_distanceinkm"].'</td>'
+                    .'<td class="">'.$res["tax_item_tax_amount"].'</td>'
                     .'</tr>';
         }        
         $newArray = array();
@@ -185,6 +185,15 @@ class home_c extends Controllers {
         echo json_encode($newArray);
         die;
     }    
+    public function deleteTaxItemQueAjax() {
+        $id=str_replace("del","",$_POST['id']);          
+        $result = $this->home_m->deleteTaxItemQueAjax($id);    
+        $newArray = array();
+        $newArray['result'] = 'success';        
+        echo json_encode($newArray);
+        die;
+    }
+    
 }
 
 ?>
