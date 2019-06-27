@@ -144,6 +144,10 @@ class home_c extends Controllers {
     
     public function addTaxItemQueAjax() {
         $params=array();
+        
+        if($_POST['noofpassenger']!=0){
+            $params['tax_item_quantity']=$_POST['noofpassenger'];
+        }        
         $params['tax_queue_session']=$_SESSION['unregistered'];
         $params['tax_vehicle_number']=$_POST['vehicleno'];
         $params['tax_item_weight']=$_POST['weight'];
@@ -155,13 +159,14 @@ class home_c extends Controllers {
         $params['tax_item_status']='ACTIVE';
         $params['tax_commodity_id']=$_POST['commodityid'];
         $params['tax_type_id']=$_POST['taxtypeid'];
+                                
         $result = $this->home_m->taxItemQueueInsert($params);        
         $html ='';
         if ($result['res'] == 1 || !empty($result['id'])) {
             $res= $this->home_m->getTaxItemQueById($result['id']);
             $html.='<tr align="center">'
-                    .'<td class="custometd">Delete</td>'
-                    .'<td class="custometd">Modify</td>'
+                    .'<td class="custometd hovercs"  id="del'.$res['tax_item_queue_id'].'">Delete</td>'
+                    .'<td class="custometd hovercs" id="md'.$res['tax_item_queue_id'].'">Modify</td>'
                     .'<td class="custometd">'.$res["tax_type_name"].'</td>'
                     .'<td class="custometd">'.$res["tax_commodity_description"].'</td>'
                     .'<td class="custometd">'.$res["tax_vehicle_number"].'</td>'

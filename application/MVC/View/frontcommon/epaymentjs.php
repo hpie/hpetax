@@ -19,6 +19,9 @@
                         $('.removetr2').remove();
                         $("#vehicleno").val('');
                         $('#tabledata').append($(_returnData.html));
+                        if(id==="PTCG"){                           
+                            $( ".quantity" ).text( "No of Passanger" );
+                        }
                     }
                 }
             });
@@ -105,7 +108,6 @@
                 $(this).val('');
             }
         });
-
         $("#add").click(function () {
             var taxtypeid = $('#taxType').children("option:selected").val();
             var commodityid = $('#commodity').children("option:selected").val();

@@ -7,7 +7,7 @@
         <title><?php echo $TITLE; ?></title>
         <!--<title>Welcome to hptax.gov.in</title>-->
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/bootstrap.min.css">
-        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/font-awesome.min.css">
+        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/font-awesome.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/font-awesome.css">
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/main.css">

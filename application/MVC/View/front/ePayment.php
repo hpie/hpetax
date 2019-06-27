@@ -7,7 +7,10 @@
         overflow: hidden;
         white-sapce: no-wrap;
         text-overflow: ellipsis;
-    }        
+    } 
+    .hovercs:hover {
+	color: red;
+    }
 /*    td {
     border: 1px solid #dddddd;
     text-align: left;
@@ -140,7 +143,7 @@
                     <th class="custometh">Vehicle Number</th>
                     <th class="custometh">Weight</th>
                     <th class="custometh">Unit</th>
-                    <th class="custometh">Quantity</th>
+                    <th class="custometh quantity">Quantity</th>
                     <th class="custometh">Source Location</th>
                     <th class="custometh">Destination Location</th>
                     <th class="custometh">Distance (in Km) within HP</th>
