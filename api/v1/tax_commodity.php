@@ -63,7 +63,7 @@ $APP->post('add-commodity', false, function() use($APP) {
 /******************************************************************************************* */
 /************************************GET Tax commodity****************************** */
 /******************************************************************************************* */
-$APP->get('get-commodity', false, function() use($APP) {
+$APP->post('get-commodity', false, function() use($APP) {
             $data = array();
             global $USERID;
             global $controller;

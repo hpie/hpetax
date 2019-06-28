@@ -55,7 +55,7 @@ $APP->post('add-tax-type', false, function() use($APP) {
 /******************************************************************************************* */
 /************************************GET tax_type****************************** */
 /******************************************************************************************* */
-$APP->get('get-tax-type', false, function() use($APP) {
+$APP->post('get-tax-type', false, function() use($APP) {
             $data = array();
             global $USERID;
             global $controller;

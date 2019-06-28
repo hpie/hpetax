@@ -66,7 +66,7 @@ $APP->post('add-tax-challan-item', false, function() use($APP) {
 /******************************************************************************************* */
 /************************************GET Tax challan item****************************** */
 /******************************************************************************************* */
-$APP->get('get-tax-challan-item', false, function() use($APP) {
+$APP->post('get-tax-challan-item', false, function() use($APP) {
             $data = array();
             global $USERID;
             global $controller;

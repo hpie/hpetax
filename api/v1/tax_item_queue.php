@@ -70,7 +70,7 @@ $APP->post('add-tax-item-queue', false, function() use($APP) {
 /******************************************************************************************* */
 /************************************GET tax item queue****************************** */
 /******************************************************************************************* */
-$APP->get('get-tax-item-queue', false, function() use($APP) {
+$APP->post('get-tax-item-queue', false, function() use($APP) {
             $data = array();
             global $USERID;
             global $controller;

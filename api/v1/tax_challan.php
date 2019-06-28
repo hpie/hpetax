@@ -71,15 +71,14 @@ $APP->post('add-tax-challan', false, function() use($APP) {
 /******************************************************************************************* */
 /************************************GET Tax challan****************************** */
 /******************************************************************************************* */
-$APP->get('get-tax-challan', false, function() use($APP) {
+$APP->post('get-tax-challan', false, function() use($APP) {
             $data = array();
             global $USERID;
             global $controller;
             global $VARS;
             global $ID;
             
-            $VARS=json_decode(file_get_contents("php://input"),true);
-            
+            $VARS=json_decode(file_get_contents("php://input"),true);            
             issetID();            
             verifyRequiredParams(array('token', 'device'));
             if (!in_array($VARS['device'], array('iphone', 'android'))) {

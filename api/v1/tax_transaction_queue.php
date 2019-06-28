@@ -65,7 +65,7 @@ $APP->post('add-tax-transaction-queue', false, function() use($APP) {
 /******************************************************************************************* */
 /************************************GET tax_transaction_queue****************************** */
 /******************************************************************************************* */
-$APP->get('get-tax-transaction-queue', false, function() use($APP) {
+$APP->post('get-tax-transaction-queue', false, function() use($APP) {
             $data = array();
             global $USERID;
             global $controller;

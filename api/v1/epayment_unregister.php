@@ -24,7 +24,7 @@ include_once("../config/init.php");
 /******************************************************************************************* */
 /************************************GET tax_type****************************** */
 /******************************************************************************************* */
-$APP->get('get-tax-type', false, function() use($APP) {
+$APP->post('get-tax-type', false, function() use($APP) {
             $data = array();
             global $USERID;
             global $controller;
@@ -47,7 +47,7 @@ $APP->get('get-tax-type', false, function() use($APP) {
 /******************************************************************************************* */
 /************************************GET commodity list****************************** */
 /******************************************************************************************* */
-$APP->get('get-comodity-list', false, function() use($APP) {
+$APP->post('get-comodity-list', false, function() use($APP) {
             $data = array();
             global $USERID;
             global $controller;
@@ -71,7 +71,7 @@ $APP->get('get-comodity-list', false, function() use($APP) {
 /******************************************************************************************* */
 /************************************GET commodity details by commodity id****************************** */
 /******************************************************************************************* */
-$APP->get('get-comodity-details', false, function() use($APP) {
+$APP->post('get-comodity-details', false, function() use($APP) {
             $data = array();
             global $USERID;
             global $controller;

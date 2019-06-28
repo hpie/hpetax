@@ -57,7 +57,7 @@ $APP->post('add-tax-master', false, function() use($APP) {
 /******************************************************************************************* */
 /************************************GET tax_master****************************** */
 /******************************************************************************************* */
-$APP->get('get-tax-master', false, function() use($APP) {
+$APP->post('get-tax-master', false, function() use($APP) {
             $data = array();
             global $USERID;
             global $controller;
