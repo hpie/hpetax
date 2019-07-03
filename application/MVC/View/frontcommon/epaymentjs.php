@@ -111,6 +111,9 @@
         $("#add").click(function () {
             var taxtypeid = $('#taxType').children("option:selected").val();
             var commodityid = $('#commodity').children("option:selected").val();
+            var alertstr = [];
+            var returnval = 0;
+
             var weight = 0;
             var mesuare = '';
             var sourcelocation = '';
@@ -119,31 +122,74 @@
             var vehicleno = '';
             var totaltax = 0;
             var noofpassenger = 0;
-            if ($("#rateunit").length) {
-                weight = $("#rateunit").val();
+            
+            if (taxtypeid != 0) {                
+                    if (commodityid == 0) {
+                        alertstr.push("Please select Commodity/Description.");
+                        returnval = 1;
+                    } else {
+                        if ($("#rateunit").length) {
+                            weight = $("#rateunit").val();
+                            if (weight === '' || weight === 0) {
+                                alertstr.push("Please enter weight.");
+                                returnval = 1;
+                            }
+                        }
+                    }
+                    if ($("#vehicleno").length) {
+                        vehicleno = $("#vehicleno").val();
+                        if (vehicleno === '' || vehicleno === 0) {
+                            alertstr.push("Please enter Vehicle Number.");
+                            returnval = 1;
+                        }
+                    }
+                    if ($("#mesuare").length) {
+                        mesuare = $("#mesuare").val();
+                    }
+                    if ($("#sourcelocation").length) {
+                        sourcelocation = $("#sourcelocation").val();
+                        if (sourcelocation === '') {
+                            alertstr.push("Please enter Source Location.");
+                            returnval = 1;
+                        }
+                    }
+                    if ($("#destinationlocation").length) {
+                        destinationlocation = $("#destinationlocation").val();
+                        if (destinationlocation === '') {
+                            alertstr.push("Please enter Destination Location.");
+                            returnval = 1;
+                        }
+                    }
+                    if ($("#distance").length) {
+                        distance = $("#distance").val();
+                        if (distance === '' || distance === 0) {
+                            alertstr.push("Please enter Distance.");
+                            returnval = 1;
+                        }
+                    }                    
+                    if ($("#noofpassenger").length) {
+                        noofpassenger = $("#noofpassenger").val();
+                        if (noofpassenger === '' || noofpassenger === 0) {
+                            alertstr.push("Please enter Number of Passenger.");
+                            returnval = 1;
+                        }
+                    }                    
+                    if ($("#totaltax").length) {
+                        totaltax = $("#totaltax").val();
+                    }
+                    if (returnval == 1) {
+                        var text = "";
+                        var i;
+                        for (i = 0; i < alertstr.length; i++) {
+                            text += (i + 1) + "." + alertstr[i] + "\n";
+                        }
+                        alert(text);
+                        return false;
+                    }                
+            } else {
+                alert('1.Please select Tax Type.\n2.Please select Commodity/Description. \n3.Please enter Vehicle Number.');
+                return false;
             }
-            if ($("#mesuare").length) {
-                mesuare = $("#mesuare").val();
-            }
-            if ($("#sourcelocation").length) {
-                sourcelocation = $("#sourcelocation").val();
-            }
-            if ($("#destinationlocation").length) {
-                destinationlocation = $("#destinationlocation").val();
-            }
-            if ($("#distance").length) {
-                distance = $("#distance").val();
-            }
-            if ($("#vehicleno").length) {
-                vehicleno = $("#vehicleno").val();
-            }
-            if ($("#totaltax").length) {
-                totaltax = $("#totaltax").val();
-            }
-            if ($("#noofpassenger").length) {
-                noofpassenger = $("#noofpassenger").val();
-            }
-
             var urlReq = '<?php echo FRONT_ADD_TAX_ITEM_QUE_LINK ?>';
             $.ajax({
                 type: "POST",
@@ -159,18 +205,18 @@
         });
 
         $("table").delegate(".deletetd", "click", function () {
-            if (confirm("Are you sure you want delete ?")) {                
+            if (confirm("Are you sure you want delete ?")) {
                 var id = $(this).attr('id');
                 var urlReq = '<?php echo FRONT_DELETE_TAX_ITEM_QUE_LINK ?>';
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    data: {id:id},
+                    data: {id: id},
                     url: urlReq,
                     success: function (_returnData) {
                         if (_returnData.result == "success") {
-                            $("#"+id).text("deleted");
-                            $("#"+id).removeClass("deletetd");
+                            $("#" + id).text("deleted");
+                            $("#" + id).removeClass("deletetd");
                         }
                     }
                 });
