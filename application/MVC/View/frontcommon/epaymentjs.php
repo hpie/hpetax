@@ -1,8 +1,16 @@
 <script>
     $(document).ready(function () {
         $('#taxType').on('change', function () {
+            $('#locationtr').removeClass("location");
+            $('#mapdisplay').removeClass("location");
             var urlReq = '<?php echo FRONT_COMMODITY_LIST_LINK ?>';
             var id = this.value;
+
+            if (id === "PGT" || id === "PTCG") {
+                $('#locationtr').addClass("location");
+                $('#mapdisplay').addClass("location");
+            }
+
             $.ajax({
                 type: "POST",
                 dataType: "json",
@@ -237,8 +245,13 @@
             center: {lat: 31.1048145, lng: 77.1734033},
             zoom: 13
         });
-
         new AutocompleteDirectionsHandler(map);
+        var directionsDisplay = new google.maps.DirectionsRenderer({
+            map: map
+        });
+        directionsDisplay.addListener('directions_changed', function () {
+            computeTotalDistance(directionsDisplay.getDirections());
+        });
     }
 
     /**
@@ -253,9 +266,9 @@
         this.directionsDisplay = new google.maps.DirectionsRenderer;
         this.directionsDisplay.setMap(map);
 
-        var originInput = document.getElementById('origin-input');
-        var destinationInput = document.getElementById('destination-input');
-        var modeSelector = document.getElementById('mode-selector');
+        var originInput = document.getElementById('sourcelocation');
+        var destinationInput = document.getElementById('destinationlocation');
+//        var modeSelector = document.getElementById('mode-selector');
 
         var originAutocomplete = new google.maps.places.Autocomplete(originInput);
 // Specify just the place data fields that you need.
@@ -263,36 +276,20 @@
 
         var destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput);
 // Specify just the place data fields that you need.
-        destinationAutocomplete.setFields(['place_id']);       
-        this.setupClickListener('changemode-transit', 'TRANSIT');
-        this.setupClickListener('changemode-driving', 'DRIVING');
+        destinationAutocomplete.setFields(['place_id']);
+//        this.setupClickListener('changemode-transit', 'TRANSIT');
+//        this.setupClickListener('changemode-driving', 'DRIVING');
 
         this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
         this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
 
-        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
-        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
-        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+//        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
+//        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
+//        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
     }
-
-// Sets a listener on a radio button to change the filter type on Places
-// Autocomplete.
-    AutocompleteDirectionsHandler.prototype.setupClickListener = function (
-            id, mode) {
-        var radioButton = document.getElementById(id);
-        var me = this;
-
-        radioButton.addEventListener('click', function () {
-            me.travelMode = mode;
-            me.route();
-        });
-    };
-
-    AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (
-            autocomplete, mode) {
+    AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (autocomplete, mode) {
         var me = this;
         autocomplete.bindTo('bounds', this.map);
-
         autocomplete.addListener('place_changed', function () {
             var place = autocomplete.getPlace();
 
@@ -314,7 +311,6 @@
             return;
         }
         var me = this;
-
         this.directionsService.route(
                 {
                     origin: {'placeId': this.originPlaceId},
@@ -330,8 +326,17 @@
                 });
     };
 
+    function computeTotalDistance(result) {
+        var total = 0;
+        var myroute = result.routes[0];
+        for (var i = 0; i < myroute.legs.length; i++) {
+            total += myroute.legs[i].distance.value;
+        }
+        total = total / 1000;
+        alert(total + ' km');
+//        document.getElementById('total').innerHTML = total + ' km';
+    }
+
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBYb8Qt5VL-SALXmCeycEkaNtNypMuDuE&libraries=places&callback=initMap" async defer></script>
-<!--    <script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBYb8Qt5VL-SALXmCeycEkaNtNypMuDuE&callback=initMap">
-</script>-->

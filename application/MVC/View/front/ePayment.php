@@ -1,3 +1,4 @@
+
 <style>
     select, option {
         width: 250px;
@@ -9,12 +10,19 @@
         text-overflow: ellipsis;
     } 
     .hovercs:hover {
-	color: red;
+        color: red;
     }
     td, th{
-    border: 1px solid #dddddd !important;   
-    padding: 8px !important;
-}
+        border: 1px solid #dddddd !important;   
+        padding: 8px !important;
+    }
+    #map {
+        height: 100%;
+        width: 100%;
+    }
+    .location{
+        display: none;
+    }
 </style>
 <div class="col-md-9 col-sm-12  col-12 ">
     <div class="middle-area box-shadow">
@@ -61,9 +69,9 @@
         <div class="row section-row">
             <div class="col-md-12 col-sm-12 col-12">                
                 <center><h4 class="sm-heading">e-Payment (Unregistered)</h4></center>   
-                
+
                 <input type="hidden" id="hiderate">
-                
+
                 <table class="table" border="1" id="tabledata">
                     <tr>
                         <td>&nbsp;</td>
@@ -101,119 +109,69 @@
                         <td><input type="text" id="vehicleno" required="required"></td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
-                    </tr>                                                         
+                    </tr> 
+                    <tr class="location" id="locationtr">
+                        <td>&nbsp;</td>
+                        <td>Source Location*</td>
+                        <td><input id="sourcelocation" type="text" placeholder="Source Location" required="required"></td>
+                        <td>&nbsp;</td>
+                        <td>Destination Location*</td>
+                        <td><input id="destinationlocation" type="text" placeholder="Destination Location" required="required"></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
                 </table>
-                
-                  <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      .controls {
-        margin-top: 10px;
-        border: 1px solid transparent;
-        border-radius: 2px 0 0 2px;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        height: 32px;
-        outline: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-      }
+            </div>
+            <div class="col-md-12 location" id="mapdisplay" style="height: 300px;">                           
+                <div id="map"></div> 
+            </div>
+            <br>
+            <br>
+            <div class="col-md-12">
+                <style>
+                    button{
+                        width:50px !important;
+                        background-color:#264a62 !important;
+                        color:#fff !important;
+                    }
+                </style>
+                <center><button id="add">Add</button>&nbsp;&nbsp;<button id="clear">Clear</button></center>
+            </div>                                                                                    
 
-      #origin-input,
-      #destination-input {
-        background-color: #fff;
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-        margin-left: 12px;
-        padding: 0 11px 0 13px;
-        text-overflow: ellipsis;
-        width: 200px;
-      }
-
-      #origin-input:focus,
-      #destination-input:focus {
-        border-color: #4d90fe;
-      }
-
-      #mode-selector {
-        color: #fff;
-        background-color: #4d90fe;
-        margin-left: 12px;
-        padding: 5px 11px 0px 11px;
-      }
-
-      #mode-selector label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-      }
-
-    </style>
-    <div style="display: none">
-        <input id="origin-input" class="controls" type="text"
-            placeholder="Enter an origin location">
-
-        <input id="destination-input" class="controls" type="text"
-            placeholder="Enter a destination location">
-
-        <div id="mode-selector" class="controls">          
-          <input type="radio" name="type" id="changemode-transit">
-          <label for="changemode-transit">Transit</label>
-
-          <input type="radio" name="type" id="changemode-driving">
-          <label for="changemode-driving">Driving</label>
         </div>
-    </div>
 
-    <div id="map"></div>
-                
-                <br>
-                <br>
-                <div>
-                    <style>
-                        button{
-                            width:50px !important;
-                            background-color:#264a62 !important;
-                            color:#fff !important;
-                        }
-                    </style>
-                    <center><button id="add">Add</button>&nbsp;&nbsp;<button id="clear">Clear</button></center>
-                </div>                
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-12">          
+                <style>
+                    tr th{
+                        padding: 10px;
+                    }
+                </style>
+                <table style="width:100%" border="1">
+                    <thead class="sm-heading">
+                        <tr class="ajaxtr">
+                            <!--<th>Sr. No</th>-->
+                            <th class="custometh">Delete</th>
+                            <th class="custometh">Modify</th>
+                            <th class="custometh">Tax Type</th>
+                            <th class="custometh">Commodity / Description</th>
+                            <th class="custometh">Vehicle Number</th>
+                            <th class="custometh">Weight</th>
+                            <th class="custometh">Unit</th>
+                            <th class="custometh quantity">Quantity</th>
+                            <th class="custometh">Source Location</th>
+                            <th class="custometh">Destination Location</th>
+                            <th class="custometh">Distance (in Km) within HP</th>
+                            <th class="custometh">Total Tax (in Rs.)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">                
+                    </tbody>
+                </table>
             </div>
         </div>
-
-        <br>
-        <br>
-
-        <style>
-            tr th{
-                padding: 10px;
-            }
-        </style>
-        <table style="width:100%" border="1">
-            <thead class="sm-heading">
-                <tr class="ajaxtr">
-                    <!--<th>Sr. No</th>-->
-                    <th class="custometh">Delete</th>
-                    <th class="custometh">Modify</th>
-                    <th class="custometh">Tax Type</th>
-                    <th class="custometh">Commodity / Description</th>
-                    <th class="custometh">Vehicle Number</th>
-                    <th class="custometh">Weight</th>
-                    <th class="custometh">Unit</th>
-                    <th class="custometh quantity">Quantity</th>
-                    <th class="custometh">Source Location</th>
-                    <th class="custometh">Destination Location</th>
-                    <th class="custometh">Distance (in Km) within HP</th>
-                    <th class="custometh">Total Tax (in Rs.)</th>
-                </tr>
-            </thead>
-            <tbody id="tbody">                
-            </tbody>
-        </table>
     </div>
 </div>
 

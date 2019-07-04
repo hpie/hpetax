@@ -39,16 +39,6 @@ class home_c extends Controllers {
         if ($id == 'AG') {
             $str .= '<tr class="removetr">
                         <td>&nbsp;</td>
-                        <td>Source Location*</td>
-                        <td><input type="text" id="sourcelocation" required="required"></td>
-                        <td>&nbsp;</td>
-                        <td>Destination Location*</td>
-                        <td><input type="text" id="destinationlocation" required="required"></td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr class="removetr">
-                        <td>&nbsp;</td>
                         <td>Distance (in Km) within HP*</td>
                         <td><input type="text" id="distance" required="required"></td>
                         <td>&nbsp;</td>
@@ -94,16 +84,6 @@ class home_c extends Controllers {
         }         
         if ($id == 'CGCR') {
             $str .= '<tr class="removetr">
-                        <td>&nbsp;</td>
-                        <td>Source Location*</td>
-                        <td><input type="text" id="sourcelocation" required="required"></td>
-                        <td>&nbsp;</td>
-                        <td>Destination Location*</td>
-                        <td><input type="text" id="destinationlocation" required="required"></td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr class="removetr">
                         <td>&nbsp;</td>
                         <td>Distance (in Km) within HP*</td>
                         <td><input type="text" id="distance" required="required"></td>
