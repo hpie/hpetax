@@ -228,6 +228,7 @@
                         if (_returnData.result == "success") {
                             $("#" + id).text("deleted");
                             $("#" + id).removeClass("deletetd");
+                             $("#total").val(_returnData.total);
                         }
                     }
                 });

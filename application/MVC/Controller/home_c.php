@@ -168,9 +168,11 @@ class home_c extends Controllers {
     }    
     public function deleteTaxItemQueAjax() {
         $id=str_replace("del","",$_POST['id']);          
-        $result = $this->home_m->deleteTaxItemQueAjax($id);    
+        $result = $this->home_m->deleteTaxItemQueAjax($id); 
+        $total=$this->home_m->getTaxTotal($_SESSION['unregistered']);        
         $newArray = array();
-        $newArray['result'] = 'success';        
+        $newArray['result'] = 'success';  
+        $newArray['total'] = $total;  
         echo json_encode($newArray);
         die;
     }    
