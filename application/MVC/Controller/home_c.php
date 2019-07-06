@@ -40,10 +40,10 @@ class home_c extends Controllers {
             $str .= '<tr class="removetr">
                         <td>&nbsp;</td>
                         <td>Distance (in Km) within HP*</td>
-                        <td><input type="text" id="distance" required="required"></td>
+                        <td><input type="text" class="clearalltext" id="distance" required="required"></td>
                         <td>&nbsp;</td>
                         <td>Total Tax (in Rs.)</td>
-                        <td><input type="text" id="totaltax" required="required" readonly></td>
+                        <td><input type="text" class="clearalltext" id="totaltax" required="required" readonly></td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>';
@@ -52,7 +52,7 @@ class home_c extends Controllers {
              $str.='<tr class="removetr">
                         <td>&nbsp;</td>
                         <td>Total Tax (in Rs.)</td>
-                        <td><input type="text" id="totaltax" value="" required="required" readonly></td>
+                        <td><input type="text" id="totaltax" class="clearalltext" value="" required="required" readonly></td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp</td>
@@ -63,8 +63,8 @@ class home_c extends Controllers {
         if ($id == 'PTCG') {
             $str .= '<tr class="removetr">
                         <td>&nbsp;</td>
-                        <td>No. of Passenger*</td>
-                        <td><input type="text" id="noofpassenger" required="required"></td>
+                        <td>No. of Passenger*</td> 
+                        <td><input type="text" id="noofpassenger" class="clearalltext" required="required"></td>
                         <td>&nbsp;</td>
                         <td></td>
                         <td>&nbsp;</td>
@@ -74,10 +74,10 @@ class home_c extends Controllers {
                     <tr class="removetr">
                         <td>&nbsp;</td>
                         <td>Distance (in Km) within HP*</td>
-                        <td><input type="text" id="distance" required="required"></td>
+                        <td><input type="text" id="distance" class="clearalltext" required="required"></td>
                         <td>&nbsp;</td>
                         <td>Total Tax (in Rs.)</td>
-                        <td><input type="text" id="totaltax" required="required" readonly></td>
+                        <td><input type="text" id="totaltax" class="clearalltext" required="required" readonly></td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>';
@@ -86,10 +86,10 @@ class home_c extends Controllers {
             $str .= '<tr class="removetr">
                         <td>&nbsp;</td>
                         <td>Distance (in Km) within HP*</td>
-                        <td><input type="text" id="distance" required="required"></td>
+                        <td><input type="text" id="distance" class="clearalltext" required="required"></td>
                         <td>&nbsp;</td>
                         <td>Total Tax (in Rs.)</td>
-                        <td><input type="text" id="totaltax" required="required" readonly></td>
+                        <td><input type="text" id="totaltax" class="clearalltext" required="required" readonly></td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>';
@@ -105,7 +105,7 @@ class home_c extends Controllers {
                 $html.='<tr class="removetr2">
                         <td>&nbsp;</td>
                         <td>Weight*</td>
-                        <td><input type="text" id="rateunit" required="required">&nbsp;&nbsp;<input type="text" value="'.$result['tax_commodity_unit_measure'].'" id="mesuare" required="required" readonly></td>
+                        <td><input type="text" id="rateunit" class="clearalltext" required="required">&nbsp;&nbsp;<input type="text" class="clearalltext" value="'.$result['tax_commodity_unit_measure'].'" id="mesuare" required="required" readonly></td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -123,8 +123,7 @@ class home_c extends Controllers {
     }
     
     public function addTaxItemQueAjax() {
-        $params=array();
-        
+        $params=array();        
         if($_POST['noofpassenger']!=0){
             $params['tax_item_quantity']=$_POST['noofpassenger'];
         }        
@@ -144,6 +143,7 @@ class home_c extends Controllers {
         $html ='';
         if ($result['res'] == 1 || !empty($result['id'])) {
             $res= $this->home_m->getTaxItemQueById($result['id']);
+            $total=$this->home_m->getTaxTotal($_SESSION['unregistered']);
             $html.='<tr align="center">'
                     .'<td class="deletetd hovercs"  id="del'.$res['tax_item_queue_id'].'">Delete</td>'
                     .'<td class="modifytd hovercs" id="md'.$res['tax_item_queue_id'].'">Modify</td>'
@@ -160,7 +160,8 @@ class home_c extends Controllers {
                     .'</tr>';
         }        
         $newArray = array();
-        $newArray['result'] = 'success';        
+        $newArray['result'] = 'success';  
+        $newArray['total'] = $total;  
         $newArray['html'] = $html;
         echo json_encode($newArray);
         die;

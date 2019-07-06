@@ -113,10 +113,10 @@
                     <tr class="location" id="locationtr">
                         <td>&nbsp;</td>
                         <td>Source Location*</td>
-                        <td><input id="sourcelocation" type="text" placeholder="Source Location" required="required"></td>
+                        <td><input id="sourcelocation" class="clearalltext" type="text" placeholder="Source Location" required="required"></td>
                         <td>&nbsp;</td>
                         <td>Destination Location*</td>
-                        <td><input id="destinationlocation" type="text" placeholder="Destination Location" required="required"></td>
+                        <td><input id="destinationlocation" class="clearalltext" type="text" placeholder="Destination Location" required="required"></td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
@@ -170,6 +170,14 @@
                     <tbody id="tbody">                
                     </tbody>
                 </table>
+            </div>            
+            <div class="col-md-12" style="background-color:#264a62;color:#fff;margin-top: 150px;">               
+                <center>Total: <input id="total" type="text" readonly=""></center>                
+            </div>
+            
+            <div class="col-md-12">
+                <br>
+            <center><button id="add">Confirm</button>&nbsp;&nbsp;<button id="back" onclick="window.history.back();">Back</button></center>
             </div>
         </div>
     </div>

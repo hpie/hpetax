@@ -53,7 +53,7 @@ class home_m extends Models {
         return FALSE;
     }
     
-     public function getTaxItemQueById($taxItemQueId){
+    public function getTaxItemQueById($taxItemQueId){
         $q = "SELECT tiq.*,tt.*,tc.* FROM tax_item_queue tiq
               LEFT JOIN tax_type tt
               ON tt.tax_type_id=tiq.tax_type_id
@@ -63,6 +63,15 @@ class home_m extends Models {
         $result = $this->query->select($q);
         if ($row = $this->query->fetch($result)) {
             return $row;
+        }
+        return false;
+    }
+    
+     public function getTaxTotal($taxItemSession){
+        $q = "SELECT SUM(tax_item_tax_amount) as total FROM tax_item_queue";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row['total'];
         }
         return false;
     }

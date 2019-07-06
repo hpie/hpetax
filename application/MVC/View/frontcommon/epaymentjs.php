@@ -48,7 +48,7 @@
                         $("#commoditytr").after($(_returnData.html));
                         $('#totaltax').val(_returnData.commodity['tax_commodity_rate']);
                         $('#hiderate').val(_returnData.commodity['tax_commodity_rate']);
-                        $("#vehicleno").val('');
+//                        $("#vehicleno").val('');
                     }
                 }
             });
@@ -121,7 +121,6 @@
             var commodityid = $('#commodity').children("option:selected").val();
             var alertstr = [];
             var returnval = 0;
-
             var weight = 0;
             var mesuare = '';
             var sourcelocation = '';
@@ -207,6 +206,10 @@
                 success: function (_returnData) {
                     if (_returnData.result == "success") {
                         $('#tbody').append(_returnData.html);
+                        $(".clearalltext").val("");
+                        $("#commodity").val('0');
+                        $("#total").val(_returnData.total);
+                        $('#vehicleno').attr('readonly', true); 
                     }
                 }
             });
