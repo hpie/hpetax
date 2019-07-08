@@ -11,6 +11,7 @@ $route['dashboard'] = 'admin_c';
 $route[''] = 'home_c';
 $route['home'] = 'home_c';
 $route['epayment'] = 'home_c/epayment';
+$route['epaymenttreasury'] = 'home_c/epaymenttreasury';
 $route['front-commodity-list-ajax'] = 'home_c/commodityListAjax';
 $route['front-commodity-field-ajax'] = 'home_c/commodityFieldAjax';
 $route['front-add-tax-item-que'] = 'home_c/addTaxItemQueAjax';
@@ -43,4 +44,3 @@ $route['tax-commodity-edit/(:any)'] = 'admin_c/editTaxCommodity';
 
 //**************************reports*******************//
 $route['tax-reports'] = 'admin_c/reports';
-

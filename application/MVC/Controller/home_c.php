@@ -18,8 +18,14 @@ class home_c extends Controllers {
         $result = $this->home_m->getTaxType();
         $this->data['TITLE'] = TITLE_FRONT_EPAYMENT_UNREGISTER;
         $this->data['result'] = $result;
-        loadviewFront('front/', 'ePayment.php', $this->data);
+        loadviewFront('front/', 'epayment.php', $this->data);
     }
+    
+    public function epaymenttreasury() {  
+        $this->data['TITLE'] = TITLE_FRONT_EPAYMENT_TREASURY;
+        loadviewFront('front/', 'epaymenttreasury.php', $this->data);
+    }
+    
     public function commodityListAjax() {
         $refTaxTypeId = $_POST['id'];
         $result = $this->home_m->commodityListAjax($refTaxTypeId);

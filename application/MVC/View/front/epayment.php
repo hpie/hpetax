@@ -177,7 +177,7 @@
             
             <div class="col-md-12">
                 <br>
-            <center><button id="add">Confirm</button>&nbsp;&nbsp;<button id="back" onclick="window.history.back();">Back</button></center>
+            <center><button id="confirm">Confirm</button>&nbsp;&nbsp;<button id="back" onclick="window.history.back();">Back</button></center>
             </div>
         </div>
     </div>

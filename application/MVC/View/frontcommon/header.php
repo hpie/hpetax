@@ -11,6 +11,9 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/font-awesome.css">
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/main.css">
+       <?php if($TITLE==TITLE_FRONT_EPAYMENT_TREASURY){ ?>    
+        <link href="<?php echo ASSETS_FRONT; ?>datetime/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+        <?php } ?>
         <script src="<?php echo ASSETS_FRONT; ?>js/jquery.min.js"></script>
         <script src="<?php echo ASSETS_FRONT; ?>js/bootstrap.min.js"></script>       
     </head>
@@ -168,7 +171,7 @@
                 </div>
             </header>
             <section class="main">
-                <?php if ($TITLE == TITLE_FRONT_EPAYMENT_UNREGISTER) {
+                <?php if ($TITLE == TITLE_FRONT_EPAYMENT_UNREGISTER || $TITLE == TITLE_FRONT_EPAYMENT_TREASURY) {
                     ?>
                     <div class="">
                         <?php

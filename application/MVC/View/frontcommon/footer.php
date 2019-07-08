@@ -29,6 +29,9 @@
     if($TITLE==TITLE_FRONT_EPAYMENT_UNREGISTER){       
         include_once(APP_INCLUDE_V . "frontcommon/epaymentjs.php");   
     }
+    if($TITLE==TITLE_FRONT_EPAYMENT_TREASURY){       
+        include_once(APP_INCLUDE_V . "frontcommon/epaymenttreasuryjs.php");   
+    }
 ?>
 </body>
 </html>

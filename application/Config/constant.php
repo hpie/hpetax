@@ -15,6 +15,7 @@ define('ORIGINAL_IMAGES',BASE_URL.'uploads/original/');
 //***************************************************************************************************//
 //**************************Front Link********************//
 define('FRONT_EPAYMENT_UNREGISTERE', BASE_URL.'epayment');
+define('FRONT_EPAYMENT_TREASURY', BASE_URL.'epaymenttreasury');
 define('FRONT_COMMODITY_LIST_LINK', BASE_URL ."front-commodity-list-ajax");
 define('FRONT_COMMODITY_FIELD_LINK', BASE_URL ."front-commodity-field-ajax");
 define('FRONT_ADD_TAX_ITEM_QUE_LINK', BASE_URL ."front-add-tax-item-que");
@@ -22,6 +23,7 @@ define('FRONT_DELETE_TAX_ITEM_QUE_LINK', BASE_URL ."front-delete-tax-item-que");
 
 //**************************Front Title*********************//
 define('TITLE_FRONT_EPAYMENT_UNREGISTER', "e-payment");
+define('TITLE_FRONT_EPAYMENT_TREASURY', "e-payment treasury");
 define('TITLE_FRONT_COMMON','Welcome to hptax.gov.in');
 
 

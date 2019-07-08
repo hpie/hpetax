@@ -1,5 +1,8 @@
 <script>
     $(document).ready(function () {
+        $('#confirm').on('click', function () {
+             window.location="<?php echo FRONT_EPAYMENT_TREASURY; ?>";
+        });
         $('#taxType').on('change', function () {
             $('#locationtr').removeClass("location");
             $('#mapdisplay').removeClass("location");
