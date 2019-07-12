@@ -50,7 +50,7 @@ class Model extends Models {
 //***Get commodity list based on tax type*****//
 //*****************************// 
     public function getCommodityList($table,$taxId) {        
-        $query = "SELECT tax_commodity_id,tax_commodity_name FROM $table WHERE tax_type_id=$taxId";
+        $query = "SELECT tax_commodity_id,tax_commodity_name FROM $table WHERE tax_type_id='$taxId'";
         $result = $this->query->select($query);
         if ($data = $this->query->fetch_array($result))
             return $data;
