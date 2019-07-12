@@ -106,7 +106,7 @@
                         </td>
                         <td>&nbsp;</td>
                         <td>Vehicle Number*</td>
-                        <td><input type="text" id="vehicleno" required="required"></td>
+                        <td><input type="text" id="vehicleno" required="required" <?php if(isset($_SESSION['vehicleno_session'])){ echo 'value="'.$_SESSION['vehicleno_session'].'"';} ?>></td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr> 

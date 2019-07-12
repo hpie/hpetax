@@ -16,6 +16,8 @@ $route['front-commodity-list-ajax'] = 'home_c/commodityListAjax';
 $route['front-commodity-field-ajax'] = 'home_c/commodityFieldAjax';
 $route['front-add-tax-item-que'] = 'home_c/addTaxItemQueAjax';
 $route['front-delete-tax-item-que'] = 'home_c/deleteTaxItemQueAjax';
+$route['front-check-exist-tax-item-que'] = 'home_c/checkExistTaxItemQue';
+$route['front-get-mofify-tax-item-que-details'] = 'home_c/getModifyTaxItemQueAjax';
 
 //**************************************************************************************//
 

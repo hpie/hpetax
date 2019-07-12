@@ -67,15 +67,38 @@ class home_m extends Models {
         return false;
     }
     
-     public function getTaxTotal($taxItemSession){
-        $q = "SELECT SUM(tax_item_tax_amount) as total FROM tax_item_queue";
+    public function getTaxTotal($taxItemSession){
+        $q = "SELECT SUM(tax_item_tax_amount) as total FROM tax_item_queue WHERE tax_queue_session='$taxItemSession'";
         $result = $this->query->select($q);
         if ($row = $this->query->fetch($result)) {
             return $row['total'];
         }
         return false;
     }
-    
+    public function checkExistTaxItemQue($taxItemSession){
+        $q = "SELECT COUNT(tax_item_queue_id) as total FROM tax_item_queue WHERE tax_queue_session='$taxItemSession'";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row['total'];
+        }
+        return false;
+    }      
+    public function getModifyTaxItemQueAjax($id){
+        $q = "SELECT * FROM tax_item_queue WHERE tax_item_queue_id='$id'";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row;
+        }
+        return false;
+    }
+    public function checkExistCommodityForAddNewTax($taxtypeid,$commodityId){
+        $q = "SELECT * FROM tax_item_queue WHERE tax_type_id='$taxtypeid' AND tax_commodity_id='$commodityId'";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row;
+        }
+        return false;
+    }
 }
 
 ?>

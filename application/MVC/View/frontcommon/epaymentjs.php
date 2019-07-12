@@ -1,7 +1,19 @@
 <script>
     $(document).ready(function () {
         $('#confirm').on('click', function () {
-             window.location="<?php echo FRONT_EPAYMENT_TREASURY; ?>";
+            var urlReq = '<?php echo FRONT_CHECK_EXIST_TAX_ITEM_QUE_LINK; ?>';
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: urlReq,
+                success: function (_returnData) {
+                    if (_returnData.result == "success") {
+                        window.location = "<?php echo FRONT_EPAYMENT_TREASURY; ?>";
+                    } else {
+                        alert('Please complete the add tax process');
+                    }
+                }
+            });
         });
         $('#taxType').on('change', function () {
             $('#locationtr').removeClass("location");
@@ -28,7 +40,7 @@
                         });
                         $('.removetr').remove();
                         $('.removetr2').remove();
-                        $("#vehicleno").val('');
+//                        $("#vehicleno").val('');
                         $('#tabledata').append($(_returnData.html));
                         if (id === "PTCG") {
                             $(".quantity").text("No of Passanger");
@@ -156,6 +168,7 @@
                 if ($("#mesuare").length) {
                     mesuare = $("#mesuare").val();
                 }
+                if (taxtypeid === "AG" || taxtypeid === "CGCR") {
                 if ($("#sourcelocation").length) {
                     sourcelocation = $("#sourcelocation").val();
                     if (sourcelocation === '') {
@@ -163,11 +176,13 @@
                         returnval = 1;
                     }
                 }
-                if ($("#destinationlocation").length) {
-                    destinationlocation = $("#destinationlocation").val();
-                    if (destinationlocation === '') {
-                        alertstr.push("Please enter Destination Location.");
-                        returnval = 1;
+               
+                    if ($("#destinationlocation").length) {
+                        destinationlocation = $("#destinationlocation").val();
+                        if (destinationlocation === '') {
+                            alertstr.push("Please enter Destination Location.");
+                            returnval = 1;
+                        }
                     }
                 }
                 if ($("#distance").length) {
@@ -212,15 +227,65 @@
                         $(".clearalltext").val("");
                         $("#commodity").val('0');
                         $("#total").val(_returnData.total);
-                        $('#vehicleno').attr('readonly', true); 
+                        $('#vehicleno').attr('readonly', true);
+                    } else {
+                        alert('You allready add this tax commodity');
                     }
                 }
             });
         });
 
+        $("table").delegate(".modifytd", "click", function () {
+            var id = $(this).attr('id').replace("md", "");
+            var urlReq = '<?php echo FRONT_GET_MODIFY_TAX_ITEM_QUE_DETAILS_LINK ?>';
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                data: {id: id},
+                url: urlReq,
+                success: function (_returnData) {
+                    if (_returnData.result == "success") {
+                        
+                        $("#taxType").val(_returnData.taxtype_id);
+                        $('#commodity option').remove();
+                        $('#commodity').append('<option value=0>Select</option>');
+                        $.each(_returnData.commodity, function (key, value) {
+                            $('#commodity').append($("<option></option>").attr("value", value['tax_commodity_id']).text(value['tax_commodity_name']));
+                        });
+                        $('.removetr').remove();
+                        $('.removetr2').remove();
+                        $('#commodity option[value=' + _returnData.commodity_id + ']').attr('selected', 'selected');
+                        $("#commoditytr").after($(_returnData.commodityhtml));
+
+
+                        $('#tabledata').append($(_returnData.html));
+                        if (_returnData.taxtype_id === "PTCG") {
+                            $(".quantity").text("No of Passanger");
+                        }                        
+                        if (_returnData.taxtype_id === "PGT" || _returnData.taxtype_id === "PTCG") {
+                            $('#locationtr').addClass("location");
+                            $('#mapdisplay').addClass("location");
+                        }
+                        if (_returnData.taxtype_id === "AG" || _returnData.taxtype_id === "CGCR") {
+                            $('#locationtr').removeClass("location");
+                            $('#mapdisplay').removeClass("location");
+                        }
+                        $("#hiderate").val(_returnData.hiderate);
+                        $("#del" + id).text("");
+                        $("#md" + id).text("Modifying");
+                        $("#md" + id).removeClass("modifytd");
+//                        $("#taxType").val(_returnData.res['tax_type_id']);
+                    }
+                }
+            });
+            return false;
+        });
+
+
         $("table").delegate(".deletetd", "click", function () {
             if (confirm("Are you sure you want delete ?")) {
-                var id = $(this).attr('id');
+                var id = $(this).attr('id').replace("del", "");
+                alert(id);
                 var urlReq = '<?php echo FRONT_DELETE_TAX_ITEM_QUE_LINK ?>';
                 $.ajax({
                     type: "POST",
@@ -229,9 +294,11 @@
                     url: urlReq,
                     success: function (_returnData) {
                         if (_returnData.result == "success") {
-                            $("#" + id).text("deleted");
-                            $("#" + id).removeClass("deletetd");
-                             $("#total").val(_returnData.total);
+                            $("#del" + id).text("deleted");
+                            $("#md" + id).text("");
+                            $("#del" + id).removeClass("deletetd");
+                            $("#md" + id).removeClass("modifytd");
+                            $("#total").val(_returnData.total);
                         }
                     }
                 });
@@ -253,7 +320,7 @@
             zoom: 13
         });
         new AutocompleteDirectionsHandler(map);
-        
+
     }
 
     /**
@@ -284,7 +351,7 @@
 
         this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
         this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
-        
+
 //        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
 //        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
 //        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
@@ -293,8 +360,8 @@
         var me = this;
         autocomplete.bindTo('bounds', this.map);
         autocomplete.addListener('place_changed', function () {
-            var place = autocomplete.getPlace();                        
-            
+            var place = autocomplete.getPlace();
+
             if (!place.place_id) {
                 window.alert('Please select an option from the dropdown list.');
                 return;
@@ -313,7 +380,7 @@
             return;
         }
         var me = this;
-        
+
         this.directionsService.route(
                 {
                     origin: {'placeId': this.originPlaceId},
@@ -321,9 +388,9 @@
                     travelMode: this.travelMode
                 },
                 function (response, status) {
-                    if (status === 'OK') {   
-                        var str=response.routes[0].legs[0].distance['text'];
-                        var array=str.split(" ");
+                    if (status === 'OK') {
+                        var str = response.routes[0].legs[0].distance['text'];
+                        var array = str.split(" ");
                         $("#distance").val(array[0]);
 //                        console.log(response.routes[0].legs[0].distance['text']);
                         me.directionsDisplay.setDirections(response);
@@ -332,18 +399,5 @@
                     }
                 });
     };
-
-    function computeTotalDistance(result) {
-        var total = 0;
-        var myroute = result.routes[0];
-        for (var i = 0; i < myroute.legs.length; i++) {
-            total += myroute.legs[i].distance.value;
-        }
-        total = total / 1000;
-        alert(total + ' km');
-//        document.getElementById('total').innerHTML = total + ' km';
-    }
-
-
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBYb8Qt5VL-SALXmCeycEkaNtNypMuDuE&libraries=places&callback=initMap" async defer></script>
