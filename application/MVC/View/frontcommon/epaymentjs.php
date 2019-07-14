@@ -269,11 +269,13 @@
                         if (_returnData.taxtype_id === "AG" || _returnData.taxtype_id === "CGCR") {
                             $('#locationtr').removeClass("location");
                             $('#mapdisplay').removeClass("location");
+                            $("#sourcelocation").val(_returnData.data['tax_item_source_location']);
+                            $("#destinationlocation").val(_returnData.data['tax_item_destination_location']);
                         }
                         $("#hiderate").val(_returnData.hiderate);
-                        $("#del" + id).text("");
-                        $("#md" + id).text("Modifying");
+                        $("#del" + id).text("");                        
                         $("#md" + id).removeClass("modifytd");
+                        $("#md" + id).text("Modifying");                        
 //                        $("#taxType").val(_returnData.res['tax_type_id']);
                     }
                 }
@@ -284,8 +286,7 @@
 
         $("table").delegate(".deletetd", "click", function () {
             if (confirm("Are you sure you want delete ?")) {
-                var id = $(this).attr('id').replace("del", "");
-                alert(id);
+                var id = $(this).attr('id').replace("del", "");               
                 var urlReq = '<?php echo FRONT_DELETE_TAX_ITEM_QUE_LINK ?>';
                 $.ajax({
                     type: "POST",

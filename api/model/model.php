@@ -26,7 +26,7 @@ class Model extends Models {
 //*****************************// 
     public function getSingleRecordById($table,$id) {
         $field_id=$table.'_id';
-        $query = "SELECT * FROM $table WHERE $field_id=$id";
+        $query = "SELECT * FROM $table WHERE $field_id='$id'";
         $result = $this->query->select($query);
         if ($row = $this->query->fetch($result))
             return $row;
@@ -67,8 +67,7 @@ class Model extends Models {
         $to_dt=$params['tax_payment_dt_to'];
         
         $query="SELECT * FROM tax_transaction_queue ";
-        
-        
+                
         if(!empty($transactionNo) || !empty($transactionStatus) || (!empty($from_dt) && !empty($to_dt)))
         {
             $query.=" WHERE ";

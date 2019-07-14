@@ -222,6 +222,7 @@ class home_c extends Controllers {
             $newArray['html'] = $html['htmlstr'];           
             $newArray['commodityhtml'] = $html['htmlcommodity'];
             $newArray['commodity'] = $commodity;
+            $newArray['data'] = $result;
         } else {
             $newArray['result'] = 'failed';
         }

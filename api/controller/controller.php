@@ -20,7 +20,7 @@ class Controller extends Controllers {
     public function getTaxTypeAll($table) {
         return $this->model->getTaxTypeAll($table);
     }    
-    public function getCommodityList($table,$taxId) {
+    public function getCommodityList($table,$taxId) {       
         return $this->model->getCommodityList($table,$taxId);
     }
     
