@@ -45,6 +45,10 @@
                         if (id === "PTCG") {
                             $(".quantity").text("No of Passanger");
                         }
+                        
+                        $("#sourcelocation").val('');
+                        $("#destinationlocation").val('');  
+                        initMap();
                     }
                 }
             });
@@ -63,6 +67,10 @@
                         $("#commoditytr").after($(_returnData.html));
                         $('#totaltax').val(_returnData.commodity['tax_commodity_rate']);
                         $('#hiderate').val(_returnData.commodity['tax_commodity_rate']);
+                        
+                        $("#sourcelocation").val('');
+                        $("#destinationlocation").val(''); 
+                        initMap();
 //                        $("#vehicleno").val('');
                     }
                 }
@@ -228,8 +236,9 @@
                         $("#commodity").val('0');
                         $("#total").val(_returnData.total);
                         $('#vehicleno').attr('readonly', true);
-//                        $("#sourcelocation").val('');
-//                        $("#destinationlocation").val('');                        
+                        $("#sourcelocation").val('');
+                        $("#destinationlocation").val('');   
+                        initMap();
                     } else {
                         alert('You allready add this tax commodity');
                     }
@@ -411,6 +420,9 @@
                         $("#modifyIdInput").val("");
                         $("#taxType").change(); 
                         
+                        $("#sourcelocation").val('');
+                        $("#destinationlocation").val(''); 
+                        initMap();
                     } else {
                         alert('You allready add this tax commodity');
                     }
@@ -440,8 +452,7 @@
             return false;
         });
     });
-</script>
-<script>
+
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script
