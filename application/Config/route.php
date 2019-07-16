@@ -18,7 +18,7 @@ $route['front-add-tax-item-que'] = 'home_c/addTaxItemQueAjax';
 $route['front-delete-tax-item-que'] = 'home_c/deleteTaxItemQueAjax';
 $route['front-check-exist-tax-item-que'] = 'home_c/checkExistTaxItemQue';
 $route['front-get-mofify-tax-item-que-details'] = 'home_c/getModifyTaxItemQueAjax';
-
+$route['front-update-tax-item-que'] = 'home_c/updateTaxItemQueAjax';
 //**************************************************************************************//
 
 //**************************tax_master*******************//

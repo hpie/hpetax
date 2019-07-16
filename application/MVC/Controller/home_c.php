@@ -157,8 +157,7 @@ class home_c extends Controllers {
             if ($result['res'] == 1 || !empty($result['id'])) {
                 $_SESSION['vehicleno_session'] = $_POST['vehicleno'];
                 $res = $this->home_m->getTaxItemQueById($result['id']);
-
-                $html .= '<tr align="center">'
+                $html .= '<tr align="center" id="datatr'.$res['tax_item_queue_id'].'">'
                         . '<td class="deletetd hovercs"  id="del' . $res['tax_item_queue_id'] . '">Delete</td>'
                         . '<td class="modifytd hovercs" id="md' . $res['tax_item_queue_id'] . '">Modify</td>'
                         . '<td class="">' . $res["tax_type_name"] . '</td>'
@@ -172,6 +171,55 @@ class home_c extends Controllers {
                         . '<td class="">' . $res["tax_item_distanceinkm"] . '</td>'
                         . '<td class="">' . $res["tax_item_tax_amount"] . '</td>'
                         . '</tr>';
+            }
+        $newArray['result'] = 'success';
+        }
+        else{
+            $newArray['result'] = 'failed';
+        }
+        $total = $this->home_m->getTaxTotal($_SESSION['unregistered']);                       
+        $newArray['total'] = $total;
+        $newArray['html'] = $html;
+        echo json_encode($newArray);
+        die;
+    }
+     public function updateTaxItemQueAjax() {
+        $newArray = array();
+        $html = '';
+        $existcomodity = $this->home_m->checkExistCommodityForAddNewTaxByTaxItemQueeId($_POST['taxtypeid'], $_POST['commodityid'],$_POST['tax_item_quee_id']);
+        if (empty($existcomodity)) {
+            $params = array();
+            if ($_POST['noofpassenger'] != 0) {
+                $params['tax_item_quantity'] = $_POST['noofpassenger'];
+            }
+            $params['tax_queue_session'] = $_SESSION['unregistered'];
+            $params['tax_vehicle_number'] = $_POST['vehicleno'];
+            $params['tax_item_weight'] = $_POST['weight'];
+            $params['tax_item_weight_units'] = $_POST['mesuare'];
+            $params['tax_item_source_location'] = $_POST['sourcelocation'];
+            $params['tax_item_destination_location'] = $_POST['destinationlocation'];
+            $params['tax_item_distanceinkm'] = $_POST['distance'];
+            $params['tax_item_tax_amount'] = $_POST['totaltax'];
+            $params['tax_item_status'] = 'ACTIVE';
+            $params['tax_commodity_id'] = $_POST['commodityid'];
+            $params['tax_type_id'] = $_POST['taxtypeid'];
+            $result = $this->home_m->taxItemQueueUpdate($_POST['tax_item_quee_id'],$params);             
+            if ($result == 1 || !empty($result)) {
+                $_SESSION['vehicleno_session'] = $_POST['vehicleno'];
+                $res = $this->home_m->getTaxItemQueById($_POST['tax_item_quee_id']);
+                $html .= '<td class="deletetd hovercs"  id="del' . $res['tax_item_queue_id'] . '">Delete</td>'
+                        . '<td class="modifytd hovercs" id="md' . $res['tax_item_queue_id'] . '">Modify</td>'
+                        . '<td class="">' . $res["tax_type_name"] . '</td>'
+                        . '<td class="">' . $res["tax_commodity_description"] . '</td>'
+                        . '<td class="">' . $res["tax_vehicle_number"] . '</td>'
+                        . '<td class="">' . $res["tax_item_weight"] . '</td>'
+                        . '<td class="">' . $res["tax_commodity_unit_measure"] . '</td>'
+                        . '<td class="">' . $res["tax_item_quantity"] . '</td>'
+                        . '<td class="">' . $res["tax_item_source_location"] . '</td>'
+                        . '<td class="">' . $res["tax_item_destination_location"] . '</td>'
+                        . '<td class="">' . $res["tax_item_distanceinkm"] . '</td>'
+                        . '<td class="">' . $res["tax_item_tax_amount"] . '</td>'
+                        . '';
             }
         $newArray['result'] = 'success';
         }
@@ -268,19 +316,19 @@ class home_c extends Controllers {
             $str .= '<tr class="removetr">
                         <td>&nbsp;</td>
                         <td>Total Tax (in Rs.)</td>
-                        <td><input type="text" id="totaltax" class="clearalltext" value="" required="required" readonly value="' . $res['tax_item_tax_amount'] . '"></td>
+                        <td><input type="text" id="totaltax" class="clearalltext" required="required" readonly value="' . $res['tax_item_tax_amount'] . '"></td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp</td>
                         <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>&nbsp;</td> 
                     </tr>';
         }
         if ($id == 'PTCG') {
             $str .= '<tr class="removetr">
                         <td>&nbsp;</td>
                         <td>No. of Passenger*</td> 
-                        <td><input type="text" id="noofpassenger" class="clearalltext" required="required" value="' . $res['tax_item_weight'] . '"></td>
+                        <td><input type="text" id="noofpassenger" class="clearalltext" required="required" value="'. $res['tax_item_quantity'] . '"></td>
                         <td>&nbsp;</td>
                         <td></td>
                         <td>&nbsp;</td>

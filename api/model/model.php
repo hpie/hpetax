@@ -32,8 +32,7 @@ class Model extends Models {
             return $row;
         return false;
     }
-    
-        
+            
 //*******************************//  
 //***Get all record by*****//
 //*****************************// 

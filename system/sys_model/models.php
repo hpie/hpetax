@@ -59,7 +59,6 @@ class Models extends MY_base {
                 $escaped_values[$key] = "$cols[$key] = '$val' ";
             }
             $values = implode(", ", $escaped_values);
-
             return $values;
         }
         return false;

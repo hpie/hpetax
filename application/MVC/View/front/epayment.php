@@ -71,7 +71,7 @@
                 <center><h4 class="sm-heading">e-Payment (Unregistered)</h4></center>   
 
                 <input type="hidden" id="hiderate">
-
+                <input type="hidden" id="modifyIdInput">
                 <table class="table" border="1" id="tabledata">
                     <tr>
                         <td>&nbsp;</td>
@@ -127,7 +127,7 @@
             </div>
             <br>
             <br>
-            <div class="col-md-12">
+            <div class="col-md-12" id="addbuttondiv">
                 <style>
                     button{
                         width:50px !important;
@@ -135,8 +135,18 @@
                         color:#fff !important;
                     }
                 </style>
-                <center><button id="add">Add</button>&nbsp;&nbsp;<button id="clear">Clear</button></center>
-            </div>                                                                                    
+                <center><button id="add">Add</button>&nbsp;&nbsp;<button id="clearAdd">Clear</button></center>                
+            </div>
+            <div class="col-md-12" id="modifybuttondiv" style="display: none">
+                <style>
+                    button{
+                        width:50px !important;
+                        background-color:#264a62 !important;
+                        color:#fff !important;
+                    }
+                </style>                
+                <center><button id="update">Modify</button>&nbsp;&nbsp;<button id="clearModify">Clear</button></center>
+            </div>
 
         </div>
 

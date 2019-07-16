@@ -22,6 +22,7 @@ define('FRONT_ADD_TAX_ITEM_QUE_LINK', BASE_URL ."front-add-tax-item-que");
 define('FRONT_DELETE_TAX_ITEM_QUE_LINK', BASE_URL ."front-delete-tax-item-que");
 define('FRONT_CHECK_EXIST_TAX_ITEM_QUE_LINK', BASE_URL ."front-check-exist-tax-item-que");
 define('FRONT_GET_MODIFY_TAX_ITEM_QUE_DETAILS_LINK', BASE_URL ."front-get-mofify-tax-item-que-details");
+define('FRONT_UPDATE_TAX_ITEM_QUE_LINK', BASE_URL ."front-update-tax-item-que");
 
 //**************************Front Title*********************//
 define('TITLE_FRONT_EPAYMENT_UNREGISTER', "e-payment");

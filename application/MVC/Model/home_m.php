@@ -99,6 +99,22 @@ class home_m extends Models {
         }
         return false;
     }
+    public function checkExistCommodityForAddNewTaxByTaxItemQueeId($taxtypeid,$commodityId,$tax_item_queue_id){
+        $q = "SELECT * FROM tax_item_queue WHERE tax_type_id='$taxtypeid' AND tax_commodity_id='$commodityId' AND tax_item_queue_id != '$tax_item_queue_id'";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row;
+        }
+        return false;
+    }
+    
+    public function taxItemQueueUpdate($tax_item_queue_id,$params) {
+        $columnsdesc = $this->updateMaker($params);
+        if ($columnsdesc) {
+            $q = "UPDATE tax_item_queue SET $columnsdesc WHERE tax_item_queue_id=$tax_item_queue_id";
+            return $this->query->update($q);
+        }
+        return FALSE;
+    }
 }
-
 ?>
