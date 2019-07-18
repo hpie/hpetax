@@ -19,6 +19,10 @@
     }
     .datepicker  {
     background: #fff !important;
+    }
+    .location{
+        display: none;
+    }
 </style>
 <div class="col-md-9 col-sm-12  col-12 ">
     <div class="middle-area box-shadow">
@@ -68,27 +72,27 @@
                 <table class="table" border="1">
                     <tr>                        
                         <td>Tax Type</td>
-                        <td><input type="text"  required="required" readonly=""></td>
+                        <td><input type="text"  required="required" readonly="" value="<?php echo $result['tax_type_id']; ?>"></td>
                         <td>Name Of Person*</td>
-                        <td><input type="text"  required="required"></td>                        
+                        <td><input type="text" id="name"  required="required"></td>                        
                     </tr>  
                     <tr>                        
                         <td>Mobile No.*</td>
-                        <td><input type="text" readonly="" value="+91" style="width:30px;">&nbsp;<input type="text"  required="required" ></td>
+                        <td><input type="text" readonly="" value="+91" style="width:30px;">&nbsp;<input type="text" id="mobileno" required="required" maxlength="10" minlength="10" onkeypress="return isNumberKey(event)"></td>
                         <td>Email Id</td>
-                        <td><input type="email"  required="required"></td>                        
+                        <td><input type="email" id="email"  required="required"></td>                        
                     </tr> 
                     <tr>                        
                         <td>Address*</td>
-                        <td><textarea rows="3" cols="50"></textarea></td>
+                        <td><textarea rows="3" cols="50" id="address"></textarea></td>
                         <td>Location Name*</td>
                         <td>
-                            <select class="" required="">                                            
+                            <select class="" required="" id="location">                                            
                                 <option class="" value="0" selected="">Select</option> 
-                                <option class="" value="Shimla" selected="">Shimla</option> 
-                                <option class="" value="Solan" selected="">Solan</option>
-                                <option class="" value="Baddi" selected="">Baddi</option>
-                                <option class="" value="Sirmour" selected="">Sirmour</option> 
+                                <option class="" value="Shimla">Shimla</option> 
+                                <option class="" value="Solan">Solan</option>
+                                <option class="" value="Baddi">Baddi</option>
+                                <option class="" value="Sirmour">Sirmour</option> 
                             </select>                            
                         </td>                        
                     </tr>
@@ -100,9 +104,9 @@
                     </tr> 
                     <tr>                        
                         <td>Dealer Type *</td>
-                        <td><select class="" required="">                                            
+                        <td><select class="" required="" id="day">                                            
                                 <option class="" value="0" selected="">Select</option> 
-                                <option class="" value="Shimla" selected="">Daily</option> 
+                                <option class="" value="daily" selected="">Daily</option> 
                             </select></td>
                         <td></td>
                         <td></td>                        
@@ -110,9 +114,9 @@
                     <tr class="input-daterange">
                         <!--<div class="input-daterange input-group" id="datepicker">-->                                                                                                                                
                         <td>Tax period From</td>                                               
-                        <td><input type="text" name="start" /></td>
+                        <td><input type="text" id="startdate" name="start" value="<?php echo date('d/m/Y'); ?>"/></td>
                         <td>Tax period To</td>
-                        <td><input type="text" name="end" /></td>  
+                        <td><input type="text" id="enddate" name="end" value="<?php echo date('d/m/Y'); ?>"/></td>  
                         <!--</div>-->    
                     </tr>
                 </table>               
@@ -127,8 +131,18 @@
                         <th style="width:45%">Purpose</th>
                         <th style="width:25%">Code</th>
                         <th style="width:25%">Amount(Rs.)</th>
-                    </tr>              
-                </table>               
+                    </tr>  
+                    <tr>
+                        <td>
+                    <center> <input type="checkbox" value="1" id="reciptscheck"></center>                        
+                        </td>
+                        <td>RECEIPTS FROM <?php echo $result['tax_type_name']; ?></td>
+                        <td>&nbsp;</td>
+                        <td><input type="text" id="total" value="<?php echo $total; ?>"></td>
+                    </tr>
+                </table>
+                <p>Sum of amount in all head should be <b id="sumofamount"></b> as per tax calculation.</p>
+                <p>Total Amount(Rs.) &nbsp;<input type="text" id="finaltotal" style="width:150px;" readonly=""></p>
             </div>  
             <br>
             <br>
@@ -140,7 +154,7 @@
                         color:#fff !important;
                     }
                 </style>
-                <center><button id="add">Confirm</button>&nbsp;&nbsp;<button id="clear">Clear</button></center>
+                <center><button id="confirm">Confirm</button>&nbsp;&nbsp;<button id="back" class="location">Back</button> &nbsp;&nbsp;<button id="submit" class="location">Submit</button>&nbsp;&nbsp;<button id="cancel">Cancel</button></center>
             </div>                                                                                    
         </div>
     </div>

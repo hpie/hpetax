@@ -25,6 +25,14 @@
 </footer>
 </div>
 <script src="<?php echo ASSETS_FRONT; ?>js/main.js"></script>
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script>
 <?php 
     if($TITLE==TITLE_FRONT_EPAYMENT_UNREGISTER){       
         include_once(APP_INCLUDE_V . "frontcommon/epaymentjs.php");   

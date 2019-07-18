@@ -67,11 +67,22 @@ class home_m extends Models {
         return false;
     }
     
-    public function getTaxTotal($taxItemSession){
+     public function getTaxTotal($taxItemSession){
         $q = "SELECT SUM(tax_item_tax_amount) as total FROM tax_item_queue WHERE tax_queue_session='$taxItemSession'";
         $result = $this->query->select($q);
         if ($row = $this->query->fetch($result)) {
             return $row['total'];
+        }
+        return false;
+    }
+    public function getTaxDetails($taxItemSession){
+        $q = "  SELECT tt.tax_type_id,tt.tax_type_name FROM tax_item_queue tiq
+                INNER JOIN tax_type tt
+                ON tiq.tax_type_id=tt.tax_type_id
+                WHERE tax_queue_session='$taxItemSession'";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row;
         }
         return false;
     }

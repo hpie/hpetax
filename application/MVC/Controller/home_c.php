@@ -25,7 +25,11 @@ class home_c extends Controllers {
     }
 
     public function epaymenttreasury() {
+        $result = $this->home_m->getTaxDetails($_SESSION['unregistered']);
+        $total = $this->home_m->getTaxTotal($_SESSION['unregistered']);
         $this->data['TITLE'] = TITLE_FRONT_EPAYMENT_TREASURY;
+        $this->data['total'] = $total;
+        $this->data['result'] = $result;
         loadviewFront('front/', 'epaymenttreasury.php', $this->data);
     }
 
