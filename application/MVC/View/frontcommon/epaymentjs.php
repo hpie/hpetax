@@ -47,7 +47,8 @@
                         }
                         
                         $("#sourcelocation").val('');
-                        $("#destinationlocation").val('');  
+                        $("#destinationlocation").val(''); 
+                        $(this).attr('disabled', true);
                         initMap();
                     }
                 }
