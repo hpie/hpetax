@@ -47,12 +47,12 @@
                         }
                         
                         $("#sourcelocation").val('');
-                        $("#destinationlocation").val(''); 
-                        $(this).attr('disabled', true);
+                        $("#destinationlocation").val('');                         
                         initMap();
                     }
                 }
             });
+            $('#taxType').attr('disabled', true);
         });
         $('#commodity').on('change', function () {
             var urlReq = '<?php echo FRONT_COMMODITY_FIELD_LINK ?>';
