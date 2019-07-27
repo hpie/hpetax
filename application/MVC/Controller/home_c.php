@@ -9,11 +9,11 @@ class home_c extends Controllers {
         $this->home_m = $this->loadModel('home_m');
     }
 
-    public function invoke() {    
-        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);       
+    public function invoke() {
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 // set document information
-        $pdf->SetCreator("HPETAX");        
-        $pdf->SetHeaderData(PDF_HEADER_LOGO,25, 'E-CHALLAN',"Govt Of Himachal Pradesh\nDepartment Of Finance\nTreasuries,Accounts & Lotteries");
+        $pdf->SetCreator("HPETAX");
+        $pdf->SetHeaderData(PDF_HEADER_LOGO, 22, 'E-CHALLAN', "Govt Of Himachal Pradesh\nDepartment Of Finance\nTreasuries,Accounts & Lotteries");
 
 // set header and footer fonts
         $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -59,133 +59,145 @@ class home_c extends Controllers {
 
 // define some HTML content with style
         $html = <<<EOF
-<!-- EXAMPLE OF CSS STYLE -->
-<style>
-    h1 {
-        color: navy;
-        font-family: times;
-        font-size: 24pt;
-        text-decoration: underline;
-    }
-    p.first {
-        color: #003300;
-        font-family: helvetica;
-        font-size: 12pt;
-    }
-    p.first span {
-        color: #006600;
-        font-style: italic;
-    }
-    p#second {
-        color: rgb(00,63,127);
-        font-family: times;
-        font-size: 12pt;
-        text-align: justify;
-    }
-    p#second > span {
-        background-color: #FFFFAA;
-    }
-    table.first {
-        color: #003300;
-        font-family: helvetica;
-        font-size: 8pt;
-        border-left: 3px solid red;
-        border-right: 3px solid #FF00FF;
-        border-top: 3px solid green;
-        border-bottom: 3px solid blue;
-        background-color: #ccffcc;
-    }
-    td {
-        border: 2px solid blue;
-        background-color: #ffffee;
-    }
-    td.second {
-        border: 2px dashed green;
-    }
-    div.test {
-        color: #CC0000;
-        background-color: #FFFF66;
-        font-family: helvetica;
-        font-size: 10pt;
-        border-style: solid solid solid solid;
-        border-width: 2px 2px 2px 2px;
-        border-color: green #FF00FF blue red;
-        text-align: center;
-    }
-    .lowercase {
-        text-transform: lowercase;
-    }
-    .uppercase {
-        text-transform: uppercase;
-    }
-    .capitalize {
-        text-transform: capitalize;
-    }
-</style>
-
-<h1 class="title">Example of <i style="color:#990000">XHTML + CSS</i></h1>
-
-<p class="first">Example of paragraph with class selector. <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed imperdiet lectus. Phasellus quis velit velit, non condimentum quam. Sed neque urna, ultrices ac volutpat vel, laoreet vitae augue. Sed vel velit erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras eget velit nulla, eu sagittis elit. Nunc ac arcu est, in lobortis tellus. Praesent condimentum rhoncus sodales. In hac habitasse platea dictumst. Proin porta eros pharetra enim tincidunt dignissim nec vel dolor. Cras sapien elit, ornare ac dignissim eu, ultricies ac eros. Maecenas augue magna, ultrices a congue in, mollis eu nulla. Nunc venenatis massa at est eleifend faucibus. Vivamus sed risus lectus, nec interdum nunc.</span></p>
-
-<p id="second">Example of paragraph with ID selector. <span>Fusce et felis vitae diam lobortis sollicitudin. Aenean tincidunt accumsan nisi, id vehicula quam laoreet elementum. Phasellus egestas interdum erat, et viverra ipsum ultricies ac. Praesent sagittis augue at augue volutpat eleifend. Cras nec orci neque. Mauris bibendum posuere blandit. Donec feugiat mollis dui sit amet pellentesque. Sed a enim justo. Donec tincidunt, nisl eget elementum aliquam, odio ipsum ultrices quam, eu porttitor ligula urna at lorem. Donec varius, eros et convallis laoreet, ligula tellus consequat felis, ut ornare metus tellus sodales velit. Duis sed diam ante. Ut rutrum malesuada massa, vitae consectetur ipsum rhoncus sed. Suspendisse potenti. Pellentesque a congue massa.</span></p>
-
-<div class="test">example of DIV with border and fill.
-<br />Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-<br /><span class="lowercase">text-transform <b>LOWERCASE</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-<br /><span class="uppercase">text-transform <b>uppercase</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-<br /><span class="capitalize">text-transform <b>cAPITALIZE</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-</div>
-
-<br />
-
-<table class="first" cellpadding="4" cellspacing="6">
+<table cellpadding="3" cellspacing="3" style="font-size:11px;">
  <tr>
-  <td width="30" align="center"><b>No.</b></td>
-  <td width="140" align="center" bgcolor="#FFFF00"><b>XXXX</b></td>
-  <td width="140" align="center"><b>XXXX</b></td>
-  <td width="80" align="center"> <b>XXXX</b></td>
-  <td width="80" align="center"><b>XXXX</b></td>
-  <td width="45" align="center"><b>XXXX</b></td>
+  <td width="13%" align="left">HIMGRN:</td>
+  <td width="40%" align="left"><u><b>A19G145689</b></u></td>
+  <td width="15%" align="right">Date:</td>
+  <td width="35%" align="right"><b>21-07-2019  09:25:45PM</b></td>
  </tr>
  <tr>
-  <td width="30" align="center">1.</td>
-  <td width="140" rowspan="6" class="second">XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX</td>
-  <td width="140">XXXX<br />XXXX</td>
-  <td width="80">XXXX<br />XXXX</td>
-  <td width="80">XXXX</td>
-  <td align="center" width="45">XXXX<br />XXXX</td>
+  <td width="13%" align="left">Book No.</td>
+  <td width="40%" align="left"><u><b></b></u></td>
+  <td width="15%" align="right">Book Date:</td>
+  <td width="35%" align="right"><b></b></td>
+ </tr>
+<tr>
+  <td width="15%" align="left">*Tender By.</td>
+  <td width="85%" align="left"><b>AVTAR SINGH</b></td>
+  <td width="" align="right"></td>
+  <td width="" align="right"></td>
+ </tr>  
+<tr>
+  <td width="15%" align="left">Dept. Ref No.</td>
+  <td width="85%" align="left"><b>DL1Z2779[VAH TXN-HPY1907210643166]</b></td>
+  <td width="" align="right"></td>
+  <td width="" align="right"></td>
+ </tr>
+<tr>
+  <td width="15%" align="left">Receipt Type</td>
+  <td width="85%" align="left"><b>COMPOSITE FEE PENALTY(TOKEN TAX) REGISTRATION FEE INSPECTION FEE PENALTY</b></td>
+  <td width="" align="right"></td>
+  <td width="" align="right"></td>
+ </tr> 
+<tr>
+  <td width="15%" align="left">&nbsp;</td>
+  <td width="85%" align="left"></td>
+  <td width="" align="right"></td>
+  <td width="" align="right"></td>
+ </tr>  
+ <tr>
+  <td width="15%" align="left">Amount(*GC)</td>
+  <td width="85%" align="left"><b>200 (Two Hundred)</b></td>
+  <td width="" align="right"></td>
+  <td width="" align="right"></td>
+ </tr> 
+</table>
+<h1 style="color:#00000047">Transaction Success..    </h1>
+<br>
+<hr>
+   <table cellpadding="3" cellspacing="3" style="font-size:11px;">
+ <tr>
+  <td width="15%" align="left">Treasury</td>
+  <td width="85%" align="left"><b>CTO00</b></td>
+  <td width="" align="right"></td>
+  <td width="" align="right"></td>
+ </tr>
+<tr>
+  <td width="15%" align="left">DDO</td>
+  <td width="85%" align="left"><b>317</b>&nbsp;&nbsp;&nbsp;(On whose behalf the money is tendered)</td>
+  <td width="" align="right"></td>
+  <td width="" align="right"></td>
+ </tr>
+<tr>
+  <td width="15%" align="left">&nbsp;</td>
+  <td width="85%" align="left"><b>ASST CONTT F AND A TRANSPORT DEPTT SHIMLA</b></td>
+  <td width="" align="right"></td>
+  <td width="" align="right"></td>
+ </tr>
+<tr>
+  <td width="100%" align="right"><b>For the Period [21-07-2019 To 22-07-2019]</b></td>
+  <td width="" align="left"></td>
+  <td width="" align="right"></td>
+  <td width="" align="right"></td>
+ </tr>
+</table>   
+<table style="font-size:11px;">
+ <tr>
+  <td width="60%" align="left">MajCd-SmjCd-MinCd-SmnCd</td>
+  <td width="20%" align="left">Book No.</td>
+  <td width="20%" align="left">Amount(Rs.)</td>  
  </tr>
  <tr>
-  <td width="30" align="center" rowspan="3">2.</td>
-  <td width="140" rowspan="3">XXXX<br />XXXX</td>
-  <td width="80">XXXX<br />XXXX</td>
-  <td width="80">XXXX<br />XXXX</td>
-  <td align="center" width="45">XXXX<br />XXXX</td>
+  <td width="60%" align="left"><b>0041-00-101-02(REGISTRATION FEE INSPECTION FEE)</b></td>
+  <td width="20%" align="left"><b></b></td>
+  <td width="20%" align="left"><b>0</b></td>  
  </tr>
- <tr>
-  <td width="80">XXXX<br />XXXX<br />XXXX<br />XXXX</td>
-  <td width="80">XXXX<br />XXXX</td>
-  <td align="center" width="45">XXXX<br />XXXX</td>
+<tr>
+  <td width="60%" align="left"><b>0041-00-101-04(PENALTY)</b></td>
+  <td width="20%" align="left"><b></b></td>
+  <td width="20%" align="left"><b>0</b></td>  
  </tr>
- <tr>
-  <td width="80" rowspan="2" >XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX</td>
-  <td width="80">XXXX<br />XXXX</td>
-  <td align="center" width="45">XXXX<br />XXXX</td>
+<tr>
+  <td width="60%" align="left"><b>0041-00-102-02(PENALTY (TOKEN TAX))</b></td>
+  <td width="20%" align="left"><b></b></td>
+  <td width="20%" align="left"><b>0</b></td>  
  </tr>
- <tr>
-  <td width="30" align="center">3.</td>
-  <td width="140">XXXX<br />XXXX</td>
-  <td width="80">XXXX<br />XXXX</td>
-  <td align="center" width="45">XXXX<br />XXXX</td>
- </tr>
- <tr bgcolor="#FFFF80">
-  <td width="30" align="center">4.</td>
-  <td width="140" bgcolor="#00CC00" color="#FFFF00">XXXX<br />XXXX</td>
-  <td width="80">XXXX<br />XXXX</td>
-  <td width="80">XXXX<br />XXXX</td>
-  <td align="center" width="45">XXXX<br />XXXX</td>
+                <tr>
+  <td width="60%" align="left"><b>0041-00-102-04(COMPOSITE FEE)</b></td>
+  <td width="20%" align="left"><b></b></td>
+  <td width="20%" align="left"><b>200</b></td>  
  </tr>
 </table>
+<br><br>
+<hr>
+<table cellpadding="3" cellspacing="3" style="font-size:11px;">
+ <tr>
+  <td width="30%" align="left"><b>Bank Transaction Details</b></td>
+  <td width="70%" align="left"></td>
+ </tr>
+</table>
+                <hr>
+<table cellpadding="4" cellspacing="4" style="font-size:11px;">
+ <tr>
+  <td width="30%" align="left">Bank Reference No.</td>
+  <td width="70%" align="left"><b>CPT5744262</b></td>
+ </tr>
+                <tr>
+  <td width="30%" align="left">HIMGRN</td>
+  <td width="70%" align="left"><b>A19G145689</b></td>
+ </tr>
+                <tr>
+  <td width="30%" align="left">Amount (*GC + *SC)</td>
+  <td width="70%" align="left"><b>Rs. 220 (200+20)</b></td>
+ </tr>
+                            <tr>
+  <td width="30%" align="left">Amount in Words</td>
+  <td width="70%" align="left"><b>Two Hundred Twenty</b></td>
+ </tr>
+                                           <tr>
+  <td width="30%" align="left">Status</td>
+  <td width="70%" align="left"><b>Completed Successfully</b></td>
+ </tr>
+                                                         <tr>
+  <td width="30%" align="left">Date-Time</td>
+  <td width="70%" align="left"><b>21-07-2019 09:27:19PM</b></td>
+ </tr>
+</table>
+<p><b>*</b> Service Providers Should Verify the identity of Remmiter before Delivering Services.</p>
+<p><b>*</b> GC-Govt. Free Collected, *SC-Service Charge Paid</p>  
+<hr style="border-top: 1px dashed red !important;">
+                
 EOF;
 
 // output the HTML content
