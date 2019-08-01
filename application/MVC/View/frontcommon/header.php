@@ -11,7 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/font-awesome.css">
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/main.css">
-       <?php if($TITLE==TITLE_FRONT_EPAYMENT_TREASURY){ ?>    
+       <?php if($TITLE==TITLE_FRONT_EPAYMENT_TREASURY || $TITLE==TITLE_FRONT_SIGNUP_FORM){ ?>    
         <link href="<?php echo ASSETS_FRONT; ?>datetime/css/bootstrap-datepicker3.min.css" rel="stylesheet">
         <?php } ?>
         <script src="<?php echo ASSETS_FRONT; ?>js/jquery.min.js"></script>
@@ -171,7 +171,7 @@
                 </div>
             </header>
             <section class="main">
-                <?php if ($TITLE == TITLE_FRONT_EPAYMENT_UNREGISTER || $TITLE == TITLE_FRONT_EPAYMENT_TREASURY) {
+                <?php if ($TITLE==TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_EPAYMENT_UNREGISTER || $TITLE == TITLE_FRONT_EPAYMENT_TREASURY) {
                     ?>
                     <div class="">
                         <?php
@@ -198,7 +198,7 @@
                                             <div class="g-recaptcha">Recaptcha</div>
                                         </div>
                                         <div class="forgot-pass">
-                                            <a href="#">New User? SignUp</a> &nbsp;
+                                            <a href="<?php echo BASE_URL; ?>signup">New User? SignUp</a> &nbsp;
                                             <a href="#">Forgot Password</a>
                                         </div>
                                         <div>

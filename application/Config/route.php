@@ -20,6 +20,7 @@ $route['front-check-exist-tax-item-que'] = 'home_c/checkExistTaxItemQue';
 $route['front-get-mofify-tax-item-que-details'] = 'home_c/getModifyTaxItemQueAjax';
 $route['front-update-tax-item-que'] = 'home_c/updateTaxItemQueAjax';
 $route['front-wrfapplicationuser'] = 'home_c/wrfapplicationuser';
+$route['signup'] = 'home_c/signupform';
 //**************************************************************************************//
 
 //**************************tax_master*******************//

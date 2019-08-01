@@ -28,6 +28,7 @@ define('FRONT_UPDATE_TAX_ITEM_QUE_LINK', BASE_URL ."front-update-tax-item-que");
 define('TITLE_FRONT_EPAYMENT_UNREGISTER', "e-payment");
 define('TITLE_FRONT_EPAYMENT_TREASURY', "e-payment treasury");
 define('TITLE_FRONT_COMMON','Welcome to hptax.gov.in');
+define('TITLE_FRONT_SIGNUP_FORM', "Signup");
 
 
 

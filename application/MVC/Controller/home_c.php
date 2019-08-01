@@ -216,7 +216,7 @@ EOF;
         $this->data['TITLE'] = TITLE_FRONT_EPAYMENT_UNREGISTER;
         $this->data['result'] = $result;
         loadviewFront('front/', 'epayment.php', $this->data);
-    }
+    }        
 
     public function epaymenttreasury() {
         $result = $this->home_m->getTaxDetails($_SESSION['unregistered']);
@@ -564,6 +564,11 @@ EOF;
 
     public function wrfapplicationuser() {
         loadLoginView('front/', 'wrfapplicationuser.php', $this->data);
+    }
+    
+    public function signupform() {
+        $this->data['TITLE'] = TITLE_FRONT_SIGNUP_FORM;
+        loadviewFront('front/', 'signupform.php', $this->data);
     }
 
 }

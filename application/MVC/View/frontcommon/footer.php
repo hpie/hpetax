@@ -39,7 +39,10 @@
     }
     if($TITLE==TITLE_FRONT_EPAYMENT_TREASURY){       
         include_once(APP_INCLUDE_V . "frontcommon/epaymenttreasuryjs.php");   
-    }
+    } 
+    if($TITLE==TITLE_FRONT_SIGNUP_FORM){       
+        include_once(APP_INCLUDE_V . "frontcommon/signupjs.php");   
+    } 
 ?>
 </body>
 </html>
