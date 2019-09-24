@@ -53,8 +53,9 @@
             </div>
         </div>       
         <div class="row section-row">
-            <div class="col-md-12 col-sm-12 col-12">                
-                <center><h4 class="sm-heading">New User SignUp</h4></center>                  
+            <form method="post" action="" class="col-md-12 col-sm-12 col-12">
+            <div>                
+                <center><h4 class="sm-heading">New User SignUp</h4></center>                                  
                 <table class="table" border="1" id="tabledata">
                     <tr>                        
                         <td>Tax Type *  :</td>
@@ -75,7 +76,7 @@
                     </tr>   
                     <tr>                        
                         <td>TIN / License No.  *</td>
-                        <td><input type="text" maxlength="11" minlength="11" required="required"></td>                       
+                        <td><input type="text" maxlength="15" minlength="11" required="required"></td>                       
                     </tr>
                     <tr>                                                                                                                                                      
                         <td>Date of Validity ( dd/mm/yyyy ) *  :</td>                                               
@@ -83,7 +84,7 @@
                     </tr>
                 </table>
             </div>         
-            <div class="col-md-12">
+            <div>
                 <style>
                     button{
                         width:50px !important;
@@ -91,8 +92,9 @@
                         color:#fff !important;
                     }
                 </style>
-                <center><button>Add</button>&nbsp;&nbsp;<a href="<?php echo BASE_URL; ?>"><button>Back</button></a></center>                
-            </div>          
+                <center><input type="submit" name="submit" value="Submit">&nbsp;&nbsp;<a href="<?php echo BASE_URL; ?>"><button>Back</button></a></center>                
+            </div> 
+            </form>
         </div>       
     </div>
 </div>

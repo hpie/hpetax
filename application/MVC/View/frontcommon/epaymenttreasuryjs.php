@@ -74,5 +74,18 @@
                 $('#reciptscheck').attr('disabled', false);
                 $('#total').attr('disabled', false);
         });
+        $('#submit').on('click', function () {            
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                data: {id: 1},
+                url: '<?php echo BASE_URL; ?>addChalan',
+                success: function (_returnData) {
+                    if (_returnData.result == "success") {
+                        alert('success');
+                    }
+                }
+            });
+        });
     });
 </script>

@@ -32,10 +32,9 @@ $APP->post('add-tax-challan', false, function() use($APP) {
             global $controller;
             global $VARS;
             global $ID;
-                          
-            $VARS=json_decode(file_get_contents("php://input"),true);
-//            
             
+            $VARS=json_decode(file_get_contents("php://input"),true);
+//                        
 //            $APP->generateApiKey();
 //             promocode();                        
             verifyRequiredParams(array('challan_id', 'challan_title', 'depositors_name', 'depositors_phone', 'depositors_address','challan_location','challan_duration','challan_from_dt','challan_to_dt','challan_purpose','challan_amount','transaction_no','transaction_status','challan_status','type_code','created_by','modified_by', 'token', 'device'));

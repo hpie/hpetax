@@ -48,3 +48,6 @@ $route['tax-commodity-edit/(:any)'] = 'admin_c/editTaxCommodity';
 
 //**************************reports*******************//
 $route['tax-reports'] = 'admin_c/reports';
+
+//**************************challan*******************//
+$route['addChalan'] = 'home_c/addChalan';

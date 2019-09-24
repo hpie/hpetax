@@ -216,7 +216,7 @@ EOF;
         $this->data['TITLE'] = TITLE_FRONT_EPAYMENT_UNREGISTER;
         $this->data['result'] = $result;
         loadviewFront('front/', 'epayment.php', $this->data);
-    }        
+    }
 
     public function epaymenttreasury() {
         $result = $this->home_m->getTaxDetails($_SESSION['unregistered']);
@@ -564,8 +564,48 @@ EOF;
 
     public function wrfapplicationuser() {
         loadLoginView('front/', 'wrfapplicationuser.php', $this->data);
+        }
+
+
+        public function addChalan() {       
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://localhost/hpetax/api/v1/tax_challan/add-tax-challan/1",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "{\t\"challan_id\":\"5900\",\r\n\t\"challan_title\":\"abc\",\r\n\t\"depositors_name\":\"sas\",\r\n\t\"depositors_phone\":\"9099384773\",\r\n\t\"depositors_address\":\"aadsdad\",\r\n\t\"challan_location\":\"asdads\",\r\n\t\"challan_duration\":\"20:20\",\r\n\t\"challan_from_dt\":\"2012-02-22\",\r\n\t\"challan_to_dt\":\"2012-02-22\",\r\n\t\"challan_purpose\":\"asdad\",\r\n\t\"challan_amount\":\"120\",\r\n\t\"transaction_no\":\"1\",\r\n\t\"transaction_status\":\"1\",\r\n\t\"challan_status\":\"1\",\r\n\t\"type_code\":\"123\",\r\n\t\"created_by\":\"vasim\",\r\n\t\"modified_by\":\"vasim\",\r\n\t\"token\":\"123\",\r\n\t\"device\":\"android\"\r\n}",
+//            CURLOPT_HTTPHEADER => array(
+//                "Accept: */*",
+//                "Accept-Encoding: gzip, deflate",
+//                "Cache-Control: no-cache",
+//                "Connection: keep-alive",
+//                "Content-Length: 512",
+//                "Content-Type: application/json",
+//
+//                "Postman-Token: d55b46b2-dc73-4592-9632-6534a35076ae,29d92d84-88e2-43c4-a7c2-71a940f3b130",
+//                "User-Agent: PostmanRuntime/7.17.1",
+//                "cache-control: no-cache"
+//            ),
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+
+        if ($err) {
+            $result['result']='success';
+//            echo "cURL Error #:" . $err;
+        } else {
+//            echo $response;
+            $result['result']='success';
+        }
+        echo json_encode($result);
+        die;
     }
-    
+
     public function signupform() {
         $this->data['TITLE'] = TITLE_FRONT_SIGNUP_FORM;
         loadviewFront('front/', 'signupform.php', $this->data);
