@@ -74,11 +74,28 @@
                 $('#reciptscheck').attr('disabled', false);
                 $('#total').attr('disabled', false);
         });
-        $('#submit').on('click', function () {            
+        $('#submit').on('click', function () {
+                       
+            var challan_title="dummy";
+            var depositors_name=$("#name").val();          
+            var depositors_phone=$("#mobileno").val();
+            var depositors_address=$("#name").val();
+            var challan_location=$("#address").val();           
+            var challan_duration=$("#day").val();            
+            var challan_from_dt=$("#startdate").val();
+            var challan_to_dt=$("#enddate").val();                     
+            var challan_purpose="dummy";
+            var challan_amount=$("#finaltotal").val();
+            var transaction_no=0;
+            var transaction_status="PENDING";
+            var challan_status="ACTIVE";
+            var type_code=$("#type_code").val();            
+            var token=0;
+            var device="android";            
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                data: {id: 1},
+                data: {challan_title:challan_title,depositors_name:depositors_name,depositors_phone:depositors_phone,depositors_address:depositors_address,challan_location:challan_location,challan_duration:challan_duration,challan_from_dt:challan_from_dt,challan_to_dt:challan_to_dt,challan_purpose:challan_purpose,challan_amount:challan_amount,transaction_no:transaction_no,transaction_status:transaction_status,challan_status:challan_status,type_code:type_code,token:token,device:device},
                 url: '<?php echo BASE_URL; ?>addChalan',
                 success: function (_returnData) {
                     if (_returnData.result == "success") {

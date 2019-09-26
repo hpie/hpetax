@@ -7,7 +7,7 @@ function token($email) {
 
 function dateFormatterMysql($old_date) {
     //echo $old_date;
-    $date = date_create($old_date);
+    $date =date_create($old_date);
     //echo "<pre>1=-".$old_date." ";print_r($date);
     $new_date = date_format($date, "Y-m-d");
     return $new_date;

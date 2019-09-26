@@ -3,9 +3,9 @@
     select, option {
         width: 250px;
     }
-/*    select{
-        width:50%;
-    }*/
+    /*    select{
+            width:50%;
+        }*/
     input{
         width:50%;
     }
@@ -18,7 +18,7 @@
         text-overflow: ellipsis;
     }
     .datepicker  {
-    background: #fff !important;
+        background: #fff !important;
     }
     .location{
         display: none;
@@ -72,7 +72,7 @@
                 <table class="table" border="1">
                     <tr>                        
                         <td>Tax Type</td>
-                        <td><input type="text"  required="required" readonly="" value="<?php echo $result['tax_type_id']; ?>"></td>
+                        <td><input type="text" id="type_code"  required="required" readonly="" value="<?php echo $result['tax_type_id']; ?>"></td>
                         <td>Name Of Person*</td>
                         <td><input type="text" id="name"  required="required"></td>                        
                     </tr>  
@@ -107,7 +107,9 @@
                         <td><select class="" required="" id="day">                                            
                                 <option class="" value="0" selected="">Select</option> 
                                 <option class="" value="daily" selected="">Daily</option> 
-                            </select></td>
+                                 <!--<option class="" value="weekly" selected="">weekly</option>--> 
+                            </select>
+                        </td>
                         <td></td>
                         <td></td>                        
                     </tr> 
@@ -135,10 +137,10 @@
                     <tr>
                         <td>
                     <center> <input type="checkbox" value="1" id="reciptscheck"></center>                        
-                        </td>
-                        <td>RECEIPTS FROM <?php echo $result['tax_type_name']; ?></td>
-                        <td>&nbsp;</td>
-                        <td><input type="text" id="total" value="<?php echo $total; ?>"></td>
+                    </td>
+                    <td>RECEIPTS FROM <?php echo $result['tax_type_name']; ?></td>
+                    <td>&nbsp;</td>
+                    <td><input type="text" id="total" value="<?php echo $total; ?>"></td>
                     </tr>
                 </table>
                 <p>Sum of amount in all head should be <b id="sumofamount"></b> as per tax calculation.</p>

@@ -54,10 +54,11 @@ function dateFormatterComma($old_date) {
     return $new_date;
 }
 function dateFormatterMysql($old_date) {
-    //echo $old_date;
+//    echo $old_date;die;
     $date = date_create($old_date);
-    //echo "<pre>1=-".$old_date." ";print_r($date);
-    $new_date = date_format($date, "Y-m-d");
+    //echo "<pre>1=-".$old_date." ";print_r($date);    
+    $new_date = date_format (new DateTime($date), "Y-m-d");
+//    echo $new_date;die;
     return $new_date;
 }
 function datetimeFormatter($old_date) {

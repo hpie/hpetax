@@ -564,10 +564,26 @@ EOF;
 
     public function wrfapplicationuser() {
         loadLoginView('front/', 'wrfapplicationuser.php', $this->data);
-        }
+    }
 
-
-        public function addChalan() {       
+    public function addChalan() {
+        $challan_title =$_POST['challan_title'];
+        $depositors_name =$_POST['depositors_name'];
+        $depositors_phone =$_POST['depositors_phone'];
+        $depositors_address =$_POST['depositors_address'];
+        $challan_location =$_POST['challan_location'];
+        $challan_duration =$_POST['challan_duration'];                
+        $challan_from_dt = dateFormatterMysql($_POST['challan_from_dt']);
+        $challan_to_dt = dateFormatterMysql($_POST['challan_to_dt']);
+        $challan_purpose =$_POST['challan_purpose'];
+        $challan_amount =$_POST['challan_amount'];
+        $transaction_no =$_POST['transaction_no'];
+        $transaction_status =$_POST['transaction_status'];
+        $challan_status =$_POST['challan_status'];
+        $type_code =$_POST['type_code'];
+        $token =$_POST['token'];
+        $device =$_POST['device'];
+        
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => "http://localhost/hpetax/api/v1/tax_challan/add-tax-challan/1",
@@ -577,7 +593,7 @@ EOF;
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "{\t\"challan_id\":\"5900\",\r\n\t\"challan_title\":\"abc\",\r\n\t\"depositors_name\":\"sas\",\r\n\t\"depositors_phone\":\"9099384773\",\r\n\t\"depositors_address\":\"aadsdad\",\r\n\t\"challan_location\":\"asdads\",\r\n\t\"challan_duration\":\"20:20\",\r\n\t\"challan_from_dt\":\"2012-02-22\",\r\n\t\"challan_to_dt\":\"2012-02-22\",\r\n\t\"challan_purpose\":\"asdad\",\r\n\t\"challan_amount\":\"120\",\r\n\t\"transaction_no\":\"1\",\r\n\t\"transaction_status\":\"1\",\r\n\t\"challan_status\":\"1\",\r\n\t\"type_code\":\"123\",\r\n\t\"created_by\":\"vasim\",\r\n\t\"modified_by\":\"vasim\",\r\n\t\"token\":\"123\",\r\n\t\"device\":\"android\"\r\n}",
+            CURLOPT_POSTFIELDS => "{\t\"challan_id\":\"5900\",\r\n\t\"challan_title\":\"$challan_title\",\r\n\t\"depositors_name\":\"$depositors_name\",\r\n\t\"depositors_phone\":\"$depositors_phone\",\r\n\t\"depositors_address\":\"$depositors_address\",\r\n\t\"challan_location\":\"$challan_location\",\r\n\t\"challan_duration\":\"$challan_duration\",\r\n\t\"challan_from_dt\":\"$challan_from_dt\",\r\n\t\"challan_to_dt\":\"$challan_to_dt\",\r\n\t\"challan_purpose\":\"$challan_purpose\",\r\n\t\"challan_amount\":\"$challan_amount\",\r\n\t\"transaction_no\":\"$transaction_no\",\r\n\t\"transaction_status\":\"$transaction_status\",\r\n\t\"challan_status\":\"$challan_status\",\r\n\t\"type_code\":\"$type_code\",\r\n\t\"created_by\":\"vasim\",\r\n\t\"modified_by\":\"vasim\",\r\n\t\"token\":\"123\",\r\n\t\"device\":\"android\"\r\n}",
 //            CURLOPT_HTTPHEADER => array(
 //                "Accept: */*",
 //                "Accept-Encoding: gzip, deflate",
@@ -596,11 +612,11 @@ EOF;
         curl_close($curl);
 
         if ($err) {
-            $result['result']='success';
+            $result['result'] = 'success';
 //            echo "cURL Error #:" . $err;
         } else {
-//            echo $response;
-            $result['result']='success';
+            echo $response;die;
+            $result['result'] = 'success';
         }
         echo json_encode($result);
         die;
