@@ -6,6 +6,7 @@ class admin_c extends Controllers {
     public $admin_m;
 
     public function __construct() {
+        parent::__construct();
         sessionCheck();
         $this->admin_m = $this->loadModel('admin_m');
     }

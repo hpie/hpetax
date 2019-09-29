@@ -6,6 +6,7 @@ class home_c extends Controllers {
     public $home_m;
 
     public function __construct() {
+        parent::__construct();
         $this->home_m = $this->loadModel('home_m');
     }
 
@@ -34,10 +35,10 @@ class home_c extends Controllers {
         $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 // set some language-dependent strings (optional)
-        if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
-            require_once(dirname(__FILE__) . '/lang/eng.php');
-            $pdf->setLanguageArray($l);
-        }
+//        if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
+//            require_once(dirname(__FILE__) . '/lang/eng.php');
+//            $pdf->setLanguageArray($l);
+//        }
 
 // ---------------------------------------------------------
 // set font
@@ -567,6 +568,8 @@ EOF;
     }
 
     public function addChalan() {
+        
+        $challan_id=gen_uuid();
         $challan_title =$_POST['challan_title'];
         $depositors_name =$_POST['depositors_name'];
         $depositors_phone =$_POST['depositors_phone'];
@@ -593,7 +596,7 @@ EOF;
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "{\t\"challan_id\":\"5900\",\r\n\t\"challan_title\":\"$challan_title\",\r\n\t\"depositors_name\":\"$depositors_name\",\r\n\t\"depositors_phone\":\"$depositors_phone\",\r\n\t\"depositors_address\":\"$depositors_address\",\r\n\t\"challan_location\":\"$challan_location\",\r\n\t\"challan_duration\":\"$challan_duration\",\r\n\t\"challan_from_dt\":\"$challan_from_dt\",\r\n\t\"challan_to_dt\":\"$challan_to_dt\",\r\n\t\"challan_purpose\":\"$challan_purpose\",\r\n\t\"challan_amount\":\"$challan_amount\",\r\n\t\"transaction_no\":\"$transaction_no\",\r\n\t\"transaction_status\":\"$transaction_status\",\r\n\t\"challan_status\":\"$challan_status\",\r\n\t\"type_code\":\"$type_code\",\r\n\t\"created_by\":\"vasim\",\r\n\t\"modified_by\":\"vasim\",\r\n\t\"token\":\"123\",\r\n\t\"device\":\"android\"\r\n}",
+            CURLOPT_POSTFIELDS => "{\t\"challan_id\":\"$challan_id\",\r\n\t\"challan_title\":\"$challan_title\",\r\n\t\"depositors_name\":\"$depositors_name\",\r\n\t\"depositors_phone\":\"$depositors_phone\",\r\n\t\"depositors_address\":\"$depositors_address\",\r\n\t\"challan_location\":\"$challan_location\",\r\n\t\"challan_duration\":\"$challan_duration\",\r\n\t\"challan_from_dt\":\"$challan_from_dt\",\r\n\t\"challan_to_dt\":\"$challan_to_dt\",\r\n\t\"challan_purpose\":\"$challan_purpose\",\r\n\t\"challan_amount\":\"$challan_amount\",\r\n\t\"transaction_no\":\"$transaction_no\",\r\n\t\"transaction_status\":\"$transaction_status\",\r\n\t\"challan_status\":\"$challan_status\",\r\n\t\"type_code\":\"$type_code\",\r\n\t\"created_by\":\"vasim\",\r\n\t\"modified_by\":\"vasim\",\r\n\t\"token\":\"123\",\r\n\t\"device\":\"android\"\r\n}",
 //            CURLOPT_HTTPHEADER => array(
 //                "Accept: */*",
 //                "Accept-Encoding: gzip, deflate",

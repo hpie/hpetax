@@ -89,41 +89,7 @@ function set_selected($desired_value, $new_value) {
         echo ' selected="selected"';
     }
 }
-//function sendSMS_Client($mobile, $message) {
-//    $ch = curl_init();
-//    $message=$message;
-//    $quotes=QUOTES;
-//    $encoded_message = urlencode($message);
-//    $encoded_quotes = urlencode($quotes);
-//    $url = "sms.skylinepro.in/smsapi.aspx?username=Codexives&password=jeny7001&sender=CDXIVS&to=" . $mobile . "&message=" . $encoded_message ."%0a".$encoded_quotes. "&route=route3";
-//    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-//    curl_setopt($ch, CURLOPT_URL, $url);
-//    $result=curl_exec($ch);
-//    $res=curl_close($ch);
-//     return true;
-//}
-//function sendSMS_Schedule($message) {
-//    $mobile=9099384773;
-//    $ch = curl_init();     
-//    $encoded_message = urlencode($message);   
-//    $datetime= urldecode('2018-03-23 09:30:01');
-//    $url = "sms.skylinepro.in/SendScheduleTextMessage.aspx?username=Codexives&password=jeny7001&route=route3&sender=CDXIVS&message=$encoded_message&messagetype=TEXTSMS&mobileno=$mobile&datetime=$datetime";
-//    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-//    curl_setopt($ch, CURLOPT_URL, $url);
-//    $res=curl_exec($ch);
-//    curl_close($ch);
-//     return true;
-//}
-//function sendSMS_Admin($message) {
-//    $ch = curl_init();
-//    $encoded_message = urlencode($message);
-//    $url = "sms.skylinepro.in/GroupMessageSend.aspx?username=Codexives&password=jeny7001&groupNo=22358&route=route3&sender=CDXIVS&message=" . $encoded_message . "&messagetype=TEXTSMS";
-//    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-//    curl_setopt($ch, CURLOPT_URL, $url);
-//    $a = curl_exec($ch);
-//    curl_close($ch);   
-//     return true;
-//}
+
 function returnSingleImage($imgArray,$field) {
     $arr = array();
     $img_field=$field.'_image';
@@ -135,5 +101,26 @@ function returnSingleImage($imgArray,$field) {
         }
     }
     return $arr;
+}
+function gen_uuid() {
+    return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+        // 32 bits for "time_low"
+        mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
+
+        // 16 bits for "time_mid"
+        mt_rand( 0, 0xffff ),
+
+        // 16 bits for "time_hi_and_version",
+        // four most significant bits holds version number 4
+        mt_rand( 0, 0x0fff ) | 0x4000,
+
+        // 16 bits, 8 bits for "clk_seq_hi_res",
+        // 8 bits for "clk_seq_low",
+        // two most significant bits holds zero and one for variant DCE1.1
+        mt_rand( 0, 0x3fff ) | 0x8000,
+
+        // 48 bits for "node"
+        mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff )
+    );
 }
 ?>
