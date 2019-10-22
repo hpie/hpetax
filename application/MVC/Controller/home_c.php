@@ -242,7 +242,6 @@ EOF;
         echo json_encode($newArray);
         die;
     }
-
     public function uiRender($id) {
         $str = '';
         if ($id == 'AG') {
@@ -335,7 +334,7 @@ EOF;
     public function addTaxItemQueAjax() {
         $newArray = array();
         $html = '';
-        $existcomodity = $this->home_m->checkExistCommodityForAddNewTax($_POST['taxtypeid'], $_POST['commodityid']);
+        $existcomodity = $this->home_m->checkExistCommodityForAddNewTax($_POST['taxtypeid'], $_POST['commodityid'],$_SESSION['unregistered']);
         if (empty($existcomodity)) {
             $params = array();
             if ($_POST['noofpassenger'] != 0) {
@@ -624,7 +623,6 @@ EOF;
         echo json_encode($result);
         die;
     }
-
     public function signupform() {
         $this->data['TITLE'] = TITLE_FRONT_SIGNUP_FORM;
         loadviewFront('front/', 'signupform.php', $this->data);

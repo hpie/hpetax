@@ -102,8 +102,8 @@ class home_m extends Models {
         }
         return false;
     }
-    public function checkExistCommodityForAddNewTax($taxtypeid,$commodityId){
-        $q = "SELECT * FROM tax_item_queue WHERE tax_type_id='$taxtypeid' AND tax_commodity_id='$commodityId'";
+    public function checkExistCommodityForAddNewTax($taxtypeid,$commodityId,$tax_queue_session){
+        $q = "SELECT * FROM tax_item_queue WHERE tax_type_id='$taxtypeid' AND tax_commodity_id='$commodityId' AND tax_queue_session='$tax_queue_session'";
         $result = $this->query->select($q);
         if ($row = $this->query->fetch($result)) {
             return $row;
