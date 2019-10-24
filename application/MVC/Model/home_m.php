@@ -7,6 +7,25 @@ class home_m extends Models {
     public function __construct() {
         $this->query = new Query();
     }  
+    
+    public function getExistRecordByColumn($id,$column,$table) {       
+        $q = "SELECT * FROM $table WHERE $column='$id'";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row;
+        }
+        return false;
+    }
+     public function registerationInsert($params) {
+        $columns = $this->insertMaker($params, $values);
+        if ($columns) {
+            $q = "INSERT INTO tax_dealer($columns) values($values)";
+            $id = $this->query->insert($q);            
+            return $id;
+        }
+        return FALSE;
+    }
+    
     public function getTaxType() {
         $q = "SELECT * FROM tax_type WHERE tax_type_status='ACTIVE'";
         $result = $this->query->select($q);

@@ -21,6 +21,7 @@ $route['front-get-mofify-tax-item-que-details'] = 'home_c/getModifyTaxItemQueAja
 $route['front-update-tax-item-que'] = 'home_c/updateTaxItemQueAjax';
 $route['front-wrfapplicationuser'] = 'home_c/wrfapplicationuser';
 $route['signup'] = 'home_c/signupform';
+$route['registration'] = 'home_c/registration';
 //**************************************************************************************//
 
 //**************************tax_master*******************//
@@ -51,3 +52,4 @@ $route['tax-reports'] = 'admin_c/reports';
 
 //**************************challan*******************//
 $route['addChalan'] = 'home_c/addChalan';
+$route['verify-epayment'] = 'home_c/epaymentVerify';

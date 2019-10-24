@@ -23,12 +23,17 @@ define('FRONT_DELETE_TAX_ITEM_QUE_LINK', BASE_URL ."front-delete-tax-item-que");
 define('FRONT_CHECK_EXIST_TAX_ITEM_QUE_LINK', BASE_URL ."front-check-exist-tax-item-que");
 define('FRONT_GET_MODIFY_TAX_ITEM_QUE_DETAILS_LINK', BASE_URL ."front-get-mofify-tax-item-que-details");
 define('FRONT_UPDATE_TAX_ITEM_QUE_LINK', BASE_URL ."front-update-tax-item-que");
+define('FRONT_VERIFY_E_PAYMENT_LINK', BASE_URL ."verify-epayment");
+define('FRONT_SIGN_UP_LINK', BASE_URL ."signup");
+define('FRONT_SIGN_UP_INSERT_LINK', BASE_URL ."registration");
+
 
 //**************************Front Title*********************//
 define('TITLE_FRONT_EPAYMENT_UNREGISTER', "e-payment");
 define('TITLE_FRONT_EPAYMENT_TREASURY', "e-payment treasury");
 define('TITLE_FRONT_COMMON','Welcome to hptax.gov.in');
 define('TITLE_FRONT_SIGNUP_FORM', "Signup");
+define('TITLE_FRONT_VERIFY_E_PAYMENT', "Verify e-Payment");
 
 
 

@@ -627,6 +627,33 @@ EOF;
         $this->data['TITLE'] = TITLE_FRONT_SIGNUP_FORM;
         loadviewFront('front/', 'signupform.php', $this->data);
     }
+    
+    public function registration() {
+        unset($_POST['submit']);
+        $date=$_POST['tax_dealer_tin_expiry'];
+        $_POST['tax_dealer_tin_expiry']= dateFormatterMysql("$date");        
+        $existRecord = $this->home_m->getExistRecordByColumn($_POST['tax_dealer_tin'], 'tax_dealer_tin', 'tax_dealer');       
+        if ($existRecord) {
+            $_SESSION['data'] = $_POST;
+            $_SESSION['existrecord'] = 1;
+            redirect(FRONT_SIGN_UP_LINK);
+        }     
+        $result = $this->home_m->registerationInsert($_POST);
+        if ($result['res'] == 1 || !empty($result['id'])) {
+            $_SESSION['adddata'] = 1;
+            redirect(BASE_URL);
+        } else {
+            $_SESSION['data'] = $_POST;
+            $_SESSION['Error'] = 1;
+            redirect(FRONT_SIGN_UP_LINK);
+        }
+    }
+    
+    
+    public function epaymentVerify() {
+        $this->data['TITLE'] = TITLE_FRONT_VERIFY_E_PAYMENT;
+        loadviewFront('front/', 'epaymentverify.php', $this->data);
+    }
 
 }
 

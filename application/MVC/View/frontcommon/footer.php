@@ -42,7 +42,10 @@
     } 
     if($TITLE==TITLE_FRONT_SIGNUP_FORM){       
         include_once(APP_INCLUDE_V . "frontcommon/signupjs.php");   
-    } 
+    }
+     if($TITLE==TITLE_FRONT_VERIFY_E_PAYMENT){       
+        include_once(APP_INCLUDE_V . "frontcommon/epaymentverifyjs.php");   
+    }
 ?>
 </body>
 </html>

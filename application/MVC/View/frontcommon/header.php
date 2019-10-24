@@ -11,7 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/font-awesome.css">
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/main.css">
-       <?php if($TITLE==TITLE_FRONT_EPAYMENT_TREASURY || $TITLE==TITLE_FRONT_SIGNUP_FORM){ ?>    
+       <?php if($TITLE==TITLE_FRONT_EPAYMENT_TREASURY || $TITLE==TITLE_FRONT_SIGNUP_FORM || $TITLE==TITLE_FRONT_VERIFY_E_PAYMENT){ ?>    
         <link href="<?php echo ASSETS_FRONT; ?>datetime/css/bootstrap-datepicker3.min.css" rel="stylesheet">
         <?php } ?>
         <script src="<?php echo ASSETS_FRONT; ?>js/jquery.min.js"></script>
@@ -71,8 +71,7 @@
                                 </div>
                                 <div class="nav-bar collapse navbar-collapse" id="navbarSupportedContent">
                                     <ul class="navbar-nav">
-                                        <li class="nav-item dropdown"><a href="#" class="nav-link"
-                                                                         data-toggle="dropdowm">Organization</a>
+                                        <li class="nav-item dropdown"><a href="#" class="nav-link"                                                                         data-toggle="dropdowm">Organization</a>
                                             <ul class="dropdown-menu">
                                                 <li class="nav-item"><a href="introduction.html" class="nav-link">Introduction</a></li>
                                                 <li class="nav-item"><a href="#" class="nav-link">Organisational Chart</a>
@@ -171,7 +170,7 @@
                 </div>
             </header>
             <section class="main">
-                <?php if ($TITLE==TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_EPAYMENT_UNREGISTER || $TITLE == TITLE_FRONT_EPAYMENT_TREASURY) {
+                <?php if ($TITLE==TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_EPAYMENT_UNREGISTER || $TITLE == TITLE_FRONT_EPAYMENT_TREASURY || $TITLE == TITLE_FRONT_VERIFY_E_PAYMENT) {
                     ?>
                     <div class="">
                         <?php
@@ -198,7 +197,7 @@
                                             <div class="g-recaptcha">Recaptcha</div>
                                         </div>
                                         <div class="forgot-pass">
-                                            <a href="<?php echo BASE_URL; ?>signup">New User? SignUp</a> &nbsp;
+                                            <a href="<?php echo FRONT_SIGN_UP_LINK; ?>">New User? SignUp</a> &nbsp;
                                             <a href="#">Forgot Password</a>
                                         </div>
                                         <div>
@@ -211,7 +210,7 @@
                                                 <div class="link"><i class="fa fa-database"></i>e-Services<i
                                                         class="fa fa-chevron-down"></i></div>
                                                 <ul class="submenu">
-                                                    <li><a href="#">View / Verify e-Payment</a></li>
+                                                    <li><a href="<?php echo FRONT_VERIFY_E_PAYMENT_LINK; ?>">View / Verify e-Payment</a></li>
                                                     <li><a href="<?php echo FRONT_EPAYMENT_UNREGISTERE; ?>">e-Payment (Unregistered)</a></li>
                                                     <li><a href="#">e-Registration</a></li>
                                                     <li><a href="#">e-Payment</a></li>

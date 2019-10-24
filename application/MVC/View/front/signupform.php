@@ -53,34 +53,26 @@
             </div>
         </div>       
         <div class="row section-row">
-            <form method="post" action="" class="col-md-12 col-sm-12 col-12">
+            <form method="post" action="<?php echo FRONT_SIGN_UP_INSERT_LINK; ?>" class="col-md-12 col-sm-12 col-12">
             <div>                
                 <center><h4 class="sm-heading">New User SignUp</h4></center>                                  
                 <table class="table" border="1" id="tabledata">
                     <tr>                        
-                        <td>Tax Type *  :</td>
-                        <td>
+                        <td width='30%'>Tax Type *  :</td>
+                        <td width='70%'>
                             <select class="" required="">                                            
-                                <option class="" value="0" selected="">Select</option>                                           
-                                <?php
-                                if (!empty($result)) {
-                                    foreach ($result as $row) {
-                                        ?>
-                                        <option class="" value="<?php echo $row['tax_type_id']; ?>"><?php echo $row['tax_type_name']; ?></option>                                       
-                                        <?php
-                                    }
-                                }
-                                ?>                                    
-                            </select>
+                                <option class="" value="0" selected="" disabled="">Select</option>
+                                <option class="" value="Excies">Excies</option> 
+                           </select>
                         </td>                        
                     </tr>   
                     <tr>                        
-                        <td>TIN / License No.  *</td>
-                        <td><input type="text" maxlength="15" minlength="11" required="required"></td>                       
+                        <td width='30%'>TIN / License No.  *</td>
+                        <td width='70%'><input type="text" name="tax_dealer_tin" maxlength="15" minlength="11" required="required"></td>                       
                     </tr>
                     <tr>                                                                                                                                                      
-                        <td>Date of Validity ( dd/mm/yyyy ) *  :</td>                                               
-                        <td><input type="text" id="validitydate" value="<?php echo date('d/m/Y'); ?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span></td>                                               
+                        <td width='30%'>Date of Validity ( dd/mm/yyyy ) *  :</td>                                               
+                        <td width='70%'><input type="text" name="tax_dealer_tin_expiry" id="validitydate" value="<?php echo date('d/m/Y'); ?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span></td>                                               
                     </tr>
                 </table>
             </div>         
@@ -92,7 +84,7 @@
                         color:#fff !important;
                     }
                 </style>
-                <center><input type="submit" name="submit" value="Submit">&nbsp;&nbsp;<a href="<?php echo BASE_URL; ?>"><button>Back</button></a></center>                
+                <center><button type="submit" name="submit">Submit</button>&nbsp;&nbsp;<a href="<?php echo BASE_URL; ?>"><button>Back</button></a></center>                
             </div> 
             </form>
         </div>       
