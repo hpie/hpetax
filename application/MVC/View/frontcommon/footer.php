@@ -1,5 +1,5 @@
-  </div>
-    </div>
+</div>
+</div>
 </section>
 <footer>
     <div class="wapper">
@@ -24,6 +24,7 @@
     </div>
 </footer>
 </div>
+<script src="<?php echo BASE_URL ?>assets/pnotify/dist/pnotifyadmin.js"></script>   
 <script src="<?php echo ASSETS_FRONT; ?>js/main.js"></script>
 <script>
     function isNumberKey(evt) {
@@ -32,20 +33,35 @@
             return false;
         return true;
     }
+
+    $(document).ready(function () {
+        if (<?php
+if (isset($_SESSION['valid']) && isset($_SESSION['valid'])) {
+    echo $_SESSION['valid'];
+}
+?> == 1) {
+            var d = new PNotify({
+                title: 'Login Successfully',
+                type: 'success',
+                styling: 'bootstrap3',
+            });
+<?php echo $_SESSION['valid'] = 0; ?>;
+        }
+    });
 </script>
-<?php 
-    if($TITLE==TITLE_FRONT_EPAYMENT_UNREGISTER){       
-        include_once(APP_INCLUDE_V . "frontcommon/epaymentjs.php");   
-    }
-    if($TITLE==TITLE_FRONT_EPAYMENT_TREASURY){       
-        include_once(APP_INCLUDE_V . "frontcommon/epaymenttreasuryjs.php");   
-    } 
-    if($TITLE==TITLE_FRONT_SIGNUP_FORM){       
-        include_once(APP_INCLUDE_V . "frontcommon/signupjs.php");   
-    }
-     if($TITLE==TITLE_FRONT_VERIFY_E_PAYMENT){       
-        include_once(APP_INCLUDE_V . "frontcommon/epaymentverifyjs.php");   
-    }
+<?php
+if ($TITLE == TITLE_FRONT_EPAYMENT_UNREGISTER) {
+    include_once(APP_INCLUDE_V . "frontcommon/epaymentjs.php");
+}
+if ($TITLE == TITLE_FRONT_EPAYMENT_TREASURY) {
+    include_once(APP_INCLUDE_V . "frontcommon/epaymenttreasuryjs.php");
+}
+if ($TITLE == TITLE_FRONT_SIGNUP_FORM) {
+    include_once(APP_INCLUDE_V . "frontcommon/signupjs.php");
+}
+if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT) {
+    include_once(APP_INCLUDE_V . "frontcommon/epaymentverifyjs.php");
+}
 ?>
 </body>
 </html>

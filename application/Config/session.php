@@ -30,6 +30,9 @@ function sessionDestroy() {
 function sessionAdmin($row) {
     $_SESSION['adminDetails']=$row;
 }
+function sessionDealer($row) {
+    $_SESSION['dealerDetails']=$row;
+}
 function get_AdminName($name) {
     if (isset($_SESSION['adminDetails'][$name])) {
         $name = $_SESSION['adminDetails'][$name];

@@ -68,19 +68,21 @@
         </div>       
         <div class="row section-row">
             <div class="col-md-12 col-sm-12 col-12">                
-                <center><h4 class="sm-heading">Challan Form</h4></center>                  
+                <center><h4 class="sm-heading">Challan Form</h4></center>  
+                <input type="hidden" id="tax_dealer_id" value="<?php if(isset($_SESSION['dealerDetails']['tax_dealer_id'])){ echo $_SESSION['dealerDetails']['tax_dealer_id']; } else{ echo 0; } ?>">                
                 <table class="table" border="1">
                     <tr>                        
                         <td>Tax Type</td>
                         <td><input type="text" id="type_code"  required="required" readonly="" value="<?php echo $result['tax_type_id']; ?>"></td>
                         <td>Name Of Person*</td>
-                        <td><input type="text" id="name"  required="required"></td>                        
+                        <td><input type="text" id="name" value=""  required="required"></td>                        
                     </tr>  
                     <tr>                        
                         <td>Mobile No.*</td>
-                        <td><input type="text" readonly="" value="+91" style="width:30px;">&nbsp;<input type="text" id="mobileno" required="required" maxlength="10" minlength="10" onkeypress="return isNumberKey(event)"></td>
+                        <td><input type="text" readonly="" value="+91" style="width:30px;">&nbsp;
+                            <input type="text" id="mobileno" required="required" maxlength="10" minlength="10" value="<?php if(isset($dealerDetails)){ echo $dealerDetails['tax_dealer_mobile']; } ?>" onkeypress="return isNumberKey(event)"></td>
                         <td>Email Id</td>
-                        <td><input type="email" id="email"  required="required"></td>                        
+                        <td><input type="email" id="email" value="<?php if(isset($dealerDetails)){ echo $dealerDetails['tax_dealer_email']; } ?>"  required="required"></td>                        
                     </tr> 
                     <tr>                        
                         <td>Address*</td>
@@ -97,6 +99,12 @@
                         </td>                        
                     </tr>
                     <tr>                        
+                        <td>City</td>
+                        <td><input type="text" id="city" value=""  required="required"></td>
+                        <td>PIN</td>
+                        <td><input type="text" id="pin" required="required" maxlength="6" minlength="6" onkeypress="return isNumberKey(event)"></td></td>
+                    </tr>
+                     <tr>                        
                         <td><br></td>
                         <td></td>
                         <td></td>

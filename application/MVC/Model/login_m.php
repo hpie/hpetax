@@ -49,6 +49,22 @@ class login_m extends Models {
             }
         }
         return false;
-    }   
+    } 
+    
+    
+    
+    public function login_delear($email, $password) {                                
+        $password=md5($password);                           
+        $q = "SELECT * FROM tax_dealer WHERE tax_dealer_email='$email' and tax_dealer_password='$password'";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            if ($email == $row['tax_dealer_email'] && $password == $row['tax_dealer_password']) {               
+                sessionDealer($row);
+                return true;
+            }
+        }
+        return false;
+    } 
+    
 }
 ?>

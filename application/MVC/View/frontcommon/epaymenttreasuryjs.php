@@ -14,6 +14,8 @@
             var alertstr = [];
             var returnval = 0;
             var name = $("#name").val();
+            var city = $("#city").val();
+            var pin = $("#pin").val();
             var mobileno = $("#mobileno").val();
             var address = $("#address").val();
             var location = $('#location').children("option:selected").val();
@@ -23,6 +25,14 @@
             }
             if (mobileno === '' || mobileno === 0) {
                 alertstr.push("Mobile Number is required");
+                returnval = 1;
+            }
+            if (city === '' || city === 0) {
+                alertstr.push("City is required");
+                returnval = 1;
+            }
+             if (pin === '' || pin === 0) {
+                alertstr.push("PIN Number is required");
                 returnval = 1;
             }
             if (address === '' || address === 0) {
@@ -50,6 +60,8 @@
                 $('#back').removeClass("location");                                
                 $('#name').attr('disabled', true);
                 $('#mobileno').attr('disabled', true);
+                $('#city').attr('disabled', true);
+                $('#pin').attr('disabled', true);
                 $('#address').attr('disabled', true);
                 $('#day').attr('disabled', true);
                 $('#email').attr('disabled', true);
@@ -66,6 +78,8 @@
                 $('#back').addClass("location");                                
                 $('#name').attr('disabled', false);
                 $('#mobileno').attr('disabled', false);
+                $('#city').attr('disabled', false);
+                $('#pin').attr('disabled', false);
                 $('#address').attr('disabled', false);
                 $('#day').attr('disabled', false);
                 $('#email').attr('disabled', false);
@@ -77,8 +91,12 @@
         $('#submit').on('click', function () {
                        
             var challan_title="dummy";
+            
+            var tax_dealer_id=$("#tax_dealer_id").val(); 
             var depositors_name=$("#name").val();          
             var depositors_phone=$("#mobileno").val();
+            var depositors_city=$("#city").val();          
+            var depositors_zip=$("#pin").val();
             var depositors_address=$("#name").val();
             var challan_location=$("#address").val();           
             var challan_duration=$("#day").val();            
@@ -95,7 +113,7 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                data: {challan_title:challan_title,depositors_name:depositors_name,depositors_phone:depositors_phone,depositors_address:depositors_address,challan_location:challan_location,challan_duration:challan_duration,challan_from_dt:challan_from_dt,challan_to_dt:challan_to_dt,challan_purpose:challan_purpose,challan_amount:challan_amount,transaction_no:transaction_no,transaction_status:transaction_status,challan_status:challan_status,type_code:type_code,token:token,device:device},
+                data: {challan_title:challan_title,tax_dealer_id:tax_dealer_id,depositors_name:depositors_name,depositors_phone:depositors_phone,depositors_city:depositors_city,depositors_zip:depositors_zip,depositors_address:depositors_address,challan_location:challan_location,challan_duration:challan_duration,challan_from_dt:challan_from_dt,challan_to_dt:challan_to_dt,challan_purpose:challan_purpose,challan_amount:challan_amount,transaction_no:transaction_no,transaction_status:transaction_status,challan_status:challan_status,type_code:type_code,token:token,device:device},
                 url: '<?php echo BASE_URL; ?>addChalan',
                 success: function (_returnData) {
                     if (_returnData.result == "success") {

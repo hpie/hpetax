@@ -26,6 +26,8 @@ define('FRONT_UPDATE_TAX_ITEM_QUE_LINK', BASE_URL ."front-update-tax-item-que");
 define('FRONT_VERIFY_E_PAYMENT_LINK', BASE_URL ."verify-epayment");
 define('FRONT_SIGN_UP_LINK', BASE_URL ."signup");
 define('FRONT_SIGN_UP_INSERT_LINK', BASE_URL ."registration");
+define('FRONT_LOGIN_DEALER_LINK', BASE_URL ."login-dealer");
+define('LOGOUT_DEALER', BASE_URL ."logout-dealer");
 
 
 //**************************Front Title*********************//

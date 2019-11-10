@@ -37,16 +37,19 @@ $APP->post('add-tax-challan', false, function() use($APP) {
 //                        
 //            $APP->generateApiKey();
 //             promocode();                        
-            verifyRequiredParams(array('challan_id', 'challan_title', 'depositors_name', 'depositors_phone', 'depositors_address','challan_location','challan_duration','challan_from_dt','challan_to_dt','challan_purpose','challan_amount','transaction_no','transaction_status','challan_status','type_code','created_by','modified_by', 'token', 'device'));
+            verifyRequiredParams(array('challan_id','tax_dealer_id', 'challan_title', 'depositors_name', 'depositors_phone','depositors_city','depositors_zip', 'depositors_address','challan_location','challan_duration','challan_from_dt','challan_to_dt','challan_purpose','challan_amount','transaction_no','transaction_status','challan_status','type_code','created_by','modified_by', 'token', 'device'));
             if (!in_array($VARS['device'], array('iphone', 'android'))) {
                 return array(false, "device name is invalid", $data);
             }
-           // print_r($VARS);die;
-            $params = array();            
+//            print_r($VARS);die;
+            $params = array();           
             $params['tax_challan_id'] = $VARS['challan_id'];
+            $params['tax_dealer_id']=$VARS['tax_dealer_id'];
             $params['tax_challan_title'] = $VARS['challan_title'];
             $params['tax_depositors_name'] = $VARS['depositors_name'];
-            $params['tax_depositors_phone'] = $VARS['depositors_phone'];           
+            $params['tax_depositors_phone'] = $VARS['depositors_phone'];   
+            $params['tax_depositors_city'] = $VARS['depositors_city'];
+            $params['tax_depositors_zip'] = $VARS['depositors_zip'];
             $params['tax_depositors_address'] =$VARS['depositors_address'];                 
             $params['tax_challan_location'] =$VARS['challan_location']; 
             $params['tax_challan_duration'] = $VARS['challan_duration'];

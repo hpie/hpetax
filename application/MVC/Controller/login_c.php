@@ -34,10 +34,27 @@ class login_c extends Controllers {
         $this->data['count'] = $count;
         loadLoginView('login/', 'login.php', $this->data);
     }
-
+    
+    public function loginDealer() {
+        $error = '';
+        $_SESSION['valid'] = 0;       
+            if (isset($_POST['email']) && isset($_POST['password'])) {
+//                print_r($_POST);die;
+                $result = $this->login_m->login_delear($_POST['email'], $_POST['password']);                                              
+                if ($result==true) { 
+                    $_SESSION['valid']=1;
+                    redirect(BASE_URL);
+                }                             
+            } 
+        redirect(BASE_URL);
+    }    
     public function logout() {
         sessionDestroy();
         redirect(LOGIN);
+    }
+    public function logoutDealer() {
+        sessionDestroy();
+        redirect(BASE_URL);
     }
 
 }

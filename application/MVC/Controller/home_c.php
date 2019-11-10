@@ -11,6 +11,11 @@ class home_c extends Controllers {
     }
 
     public function invoke() {
+        $this->data['TITLE'] = TITLE_FRONT_COMMON;
+        loadviewFront('front/', 'home.php', $this->data);
+    }        
+//    public function invoke() {
+    public function pdf() {
         $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 // set document information
         $pdf->SetCreator("HPETAX");
@@ -39,7 +44,6 @@ class home_c extends Controllers {
 //            require_once(dirname(__FILE__) . '/lang/eng.php');
 //            $pdf->setLanguageArray($l);
 //        }
-
 // ---------------------------------------------------------
 // set font
         $pdf->SetFont('helvetica', '', 10);
@@ -210,16 +214,38 @@ EOF;
     }
 
     public function epayment() {
+
+//        $value="DeptID=228|DeptRefNo=20135|TotalAmount=200|TenderBy=Mohan lal |AppRefNo=135|Head1=0230-00-104-01|Amount1=200|Ddo=BLP00-538|PeriodFrom=01-01-2013|PeriodTo=01-04-2013";
+//        $checksum= md5($value);
+//        $value.="|checkSum=$checksum";
+//        $aes = new AES;
+//        $aes->setData($value);
+//        $encrypted = $aes->encrypt();
+////You can use setKey() and setIV() in the encryption process.
+////If you don't, the class will produce random key and IV.
+////You can get them with getKey() and getIV().
+//
+//        $aes->setKey($aes->getKey());
+//        $aes->setIV($aes->getIV());
+//        $aes->setData($encrypted);
+
+//        $decrypted = $aes->decrypt();
+
+//        echo $encrypted . "<br/>" . $decrypted;die;       
         $_SESSION['vehicleno_session'] = '';
         $deleteData = $this->home_m->deleteTaxItemQue($_SERVER["REMOTE_ADDR"]);
         $_SESSION['unregistered'] = $_SERVER["REMOTE_ADDR"];
         $result = $this->home_m->getTaxType();
         $this->data['TITLE'] = TITLE_FRONT_EPAYMENT_UNREGISTER;
-        $this->data['result'] = $result;
+        $this->data['result'] = $result;       
         loadviewFront('front/', 'epayment.php', $this->data);
     }
 
     public function epaymenttreasury() {
+        if(isset($_SESSION['dealerDetails']['tax_dealer_id'])){
+            $dealerDetails = $this->home_m->getDealerDetails($_SESSION['dealerDetails']['tax_dealer_id']);
+            $this->data['dealerDetails'] = $dealerDetails;
+        }
         $result = $this->home_m->getTaxDetails($_SESSION['unregistered']);
         $total = $this->home_m->getTaxTotal($_SESSION['unregistered']);
         $this->data['TITLE'] = TITLE_FRONT_EPAYMENT_TREASURY;
@@ -242,6 +268,7 @@ EOF;
         echo json_encode($newArray);
         die;
     }
+
     public function uiRender($id) {
         $str = '';
         if ($id == 'AG') {
@@ -334,7 +361,7 @@ EOF;
     public function addTaxItemQueAjax() {
         $newArray = array();
         $html = '';
-        $existcomodity = $this->home_m->checkExistCommodityForAddNewTax($_POST['taxtypeid'], $_POST['commodityid'],$_SESSION['unregistered']);
+        $existcomodity = $this->home_m->checkExistCommodityForAddNewTax($_POST['taxtypeid'], $_POST['commodityid'], $_SESSION['unregistered']);
         if (empty($existcomodity)) {
             $params = array();
             if ($_POST['noofpassenger'] != 0) {
@@ -567,35 +594,36 @@ EOF;
     }
 
     public function addChalan() {
-        
-        $challan_id=gen_uuid();
-        $challan_title =$_POST['challan_title'];
-        $depositors_name =$_POST['depositors_name'];
-        $depositors_phone =$_POST['depositors_phone'];
-        $depositors_address =$_POST['depositors_address'];
-        $challan_location =$_POST['challan_location'];
-        $challan_duration =$_POST['challan_duration'];                
+        $challan_id = gen_uuid();
+        $challan_title = $_POST['challan_title'];
+        $tax_dealer_id = $_POST['tax_dealer_id'];
+        $depositors_name = $_POST['depositors_name'];
+        $depositors_phone = $_POST['depositors_phone'];
+         $depositors_city = $_POST['depositors_city'];
+        $depositors_zip = $_POST['depositors_zip'];
+        $depositors_address = $_POST['depositors_address'];
+        $challan_location = $_POST['challan_location'];
+        $challan_duration = $_POST['challan_duration'];
         $challan_from_dt = dateFormatterMysql($_POST['challan_from_dt']);
         $challan_to_dt = dateFormatterMysql($_POST['challan_to_dt']);
-        $challan_purpose =$_POST['challan_purpose'];
-        $challan_amount =$_POST['challan_amount'];
-        $transaction_no =$_POST['transaction_no'];
-        $transaction_status =$_POST['transaction_status'];
-        $challan_status =$_POST['challan_status'];
-        $type_code =$_POST['type_code'];
-        $token =$_POST['token'];
-        $device =$_POST['device'];
-        
+        $challan_purpose = $_POST['challan_purpose'];
+        $challan_amount = $_POST['challan_amount'];
+        $transaction_no = $_POST['transaction_no'];
+        $transaction_status = $_POST['transaction_status'];
+        $challan_status = $_POST['challan_status'];
+        $type_code = $_POST['type_code'];
+        $token = $_POST['token'];
+        $device = $_POST['device'];
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://localhost/hpetax/api/v1/tax_challan/add-tax-challan/1",
+            CURLOPT_URL => "http://localhost/hpetax/api/v1/tax_challan/add-tax-challan",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "{\t\"challan_id\":\"$challan_id\",\r\n\t\"challan_title\":\"$challan_title\",\r\n\t\"depositors_name\":\"$depositors_name\",\r\n\t\"depositors_phone\":\"$depositors_phone\",\r\n\t\"depositors_address\":\"$depositors_address\",\r\n\t\"challan_location\":\"$challan_location\",\r\n\t\"challan_duration\":\"$challan_duration\",\r\n\t\"challan_from_dt\":\"$challan_from_dt\",\r\n\t\"challan_to_dt\":\"$challan_to_dt\",\r\n\t\"challan_purpose\":\"$challan_purpose\",\r\n\t\"challan_amount\":\"$challan_amount\",\r\n\t\"transaction_no\":\"$transaction_no\",\r\n\t\"transaction_status\":\"$transaction_status\",\r\n\t\"challan_status\":\"$challan_status\",\r\n\t\"type_code\":\"$type_code\",\r\n\t\"created_by\":\"vasim\",\r\n\t\"modified_by\":\"vasim\",\r\n\t\"token\":\"123\",\r\n\t\"device\":\"android\"\r\n}",
+            CURLOPT_POSTFIELDS => "{\t\"challan_id\":\"$challan_id\",\r\n\t\"challan_title\":\"$challan_title\",\r\n\t\"tax_dealer_id\":\"$tax_dealer_id\",\r\n\t\"depositors_name\":\"$depositors_name\",\r\n\t\"depositors_phone\":\"$depositors_phone\",\r\n\t\"depositors_city\":\"$depositors_city\",\r\n\t\"depositors_zip\":\"$depositors_zip\",\r\n\t\"depositors_address\":\"$depositors_address\",\r\n\t\"challan_location\":\"$challan_location\",\r\n\t\"challan_duration\":\"$challan_duration\",\r\n\t\"challan_from_dt\":\"$challan_from_dt\",\r\n\t\"challan_to_dt\":\"$challan_to_dt\",\r\n\t\"challan_purpose\":\"$challan_purpose\",\r\n\t\"challan_amount\":\"$challan_amount\",\r\n\t\"transaction_no\":\"$transaction_no\",\r\n\t\"transaction_status\":\"$transaction_status\",\r\n\t\"challan_status\":\"$challan_status\",\r\n\t\"type_code\":\"$type_code\",\r\n\t\"created_by\":\"vasim\",\r\n\t\"modified_by\":\"vasim\",\r\n\t\"token\":\"123\",\r\n\t\"device\":\"android\"\r\n}",
 //            CURLOPT_HTTPHEADER => array(
 //                "Accept: */*",
 //                "Accept-Encoding: gzip, deflate",
@@ -617,27 +645,29 @@ EOF;
             $result['result'] = 'success';
 //            echo "cURL Error #:" . $err;
         } else {
-            echo $response;die;
+            echo $response;
+            die;
             $result['result'] = 'success';
         }
         echo json_encode($result);
         die;
     }
+
     public function signupform() {
         $this->data['TITLE'] = TITLE_FRONT_SIGNUP_FORM;
         loadviewFront('front/', 'signupform.php', $this->data);
     }
-    
+
     public function registration() {
         unset($_POST['submit']);
-        $date=$_POST['tax_dealer_tin_expiry'];
-        $_POST['tax_dealer_tin_expiry']= dateFormatterMysql("$date");        
-        $existRecord = $this->home_m->getExistRecordByColumn($_POST['tax_dealer_tin'], 'tax_dealer_tin', 'tax_dealer');       
+        $date = $_POST['tax_dealer_tin_expiry'];
+        $_POST['tax_dealer_tin_expiry'] = dateFormatterMysql("$date");
+        $existRecord = $this->home_m->getExistRecordByColumn($_POST['tax_dealer_tin'], 'tax_dealer_tin', 'tax_dealer');
         if ($existRecord) {
             $_SESSION['data'] = $_POST;
             $_SESSION['existrecord'] = 1;
             redirect(FRONT_SIGN_UP_LINK);
-        }     
+        }
         $result = $this->home_m->registerationInsert($_POST);
         if ($result['res'] == 1 || !empty($result['id'])) {
             $_SESSION['adddata'] = 1;
@@ -648,8 +678,7 @@ EOF;
             redirect(FRONT_SIGN_UP_LINK);
         }
     }
-    
-    
+
     public function epaymentVerify() {
         $this->data['TITLE'] = TITLE_FRONT_VERIFY_E_PAYMENT;
         loadviewFront('front/', 'epaymentverify.php', $this->data);

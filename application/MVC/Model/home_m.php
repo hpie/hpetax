@@ -26,6 +26,15 @@ class home_m extends Models {
         return FALSE;
     }
     
+    public function getDealerDetails($dealerID) {
+        $q = "SELECT * FROM tax_dealer WHERE tax_dealer_id='$dealerID'";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row;
+        }
+        return false;
+    }
+    
     public function getTaxType() {
         $q = "SELECT * FROM tax_type WHERE tax_type_status='ACTIVE'";
         $result = $this->query->select($q);

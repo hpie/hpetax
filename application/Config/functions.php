@@ -1,4 +1,35 @@
 <?php
+function encryptAPIData($data) {
+    # key size for AES-128, 192 256 should be
+    # 16, 24 and 32 byte keys respectively
+    # as now we are using "MCRYPT_RIJNDAEL_256", we'll be using 32
+    $key = "0cc175b9c0f1b6a8";
+    # lets serialize data before sending to encrypt
+    $encrypt_data = serialize($data);
+    # lets first find out what size is supported for IV
+    $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_CBC);
+    # create a random IV to use with CBC encoding
+    $iv = mcrypt_create_iv($iv_size, MCRYPT_DEV_URANDOM);
+    # now lets creates a cipher text compatible with AES (Rijndael block size = 256)
+    # with CBC Mode
+    $encrypted_data = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $key, $encrypt_data, MCRYPT_MODE_CBC, $iv);
+    # lets encode data to send it and attach IV with it for decryption on another end
+    $encoded = base64_encode($encrypted_data) . '|' . base64_encode($iv);
+    return $encoded;
+  }
+  function decryptAPIData($data) {
+    $key = "0cc175b9c0f1b6a8";
+    $decrypt_data = explode('|', $data . '|');
+    $decoded = base64_decode($decrypt_data[0]);
+    $iv = base64_decode($decrypt_data[1]);
+    if (strlen($iv) !== mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_CBC)) {
+      return false;
+    }
+    $decrypted = trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $key, $decoded, MCRYPT_MODE_CBC, $iv));
+    $decrypted = unserialize($decrypted);
+    return $decrypted;
+  }
+  
 function accountnumber($userid){
     $length=strlen($userid);
     $str='';   
@@ -57,7 +88,7 @@ function dateFormatterMysql($old_date) {
 //    echo $old_date;die;
     $date = date_create($old_date);
     //echo "<pre>1=-".$old_date." ";print_r($date);    
-    $new_date = date_format (new DateTime($date), "Y-m-d");
+    $new_date = date_format ($date, "Y-m-d");
 //    echo $new_date;die;
     return $new_date;
 }

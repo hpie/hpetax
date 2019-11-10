@@ -11,11 +11,12 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/font-awesome.css">
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/main.css">
-       <?php if($TITLE==TITLE_FRONT_EPAYMENT_TREASURY || $TITLE==TITLE_FRONT_SIGNUP_FORM || $TITLE==TITLE_FRONT_VERIFY_E_PAYMENT){ ?>    
-        <link href="<?php echo ASSETS_FRONT; ?>datetime/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+        <?php if ($TITLE == TITLE_FRONT_EPAYMENT_TREASURY || $TITLE == TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_VERIFY_E_PAYMENT) { ?>    
+            <link href="<?php echo ASSETS_FRONT; ?>datetime/css/bootstrap-datepicker3.min.css" rel="stylesheet">
         <?php } ?>
         <script src="<?php echo ASSETS_FRONT; ?>js/jquery.min.js"></script>
-        <script src="<?php echo ASSETS_FRONT; ?>js/bootstrap.min.js"></script>       
+        <script src="<?php echo ASSETS_FRONT; ?>js/bootstrap.min.js"></script>         
+        <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/pnotify/dist/pnotifiadmin.css">
     </head>
     <body>
         <div class="">
@@ -71,7 +72,7 @@
                                 </div>
                                 <div class="nav-bar collapse navbar-collapse" id="navbarSupportedContent">
                                     <ul class="navbar-nav">
-                                        <li class="nav-item dropdown"><a href="#" class="nav-link"                                                                         data-toggle="dropdowm">Organization</a>
+                                        <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdowm">Organization</a>
                                             <ul class="dropdown-menu">
                                                 <li class="nav-item"><a href="introduction.html" class="nav-link">Introduction</a></li>
                                                 <li class="nav-item"><a href="#" class="nav-link">Organisational Chart</a>
@@ -162,6 +163,9 @@
                                         <li class="nav-item"><a href="#" class="nav-link">Tax Rates</a></li>
                                         <li class="nav-item"><a href="#" class="nav-link">Help</a></li>
                                         <li class="nav-item"><a href="#" class="nav-link">Quick Links</a></li>
+                                       <?php if(isset($_SESSION['dealerDetails']['tax_dealer_id'])){ ?>
+                                        <li class="nav-item"><a href="<?php echo LOGOUT_DEALER; ?>" class="nav-link">Logout</a></li>
+                                       <?php } ?>
                                     </ul>
                                 </div>
                             </div> 
@@ -170,7 +174,7 @@
                 </div>
             </header>
             <section class="main">
-                <?php if ($TITLE==TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_EPAYMENT_UNREGISTER || $TITLE == TITLE_FRONT_EPAYMENT_TREASURY || $TITLE == TITLE_FRONT_VERIFY_E_PAYMENT) {
+                <?php if ($TITLE == TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_EPAYMENT_UNREGISTER || $TITLE == TITLE_FRONT_EPAYMENT_TREASURY || $TITLE == TITLE_FRONT_VERIFY_E_PAYMENT) {
                     ?>
                     <div class="">
                         <?php
@@ -183,15 +187,16 @@
                         <div class="row mob-v-c-order">
                             <div class="col-md-3 col-sm-12 col-12 ">
                                 <div class="right-side-area box-shadow">
+                                    <?php if(!isset($_SESSION['dealerDetails']['tax_dealer_id'])){ ?>
                                     <h4> Sign In (Registered Users)</h4>
-                                    <form action="#">
+                                    <form action="<?php echo FRONT_LOGIN_DEALER_LINK; ?>" method="post">
                                         <div class="form-group">
                                             <label for="email">Login Id:</label>
-                                            <input type="email" class="form-control" id="login_id">
+                                            <input type="email" name="email" class="form-control" id="login_id" required="">
                                         </div>
                                         <div class="form-group">
                                             <label for="pwd">Password:</label>
-                                            <input type="password" class="form-control" id="pwd">
+                                            <input type="password" name="password" class="form-control" id="pwd" required="">
                                         </div>
                                         <div class="form-group form-check">
                                             <div class="g-recaptcha">Recaptcha</div>
@@ -204,6 +209,7 @@
                                             <button type="submit" class="btn btn-primary  btn-block">Login</button>
                                         </div>
                                     </form>
+                                    <?php } ?>
                                     <div class="list collapse navbar-collapse" id="slide-navbar-collapse">
                                         <ul id="accordion" class="accordion">
                                             <li>
@@ -211,9 +217,13 @@
                                                         class="fa fa-chevron-down"></i></div>
                                                 <ul class="submenu">
                                                     <li><a href="<?php echo FRONT_VERIFY_E_PAYMENT_LINK; ?>">View / Verify e-Payment</a></li>
+                                                    <?php if(!isset($_SESSION['dealerDetails']['tax_dealer_id'])){ ?>
                                                     <li><a href="<?php echo FRONT_EPAYMENT_UNREGISTERE; ?>">e-Payment (Unregistered)</a></li>
+                                                    <?php } ?>
                                                     <li><a href="#">e-Registration</a></li>
-                                                    <li><a href="#">e-Payment</a></li>
+                                                    <?php if(isset($_SESSION['dealerDetails']['tax_dealer_id'])){ ?>
+                                                    <li><a href="<?php echo FRONT_EPAYMENT_UNREGISTERE; ?>">e-Payment</a></li>
+                                                    <?php } ?>
                                                     <li><a href="#">e-Returns</a></li>
                                                     <li><a href="#">Removal of Excisable Intoxicants</a></li>
                                                     <li><a href="#">e-Declaration (VAT-XXVI-A)</a></li>

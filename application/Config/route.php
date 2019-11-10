@@ -22,6 +22,9 @@ $route['front-update-tax-item-que'] = 'home_c/updateTaxItemQueAjax';
 $route['front-wrfapplicationuser'] = 'home_c/wrfapplicationuser';
 $route['signup'] = 'home_c/signupform';
 $route['registration'] = 'home_c/registration';
+$route['login-dealer'] = 'login_c/loginDealer';
+$route['logout-dealer'] = 'login_c/logoutDealer';
+
 //**************************************************************************************//
 
 //**************************tax_master*******************//
