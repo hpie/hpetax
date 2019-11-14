@@ -25,115 +25,46 @@
     }
 </style>
 <?php
-//DEFINE our cipher
-//define('AES_256_CBC', 'aes-256-cbc');
-//$encryption_key = openssl_random_pseudo_bytes(32);
-//$iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(AES_256_CBC));
-//$data = "EchTxnId=A13J100007|BankCIN=IK00989808|Bank=SBP|Status=0|StatusCd=Transaction Failure|AppRefNo=136|Amount=100|PrintChallan=PaidChallan|DeptRefNo=20135";
-//$str='';
-//$s = md5($data, true);
-//for ($i=0; $i < strlen($s); $i++){
-//    $str.=ord($s[$i]) . ' ';
-//}
-//$data.="|checkSum=".sha1($str);
-//$encrypted = openssl_encrypt($data, AES_256_CBC, $encryption_key, 0, $iv);
-//$encrypted1 = $encrypted . ':' . base64_encode($iv);
-//$parts = explode(':', $encrypted1);
-//$decrypted = openssl_decrypt($parts[0], AES_256_CBC, $encryption_key, 0, base64_decode($parts[1]));
-//echo $encrypted;
+$data = "DeptID=228|DeptRefNo=2010100014|TotalAmount=200|TenderBy=Happy Brothers|AppRefNo=A098989090|Head1=0039-00-102-01|Amount1=200|Ddo=CTO00-012|PeriodFrom=14-11-2019|PeriodTo=14-11-2019";
+$str='';
+$s = md5($data,true);
+for ($i=0; $i < strlen($s); $i++){
+    $str.=ord($s[$i])." ";
+}
+$ByteHash=explode(" ", $str);
+$hex= count($ByteHash)*2;
+$chars = array_map("chr", $ByteHash);
+$bin = join($chars);
+$hex = bin2hex($bin);
+$cheksum='';
+$myArray = str_split($hex);
+$i=1;
+foreach($myArray as $character){
+    if($i<=32){
+        $cheksum.=$character;
+    }
+    $i=$i+1;
+}
+$key= file_get_contents("application/Libraries/echallan");
 
-//$b=str_split($str);
-//$length=strlen($str*2);
-//foreach ($b as $row){
-//    
-//}
-//$ByteHash=explode(" ", $str);
-//print_r($ByteHash);die;
-//$hex = count($ByteHash);
+$data.="|checkSum=".$cheksum;
+define('AES_256_CBC', 'aes-256-cbc');
+$encryption_key = $key;
+$iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(AES_256_CBC));
+$encrypted = openssl_encrypt($data, AES_256_CBC, $encryption_key, 0, $iv);
+$encrypted = $encrypted . ':' . $iv;
+$parts = explode(':', $encrypted);
+$decrypted = openssl_decrypt($parts[0], AES_256_CBC, $encryption_key, 0, $parts[1]);
 
-//$hexarray=array();
-//foreach ($ByteHash as $row){
-//    $row.="{0:x2}";
-//    array_push($hexarray, $row);
-//}
-//print_r($hexarray);die;
-//$hex=implode($ByteHash, '%2');
-//function hexToStr($hex){
-//    $string='';
-//    for ($i=0; $i < strlen($hex)-1; $i+=2){
-//        $string .= chr(hexdec($hex[$i].$hex[$i+1]));
-//    }
-//    return $string;
-//}
-//echo hexToStr($hex);die;
-//$hex= count($ByteHash)*2;
-//$chars = array_map("chr", $ByteHash);
-//$bin = join($chars);
-//$hex = bin2hex($bin);
-//echo $hex;die;
-//print_r($bytes);die;
-
-
-//function encrypt_e($input, $ky){
-////	$ky   = html_entity_decode($ky);
-//	$iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(AES_256_CBC));
-//	$data = openssl_encrypt ( $input , "AES_256_CBC" , $ky, 0, $iv );
-//	return $data;
-//}
-//function decrypt_e($crypt, $ky){
-//	$ky   = html_entity_decode($ky);
-//	$iv = "@@@@&&&&####$$$$";
-//	$data = openssl_decrypt ( $crypt , "AES_256_CBC" , $ky, 0, $iv );
-//	return $data;
-//}
-//function getChecksumFromString($str, $key) {	
-//	$salt = generateSalt_e(4);
-//	$finalString = $str . "|" . $salt;
-//	$hash = hash("sha256", $finalString);
-//	$hashString = $hash . $salt;
-//	$checksum = encrypt_e($hashString, $key);
-//	return $checksum;
-//}
-//function generateSalt_e($length) {
-//	$random = "";
-//	srand((double) microtime() * 1000000);
-//	$data = "AbcDE123IJKLMN67QRSTUVWXYZ";
-//	$data .= "aBCdefghijklmn123opq45rs67tuv89wxyz";
-//	$data .= "0FGH45OP89";
-//	for ($i = 0; $i < $length; $i++) {
-//		$random .= substr($data, (rand() % (strlen($data))), 1);
-//	}
-//	return $random;
-//}
-//echo $encdata;die;
-//
-
-//**************new latest*******************//
-//$data = "DeptID=228|DeptRefNo=20135|TotalAmount=200|TenderBy=Mohan lal |AppRefNo=135|Head1=0230-00-104-01|Amount1=200|Ddo=BLP00-538|PeriodFrom=01-01-2013|PeriodTo=01-04-2013";
-//$str='';
-//$s = md5($data, true);
-//for ($i=0; $i < strlen($s); $i++){
-//    $str.=ord($s[$i]) . ' ';
-//}
-//$data.="|checkSum=".sha1($str);
-//$encrypted = encryptAPIData($data);
-
-
-
-
-//$aes=new AES();
-//$aes->data=$data;
-//$encrypted=$aes->encrypt();
-//**************new latest end*******************//
 
 ?>
-<!--<form action='https://himkosh.hp.nic.in/echallan/WebPages/wrfApplicationRequest.aspx' id='aspnetForm' method='POST'>
-    <input type=hidden name="encdata" value="//<?php echo $encrypted; ?>"/>
+<form action='https://himkosh.hp.nic.in/echallan/WebPages/wrfApplicationRequest.aspx' id='aspnetForm' method='POST'>
+    <input type=hidden name="encdata" value="<?php echo $encrypted; ?>"/>
     <input type=hidden name="merchant_code" value='HIMKOSH114'/>    
 </form>
 <script type='text/javascript'>
     document.getElementById('aspnetForm').submit();
-</script> -->
+</script> 
 
 <div class="col-md-9 col-sm-12  col-12 ">
     <div class="middle-area box-shadow">

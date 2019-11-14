@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 *  Copyright 2018 denobisipsis
 *
@@ -40,7 +40,6 @@ $AES=new aes128cbc;
 $AES->init($key,$iv);
 $AES->decrypt($AES->encrypt($plaintext));
 */
-
 class aes128cbc
 	{	
 	var $sbox;

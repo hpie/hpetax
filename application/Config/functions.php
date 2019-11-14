@@ -1,9 +1,8 @@
 <?php
-function encryptAPIData($data) {
+function encryptAPIData($data,$key) {
     # key size for AES-128, 192 256 should be
     # 16, 24 and 32 byte keys respectively
-    # as now we are using "MCRYPT_RIJNDAEL_256", we'll be using 32
-    $key = "0cc175b9c0f1b6a8";
+    # as now we are using "MCRYPT_RIJNDAEL_256", we'll be using 32    
     # lets serialize data before sending to encrypt
     $encrypt_data = serialize($data);
     # lets first find out what size is supported for IV

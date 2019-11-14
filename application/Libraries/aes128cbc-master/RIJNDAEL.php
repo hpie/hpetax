@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 *  Copyright XII-2018 denobisipsis
 *
@@ -748,7 +748,7 @@ class RIJNDAEL_CBC
 		range 2 = n = 10,000, a binary irreducible polynomial
 		f(x) of degree n and minimum posible weight is listed.
 		Among those of minimum weight, the polynomial
-		listed is such that the degree of f(x) – x
+		listed is such that the degree of f(x) ï¿½ x
 		n is lowest
 		(similarly, subsequent lower degrees are minimized in
 		case of ties). 
