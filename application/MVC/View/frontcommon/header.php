@@ -163,8 +163,21 @@
                                         <li class="nav-item"><a href="#" class="nav-link">Tax Rates</a></li>
                                         <li class="nav-item"><a href="#" class="nav-link">Help</a></li>
                                         <li class="nav-item"><a href="#" class="nav-link">Quick Links</a></li>
+                                        
+                                        
+                                         
+                                        
                                        <?php if(isset($_SESSION['dealerDetails']['tax_dealer_id'])){ ?>
-                                        <li class="nav-item"><a href="<?php echo LOGOUT_DEALER; ?>" class="nav-link">Logout</a></li>
+                                        <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdowm">User</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item"><a href="<?php echo LOGOUT_DEALER; ?>" class="nav-link">Logout</a></li>
+                                                <li class="nav-item"><a href="<?php echo FRONT_CHANE_PASSWORD_DEALER_FORM_LINK; ?>" class="nav-link">Change Password</a>
+                                                </li>                                                
+                                            </ul>
+                                        </li>
+                                        
+                                        
+<!--                                        <li class="nav-item"><a href="<?php //echo LOGOUT_DEALER; ?>" class="nav-link">Logout</a></li>-->
                                        <?php } ?>
                                     </ul>
                                 </div>
@@ -191,8 +204,8 @@
                                     <h4> Sign In (Registered Users)</h4>
                                     <form action="<?php echo FRONT_LOGIN_DEALER_LINK; ?>" method="post">
                                         <div class="form-group">
-                                            <label for="email">Login Id:</label>
-                                            <input type="email" name="email" class="form-control" id="login_id" required="">
+                                            <label for="code">Logins Id:</label>
+                                            <input type="text" name="code" class="form-control" id="login_id" required="">
                                         </div>
                                         <div class="form-group">
                                             <label for="pwd">Password:</label>

@@ -53,8 +53,8 @@ $APP->post('add-tax-challan', false, function() use($APP) {
             $params['tax_depositors_address'] =$VARS['depositors_address'];                 
             $params['tax_challan_location'] =$VARS['challan_location']; 
             $params['tax_challan_duration'] = $VARS['challan_duration'];
-            $params['tax_challan_from_dt'] = $VARS['challan_from_dt'];
-            $params['tax_challan_to_dt'] = $VARS['challan_to_dt'];
+            $params['tax_challan_from_dt'] = dateFormatterMysql($VARS['challan_from_dt']);
+            $params['tax_challan_to_dt'] = dateFormatterMysql($VARS['challan_to_dt']);
             $params['tax_challan_purpose'] =   $VARS['challan_purpose'];          
             $params['tax_challan_amount'] = $VARS['challan_amount'];
             $params['tax_transaction_no'] = $VARS['transaction_no'];

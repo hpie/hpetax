@@ -1,6 +1,8 @@
 <script>
     $(document).ready(function () {
+        
         $('#confirm').on('click', function () {
+            if (confirm('Are you sure you want to confirm?')) {
             var urlReq = '<?php echo FRONT_CHECK_EXIST_TAX_ITEM_QUE_LINK; ?>';
             $.ajax({
                 type: "POST",
@@ -14,18 +16,19 @@
                     }
                 }
             });
+            }
         });
         $('#taxType').on('change', function () {
+        
+         if (confirm('Are you sure you want to select ' + $("#taxType option:selected").text() + '?')) {
             $('#locationtr').removeClass("location");
             $('#mapdisplay').removeClass("location");
             var urlReq = '<?php echo FRONT_COMMODITY_LIST_LINK ?>';
             var id = this.value;
-
             if (id === "PGT" || id === "PTCG") {
                 $('#locationtr').addClass("location");
                 $('#mapdisplay').addClass("location");
             }
-
             $.ajax({
                 type: "POST",
                 dataType: "json",
@@ -35,7 +38,7 @@
                     if (_returnData.result == "success") {
                         $('#commodity option').remove();
                         $('#commodity').append('<option value=0>Select</option>');
-                        $.each(_returnData.commodity, function (key, value) {
+                        $.each(_returnData.commodity, function (key, value) {                          
                             $('#commodity').append($("<option></option>").attr("value", value['tax_commodity_id']).text(value['tax_commodity_name']));
                         });
                         $('.removetr').remove();
@@ -53,6 +56,7 @@
                 }
             });
             $('#taxType').attr('disabled', true);
+        }
         });
         $('#commodity').on('change', function () {
             var urlReq = '<?php echo FRONT_COMMODITY_FIELD_LINK ?>';

@@ -25,7 +25,16 @@
                     <li><a href="<?php echo ADMIN_TEXTDATA_LIST_LINK; ?>">CGCR Reports</a>
                     </li>                   
                 </ul>
-            </li>
+            </li>            
+            <li><a><i class="fa fa-users"></i> Dealers <span class="fa fa-chevron-right"></span></a>
+                <ul class="nav child_menu" style="display: none">
+                    <li><a href="<?php echo ADMIN_TAX_DEALER_LIST_LINK; ?>">Approved</a>
+                    </li>
+                    <li><a href="<?php echo ADMIN_TAX_DEALER_PENDING_LIST_LINK; ?>">Pending</a>
+                    </li>                                   
+                </ul>
+            </li>            
+
         </ul>
     </div>            
 </div>

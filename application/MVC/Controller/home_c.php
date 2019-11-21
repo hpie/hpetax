@@ -9,11 +9,10 @@ class home_c extends Controllers {
         parent::__construct();
         $this->home_m = $this->loadModel('home_m');
     }
-
     public function invoke() {
         $this->data['TITLE'] = TITLE_FRONT_COMMON;
         loadviewFront('front/', 'home.php', $this->data);
-    }        
+    }
 //    public function invoke() {
     public function pdf() {
         $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -213,36 +212,18 @@ EOF;
         loadviewFront('front/', 'home.php', $this->data);
     }
 
-    public function epayment() {
-
-//        $value="DeptID=228|DeptRefNo=20135|TotalAmount=200|TenderBy=Mohan lal |AppRefNo=135|Head1=0230-00-104-01|Amount1=200|Ddo=BLP00-538|PeriodFrom=01-01-2013|PeriodTo=01-04-2013";
-//        $checksum= md5($value);
-//        $value.="|checkSum=$checksum";
-//        $aes = new AES;
-//        $aes->setData($value);
-//        $encrypted = $aes->encrypt();
-////You can use setKey() and setIV() in the encryption process.
-////If you don't, the class will produce random key and IV.
-////You can get them with getKey() and getIV().
-//
-//        $aes->setKey($aes->getKey());
-//        $aes->setIV($aes->getIV());
-//        $aes->setData($encrypted);
-
-//        $decrypted = $aes->decrypt();
-
-//        echo $encrypted . "<br/>" . $decrypted;die;       
+    public function epayment() {       
         $_SESSION['vehicleno_session'] = '';
         $deleteData = $this->home_m->deleteTaxItemQue($_SERVER["REMOTE_ADDR"]);
         $_SESSION['unregistered'] = $_SERVER["REMOTE_ADDR"];
         $result = $this->home_m->getTaxType();
         $this->data['TITLE'] = TITLE_FRONT_EPAYMENT_UNREGISTER;
-        $this->data['result'] = $result;       
+        $this->data['result'] = $result;
         loadviewFront('front/', 'epayment.php', $this->data);
     }
 
     public function epaymenttreasury() {
-        if(isset($_SESSION['dealerDetails']['tax_dealer_id'])){
+        if (isset($_SESSION['dealerDetails']['tax_dealer_id'])) {
             $dealerDetails = $this->home_m->getDealerDetails($_SESSION['dealerDetails']['tax_dealer_id']);
             $this->data['dealerDetails'] = $dealerDetails;
         }
@@ -366,8 +347,10 @@ EOF;
             $params = array();
             if ($_POST['noofpassenger'] != 0) {
                 $params['tax_item_quantity'] = $_POST['noofpassenger'];
-            }
+            }            
             $params['tax_queue_session'] = $_SESSION['unregistered'];
+            $params['tax_type_name'] = $this->home_m->getTaxTypeName($_POST['taxtypeid']);
+            $params['tax_commodity_name'] = $this->home_m->getCommodityName($_POST['commodityid']);
             $params['tax_vehicle_number'] = $_POST['vehicleno'];
             $params['tax_item_weight'] = $_POST['weight'];
             $params['tax_item_weight_units'] = $_POST['mesuare'];
@@ -504,11 +487,9 @@ EOF;
     }
 
     public function modifyUiRender($res) {
-
         $resArray = array();
         $id = $res['tax_type_id'];
         $str = '';
-
         $result = $this->home_m->commodityFieldAjax($res['tax_commodity_id']);
         // print_r($result);
         $html = '';
@@ -593,13 +574,13 @@ EOF;
         loadLoginView('front/', 'wrfapplicationuser.php', $this->data);
     }
 
-    public function addChalan() {
+    public function addChalan() {        
         $challan_id = gen_uuid();
         $challan_title = $_POST['challan_title'];
         $tax_dealer_id = $_POST['tax_dealer_id'];
         $depositors_name = $_POST['depositors_name'];
         $depositors_phone = $_POST['depositors_phone'];
-         $depositors_city = $_POST['depositors_city'];
+        $depositors_city = $_POST['depositors_city'];
         $depositors_zip = $_POST['depositors_zip'];
         $depositors_address = $_POST['depositors_address'];
         $challan_location = $_POST['challan_location'];
@@ -614,9 +595,12 @@ EOF;
         $type_code = $_POST['type_code'];
         $token = $_POST['token'];
         $device = $_POST['device'];
+
+//*********************add tax challan**************************************//
         $curl = curl_init();
+        $url=ADD_TAX_CHALLAN;
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://localhost/hpetax/api/v1/tax_challan/add-tax-challan",
+            CURLOPT_URL => "$url",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -640,17 +624,107 @@ EOF;
         $response = curl_exec($curl);
         $err = curl_error($curl);
         curl_close($curl);
+        $res = json_decode($response);      
+//*********************end add tax challan**************************************//                
+        if ($res->success == TRUE) {                                    
+        $taxItemQueeRes = $this->home_m->getTaxItemList($_SESSION['unregistered']);               
+        if ($taxItemQueeRes) {
+//            print_r($taxItemQueeRes);die;            
+            foreach ($taxItemQueeRes as $row) {                               
+                $challan_item_id=$row['tax_item_queue_id'];
+                $tax_type_name=$row['tax_type_name'];
+                $tax_commodity_name=$row['tax_commodity_name'];
+                $tax_vehicle_number=$row['tax_vehicle_number'];
+                $tax_item_weight=$row['tax_item_weight'];
+                $tax_item_weight_units=$row['tax_item_weight_units'];
+                $tax_item_quantity=$row['tax_item_quantity'];
+                $tax_item_quantity_units=$row['tax_item_quantity_units'];
+                $tax_item_source_location=$row['tax_item_source_location'];
+                $tax_item_destination_location=$row['tax_item_destination_location'];
+                $tax_item_distanceinkm=$row['tax_item_distanceinkm'];
+                $tax_item_tax_amount=$row['tax_item_tax_amount'];
+                $tax_item_status=$row['tax_item_status'];
+                $tax_challan_id=$challan_id;             
+                $tax_commodity_id=$row['tax_commodity_id'];
+                $tax_type_code=$row['tax_type_id'];
+                
+                $curl = curl_init(); 
+                $url=ADD_TAX_CHALLAN_ITEM;
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => "$url",
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => "",
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 30,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => "POST",
+                    CURLOPT_POSTFIELDS => "{\t\"challan_item_id\":\"$challan_item_id\",\r\n
+                                            \t\"type_name\":\"$tax_type_name\",\r\n
+                                            \t\"commodity_name\":\"$tax_commodity_name\",\r\n
+                                            \t\"vehicle_number\":\"$tax_vehicle_number\",\r\n
+                                            \t\"item_weight\":\"$tax_item_weight\",\r\n
+                                            \t\"item_weight_units\":\"$tax_item_weight_units\",\r\n
+                                            \t\"item_quantity\":\"$tax_item_quantity\",\r\n
+                                            \t\"item_quantity_units\":\"$tax_item_quantity_units\",\r\n
+                                            \t\"item_source_location\":\"$tax_item_source_location\",\r\n
+                                            \t\"item_destination_location\":\"$tax_item_destination_location\",\r\n
+                                            \t\"item_distanceinkm\":\"$tax_item_distanceinkm\",\r\n
+                                            \t\"item_tax_amount\":\"$tax_item_tax_amount\",\r\n
+                                            \t\"item_status\":\"$tax_item_status\",\r\n
+                                            \t\"challan_id\":\"$tax_challan_id\",\r\n
+                                            \t\"commodity_id\":\"$tax_commodity_id\",\r\n
+                                            \t\"type_code\":\"$tax_type_code\",\r\n 
+                                            \t\"created_by\":\"SYSTEM\",\r\n\t\"modified_by\":\"SYSTEM\",\r\n\t\"token\":\"123\",\r\n\t\"device\":\"android\"\r\n
+                                            }",
+//            CURLOPT_HTTPHEADER => array(
+//                "Accept: */*",
+//                "Accept-Encoding: gzip, deflate",
+//                "Cache-Control: no-cache",
+//                "Connection: keep-alive",
+//                "Content-Length: 484",
+//                "Content-Type: application/x-www-form-urlencoded",
+//                "Cookie: PHPSESSID=2uhtqfbf2l7i6s9f0rkrhpv155",
+//                "Host: hpetax.hpie.in",
+//                "Postman-Token: 54fafcfe-f520-4556-af25-887c3d69d654,b692439e-4bd5-41f8-9e41-d32c596fc064",
+//                "User-Agent: PostmanRuntime/7.19.0",
+//                "cache-control: no-cache"
+//            ),
+                ));
+                $response1 = curl_exec($curl);
+                $err = curl_error($curl);
+                curl_close($curl);
+                $res1 = json_decode($response1); 
+//                print_r($res1);die;
+                if ($err) {
+                    echo "cURL Error #:" . $err;
+                }
+            }
+        }                    
+        $payment = new TreasuryPayment(114, "HIMKOSH114", "ETO", "0039-00-102-01", "CTO00-012","https://himkosh.hp.nic.in/echallan/WebPages/wrfApplicationRequest.aspx","http://hpetax.hpie.in/index.php/payment/updateTreasuryPayment");
+        $mString = $payment->constructRequestedString($challan_amount,123123,4,"$depositors_name");
 
-        if ($err) {
-            $result['result'] = 'success';
-//            echo "cURL Error #:" . $err;
+        $encryptedString = $payment->genEncryptedString($mString);
+        $deCryptedString = $payment->genDecryptedString($encryptedString);
+                
+        $result['result'] = 'success';
+        $_SESSION['challan_id'] = $challan_id;
+        $_SESSION['encryptedString'] = $encryptedString;
+        $_SESSION['deCryptedString'] = $deCryptedString;
+        
         } else {
-            echo $response;
-            die;
-            $result['result'] = 'success';
+            $result['result'] = 'failed';
         }
         echo json_encode($result);
         die;
+    }
+
+    public function makepayment() {
+        $this->data['TITLE'] = TITLE_FRONT_MAKE_EPAYMENT;
+        loadviewOnlyPage('front/', 'makepayment.php', $this->data);
+    }
+
+    public function updateTreasuryPayment() {
+        print_r($_REQUEST);die;
     }
 
     public function signupform() {
@@ -663,9 +737,21 @@ EOF;
         $date = $_POST['tax_dealer_tin_expiry'];
         $_POST['tax_dealer_tin_expiry'] = dateFormatterMysql("$date");
         $existRecord = $this->home_m->getExistRecordByColumn($_POST['tax_dealer_tin'], 'tax_dealer_tin', 'tax_dealer');
+        $existMobile = $this->home_m->getExistRecordByColumn($_POST['tax_dealer_mobile'], 'tax_dealer_mobile', 'tax_dealer');
+        $existEmail = $this->home_m->getExistRecordByColumn($_POST['tax_dealer_email'], 'tax_dealer_email', 'tax_dealer');
         if ($existRecord) {
             $_SESSION['data'] = $_POST;
             $_SESSION['existrecord'] = 1;
+            redirect(FRONT_SIGN_UP_LINK);
+        }
+        if ($existMobile) {
+            $_SESSION['data'] = $_POST;
+            $_SESSION['existmobile'] = 1;
+            redirect(FRONT_SIGN_UP_LINK);
+        }
+        if ($existEmail) {
+            $_SESSION['data'] = $_POST;
+            $_SESSION['existemail'] = 1;
             redirect(FRONT_SIGN_UP_LINK);
         }
         $result = $this->home_m->registerationInsert($_POST);

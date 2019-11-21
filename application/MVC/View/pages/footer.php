@@ -53,6 +53,10 @@
 <script src="<?php echo BASE_URL ?>assets/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
 <script src="<?php echo BASE_URL ?>assets/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
 <script src="<?php echo BASE_URL ?>assets/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+
+<!--<script src="<?php echo BASE_URL; ?>/assets/front/js/jquery.dataTables.min.js" type="text/javascript"></script>-->
+<script type="text/javascript" language="javascript" src="<?php echo BASE_URL; ?>/assets/front/js/dataTables.responsive.min.js"></script>
+
 <!--Slider--> 
 <!-- ECharts -->
 <script src="<?php echo BASE_URL ?>assets/echarts/dist/echarts.min.js"></script>
@@ -216,6 +220,192 @@
         });
     });
 </script>
+<?php if($TITLE===TITLE_TAX_DEALER_LIST){ ?>
+<script>
+        $(document).ready(function () {
+            $('#example').DataTable({                
+                 responsive: {
+                    details: {
+                        type: 'column',
+                        target: 'tr'
+                    }
+                },
+                columnDefs: [ {
+                    className: 'control',
+                    orderable: false,
+                    targets: 0
+                } ],                             
+                "processing": true,
+                "serverSide": true,
+                "paginationType": "full_numbers",
+                "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "ajax": {
+                    'type': 'POST',
+                    'url': "<?php echo BASE_URL . '/assets/front/DataTablesSrc-master/dealerList.php' ?>",                  
+                },
+                    "columns": [
+                    {"data": "index"},
+                    {"data": "tax_dealer_id"},
+                    {"data": "tax_dealer_name"},
+                    {"data": "tax_dealer_code"},
+                    {"data": "tax_dealer_tin"},
+                    {"data": "tax_dealer_tin_expiry"},
+                    {"data": "tax_dealer_mobile"},
+                    {"data": "tax_delaer_status"}
+                  
+                ]
+            });              
+            $(document).on('click', '.btn_approve_reject', function () {
+                var self = $(this);
+                var status = self.attr('data-status');
+                var user_status = 'ACTIVE';                
+                if(status == 1)
+                    user_status = 'INACTIVE';
+                if(!confirm('Are you sure want to '+user_status.toLocaleLowerCase()+' dealer?')) return;
+                self.attr('disabled','disabled');
+                var data = {
+                    'tax_dealer_id' : self.data('id'),
+                    'tax_delaer_status'  : user_status
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo ADMIN_DEALER_APPROVE_LINK ?>",
+                    data: data,
+                    success: function (res) {
+                        var res = $.parseJSON(res);
+                        if (res.suceess) {
+                            var title = 'Click to deactivate student';
+                            var class_ = 'btn_approve_reject btn btn-success btn-xs';
+                            var text = 'Active';
+                            var isactive = 1;
+
+                            if(status == 1){
+                                title = 'Click to active student';
+                                class_ = 'btn_approve_reject btn btn-danger btn-xs';
+                                text  = 'Inactive';
+                                isactive = 0;
+                                
+                                new PNotify({
+                                    title: 'Dealer InActived Successfully',
+                                    type: 'success',
+                                    styling: 'bootstrap3'
+                                });
+                                
+                            }
+                            else{
+                                new PNotify({
+                                    title: 'Dealer Actived Successfully',
+                                    type: 'success',
+                                    styling: 'bootstrap3'
+                                });
+                            }
+                            self.removeClass().addClass(class_);
+                            self.attr({
+                               'data-status' :isactive,
+                               'title':title
+                           });
+                           self.removeAttr('disabled');
+                           self.html(text);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+<?php } ?>
+    <?php if($TITLE===TITLE_TAX_DEALER_LIST_PENDING){ ?>
+<script>
+        $(document).ready(function () {
+            $('#example').DataTable({                
+                 responsive: {
+                    details: {
+                        type: 'column',
+                        target: 'tr'
+                    }
+                },
+                columnDefs: [ {
+                    className: 'control',
+                    orderable: false,
+                    targets: 0
+                } ],                             
+                "processing": true,
+                "serverSide": true,
+                "paginationType": "full_numbers",
+                "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "ajax": {
+                    'type': 'POST',
+                    'url': "<?php echo BASE_URL . '/assets/front/DataTablesSrc-master/dealerListPending.php' ?>",                  
+                },
+                    "columns": [
+                    {"data": "index"},
+                    {"data": "tax_dealer_id"},
+                    {"data": "tax_dealer_name"},
+                    {"data": "tax_dealer_code"},
+                    {"data": "tax_dealer_tin"},
+                    {"data": "tax_dealer_tin_expiry"},
+                    {"data": "tax_dealer_mobile"},                    
+                    {"data": "creditional"}
+                ]
+            });              
+            $(document).on('click', '.btn_approve_reject', function () {
+                var self = $(this);
+                var status = self.attr('data-status');
+                var user_status = 'ACTIVE';                
+                if(status == 1)
+                    user_status = 'INACTIVE';
+                if(!confirm('Are you sure want to '+user_status.toLocaleLowerCase()+' dealer?')) return;
+                self.attr('disabled','disabled');
+                var data = {
+                    'tax_dealer_id' : self.data('id'),
+                    'tax_delaer_status'  : user_status
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo ADMIN_DEALER_APPROVE_LINK ?>",
+                    data: data,
+                    success: function (res) {
+                        var res = $.parseJSON(res);
+                        if (res.suceess) {
+                            var title = 'Click to deactivate student';
+                            var class_ = 'btn_approve_reject btn btn-success btn-xs';
+                            var text = 'Active';
+                            var isactive = 1;
+
+                            if(status == 1){
+                                title = 'Click to active student';
+                                class_ = 'btn_approve_reject btn btn-danger btn-xs';
+                                text  = 'Inactive';
+                                isactive = 0;
+                                
+                                new PNotify({
+                                    title: 'Dealer InActived Successfully',
+                                    type: 'success',
+                                    styling: 'bootstrap3'
+                                });
+                                
+                            }
+                            else{
+                                new PNotify({
+                                    title: 'Dealer Actived Successfully',
+                                    type: 'success',
+                                    styling: 'bootstrap3'
+                                });
+                            }
+                            self.removeClass().addClass(class_);
+                            self.attr({
+                               'data-status' :isactive,
+                               'title':title
+                           });
+                           self.removeAttr('disabled');
+                           self.html(text);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+<?php } ?>
+
 <?php if($TITLE=='Tax Transaction Reports'){
      include_once(APP_INCLUDE_V . "js/reportsjs.php");
 } ?>

@@ -38,9 +38,8 @@ class login_c extends Controllers {
     public function loginDealer() {
         $error = '';
         $_SESSION['valid'] = 0;       
-            if (isset($_POST['email']) && isset($_POST['password'])) {
-//                print_r($_POST);die;
-                $result = $this->login_m->login_delear($_POST['email'], $_POST['password']);                                              
+            if (isset($_POST['code']) && isset($_POST['password'])) {
+                $result = $this->login_m->login_delear($_POST['code'], $_POST['password']);                                              
                 if ($result==true) { 
                     $_SESSION['valid']=1;
                     redirect(BASE_URL);

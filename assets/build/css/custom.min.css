@@ -634,7 +634,7 @@ table.no-margin .progress {
 .col-xs-8,
 .col-xs-9 {
     position: relative;
-    min-height: 1px;
+    min-height: 40px;
     float: left;
     padding-right: 10px;
     padding-left: 10px

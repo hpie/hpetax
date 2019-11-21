@@ -33,7 +33,7 @@ $APP->post('add-tax-challan-item', false, function() use($APP) {
 //                        
 //            $APP->generateApiKey();
 //             promocode();                        
-            verifyRequiredParams(array('challan_item_id', 'type_name','commodity_name','vehicle_number','item_weight','item_weight_units','item_quantity_units','item_source_location','item_destination_location','item_distanceinkm','item_tax_amount','item_status','challan_id','commodity_id','type_code','created_by','modified_by', 'token', 'device'));
+            verifyRequiredParams(array('challan_item_id', 'type_name','commodity_name','vehicle_number','item_weight','item_weight_units','item_source_location','item_destination_location','item_distanceinkm','item_tax_amount','item_status','challan_id','commodity_id','type_code','created_by','modified_by', 'token', 'device'));
             if (!in_array($VARS['device'], array('iphone', 'android'))) {
                 return array(false, "device name is invalid", $data);
             }            

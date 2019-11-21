@@ -11,6 +11,8 @@
         });
 
         $('#confirm').on('click', function () {
+        
+            if (confirm('Are you sure you want confirm?')) {
             var alertstr = [];
             var returnval = 0;
             var name = $("#name").val();
@@ -70,8 +72,10 @@
                 $('#reciptscheck').attr('disabled', true);
                 $('#total').attr('disabled', true);
             }
+        }
         });
         $('#back').on('click', function () {
+            if (confirm('Are you sure you want to edit?')) {
                 $('#confirm').removeClass("location");
                 $('#confirm').attr("disabled", false);
                 $('#submit').addClass("location"); 
@@ -87,11 +91,11 @@
                 $('#enddate').attr('disabled', false);
                 $('#reciptscheck').attr('disabled', false);
                 $('#total').attr('disabled', false);
+            }
         });
         $('#submit').on('click', function () {
-                       
-            var challan_title="dummy";
-            
+            if (confirm('Are you sure you want to pay?')) {          
+            var challan_title="dummy";            
             var tax_dealer_id=$("#tax_dealer_id").val(); 
             var depositors_name=$("#name").val();          
             var depositors_phone=$("#mobileno").val();
@@ -114,13 +118,16 @@
                 type: "POST",
                 dataType: "json",
                 data: {challan_title:challan_title,tax_dealer_id:tax_dealer_id,depositors_name:depositors_name,depositors_phone:depositors_phone,depositors_city:depositors_city,depositors_zip:depositors_zip,depositors_address:depositors_address,challan_location:challan_location,challan_duration:challan_duration,challan_from_dt:challan_from_dt,challan_to_dt:challan_to_dt,challan_purpose:challan_purpose,challan_amount:challan_amount,transaction_no:transaction_no,transaction_status:transaction_status,challan_status:challan_status,type_code:type_code,token:token,device:device},
-                url: '<?php echo BASE_URL; ?>addChalan',
+                url: '<?php echo FRONT_ADD_CHALLAN_LINK; ?>',
                 success: function (_returnData) {
                     if (_returnData.result == "success") {
-                        alert('success');
+                        window.location = "<?php echo TITLE_FRONT_MAKE_EPAYMENT; ?>";
+                    } else {
+                        alert('Please complete the add tax process');
                     }
                 }
             });
+            }
         });
     });
 </script>

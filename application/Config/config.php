@@ -8,7 +8,7 @@ public $connect;
             if($ip[0]=='192' ||$_SERVER['HTTP_HOST']=='localhost')
                 $con=mysqli_connect("localhost","root","","taxpay");
             else 
-               $con=mysqli_connect("localhost","knebxnii_knebxnii","v@siml00k!me","knebxnii_taxpay"); 
+              $con=mysqli_connect("localhost","s7hpiein_etax","hp#t@xD8","s7hpiein_hpetax"); 
 		// Check connection
 		if (mysqli_connect_errno())
 	  	{

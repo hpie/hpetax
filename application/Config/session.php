@@ -24,6 +24,13 @@ function sessionCheck() {
     }
     return true;
 }
+function sessionCheckDealer() {
+    if (!isset($_SESSION['dealerDetails']['tax_dealer_id'])) {
+        redirect(LOGIN);
+        return false;
+    }
+    return true;
+}
 function sessionDestroy() {
     session_destroy();
 }

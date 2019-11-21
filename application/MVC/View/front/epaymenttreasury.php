@@ -29,18 +29,18 @@
         <h1 class="heading" style="text-align: center;">e-Payments</h1>        
         <br>      
         <!-- The Modal -->
-        <div class="modal fade" id="details-remarks">
+<!--        <div class="modal fade" id="details-remarks">
             <div class="modal-dialog">
                 <div class="modal-content">
 
-                    <!-- Modal Header -->
+                     Modal Header 
                     <div class="modal-header bg-success mb-0">
                         <h4 class="modal-title  text-white">Details / Remarks</h4>
                         <button type="button" class="close text-white"
                                 data-dismiss="modal">&times;</button>
                     </div>
 
-                    <!-- Modal body -->
+                     Modal body 
                     <div class="modal-body">
                         <table class="table table-responsive">
                             <tr>
@@ -65,7 +65,7 @@
                     </div>
                 </div>
             </div>
-        </div>       
+        </div>       -->
         <div class="row section-row">
             <div class="col-md-12 col-sm-12 col-12">                
                 <center><h4 class="sm-heading">Challan Form</h4></center>  

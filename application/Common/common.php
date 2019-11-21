@@ -25,6 +25,12 @@ function loadviewTechnician($dir, $filename, $data) {
     include_once(APP_INCLUDE_V . "technician/pages/footer.php");
 }
 
+function loadviewOnlyPage($dir, $filename, $data) {
+    global $APP;
+    extract($data);
+    include_once(APP_INCLUDE_V . $dir . $filename);    
+}
+
 function loadviewFront($dir, $filename, $data) {
     global $APP;
     extract($data);

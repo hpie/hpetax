@@ -9,43 +9,7 @@
         <br>
         <marquee style="color: red;cursor: pointer;" data-toggle="modal" data-target="#details-remarks"> :: MRP Order dated 03-04-2019-IMFS for the Year 2019-20 </marquee>
         <!-- The Modal -->
-        <div class="modal fade" id="details-remarks">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header bg-success mb-0">
-                        <h4 class="modal-title  text-white">Details / Remarks</h4>
-                        <button type="button" class="close text-white"
-                                data-dismiss="modal">&times;</button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <table class="table table-responsive">
-                            <tr>
-                                <td>Subject</td>
-                                <td>MRP Order dated 03-04-2019-IMFS for the Year 2019-20</td>
-                            </tr>
-                            <tr>
-                                <td> Detail</td>
-                                <td>MRP Order dated 03-04-2019-IMFS for the Year 2019-20</td>
-                            </tr>
-                            <tr>
-                                <td>Publish Date</td>
-                                <td>03/04/2019</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2"><a href="#">
-                                        <i class="fa fa-download color-white" aria-hidden="true"></i> &nbsp;Download (English Version)
-                                    </a> </td>
-                            </tr>
-                        </table>
-                        <button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+     
 
         <div class="row section-row">
             <div class="col-md-3 col-sm-6 col-12">

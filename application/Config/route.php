@@ -11,6 +11,8 @@ $route['dashboard'] = 'admin_c';
 $route[''] = 'home_c';
 $route['home'] = 'home_c';
 $route['epayment'] = 'home_c/epayment';
+$route['makepayment'] = 'home_c/makepayment';
+$route['payment/updateTreasuryPayment'] = 'home_c/updateTreasuryPayment';
 $route['epaymenttreasury'] = 'home_c/epaymenttreasury';
 $route['front-commodity-list-ajax'] = 'home_c/commodityListAjax';
 $route['front-commodity-field-ajax'] = 'home_c/commodityFieldAjax';
@@ -24,7 +26,8 @@ $route['signup'] = 'home_c/signupform';
 $route['registration'] = 'home_c/registration';
 $route['login-dealer'] = 'login_c/loginDealer';
 $route['logout-dealer'] = 'login_c/logoutDealer';
-
+$route['change-password'] = 'dealer_c/changePassword';
+$route['update-password'] = 'dealer_c/update_profile';
 //**************************************************************************************//
 
 //**************************tax_master*******************//
@@ -50,9 +53,20 @@ $route['tax-commodity-insert'] = 'admin_c/taxCommodityInsert';
 $route['tax-commodity-edit-form/(:any)'] = 'admin_c/taxCommodityEditForm';
 $route['tax-commodity-edit/(:any)'] = 'admin_c/editTaxCommodity';
 
+
+
+$route['dealer-list'] = 'admin_c/dealerList';
+$route['dealer-list-pending'] = 'admin_c/dealerListPending';
+$route['dealer-approve'] = 'admin_c/approve_dealer';
+$route['tax-delaer-credential-edit-form/(:any)'] = 'admin_c/taxDealerCredentialEditForm';
+$route['tax-delaer-credential-edit/(:any)'] = 'admin_c/editDealerCredential';
+
 //**************************reports*******************//
 $route['tax-reports'] = 'admin_c/reports';
 
 //**************************challan*******************//
 $route['addChalan'] = 'home_c/addChalan';
 $route['verify-epayment'] = 'home_c/epaymentVerify';
+
+
+

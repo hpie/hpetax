@@ -24,90 +24,11 @@
         display: none;
     }
 </style>
-<?php
-$data = "DeptID=228|DeptRefNo=2010100014|TotalAmount=200|TenderBy=Happy Brothers|AppRefNo=A098989090|Head1=0039-00-102-01|Amount1=200|Ddo=CTO00-012|PeriodFrom=14-11-2019|PeriodTo=14-11-2019";
-$str='';
-$s = md5($data,true);
-for ($i=0; $i < strlen($s); $i++){
-    $str.=ord($s[$i])." ";
-}
-$ByteHash=explode(" ", $str);
-$hex= count($ByteHash)*2;
-$chars = array_map("chr", $ByteHash);
-$bin = join($chars);
-$hex = bin2hex($bin);
-$cheksum='';
-$myArray = str_split($hex);
-$i=1;
-foreach($myArray as $character){
-    if($i<=32){
-        $cheksum.=$character;
-    }
-    $i=$i+1;
-}
-$key= file_get_contents("application/Libraries/echallan");
-
-$data.="|checkSum=".$cheksum;
-define('AES_256_CBC', 'aes-256-cbc');
-$encryption_key = $key;
-$iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(AES_256_CBC));
-$encrypted = openssl_encrypt($data, AES_256_CBC, $encryption_key, 0, $iv);
-$encrypted = $encrypted . ':' . $iv;
-$parts = explode(':', $encrypted);
-$decrypted = openssl_decrypt($parts[0], AES_256_CBC, $encryption_key, 0, $parts[1]);
-
-
-?>
-<form action='https://himkosh.hp.nic.in/echallan/WebPages/wrfApplicationRequest.aspx' id='aspnetForm' method='POST'>
-    <input type=hidden name="encdata" value="<?php echo $encrypted; ?>"/>
-    <input type=hidden name="merchant_code" value='HIMKOSH114'/>    
-</form>
-<script type='text/javascript'>
-    document.getElementById('aspnetForm').submit();
-</script> 
-
 <div class="col-md-9 col-sm-12  col-12 ">
     <div class="middle-area box-shadow">
         <h1 class="heading" style="text-align: center;">e-Payment <?php if(!isset($_SESSION['dealerDetails']['tax_dealer_id'])){ ?>(Unregistered)<?php } ?></h1>        
         <br>      
-        <!-- The Modal -->
-        <div class="modal fade" id="details-remarks">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header bg-success mb-0">
-                        <h4 class="modal-title  text-white">Details / Remarks</h4>
-                        <button type="button" class="close text-white"
-                                data-dismiss="modal">&times;</button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <table class="table table-responsive">
-                            <tr>
-                                <td>Subject</td>
-                                <td>MRP Order dated 03-04-2019-IMFS for the Year 2019-20</td>
-                            </tr>
-                            <tr>
-                                <td> Detail</td>
-                                <td>MRP Order dated 03-04-2019-IMFS for the Year 2019-20</td>
-                            </tr>
-                            <tr>
-                                <td>Publish Date</td>
-                                <td>03/04/2019</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2"><a href="#">
-                                        <i class="fa fa-download color-white" aria-hidden="true"></i> &nbsp;Download (English Version)
-                                    </a> </td>
-                            </tr>
-                        </table>
-                        <button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>       
+        <!-- The Modal -->     
         <div class="row section-row">
             <div class="col-md-12 col-sm-12 col-12">                
                 <center><h4 class="sm-heading">e-Payment (Unregistered)</h4></center>   
@@ -191,9 +112,7 @@ $decrypted = openssl_decrypt($parts[0], AES_256_CBC, $encryption_key, 0, $parts[
                 </style>                
                 <center><button id="update">Modify</button>&nbsp;&nbsp;<button id="clearModify">Clear</button></center>
             </div>
-
         </div>
-
         <br>
         <br>
         <div class="row">

@@ -233,6 +233,72 @@ class admin_c extends Controllers {
         $this->data['TITLE'] = TITLE_TAX_TRANSACTION_REPORTS;
         loadview('reports/', 'reports.php', $this->data);
     }
+    
+    //**************************dealer*******************//
+    public function dealerList() {
+        $this->data['TITLE'] = TITLE_TAX_DEALER_LIST;
+        loadview('dealer/', 'dealerlist.php', $this->data);
+    }
+    public function dealerListPending() {
+        $this->data['TITLE'] = TITLE_TAX_DEALER_LIST_PENDING;
+        loadview('dealer/', 'dealerlistpending.php', $this->data);
+    }
+    public function approve_dealer(){
+        if(isset($_POST['tax_dealer_id'])){            
+            $res = $this->admin_m->approve_student($_POST['tax_delaer_status'],$_POST['tax_dealer_id']);
+            if($res){
+                $data = array(
+                    'suceess' => true
+                );
+            }
+            echo json_encode($data);
+        }
+    }    
+    public function taxDealerCredentialEditForm($id) {          
+        $result = $this->admin_m->getSingleRecordById($id, 'tax_dealer_id', 'tax_dealer');
+        $this->data['result'] = $result;
+        $this->data['TITLE'] = TITLE_TAX_DEALER_CREDENTIAL_EDIT_FORM;
+        loadview('dealer/', 'edit.php', $this->data);
+    }
+
+    public function editDealerCredential($Id) {  
+        $email=$_POST['tax_dealer_email'];
+        unset($_POST['tax_dealer_email']);
+        $existRecord = $this->admin_m->getExistRecordByColumn($_POST['tax_dealer_code'], 'tax_dealer_code', 'tax_dealer');        
+        if ($existRecord) {
+            $_SESSION['data'] = $_POST;
+            $_SESSION['existrecord'] = 1;
+            redirect(ADMIN_TAX_DEALER_CREDENTIAL_EDIT_FORM_LINK.$Id);
+        }
+        $password=$_POST['tax_dealer_password'];
+        $_POST['tax_dealer_password']= md5($_POST['tax_dealer_password']);                       
+        $result = $this->admin_m->editTaxDealerCredential($_POST,$Id);
+        if ($result) {                                                      
+            $username=$_POST['tax_dealer_code'];
+            $password=$_POST['tax_dealer_password'];
+            
+            $to = $email;
+            $subject = 'Credential';
+            $headers = "From: " . strip_tags('hpetax@hpie.in') . "\r\n";
+            $headers .= "Reply-To: ". strip_tags('hpetax@hpie.in') . "\r\n";           
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n"; 
+            $message = '<html><body>';
+            $message .= "<b>username</b> : $username <br>";
+            $message .= "<b>Password</b> : $password";
+            $message .= '</body></html>';
+            mail($to, $subject, $message, $headers);
+                        
+//            $mail= new SMTP_mail();
+//            $mail->send_email_offers($email);
+                        
+            $_SESSION['dataupdate'] = 1;
+            redirect(ADMIN_TAX_DEALER_LIST_LINK);
+        } else {
+            $_SESSION['Error'] = 1;
+            redirect(ADMIN_TAX_DEALER_CREDENTIAL_EDIT_FORM_LINK.$Id);
+        }
+    }
 }
 
 ?>

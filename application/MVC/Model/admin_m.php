@@ -7,6 +7,17 @@ class admin_m extends Models {
     public function __construct() {
         $this->query = new Query();
     }
+    
+//    public function getDealerList() {
+//        $q = "SELECT * FROM tax_dealer";
+//        $result = $this->query->select($q);
+//        if ($data = $this->query->fetch_array($result)) {
+//            return $data;
+//        }
+//        return false;
+//    }
+    
+    
 //**************************Common*******************//
     public function getExistRecordByColumn($id,$column,$table) {       
         $q = "SELECT * FROM $table WHERE $column='$id'";
@@ -41,7 +52,7 @@ class admin_m extends Models {
             return $row;
         }
         return false;
-    }    
+    } 
     
 //**************************tax_master*******************//
  public function getTaxMasterList() {
@@ -69,6 +80,7 @@ class admin_m extends Models {
         }
         return FALSE;
     }
+        
     
     
 //**************************tax_type*******************//
@@ -134,6 +146,24 @@ class admin_m extends Models {
         }
         return false;
     }
+    
+    
+    /*************************dealer**************************/
+     public function approve_student($status,$id) {
+//        $columnsdesc = $this->updateMaker($params);
+            $q = "UPDATE tax_dealer SET tax_delaer_status='$status' WHERE tax_dealer_id=$id";
+            if($q)
+            return $this->query->update($q);
+        return FALSE;
+    }
+    public function editTaxDealerCredential($params, $id) {
+        $columnsdesc = $this->updateMaker($params);
+        if ($columnsdesc) {
+            $q = "UPDATE tax_dealer SET $columnsdesc WHERE tax_dealer_id=$id";
+            return $this->query->update($q);
+        }
+        return FALSE;
+    } 
     
 }
 
