@@ -6,6 +6,24 @@ class Model extends Models {
         parent::__construct();
     }
 
+    
+    public function getExistTransaction($id) {        
+        $res=$this->checkRecord('tax_transaction_queue','tax_challan_id',"$id");        
+        if ($res)
+            return true;
+        return false;
+    }
+     public function addTransaction($params, $table) {      
+        $columns = $this->insertMaker($params, $values);
+        if ($columns) {
+            $q = "INSERT INTO $table($columns) VALUES($values)";
+            $id = $this->query->insert($q);              
+            if ($id) {               
+                return $id;
+            }
+        }
+        return false;
+    }   
 //*******************************//  
 //*** Common insert function with table name     *****//
 //*****************************//

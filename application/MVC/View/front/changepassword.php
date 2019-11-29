@@ -33,8 +33,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="form-group">
                     <div class="m-auto text-center">
                         <button type="submit" class="btn primary_btn">Update</button>

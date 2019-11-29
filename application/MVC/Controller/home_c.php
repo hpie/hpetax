@@ -9,10 +9,12 @@ class home_c extends Controllers {
         parent::__construct();
         $this->home_m = $this->loadModel('home_m');
     }
+
     public function invoke() {
         $this->data['TITLE'] = TITLE_FRONT_COMMON;
         loadviewFront('front/', 'home.php', $this->data);
     }
+
 //    public function invoke() {
     public function pdf() {
         $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -212,7 +214,7 @@ EOF;
         loadviewFront('front/', 'home.php', $this->data);
     }
 
-    public function epayment() {       
+    public function epayment() {
         $_SESSION['vehicleno_session'] = '';
         $deleteData = $this->home_m->deleteTaxItemQue($_SERVER["REMOTE_ADDR"]);
         $_SESSION['unregistered'] = $_SERVER["REMOTE_ADDR"];
@@ -347,7 +349,7 @@ EOF;
             $params = array();
             if ($_POST['noofpassenger'] != 0) {
                 $params['tax_item_quantity'] = $_POST['noofpassenger'];
-            }            
+            }
             $params['tax_queue_session'] = $_SESSION['unregistered'];
             $params['tax_type_name'] = $this->home_m->getTaxTypeName($_POST['taxtypeid']);
             $params['tax_commodity_name'] = $this->home_m->getCommodityName($_POST['commodityid']);
@@ -574,7 +576,7 @@ EOF;
         loadLoginView('front/', 'wrfapplicationuser.php', $this->data);
     }
 
-    public function addChalan() {        
+    public function addChalan() {
         $challan_id = gen_uuid();
         $challan_title = $_POST['challan_title'];
         $tax_dealer_id = $_POST['tax_dealer_id'];
@@ -598,7 +600,7 @@ EOF;
 
 //*********************add tax challan**************************************//
         $curl = curl_init();
-        $url=ADD_TAX_CHALLAN;
+        $url = ADD_TAX_CHALLAN;
         curl_setopt_array($curl, array(
             CURLOPT_URL => "$url",
             CURLOPT_RETURNTRANSFER => true,
@@ -608,109 +610,80 @@ EOF;
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_POSTFIELDS => "{\t\"challan_id\":\"$challan_id\",\r\n\t\"challan_title\":\"$challan_title\",\r\n\t\"tax_dealer_id\":\"$tax_dealer_id\",\r\n\t\"depositors_name\":\"$depositors_name\",\r\n\t\"depositors_phone\":\"$depositors_phone\",\r\n\t\"depositors_city\":\"$depositors_city\",\r\n\t\"depositors_zip\":\"$depositors_zip\",\r\n\t\"depositors_address\":\"$depositors_address\",\r\n\t\"challan_location\":\"$challan_location\",\r\n\t\"challan_duration\":\"$challan_duration\",\r\n\t\"challan_from_dt\":\"$challan_from_dt\",\r\n\t\"challan_to_dt\":\"$challan_to_dt\",\r\n\t\"challan_purpose\":\"$challan_purpose\",\r\n\t\"challan_amount\":\"$challan_amount\",\r\n\t\"transaction_no\":\"$transaction_no\",\r\n\t\"transaction_status\":\"$transaction_status\",\r\n\t\"challan_status\":\"$challan_status\",\r\n\t\"type_code\":\"$type_code\",\r\n\t\"created_by\":\"vasim\",\r\n\t\"modified_by\":\"vasim\",\r\n\t\"token\":\"123\",\r\n\t\"device\":\"android\"\r\n}",
-//            CURLOPT_HTTPHEADER => array(
-//                "Accept: */*",
-//                "Accept-Encoding: gzip, deflate",
-//                "Cache-Control: no-cache",
-//                "Connection: keep-alive",
-//                "Content-Length: 512",
-//                "Content-Type: application/json",
-//
-//                "Postman-Token: d55b46b2-dc73-4592-9632-6534a35076ae,29d92d84-88e2-43c4-a7c2-71a940f3b130",
-//                "User-Agent: PostmanRuntime/7.17.1",
-//                "cache-control: no-cache"
-//            ),
         ));
         $response = curl_exec($curl);
         $err = curl_error($curl);
         curl_close($curl);
-        $res = json_decode($response);      
+        $res = json_decode($response);
+
 //*********************end add tax challan**************************************//                
-        if ($res->success == TRUE) {                                    
-        $taxItemQueeRes = $this->home_m->getTaxItemList($_SESSION['unregistered']);               
-        if ($taxItemQueeRes) {
-//            print_r($taxItemQueeRes);die;            
-            foreach ($taxItemQueeRes as $row) {                               
-                $challan_item_id=$row['tax_item_queue_id'];
-                $tax_type_name=$row['tax_type_name'];
-                $tax_commodity_name=$row['tax_commodity_name'];
-                $tax_vehicle_number=$row['tax_vehicle_number'];
-                $tax_item_weight=$row['tax_item_weight'];
-                $tax_item_weight_units=$row['tax_item_weight_units'];
-                $tax_item_quantity=$row['tax_item_quantity'];
-                $tax_item_quantity_units=$row['tax_item_quantity_units'];
-                $tax_item_source_location=$row['tax_item_source_location'];
-                $tax_item_destination_location=$row['tax_item_destination_location'];
-                $tax_item_distanceinkm=$row['tax_item_distanceinkm'];
-                $tax_item_tax_amount=$row['tax_item_tax_amount'];
-                $tax_item_status=$row['tax_item_status'];
-                $tax_challan_id=$challan_id;             
-                $tax_commodity_id=$row['tax_commodity_id'];
-                $tax_type_code=$row['tax_type_id'];
-                
-                $curl = curl_init(); 
-                $url=ADD_TAX_CHALLAN_ITEM;
+        if ($res->success == TRUE) {
+            $taxItemQueeRes = $this->home_m->getTaxItemList($_SESSION['unregistered']);
+            if ($taxItemQueeRes) {
+                foreach ($taxItemQueeRes as $row) {
+
+//                    print_r($row);die;
+
+                    $challan_item_id = $row['tax_item_queue_id'];
+                    $tax_type_name = $row['tax_type_name'];
+                    $tax_commodity_name = $row['tax_commodity_name'];
+                    $tax_vehicle_number = $row['tax_vehicle_number'];
+                    $tax_item_weight = $row['tax_item_weight'];
+                    $tax_item_weight_units = $row['tax_item_weight_units'];
+                    $tax_item_quantity = $row['tax_item_quantity'];
+                    $tax_item_quantity_units = $row['tax_item_quantity_units'];
+                    $tax_item_source_location = $row['tax_item_source_location'];
+                    $tax_item_destination_location = $row['tax_item_destination_location'];
+                    $tax_item_distanceinkm = $row['tax_item_distanceinkm'];
+                    $tax_item_tax_amount = $row['tax_item_tax_amount'];
+                    $tax_item_status = $row['tax_item_status'];
+                    $tax_challan_id = $challan_id;
+                    $tax_commodity_id = $row['tax_commodity_id'];
+                    $tax_type_code = $row['tax_type_id'];
+
+                    $curl = curl_init();
+                    $url = ADD_TAX_CHALLAN_ITEM;
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => "$url",
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => "",
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 30,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => "POST",
+                        CURLOPT_POSTFIELDS => "{\t\"challan_item_id\":\"$challan_item_id\",\r\n\t\"type_name\":\"$tax_type_name\",\r\n\t\"commodity_name\":\"$tax_commodity_name\",\r\n\t\"vehicle_number\":\"$tax_vehicle_number\",\r\n\t\"item_weight\":\"$tax_item_weight\",\r\n\t\"item_weight_units\":\"$tax_item_weight_units\",\r\n\t\"item_quantity\":\"$tax_item_quantity\",\r\n\t\"item_quantity_units\":\"$tax_item_quantity_units\",\r\n\t\"item_source_location\":\"$tax_item_source_location\",\r\n\t\"item_destination_location\":\"$tax_item_destination_location\",\r\n\t\"item_distanceinkm\":\"$tax_item_distanceinkm\",\r\n\t\"item_tax_amount\":\"$tax_item_tax_amount\",\r\n\t\"item_status\":\"$tax_item_status\",\r\n\t\"challan_id\":\"$tax_challan_id\",\r\n\t\"commodity_id\":\"$tax_commodity_id\",\r\n\t\"type_code\":\"$tax_type_code\",\r\n\t\"created_by\":\"SYSTEM\",\r\n\t\"modified_by\":\"SYSTEM\",\r\n\t\"token\":\"123\",\r\n\t\"device\":\"android\"\r\n}",
+                    ));
+                    $response1 = curl_exec($curl);
+                    $err = curl_error($curl);
+                    curl_close($curl);
+                    $res1 = json_decode($response1);
+                    if ($err) {
+                        echo "cURL Error #:" . $err;
+                    }
+                }
+                $curl = curl_init();
+                $urlStr = "challan_id=" . $challan_id . "&depositorname=" . $depositors_name . "&amount=" . $challan_amount . "&token=123&device=web";
+                $url = urlencode($urlStr);
+                $url = PAYMENT_POST_API_URL . '?' . $url;
                 curl_setopt_array($curl, array(
-                    CURLOPT_URL => "$url",
+                    CURLOPT_URL => $url,
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => "",
                     CURLOPT_MAXREDIRS => 10,
                     CURLOPT_TIMEOUT => 30,
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                    CURLOPT_CUSTOMREQUEST => "POST",
-                    CURLOPT_POSTFIELDS => "{\t\"challan_item_id\":\"$challan_item_id\",\r\n
-                                            \t\"type_name\":\"$tax_type_name\",\r\n
-                                            \t\"commodity_name\":\"$tax_commodity_name\",\r\n
-                                            \t\"vehicle_number\":\"$tax_vehicle_number\",\r\n
-                                            \t\"item_weight\":\"$tax_item_weight\",\r\n
-                                            \t\"item_weight_units\":\"$tax_item_weight_units\",\r\n
-                                            \t\"item_quantity\":\"$tax_item_quantity\",\r\n
-                                            \t\"item_quantity_units\":\"$tax_item_quantity_units\",\r\n
-                                            \t\"item_source_location\":\"$tax_item_source_location\",\r\n
-                                            \t\"item_destination_location\":\"$tax_item_destination_location\",\r\n
-                                            \t\"item_distanceinkm\":\"$tax_item_distanceinkm\",\r\n
-                                            \t\"item_tax_amount\":\"$tax_item_tax_amount\",\r\n
-                                            \t\"item_status\":\"$tax_item_status\",\r\n
-                                            \t\"challan_id\":\"$tax_challan_id\",\r\n
-                                            \t\"commodity_id\":\"$tax_commodity_id\",\r\n
-                                            \t\"type_code\":\"$tax_type_code\",\r\n 
-                                            \t\"created_by\":\"SYSTEM\",\r\n\t\"modified_by\":\"SYSTEM\",\r\n\t\"token\":\"123\",\r\n\t\"device\":\"android\"\r\n
-                                            }",
-//            CURLOPT_HTTPHEADER => array(
-//                "Accept: */*",
-//                "Accept-Encoding: gzip, deflate",
-//                "Cache-Control: no-cache",
-//                "Connection: keep-alive",
-//                "Content-Length: 484",
-//                "Content-Type: application/x-www-form-urlencoded",
-//                "Cookie: PHPSESSID=2uhtqfbf2l7i6s9f0rkrhpv155",
-//                "Host: hpetax.hpie.in",
-//                "Postman-Token: 54fafcfe-f520-4556-af25-887c3d69d654,b692439e-4bd5-41f8-9e41-d32c596fc064",
-//                "User-Agent: PostmanRuntime/7.19.0",
-//                "cache-control: no-cache"
-//            ),
+                    CURLOPT_CUSTOMREQUEST => "GET",
                 ));
-                $response1 = curl_exec($curl);
+                $response2 = curl_exec($curl);
                 $err = curl_error($curl);
                 curl_close($curl);
-                $res1 = json_decode($response1); 
-//                print_r($res1);die;
+                $res2 = json_decode($response2);
                 if ($err) {
                     echo "cURL Error #:" . $err;
                 }
             }
-        }                    
-        $payment = new TreasuryPayment(114, "HIMKOSH114", "ETO", "0039-00-102-01", "CTO00-012","https://himkosh.hp.nic.in/echallan/WebPages/wrfApplicationRequest.aspx","http://hpetax.hpie.in/index.php/payment/updateTreasuryPayment");
-        $mString = $payment->constructRequestedString($challan_amount,123123,4,"$depositors_name");
-
-        $encryptedString = $payment->genEncryptedString($mString);
-        $deCryptedString = $payment->genDecryptedString($encryptedString);
-                
-        $result['result'] = 'success';
-        $_SESSION['challan_id'] = $challan_id;
-        $_SESSION['encryptedString'] = $encryptedString;
-        $_SESSION['deCryptedString'] = $deCryptedString;
-        
+            $result['result'] = 'success';
+            $_SESSION['encryptedString'] = $res2->Result;
         } else {
             $result['result'] = 'failed';
         }
@@ -722,9 +695,28 @@ EOF;
         $this->data['TITLE'] = TITLE_FRONT_MAKE_EPAYMENT;
         loadviewOnlyPage('front/', 'makepayment.php', $this->data);
     }
-
-    public function updateTreasuryPayment() {
-        print_r($_REQUEST);die;
+    public function updateTreasuryPayment($challan_id) {
+        $encdata=$_POST['encdata'];        
+        $url=BASE_URL_API."api/v1/transactionlist/return-hpetax-payment/".$challan_id;        
+        $curl = curl_init();        
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "$url",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "{\t\"encdata\":\"$encdata\",\r\n\t\"token\":\"123\",\r\n\t\"device\":\"android\"\r\n}",
+        ));
+        $response2 = curl_exec($curl);               
+        $err = curl_error($curl);
+        curl_close($curl);
+        $res2 = json_decode($response2);
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        }
+        print_r($res2);die;
     }
 
     public function signupform() {

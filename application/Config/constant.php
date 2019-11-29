@@ -9,11 +9,12 @@ define('MEDIUM_IMAGES',BASE_URL.'uploads/medium/');
 define('THUMB_IMAGES',BASE_URL.'uploads/thumb/');
 define('ORIGINAL_IMAGES',BASE_URL.'uploads/original/');
 
-define('ADD_TAX_CHALLAN','http://hpetax.hpie.in/api/v1/tax_challan/add-tax-challan');
-define('ADD_TAX_CHALLAN_ITEM','http://hpetax.hpie.in/api/v1/tax_challan_item/add-tax-challan-item');
+define('ADD_TAX_CHALLAN',BASE_URL_API.'api/v1/tax_challan/add-tax-challan');
+define('ADD_TAX_CHALLAN_ITEM',BASE_URL_API.'api/v1/tax_challan_item/add-tax-challan-item');
 
 define('PAYMENT_POST_URL','https://himkosh.hp.nic.in/echallan/WebPages/wrfApplicationRequest.aspx');
-define('PAYMENT_POST_RETURN_URL',BASE_URL.'payment/updateTreasuryPayment');
+define('PAYMENT_POST_RETURN_URL',BASE_URL.'payment/updateTreasuryPayment/');
+define('PAYMENT_POST_API_URL',BASE_URL_API.'api/v1/transactionlist/hpetax-payment');
 
 //***************************************************************************************************//
 //*****************************************Front Side***************************************//

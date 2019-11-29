@@ -48,6 +48,12 @@ define('OTHER_HEADER_VARS', serialize (array('Auth-Key')));
 define('IS_OTHER_HEADER_VARS', false);
 define('DEFAULT_LANGUAGE', "english");//"english"
 
+$r = $_SERVER['SCRIPT_NAME'];
+$subdomain = explode('/', $r);
+array_pop($subdomain);
+define('BASE_URL_API', 'http://'.$_SERVER['HTTP_HOST'].  implode('/', $subdomain).'/');   
+define('BASE_URL', 'https://'.$_SERVER['HTTP_HOST'].'/');   
+
 //API current version
 define('REST_VERSION', 'v1/');
 
@@ -91,6 +97,8 @@ define('GOOGLE_API_KEY', "AIzaSyAyz4YasoR0EijCBGKXHMgW3aTpdK0cuUA");
 require_once('../Libraries/image-resize/ImageResize.php');
 //Library for email sending
 include_once('../Libraries/smtp_mail/smtp_send.php');
+
+include_once('../Libraries/epayment/TreasuryPayment.php');
 
 //Class for PushNotification
 //include_once("../Libraries/android_push/android_notification.php");

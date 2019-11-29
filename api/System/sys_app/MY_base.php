@@ -132,6 +132,8 @@ class MY_base {
     public function generateApiKey() {
         return md5(uniqid(rand(), true));
     }
+    
+    
 
     public function decodeJson_array($arr, $decode_tag=false) {
         if (!empty($arr) && $decode_tag) {

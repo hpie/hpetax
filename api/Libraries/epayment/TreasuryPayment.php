@@ -14,10 +14,10 @@ protected $head="";
 * this function is used to initialize the class variable
 
 */
-function __construct($deptID="",$merchantCode="",$serviceCode="",$Head="",$ddo="",$postUrl="",$returnUrl)
+function __construct($deptID="",$merchantCode="",$serviceCode="",$Head="",$ddo="",$postUrl="",$returnUrl="")
 {
-if(empty($deptID) || empty($merchantCode) || empty($serviceCode) || empty($postUrl) || empty($returnUrl) || empty($Head) || empty($ddo))
-throw new Exception("parameters are missing.", 400);
+//if(empty($deptID) || empty($merchantCode) || empty($serviceCode) || empty($postUrl) || empty($returnUrl) || empty($Head) || empty($ddo))
+//throw new Exception("parameters are missing.", 400);
 $this->dept_id=$deptID;
 $this->merchant_code=$merchantCode;
 $this->service_code=$serviceCode;

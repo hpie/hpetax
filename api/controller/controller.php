@@ -22,11 +22,20 @@ class Controller extends Controllers {
     }    
     public function getCommodityList($table,$taxId) {       
         return $this->model->getCommodityList($table,$taxId);
-    }
-    
+    }    
     public function getTransactionListSearch($params) {        
         return $this->model->getTransactionListSearch($params);
-    }          
+    }    
+    public function addUpdateTransaction($params, $table) { 
+        if($this->model->getExistTransaction($params['tax_challan_id'])){
+            return FALSE;
+        }
+        else{
+            return $this->model->addTransaction($params, $table);
+        }
+        
+        
+    }
     
 }
 

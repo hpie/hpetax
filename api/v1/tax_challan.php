@@ -124,8 +124,7 @@ $APP->put('update-tax-challan', false, function() {
             global $VARS;
             global $ID;            
             $VARS=json_decode(file_get_contents("php://input"),true);            
-            issetID(); 
-            
+            issetID();             
             verifyRequiredParams(array('challan_title', 'depositors_name', 'depositors_phone', 'depositors_address','challan_location','challan_duration','challan_from_dt','challan_to_dt','challan_purpose','challan_amount','transaction_no','transaction_status','challan_status','type_code','created_by','modified_by', 'token', 'device'));
             if (!in_array($VARS['device'], array('iphone', 'android'))) {
                 return array(false, "device name is invalid", $data);
