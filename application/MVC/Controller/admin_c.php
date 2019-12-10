@@ -14,7 +14,6 @@ class admin_c extends Controllers {
         $this->data['TITLE'] = TITLE_DASHBOARD;
         loadview('dashboard/', 'dashboard.php', $this->data);
     }
-
 //**************************tax_master*******************//
     public function taxMasterList() {
         $result = $this->admin_m->getTaxMasterList();
@@ -223,13 +222,65 @@ class admin_c extends Controllers {
     }
     
     //**************************Reports*******************//
-    public function reports() {
-        $pending = $this->admin_m->getTaxTransactionStatus('PENDING');
-        $success = $this->admin_m->getTaxTransactionStatus('SUCCESS');
-        $failed = $this->admin_m->getTaxTransactionStatus('FAILED');        
+    public function reports($taxType) {
+        /*********all over reports********/
+        $taxTypeInArray=array();
+        $taxTypeList = $this->admin_m->getTaxTypeList();
+        if($taxType=="ALL"){
+            foreach ($taxTypeList as $row){
+                array_push($taxTypeInArray, $row['tax_type_id']);
+            }
+        }else{
+            $taxTypeInArray[0]=$taxType;
+        } 
+        $taxType = join("','",$taxTypeInArray); 
+        $pending = $this->admin_m->getTaxTransactionStatus('PENDING',$taxType);
+        $success = $this->admin_m->getTaxTransactionStatus('SUCCESS',$taxType);
+        $failed = $this->admin_m->getTaxTransactionStatus('FAILURE',$taxType);                                
         $this->data['pending'] = $pending;
         $this->data['success'] = $success;
         $this->data['failed'] = $failed;
+
+        /*********last five yearly reports********/         
+        $yearArray=array();  
+        $stsArray=array();  
+        $yearDate=date("Y");
+        for($i=4;$i>=0;$i--){
+            $row=array();
+            $yearArray[$i]=$yearDate-$i;             
+            $row['pendingYearly'] = $this->admin_m->getTaxTransactionStatusYearly('PENDING',$taxType,$yearArray[$i]);  
+            $row['successYearly'] = $this->admin_m->getTaxTransactionStatusYearly('SUCCESS',$taxType,$yearArray[$i]);
+            $row['failedYearly'] = $this->admin_m->getTaxTransactionStatusYearly('FAILURE',$taxType,$yearArray[$i]);   
+            array_push($stsArray,$row);
+        }
+        $this->data['yearArray'] = $yearArray;
+        $this->data['stsArray'] = $stsArray;
+        
+        /*********yearly reports month wise********/
+        $monthArray=array(); 
+        for($i=1;$i<=12;$i++){
+            $row=array();
+            $row['pendingYearly'] = $this->admin_m->getTaxTransactionStatusMonthly('PENDING',$taxType,$i);
+            $row['successYearly'] = $this->admin_m->getTaxTransactionStatusMonthly('SUCCESS',$taxType,$i);
+            $row['failedYearly'] = $this->admin_m->getTaxTransactionStatusMonthly('FAILURE',$taxType,$i);
+            array_push($monthArray,$row);
+        }        
+        $this->data['monthArray'] = $monthArray;              
+        /*********daily reports current month wise********/
+        $dayArray=array(); 
+        $day=date('t');
+        $month=date('m');
+        $year=date('Y');
+        for($i=1;$i<=$day;$i++){
+            $row=array();
+            $row['pendingYearly'] = $this->admin_m->getTaxTransactionStatusDaily('PENDING',$taxType,$i,$month,$year);
+            $row['successYearly'] = $this->admin_m->getTaxTransactionStatusDaily('SUCCESS',$taxType,$i,$month,$year);
+            $row['failedYearly'] = $this->admin_m->getTaxTransactionStatusDaily('FAILURE',$taxType,$i,$month,$year);
+            array_push($dayArray,$row);
+        }         
+        $this->data['dayArray'] = $dayArray;       
+        $this->data['totalday'] = $day;
+//        echo '<pre>';        print_r($dayArray);        
         $this->data['TITLE'] = TITLE_TAX_TRANSACTION_REPORTS;
         loadview('reports/', 'reports.php', $this->data);
     }
@@ -271,12 +322,12 @@ class admin_c extends Controllers {
             redirect(ADMIN_TAX_DEALER_CREDENTIAL_EDIT_FORM_LINK.$Id);
         }
         $password=$_POST['tax_dealer_password'];
+        $username=$_POST['tax_dealer_code'];        
+                
         $_POST['tax_dealer_password']= md5($_POST['tax_dealer_password']);                       
         $result = $this->admin_m->editTaxDealerCredential($_POST,$Id);
-        if ($result) {                                                      
-            $username=$_POST['tax_dealer_code'];
-            $password=$_POST['tax_dealer_password'];
-            
+        if ($result) { 
+           
             $to = $email;
             $subject = 'Credential';
             $headers = "From: " . strip_tags('hpetax@hpie.in') . "\r\n";
@@ -299,6 +350,102 @@ class admin_c extends Controllers {
             redirect(ADMIN_TAX_DEALER_CREDENTIAL_EDIT_FORM_LINK.$Id);
         }
     }
+    
+    //**************************Employee*******************//
+    public function employeeList() {
+        $this->data['TITLE'] = TITLE_TAX_EMPLOYEE_LIST;
+        loadview('employee/', 'empList.php', $this->data);
+    }
+     public function employeeAddForm() {       
+        $this->data['TITLE'] = TITLE_TAX_EMPLOYEE_ADD_FORM;
+        loadview('employee/', 'add.php', $this->data);
+    }
+     public function employeeInsert() {  
+        $existRecord2 = $this->admin_m->getExistRecordByColumn($_POST['tax_employee_code'], 'tax_employee_code', 'tax_employee'); 
+        $existRecord = $this->admin_m->getExistRecordByColumn($_POST['tax_employee_mobile'], 'tax_employee_mobile', 'tax_employee');
+        $existRecord1 = $this->admin_m->getExistRecordByColumn($_POST['tax_employee_email'], 'tax_employee_email', 'tax_employee');
+        if ($existRecord2) {
+            $_SESSION['data'] = $_POST;
+            $_SESSION['empCodeExist'] = 1;
+            redirect(ADMIN_TAX_EMPLOYEE_ADD_FORM_LINK);
+        }
+         if ($existRecord) {
+            $_SESSION['data'] = $_POST;
+            $_SESSION['empMobileExist'] = 1;
+            redirect(ADMIN_TAX_EMPLOYEE_ADD_FORM_LINK);
+        }
+        if ($existRecord1) {
+            $_SESSION['data'] = $_POST;
+            $_SESSION['empEmailExist'] = 1;
+            redirect(ADMIN_TAX_EMPLOYEE_ADD_FORM_LINK);
+        }
+        $username=$_POST['tax_employee_code'];
+        $password=$_POST['tax_employee_password'];
+        $_POST['tax_employee_password']= md5($_POST['tax_employee_password']);   
+        $result = $this->admin_m->employeeInsert($_POST);
+        if ($result['res'] == 1 || !empty($result['id'])) {                       
+            
+            $to = $_POST['tax_employee_email'];
+            $subject = 'Credential';
+            $headers = "From: " . strip_tags('hpetax@hpie.in') . "\r\n";
+            $headers .= "Reply-To: ". strip_tags('hpetax@hpie.in') . "\r\n";           
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n"; 
+            $message = '<html><body>';
+            $message .= "<b>username</b> : $username <br>";
+            $message .= "<b>Password</b> : $password";
+            $message .= '</body></html>';
+            mail($to, $subject, $message, $headers);
+            
+            $_SESSION['adddata'] = 1;
+            redirect(ADMIN_TAX_EMPLOYEE_LIST_LINK);
+        } else {
+            $_SESSION['data'] = $_POST;
+            $_SESSION['Error'] = 1;
+            redirect(ADMIN_TAX_EMPLOYEE_ADD_FORM_LINK);
+        }
+    }
+     public function employeeEditForm($id) {        
+        $result = $this->admin_m->getSingleRecordById($id, 'tax_employee_id', 'tax_employee');
+        $this->data['result'] = $result;
+        $this->data['TITLE'] = TITLE_TAX_EMPLOYEE_EDIT_FORM;
+        loadview('employee/', 'edit.php', $this->data);
+    }
+       public function editEmployee($Id) {
+        $code_exist = $this->admin_m->getExistRecordByColumnUk1($Id, $_POST['tax_employee_code'], 'tax_employee_code', 'tax_employee');   
+        $email_exist = $this->admin_m->getExistRecordByColumnUk1($Id, $_POST['tax_employee_email'], 'tax_employee_email', 'tax_employee');
+        $mobile_exist = $this->admin_m->getExistRecordByColumnUk1($Id, $_POST['tax_employee_mobile'], 'tax_employee_mobile', 'tax_employee');
+         if ($code_exist) {
+            $_SESSION['empCodeExist'] = 1;            
+            redirect(ADMIN_TAX_EMPLOYEE_EDIT_FORM_LINK.$Id);
+        }
+        if ($mobile_exist) {
+            $_SESSION['empMobileExist'] = 1;            
+            redirect(ADMIN_TAX_EMPLOYEE_EDIT_FORM_LINK.$Id);
+        }
+        if ($email_exist) {
+            $_SESSION['empEmailExist'] = 1;            
+            redirect(ADMIN_TAX_EMPLOYEE_EDIT_FORM_LINK.$Id);
+        }
+        $result = $this->admin_m->editemployee($_POST,$Id);
+        if ($result) {
+            $_SESSION['dataupdate'] = 1;
+            redirect(ADMIN_TAX_EMPLOYEE_LIST_LINK);
+        } else {
+            $_SESSION['Error'] = 1;
+            redirect(ADMIN_TAX_EMPLOYEE_EDIT_FORM_LINK.$Id);
+        }        
+    }
+    public function approve_employee(){
+        if(isset($_POST['tax_employee_id'])){            
+            $res = $this->admin_m->approve_employee($_POST['tax_employee_status'],$_POST['tax_employee_id']);
+            if($res){
+                $data = array(
+                    'suceess' => true
+                );
+            }
+            echo json_encode($data);
+        }
+    }  
 }
-
 ?>

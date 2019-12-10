@@ -23,6 +23,7 @@ define('PAYMENT_POST_API_URL',BASE_URL_API.'api/v1/transactionlist/hpetax-paymen
 define('FRONT_EPAYMENT_UNREGISTERE', BASE_URL.'epayment');
 define('FRONT_EPAYMENT_TREASURY', BASE_URL.'epaymenttreasury');
 define('FRONT_MAKE_EPAYMENT_TREASURY', BASE_URL.'makepayment');
+define('FRONT_VIEW_CHALLAN', BASE_URL.'viewChallan/');
 define('FRONT_ADD_CHALLAN_LINK', BASE_URL.'addChalan');
 define('FRONT_COMMODITY_LIST_LINK', BASE_URL ."front-commodity-list-ajax");
 define('FRONT_COMMODITY_FIELD_LINK', BASE_URL ."front-commodity-field-ajax");
@@ -42,6 +43,7 @@ define('LOGOUT_DEALER', BASE_URL ."logout-dealer");
 
 //**************************Front Title*********************//
 define('TITLE_FRONT_EPAYMENT_UNREGISTER', "e-payment");
+define('TITLE_FRONT_VIEW_CHALLAN', "view challan");
 define('TITLE_FRONT_MAKE_EPAYMENT', "makepayment");
 define('TITLE_FRONT_EPAYMENT_TREASURY', "e-payment treasury");
 define('TITLE_FRONT_COMMON','Welcome to hptax.gov.in');
@@ -89,6 +91,14 @@ define('ADMIN_TAX_COMMODITY_INSERT_LINK', BASE_URL."tax-commodity-insert");
 define('ADMIN_TAX_COMMODITY_EDIT_FORM_LINK', BASE_URL."tax-commodity-edit-form/");
 define('ADMIN_TAX_COMMODITY_EDIT_LINK', BASE_URL."tax-commodity-edit/");
 
+//**************************tax_employee*******************//
+define('ADMIN_TAX_EMPLOYEE_LIST_LINK', BASE_URL."employee-list");
+define('ADMIN_TAX_EMPLOYEE_ADD_FORM_LINK', BASE_URL."employee-add-form");
+define('ADMIN_TAX_EMPLOYEE_EDIT_FORM_LINK', BASE_URL."employee-edit-form/");
+define('ADMIN_TAX_EMPLOYEE_EDIT_LINK', BASE_URL."employee-edit/");
+define('ADMIN_EMPLOYEE_APPROVE_LINK',BASE_URL."/employee-approve");
+
+
 //**************************tax_dealer credential*******************//
 define('ADMIN_TAX_DEALER_LIST_LINK', BASE_URL."dealer-list");
 define('ADMIN_TAX_DEALER_PENDING_LIST_LINK', BASE_URL."dealer-list-pending");
@@ -100,8 +110,13 @@ define('ADMIN_TAX_DEALER_CREDENTIAL_EDIT_LINK', BASE_URL."tax-delaer-credential-
 
 //**************************reports*******************//
 define('TITLE_TAX_TRANSACTION_REPORTS', "Tax Transaction Reports");
-define('ADMIN_TAX_REPORTS_LINK', BASE_URL."tax-reports");
+define('ADMIN_TAX_REPORTS_LINK', BASE_URL."tax-reports/");
+define('ADMIN_TAX_EMPLOYEE_INSERT_LINK', BASE_URL."employee-insert");
 
 define('TITLE_TAX_DEALER_LIST', "Tax Dealer List");
 define('TITLE_TAX_DEALER_LIST_PENDING', "Tax Dealer List Pending");
+
+define('TITLE_TAX_EMPLOYEE_LIST', "Employee List");
+define('TITLE_TAX_EMPLOYEE_ADD_FORM', "Employee Add");
+define('TITLE_TAX_EMPLOYEE_EDIT_FORM', "Employee Edit");
 ?>

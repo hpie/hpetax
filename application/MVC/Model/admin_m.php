@@ -75,7 +75,7 @@ class admin_m extends Models {
     public function editTaxMaster($params,$id) {
         $columnsdesc = $this->updateMaker($params);
         if ($columnsdesc) {
-            $q = "UPDATE tax_master SET $columnsdesc WHERE tax_master_id=$id";
+            $q = "UPDATE tax_master SET $columnsdesc WHERE tax_master_id='$id'";
             return $this->query->update($q);
         }
         return FALSE;
@@ -104,7 +104,7 @@ class admin_m extends Models {
     public function editTaxType($params, $id) {
         $columnsdesc = $this->updateMaker($params);
         if ($columnsdesc) {
-            $q = "UPDATE tax_type SET $columnsdesc WHERE tax_type_id=$id";
+            $q = "UPDATE tax_type SET $columnsdesc WHERE tax_type_id='$id'";
             return $this->query->update($q);
         }
         return FALSE;
@@ -138,11 +138,48 @@ class admin_m extends Models {
     } 
     
     //**************************tax_transaction quee*******************//
-      public function getTaxTransactionStatus($status) {
-        $q = "SELECT COUNT(tax_transaction_status) as status FROM tax_transaction_queue WHERE tax_transaction_status='$status'";
+    public function getTaxTransactionStatus($status,$taxType) {
+        $q =    "SELECT COUNT(ttq.tax_transaction_status) as totalStatus, SUM(ttq.tax_payment_amount) as totalamount FROM tax_transaction_queue ttq
+                INNER JOIN tax_challan tc
+                ON tc.tax_challan_id=ttq.tax_challan_id
+                WHERE ttq.tax_transaction_status='$status' AND tc.tax_type_id IN('$taxType')";
         $result = $this->query->select($q);
         if ($row = $this->query->fetch($result)) {
-            return $row['status'];
+            return $row;
+        }
+        return false;
+    }
+    public function getTaxTransactionStatusYearly($status,$taxType,$year) {
+        $year2=$year+1;
+        $q =    "SELECT COUNT(ttq.tax_transaction_status) as totalStatus, SUM(ttq.tax_payment_amount) as totalamount FROM tax_transaction_queue ttq
+                INNER JOIN tax_challan tc
+                ON tc.tax_challan_id=ttq.tax_challan_id
+                WHERE ttq.tax_transaction_status='$status' AND tc.tax_type_id IN('$taxType') AND (ttq.tax_transaction_dt BETWEEN '$year-04-01' AND '$year2-03-31')";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row;
+        }
+        return false;
+    }
+    public function getTaxTransactionStatusMonthly($status,$taxType,$month) {        
+        $q =    "SELECT COUNT(ttq.tax_transaction_status) as totalStatus, SUM(ttq.tax_payment_amount) as totalamount FROM tax_transaction_queue ttq
+                INNER JOIN tax_challan tc
+                ON tc.tax_challan_id=ttq.tax_challan_id
+                WHERE ttq.tax_transaction_status='$status' AND tc.tax_type_id IN('$taxType') AND month(ttq.tax_transaction_dt) = '$month'";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row;
+        }
+        return false;
+    }
+    public function getTaxTransactionStatusDaily($status,$taxType,$day,$month,$year) {        
+        $q =    "SELECT COUNT(ttq.tax_transaction_status) as totalStatus, SUM(ttq.tax_payment_amount) as totalamount FROM tax_transaction_queue ttq
+                INNER JOIN tax_challan tc
+                ON tc.tax_challan_id=ttq.tax_challan_id
+                WHERE ttq.tax_transaction_status='$status' AND tc.tax_type_id IN('$taxType') AND DATE(ttq.tax_transaction_dt) = '$year-$month-$day'";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row;
         }
         return false;
     }
@@ -159,11 +196,37 @@ class admin_m extends Models {
     public function editTaxDealerCredential($params, $id) {
         $columnsdesc = $this->updateMaker($params);
         if ($columnsdesc) {
-            $q = "UPDATE tax_dealer SET $columnsdesc WHERE tax_dealer_id=$id";
+            $q = "UPDATE tax_dealer SET $columnsdesc WHERE tax_dealer_id='$id'";
             return $this->query->update($q);
         }
         return FALSE;
     } 
+    
+     /*************************employee**************************/
+     public function employeeInsert($params) {
+        $columns = $this->insertMaker($params, $values);
+        if ($columns) {
+            $q = "INSERT INTO tax_employee($columns) values($values)";
+            $id = $this->query->insert($q);            
+            return $id;
+        }
+        return FALSE;
+    }
+    public function editemployee($params, $id) {
+        $columnsdesc = $this->updateMaker($params);
+        if ($columnsdesc) {
+            $q = "UPDATE tax_employee SET $columnsdesc WHERE tax_employee_id='$id'";
+            return $this->query->update($q);
+        }
+        return FALSE;
+    } 
+     public function approve_employee($status,$id) {
+//        $columnsdesc = $this->updateMaker($params);
+            $q = "UPDATE tax_employee SET tax_employee_status='$status' WHERE tax_employee_id='$id'";
+            if($q)
+            return $this->query->update($q);
+        return FALSE;
+    }
     
 }
 

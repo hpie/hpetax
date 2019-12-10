@@ -30,26 +30,33 @@ $APP->get('hpetax-payment', false, function() use($APP) {
             $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";             
             $url_components = parse_url(urldecode($actual_link));
             parse_str($url_components['query'], $params);
-            if(empty($params['challan_id']) || empty($params['depositorname']) || empty($params['amount']) || empty($params['token']) || empty($params['device'])){
+            if(empty($params['head']) || empty($params['DeptRefNo']) || empty($params['ddo']) || empty($params['challan_id']) || empty($params['depositorname']) || empty($params['PeriodFrom']) || empty($params['PeriodTo']) || empty($params['amount']) || empty($params['token']) || empty($params['device'])){
                 $message = 'Required field(s) is missing or empty';
                 $APP->stop(array(false, $message, NULL));
             }
             if (!in_array($params['device'], array('iphone', 'android','web'))) {
                 return array(false, "device name is invalid", $data);
-            }          
+            } 
+            $head=$params['head'];
+            $ddo=$params['ddo'];
+            
+//            echo $ddo;die;
+            
             $challan_amount=$params['amount'];
             $depositors_name=$params['depositorname'];
             $challan_id=$params['challan_id'];
+            $PeriodFrom=dateFormatterDMY($params['PeriodFrom']);
+            $PeriodTo=dateFormatterDMY($params['PeriodTo']);
             $subId= subId(); 
-            $refnum= subId();
-            
+            $refnum= $params['DeptRefNo'];
             if($params['device']=='web'){
                 $returnURL=BASE_URL."payment/updateTreasuryPayment/".$challan_id;
             }else{            
                 $returnURL=BASE_URL_API."transactionlist/return-hpetax-payment/".$challan_id;
             }
-            $payment = new TreasuryPayment(114, "HIMKOSH114", "ETO", "0039-00-102-01", "CTO00-012","https://himkosh.hp.nic.in/echallan/WebPages/wrfApplicationRequest.aspx","$returnURL");
-            $mString = $payment->constructRequestedString($challan_amount,$refnum,$subId,"$depositors_name");
+            $payment = new TreasuryPayment(114, "HIMKOSH114", "ETO", "$head", "$ddo","https://himkosh.hp.nic.in/echallan/WebPages/wrfApplicationRequest.aspx","$returnURL");
+            $mString = $payment->constructRequestedString($challan_amount,$refnum,$subId,"$depositors_name",$PeriodFrom,$PeriodTo);
+//            echo $mString;die;
             $encryptedString = $payment->genEncryptedString($mString);
             $deCryptedString = $payment->genDecryptedString($encryptedString);                         
             if($encryptedString){
@@ -79,6 +86,9 @@ $APP->post('return-hpetax-payment', false, function() use($APP) {
             $payment = new TreasuryPayment();
             $deCryptedString = $payment->genDecryptedString($encryptedString);
             $params=explode("|", $deCryptedString);
+            
+//            print_r($params);die;
+            
             $resultArray=array();
             foreach ($params as $row){
                 $resultParams=explode('=', $row);
@@ -97,7 +107,7 @@ $APP->post('return-hpetax-payment', false, function() use($APP) {
             $insertParams['tax_challan_himgrn']=$resultArray['EchTxnId'];
             $insertParams['tax_challan_brn']=$resultArray['BankCIN'];            
             $insertParams['tax_transaction_status']=$resultArray['Status'];
-            $insertParams['tax_challan_himgrn']=$resultArray['AppRefNo'];
+            $insertParams['tax_AppRefNo']=$resultArray['AppRefNo'];
             $insertParams['tax_payment_amount']=$resultArray['Amount'];
             $insertParams['tax_payment_dt']=$resultArray['Payment_date'];
             $insertParams['tax_transaction_dept']=$resultArray['DeptRefNo'];
@@ -106,19 +116,40 @@ $APP->post('return-hpetax-payment', false, function() use($APP) {
             $insertParams['tax_challan_id']=$ID;
             $insertParams['created_by'] ="SYSTEM";  
             $insertParams['modified_by'] = "SYSTEM";              
-            $res = $controller->addUpdateTransaction($insertParams,'tax_transaction_queue');             
+            $res = $controller->addUpdateTransaction($insertParams,'tax_transaction_queue');
+            $chalanRes = $controller->getSingleRecordById('tax_challan',$ID);
+            
+//            print_r($chalanRes);die;
+            
+            $echTxnId=$resultArray['EchTxnId'];      
+            $status=$resultArray['Status'];
+            $challanURL='https://himkosh.hp.nic.in/eChallan/challan_reports/reportViewer.aspx?reportName=PaidChallan&TransId='.$echTxnId;
+            $to = $chalanRes['tax_depositors_email'];
+            $subject = 'Tax transaction status';
+            $headers = "From: " . strip_tags('hpetax@hpie.in') . "\r\n";
+            $headers .= "Reply-To: ". strip_tags('hpetax@hpie.in') . "\r\n";           
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n"; 
+            $message = '<html><body>';
+            $message .= "<b>Transaction Status</b> : $status <br>";
+            $message .= "<b>Your EchTxnId</b> : $echTxnId <br>";
+            $message .= "<b>Tax challan ID</b> : $ID <br>";
+            $message .= "<b>Viwe challan</b> : <a href='$challanURL'>click to Open challan pdf</a>";
+            $message .= '</body></html>';
+            mail($to, $subject, $message, $headers);
+            $data['Result']=0;
             if($res){
                 $taxChallanArray=array();
                 $taxChallanArray['tax_transaction_no']=$res;
                 $taxChallanArray['tax_transaction_status']=$resultArray['Status'];
-                DEFAULT_PUT_METHOD('tax_challan',$insertParams,$ID,false,"tax_challan_id");
+                DEFAULT_PUT_METHOD('tax_challan',$taxChallanArray,$ID,false,"tax_challan_id");
                 $data['Result']=$ID;
                 return array(true, "Transaction added successfully", $data);
             }
             if($res==FALSE){
                 $taxChallanArray=array();                
                 $taxChallanArray['tax_transaction_status']=$resultArray['Status'];
-                DEFAULT_PUT_METHOD('tax_challan',$insertParams,$ID,false,"tax_challan_id");
+                DEFAULT_PUT_METHOD('tax_challan',$taxChallanArray,$ID,false,"tax_challan_id");
                 return DEFAULT_PUT_METHOD('tax_transaction_queue',$insertParams,$ID,false,"tax_challan_id");
             }
             return array(false, "Transaction process failed", $data);

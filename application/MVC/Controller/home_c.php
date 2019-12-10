@@ -229,11 +229,17 @@ EOF;
             $dealerDetails = $this->home_m->getDealerDetails($_SESSION['dealerDetails']['tax_dealer_id']);
             $this->data['dealerDetails'] = $dealerDetails;
         }
-        $result = $this->home_m->getTaxDetails($_SESSION['unregistered']);
+        $result = $this->home_m->getTaxDetails($_SESSION['unregistered']);  
+        $locationDDO = $this->home_m->getLocationDDO();  
+        $headReceipt = $this->home_m->receiptHead();  
+        $comodityHead = $this->home_m->getTaxDetailsComodityHead($_SESSION['unregistered']);
         $total = $this->home_m->getTaxTotal($_SESSION['unregistered']);
         $this->data['TITLE'] = TITLE_FRONT_EPAYMENT_TREASURY;
         $this->data['total'] = $total;
         $this->data['result'] = $result;
+        $this->data['comodityHead'] = $comodityHead;
+        $this->data['locationDDO'] = $locationDDO;
+        $this->data['headReceipt'] = $headReceipt;
         loadviewFront('front/', 'epaymenttreasury.php', $this->data);
     }
 
@@ -250,8 +256,7 @@ EOF;
         $newArray['html'] = $html;
         echo json_encode($newArray);
         die;
-    }
-
+    }     
     public function uiRender($id) {
         $str = '';
         if ($id == 'AG') {
@@ -320,17 +325,33 @@ EOF;
         $result = $this->home_m->commodityFieldAjax($commodityId);
         $html = '';
         if (!empty($result)) {
-            if (($result['tax_commodity_rate_unit']) > 0 && ($result['tax_commodity_isdistancedependent']) == 'NO') {
+            if($result['tax_commodity_taxcalculation']=='BY_COUNT')  {
+                if (($result['tax_commodity_rate_unit']) > 0 && ($result['tax_commodity_isdistancedependent']) == 'NO') {
                 $html .= '<tr class="removetr2">
                         <td>&nbsp;</td>
                         <td>Weight*</td>
-                        <td><input type="text" id="rateunit" class="clearalltext" required="required">&nbsp;&nbsp;<input type="text" class="clearalltext" value="' . $result['tax_commodity_unit_measure'] . '" id="mesuare" required="required" readonly></td>
+                        <td><input type="text" id="rateunit" class="clearalltext" required="required">&nbsp;&nbsp;<input type="text" class="clearalltext" value="Kg" id="mesuare" required="required" readonly></td>
                         <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>Quantity ('.$result['tax_commodity_unit_measure'].')*</td>
+                        <td><input type="text" id="quintityBY_COUNT" class="clearalltext" required="required"></td>                        
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>';
+                }
+            }          
+            if($result['tax_commodity_taxcalculation']=='BY_WEIGHT')  {
+                if (($result['tax_commodity_rate_unit']) > 0 && ($result['tax_commodity_isdistancedependent']) == 'NO') {
+                    $html .= '<tr class="removetr2">
+                            <td>&nbsp;</td>
+                            <td>Weight*</td>
+                            <td><input type="text" id="rateunit" class="clearalltext" required="required">&nbsp;&nbsp;<input type="text" class="clearalltext" value="' . $result['tax_commodity_unit_measure'] . '" id="mesuare" required="required" readonly></td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>';
+                }
             }
         }
         $newArray = array();
@@ -340,21 +361,22 @@ EOF;
         echo json_encode($newArray);
         die;
     }
-
     public function addTaxItemQueAjax() {
         $newArray = array();
         $html = '';
         $existcomodity = $this->home_m->checkExistCommodityForAddNewTax($_POST['taxtypeid'], $_POST['commodityid'], $_SESSION['unregistered']);
         if (empty($existcomodity)) {
             $params = array();
+            $params['tax_item_quantity'] = $_POST['quintityBY_COUNT'];
+            
             if ($_POST['noofpassenger'] != 0) {
                 $params['tax_item_quantity'] = $_POST['noofpassenger'];
-            }
+            }            
             $params['tax_queue_session'] = $_SESSION['unregistered'];
             $params['tax_type_name'] = $this->home_m->getTaxTypeName($_POST['taxtypeid']);
             $params['tax_commodity_name'] = $this->home_m->getCommodityName($_POST['commodityid']);
             $params['tax_vehicle_number'] = $_POST['vehicleno'];
-            $params['tax_item_weight'] = $_POST['weight'];
+            $params['tax_item_weight'] = $_POST['weight'];           
             $params['tax_item_weight_units'] = $_POST['mesuare'];
             $params['tax_item_source_location'] = $_POST['sourcelocation'];
             $params['tax_item_destination_location'] = $_POST['destinationlocation'];
@@ -399,6 +421,7 @@ EOF;
         $existcomodity = $this->home_m->checkExistCommodityForAddNewTaxByTaxItemQueeId($_POST['taxtypeid'], $_POST['commodityid'], $_POST['tax_item_quee_id']);
         if (empty($existcomodity)) {
             $params = array();
+            $params['tax_item_quantity'] = $_POST['quintityBY_COUNT'];
             if ($_POST['noofpassenger'] != 0) {
                 $params['tax_item_quantity'] = $_POST['noofpassenger'];
             }
@@ -464,19 +487,24 @@ EOF;
         echo json_encode($newArray);
         die;
     }
-
     public function getModifyTaxItemQueAjax() {
         $id = $_POST['id'];
         $result = $this->home_m->getModifyTaxItemQueAjax($id);
         $newArray = array();
-        if (!empty($result)) {
+        if (!empty($result)) {            
             $newArray['result'] = 'success';
             $commodity = $this->home_m->commodityListAjax($result['tax_type_id']);
+            foreach ($commodity as $row){
+                if($result['tax_commodity_id']==$row['tax_commodity_id']){
+                    $hiderate=$row['tax_commodity_rate'];
+                    $tax_commodity_rate_unit=$row['tax_commodity_rate_unit'];
+                }
+            }
             $html = $this->modifyUiRender($result);
-
             $newArray['taxtype_id'] = $result['tax_type_id'];
             $newArray['commodity_id'] = $result['tax_commodity_id'];
-            $newArray['hiderate'] = $result['tax_item_tax_amount'];
+            $newArray['hiderate'] = $hiderate;
+            $newArray['tax_commodity_rate_unit'] = $tax_commodity_rate_unit;
             $newArray['html'] = $html['htmlstr'];
             $newArray['commodityhtml'] = $html['htmlcommodity'];
             $newArray['commodity'] = $commodity;
@@ -493,21 +521,35 @@ EOF;
         $id = $res['tax_type_id'];
         $str = '';
         $result = $this->home_m->commodityFieldAjax($res['tax_commodity_id']);
-        // print_r($result);
-        $html = '';
-        if (($result['tax_commodity_rate_unit']) > 0 && ($result['tax_commodity_isdistancedependent']) == 'NO') {
-            $html .= '<tr class="removetr2">
+        $html = '';        
+        if($result['tax_commodity_taxcalculation']=='BY_COUNT')  {
+                if (($result['tax_commodity_rate_unit']) > 0 && ($result['tax_commodity_isdistancedependent']) == 'NO') {
+                $html .= '<tr class="removetr2">
                         <td>&nbsp;</td>
                         <td>Weight*</td>
-                        <td><input type="text" id="rateunit" class="clearalltext" required="required" value="' . $res['tax_item_weight'] . '">&nbsp;&nbsp;<input type="text" class="clearalltext" value="' . $result['tax_commodity_unit_measure'] . '" id="mesuare" required="required" readonly></td>
+                        <td><input type="text" id="rateunit" class="clearalltext" required="required" value="' . $res['tax_item_weight'] . '">&nbsp;&nbsp;<input type="text" class="clearalltext" value="Kg" id="mesuare" required="required" readonly></td>
                         <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>Quantity ('.$result['tax_commodity_unit_measure'].')*</td>
+                        <td><input type="text" id="quintityBY_COUNT" class="clearalltext" required="required" value="' . $res['tax_item_quantity'] . '"></td>                        
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>';
-        }
-
+                }
+            }          
+            if($result['tax_commodity_taxcalculation']=='BY_WEIGHT')  {
+                if (($result['tax_commodity_rate_unit']) > 0 && ($result['tax_commodity_isdistancedependent']) == 'NO') {
+                    $html .= '<tr class="removetr2">
+                            <td>&nbsp;</td>
+                            <td>Weight*</td>
+                            <td><input type="text" id="rateunit" class="clearalltext" required="required" value="' . $res['tax_item_weight'] . '">&nbsp;&nbsp;<input type="text" class="clearalltext" value="' . $result['tax_commodity_unit_measure'] . '" id="mesuare" required="required" readonly></td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>';
+                }
+            }
         if ($id == 'AG') {
             $str .= '<tr class="removetr">
                         <td>&nbsp;</td>
@@ -577,11 +619,14 @@ EOF;
     }
 
     public function addChalan() {
-        $challan_id = gen_uuid();
+        $challan_id = gen_uuid();        
+        $mainHead=$_POST['tax_type_head'].'-'.$_POST['tax_commodity_head'].'-'.$_POST['challan_receipt_head'];
+        $ddo=$_POST['challan_ddo'];                
         $challan_title = $_POST['challan_title'];
         $tax_dealer_id = $_POST['tax_dealer_id'];
         $depositors_name = $_POST['depositors_name'];
         $depositors_phone = $_POST['depositors_phone'];
+        $depositors_email = $_POST['depositors_email'];
         $depositors_city = $_POST['depositors_city'];
         $depositors_zip = $_POST['depositors_zip'];
         $depositors_address = $_POST['depositors_address'];
@@ -609,7 +654,7 @@ EOF;
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "{\t\"challan_id\":\"$challan_id\",\r\n\t\"challan_title\":\"$challan_title\",\r\n\t\"tax_dealer_id\":\"$tax_dealer_id\",\r\n\t\"depositors_name\":\"$depositors_name\",\r\n\t\"depositors_phone\":\"$depositors_phone\",\r\n\t\"depositors_city\":\"$depositors_city\",\r\n\t\"depositors_zip\":\"$depositors_zip\",\r\n\t\"depositors_address\":\"$depositors_address\",\r\n\t\"challan_location\":\"$challan_location\",\r\n\t\"challan_duration\":\"$challan_duration\",\r\n\t\"challan_from_dt\":\"$challan_from_dt\",\r\n\t\"challan_to_dt\":\"$challan_to_dt\",\r\n\t\"challan_purpose\":\"$challan_purpose\",\r\n\t\"challan_amount\":\"$challan_amount\",\r\n\t\"transaction_no\":\"$transaction_no\",\r\n\t\"transaction_status\":\"$transaction_status\",\r\n\t\"challan_status\":\"$challan_status\",\r\n\t\"type_code\":\"$type_code\",\r\n\t\"created_by\":\"vasim\",\r\n\t\"modified_by\":\"vasim\",\r\n\t\"token\":\"123\",\r\n\t\"device\":\"android\"\r\n}",
+            CURLOPT_POSTFIELDS => "{\t\"challan_id\":\"$challan_id\",\r\n\t\"challan_title\":\"$challan_title\",\r\n\t\"tax_dealer_id\":\"$tax_dealer_id\",\r\n\t\"depositors_name\":\"$depositors_name\",\r\n\t\"depositors_phone\":\"$depositors_phone\",\r\n\t\"depositors_email\":\"$depositors_email\",\r\n\t\"depositors_city\":\"$depositors_city\",\r\n\t\"depositors_zip\":\"$depositors_zip\",\r\n\t\"depositors_address\":\"$depositors_address\",\r\n\t\"challan_location\":\"$challan_location\",\r\n\t\"challan_duration\":\"$challan_duration\",\r\n\t\"challan_from_dt\":\"$challan_from_dt\",\r\n\t\"challan_to_dt\":\"$challan_to_dt\",\r\n\t\"challan_purpose\":\"$challan_purpose\",\r\n\t\"challan_amount\":\"$challan_amount\",\r\n\t\"transaction_no\":\"$transaction_no\",\r\n\t\"transaction_status\":\"$transaction_status\",\r\n\t\"challan_status\":\"$challan_status\",\r\n\t\"type_code\":\"$type_code\",\r\n\t\"created_by\":\"vasim\",\r\n\t\"modified_by\":\"vasim\",\r\n\t\"token\":\"123\",\r\n\t\"device\":\"android\"\r\n}",
         ));
         $response = curl_exec($curl);
         $err = curl_error($curl);
@@ -661,10 +706,17 @@ EOF;
                         echo "cURL Error #:" . $err;
                     }
                 }
+                
+                if(isset($_SESSION['dealerDetails']['tax_dealer_id'])){
+                    $DeptRefNo=$_SESSION['dealerDetails']['tax_dealer_code'];                    
+                }else{
+                    $DeptRefNo=111111;
+                }                
                 $curl = curl_init();
-                $urlStr = "challan_id=" . $challan_id . "&depositorname=" . $depositors_name . "&amount=" . $challan_amount . "&token=123&device=web";
+                $urlStr = "challan_id=" . $challan_id . "&depositorname=" . $depositors_name . "&amount=" . $challan_amount . "&PeriodFrom=" .$challan_from_dt. "&PeriodTo=" .$challan_to_dt. "&head=" .$mainHead. "&ddo=" .$ddo. "&DeptRefNo=" .$DeptRefNo. "&token=123&device=web";
                 $url = urlencode($urlStr);
-                $url = PAYMENT_POST_API_URL . '?' . $url;
+                $url = PAYMENT_POST_API_URL . '?' . $url;               
+                
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => $url,
                     CURLOPT_RETURNTRANSFER => true,
@@ -675,6 +727,7 @@ EOF;
                     CURLOPT_CUSTOMREQUEST => "GET",
                 ));
                 $response2 = curl_exec($curl);
+//                print_r($response2);die;
                 $err = curl_error($curl);
                 curl_close($curl);
                 $res2 = json_decode($response2);
@@ -709,14 +762,19 @@ EOF;
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_POSTFIELDS => "{\t\"encdata\":\"$encdata\",\r\n\t\"token\":\"123\",\r\n\t\"device\":\"android\"\r\n}",
         ));
-        $response2 = curl_exec($curl);               
+        $response2 = curl_exec($curl);                  
         $err = curl_error($curl);
         curl_close($curl);
         $res2 = json_decode($response2);
         if ($err) {
             echo "cURL Error #:" . $err;
         }
-        print_r($res2);die;
+        redirect(FRONT_VIEW_CHALLAN.$res2->Result);        
+    }
+    
+    public function viewChallan($chalanId) {
+        $this->data['TITLE'] = TITLE_FRONT_VIEW_CHALLAN;
+        loadviewFront('front/', 'viewchallan.php', $this->data);
     }
 
     public function signupform() {

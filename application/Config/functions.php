@@ -66,11 +66,11 @@ function dateFormatterComma($old_date) {
     return $new_date;
 }
 
-function dateFormatterMysql($old_date) {
-    $date = date_create($old_date);
-    $old_date = new DateTime("$date");
+function dateFormatterMysql($old_date) {    
+    $old_date = str_replace('/', '-', $old_date);
+//    echo date('Y-m-d', strtotime($date));    
+    $old_date = date_create($old_date.' 00:00:00');
     $new_date = date_format($old_date, 'Y-m-d');
-    // echo $new_date;die;
     return $new_date;
 }
 

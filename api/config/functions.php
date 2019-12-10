@@ -11,4 +11,10 @@ function dateFormatterMysql($old_date) {
     $new_date = date_format($date, "Y-m-d");
     return $new_date;
 }
+function dateFormatterDMY($old_date) {   
+//    echo $old_date;die;
+    $date = date_create($old_date.' 00:00:00');
+    $new_date = date_format($date, 'd-m-Y');
+    return $new_date;
+}
 ?>

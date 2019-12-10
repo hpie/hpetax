@@ -16,13 +16,15 @@
             </li>                                   
             <li><a><i class="fa fa-file"></i> Reports <span class="fa fa-chevron-right"></span></a>
                 <ul class="nav child_menu" style="display: none">
-                    <li><a href="<?php echo ADMIN_TAX_REPORTS_LINK; ?>">AG Reports</a>
+                    <li><a href="<?php echo ADMIN_TAX_REPORTS_LINK; ?>ALL">ALL Reports</a>
                     </li>
-                    <li><a href="<?php echo ADMIN_BANNER_LIST_LINK; ?>">PGT Reports</a>
+                    <li><a href="<?php echo ADMIN_TAX_REPORTS_LINK; ?>AG">AG Reports</a>
                     </li>
-                    <li><a href="<?php echo ADMIN_PICTURES_LIST_LINK; ?>">PTCG Reports</a>
+                    <li><a href="<?php echo ADMIN_TAX_REPORTS_LINK; ?>PGT">PGT Reports</a>
                     </li>
-                    <li><a href="<?php echo ADMIN_TEXTDATA_LIST_LINK; ?>">CGCR Reports</a>
+                    <li><a href="<?php echo ADMIN_TAX_REPORTS_LINK; ?>PTCG">PTCG Reports</a>
+                    </li>
+                    <li><a href="<?php echo ADMIN_TAX_REPORTS_LINK; ?>CGCR">CGCR Reports</a>
                     </li>                   
                 </ul>
             </li>            
@@ -33,8 +35,10 @@
                     <li><a href="<?php echo ADMIN_TAX_DEALER_PENDING_LIST_LINK; ?>">Pending</a>
                     </li>                                   
                 </ul>
-            </li>            
-
+            </li>
+            <li>
+                <a href="<?php echo ADMIN_TAX_EMPLOYEE_LIST_LINK; ?>"><i class="fa fa-users"></i> Employee <span class="fa fa-chevron-right"></span></a>                    
+            </li>
         </ul>
     </div>            
 </div>

@@ -20,16 +20,15 @@ public $host;
 public $port;
 
 	public function __construct()
-    {//Create a new PHPMailer instance
-        $this->mail = new PHPMailer;
-		
-		$this->host = "gator4261.hostgator.com";
-		$this->port = 465;
-		//$this->host = "mail.hypertechonline.com";
-		$this->sender_email = "notification@s2stockassistant.com";
-		$this->username = "notification@s2stockassistant.com";
-		$this->password = "US.notification.123!@#";
-		$this->sender_name = "S2 Stock Assistant";
+    {
+            $this->mail = new PHPMailer;		
+            $this->host = "gator4261.hostgator.com";
+            $this->port = 465;
+            //$this->host = "mail.hypertechonline.com"; 
+            $this->sender_email = "notification@s2stockassistant.com";
+            $this->username = "notification@s2stockassistant.com";
+            $this->password = "US.notification.123!@#";
+            $this->sender_name = "S2 Stock Assistant";
     }
 	
 	//Authentication

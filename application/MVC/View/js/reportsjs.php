@@ -1,7 +1,8 @@
+
 <script>
     function init_echarts() {
         if ("undefined" != typeof echarts) {
-            console.log("init_echarts");
+//            console.log("init_echarts");
             var a = {
                 color: ["#26B99A", "#BDC3C7", "#f71100", "#3498DB", "#9B59B6", "#8abb6f", "#759c6a", "#bfd3b7"],
                 title: {
@@ -225,7 +226,15 @@
                     calculable: !1,
                     xAxis: [{
                             type: "category",
-                            data: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
+                            data: [
+                                <?php for($i=1;$i<=$totalday;$i++){
+                                    if($i==$totalday){
+                                        echo $i;    
+                                    }
+                                    else{
+                                    echo $i.',';
+                                    }
+                                } ?> ]
                         }],
                     yAxis: [{
                             type: "value"
@@ -234,10 +243,26 @@
                         {
                             name: "Success",
                             type: "bar",
-                            data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+                            data: [
+                                <?php for($i=0;$i<$totalday;$i++){
+                                    if($i==($totalday-1)){                                        
+                                        echo $dayArray[$i]['successYearly']['totalamount'];    
+                                    }
+                                    else{
+                                        echo $dayArray[$i]['successYearly']['totalamount'].',';
+                                    }
+                                } ?> ]
                         }, {
                             name: "Pending",
-                            data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+                            data: [
+                                <?php for($i=0;$i<$totalday;$i++){
+                                   if($i==($totalday-1)){                                        
+                                        echo $dayArray[$i]['pendingYearly']['totalamount'];    
+                                    }
+                                    else{
+                                        echo $dayArray[$i]['pendingYearly']['totalamount'].',';
+                                    }
+                                } ?> ],
                             type: 'line',
                             symbol: 'triangle',
                             symbolSize: 20,
@@ -252,7 +277,15 @@
                         {
                             name: "Failed",
                             type: "line",
-                            data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+                            data: [
+                                <?php for($i=0;$i<$totalday;$i++){
+                                   if($i==($totalday-1)){                                         
+                                        echo $dayArray[$i]['failedYearly']['totalamount'];
+                                    }
+                                    else{
+                                        echo $dayArray[$i]['failedYearly']['totalamount'].',';
+                                    }
+                                } ?> ]
                         }
 
                     ]
@@ -298,12 +331,12 @@
                             radius: "60%",
                             center: ["50%", "48%"],
                             data: [{
-                                    value: <?php echo $success; ?>,
+                                    value: <?php echo $success['totalStatus']; ?>,
                                     name: "Success",
                                     label: {
                                         normal: {
                                             formatter: [
-                                                '<?php echo 'Success Transaction : ' . $success; ?>'
+                                                '<?php echo 'Total Success : ' . $success['totalStatus']; ?>\n\n<?php echo 'Total Amount : Rs.' . $success['totalamount']; ?>'
                                             ].join('\n'),
                                             backgroundColor: '#eee',
                                             borderColor: '#777',
@@ -312,12 +345,12 @@
                                         }
                                     }
                                 }, {
-                                    value: <?php echo $pending; ?>,
+                                    value: <?php echo $pending['totalStatus']; ?>,
                                     name: "Pending",
                                     label: {
                                         normal: {
                                             formatter: [
-                                                '<?php echo 'Pendig Transaction : ' . $pending; ?>'
+                                                '<?php echo 'Total Pending : ' . $pending['totalStatus']; ?>\n\n<?php echo 'Total Amount : Rs.' . $pending['totalamount']; ?>'
                                             ].join('\n'),
                                             backgroundColor: '#eee',
                                             borderColor: '#777',
@@ -326,12 +359,12 @@
                                         }
                                     }
                                 }, {
-                                    value: <?php echo $failed; ?>,
+                                    value: <?php echo $failed['totalStatus']; ?>,
                                     name: "Failed",
                                     label: {
                                         normal: {
                                             formatter: [
-                                                '<?php echo 'Failed Transaction : ' . $failed; ?>'
+                                                '<?php echo 'Total Failed : ' . $failed['totalStatus']; ?>\n\n<?php echo 'Total Amount : Rs.' . $failed['totalamount']; ?>'
                                             ].join('\n'),
                                             backgroundColor: '#eee',
                                             borderColor: '#777',
@@ -367,95 +400,208 @@
                             }
                         }
             }
+var labelOption = {
+    normal: {
+        show: false,       
+        align: 'left',
+        verticalAlign: 'middle',
+        position: 'insideBottom',
+        distance: 15,
+        formatter: '{c}  {name|{a}}',
+        fontSize: 16,      
+        rich: {
+            name: {
+                textBorderColor: '#fff'
+            }
+        }
+    }
+};
             if ($("#echart_line").length) {
                 var f = echarts.init(document.getElementById("echart_line"), a);
                 f.setOption({
                     title: {
-                        text: "Line Graph",
-                        subtext: "Subtitle"
+                        text: "Yearly Reports",
+                        subtext: "3 year reports"
                     },
                     tooltip: {
-                        trigger: "axis"
-                    },
-                    legend: {
-                        x: 220,
-                        y: 40,
-                        data: ["Intent", "Pre-order", "Deal"]
-                    },
-                    toolbox: {
-                        show: !0,
-                        feature: {
-                            magicType: {
-                                show: !0,
-                                title: {
-                                    line: "Line",
-                                    bar: "Bar",
-                                    stack: "Stack",
-                                    tiled: "Tiled"
-                                },
-                                type: ["line", "bar", "stack", "tiled"]
-                            },
-                            restore: {
-                                show: !0,
-                                title: "Restore"
-                            },
-                            saveAsImage: {
-                                show: !0,
-                                title: "Save Image"
-                            }
+                        trigger: "axis",
+                        axisPointer: {
+                            type: 'shadow'
                         }
                     },
-                    calculable: !0,
+                    legend: {
+                        data: ["Success", "Pending", "Failed"]
+                    },
+                    toolbox: {
+                        show: true,                    
+                        feature: {                            
+                            mark: {show: true},
+//                            dataView: {show: true, readOnly: false},
+                            magicType: {show: !0, 
+                            title: {
+                                                    line: "Line",
+                                                    bar: "Bar",
+                                                    stack: "Stack",
+                                                    tiled: "Tiled"
+                                                },
+                            type: ['line', 'bar', 'stack', 'tiled']
+                        },
+            restore: {show: false},
+            saveAsImage: {show: true,title:'Save as image'}
+        }
+                    },
+                    calculable: true,
                     xAxis: [{
-                            type: "category",
-                            boundaryGap: !1,
-                            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+                            type: 'category',
+                            axisTick: {show: false},
+                            data: ['Apr <?php echo $yearArray[3]; ?> - Mar <?php echo $yearArray[2]; ?>','Apr <?php echo $yearArray[2]; ?> - Mar <?php echo $yearArray[1]; ?>','Apr <?php echo $yearArray[1]; ?> - Mar <?php echo $yearArray[0]; ?>']
                         }],
                     yAxis: [{
                             type: "value"
                         }],
-                    series: [{
-                            name: "Deal",
-                            type: "line",
-                            smooth: !0,
-                            itemStyle: {
-                                normal: {
-                                    areaStyle: {
-                                        type: "default"
-                                    }
+                    series: [
+                                {
+                                    name: 'Success',
+                                    type: 'bar',
+                                    barGap: 0,
+                                    label: labelOption,
+                                    data:   [   
+                                                <?php echo $stsArray[2]['successYearly']['totalamount']; ?>,
+                                                <?php echo $stsArray[3]['successYearly']['totalamount']; ?>,
+                                                <?php echo $stsArray[4]['successYearly']['totalamount']; ?>
+                                            ]
+                                },
+                                {
+                                    name: 'Pending',
+                                    type: 'bar',
+                                    label: labelOption,
+                                     data:   [  
+                                                <?php echo $stsArray[2]['pendingYearly']['totalamount']; ?>,
+                                                <?php echo $stsArray[3]['pendingYearly']['totalamount']; ?>,
+                                                <?php echo $stsArray[4]['pendingYearly']['totalamount']; ?>
+                                            ]
+                                },
+                                {
+                                    name: 'Failed',
+                                    type: 'bar',
+                                    label: labelOption,
+                                     data:   [ 
+                                                <?php echo $stsArray[2]['failedYearly']['totalamount']; ?>,
+                                                <?php echo $stsArray[3]['failedYearly']['totalamount']; ?>,
+                                                <?php echo $stsArray[4]['failedYearly']['totalamount']; ?>
+                                            ]
                                 }
-                            },
-                            data: [10, 12, 21, 54, 260, 830, 710]
-                        }, {
-                            name: "Pre-order",
-                            type: "line",
-                            smooth: !0,
-                            itemStyle: {
-                                normal: {
-                                    areaStyle: {
-                                        type: "default"
-                                    }
-                                }
-                            },
-                            data: [30, 182, 434, 791, 390, 30, 10]
-                        }, {
-                            name: "Intent",
-                            type: "line",
-                            smooth: !0,
-                            itemStyle: {
-                                normal: {
-                                    areaStyle: {
-                                        type: "default"
-                                    }
-                                }
-                            },
-                            data: [1320, 1132, 601, 234, 120, 90, 20]
-                        }]
+                        ]
                 })
-            }
+            }  
+             if ($("#monthlyReports").length) {
+                var f = echarts.init(document.getElementById("monthlyReports"), a);
+                f.setOption({
+                    title: {
+                        text: "Monthly Reports",
+                        subtext: "Reports month wise"
+                    },
+                    tooltip: {
+                        trigger: "axis",
+                        axisPointer: {
+                            type: 'shadow'
+                        }
+                    },
+                    legend: {
+                        data: ["Success", "Pending", "Failed"]
+                    },
+                    toolbox: {
+                        show: true,                    
+                        feature: {                            
+                            mark: {show: true},
+//                            dataView: {show: true, readOnly: false},
+                            magicType: {show: !0, 
+                            title: {
+                                                    line: "Line",
+                                                    bar: "Bar",
+                                                    stack: "Stack",
+                                                    tiled: "Tiled"
+                                                },
+                            type: ['line', 'bar', 'stack', 'tiled']
+                        },
+            restore: {show: false},
+            saveAsImage: {show: true,title:'Save as image'}
+        }
+                    },
+                    calculable: true,
+                    xAxis: [{
+                            type: 'category',
+                            axisTick: {show: false},
+                            data: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+                        }],
+                    yAxis: [{
+                            type: "value"
+                        }],
+                    series: [
+                                {
+                                    name: 'Success',
+                                    type: 'bar',
+                                    barGap: 0,
+                                    label: labelOption,
+                                    data:   [
+                                        <?php echo $monthArray[0]['successYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[1]['successYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[2]['successYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[3]['successYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[4]['successYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[5]['successYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[6]['successYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[7]['successYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[8]['successYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[9]['successYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[10]['successYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[11]['successYearly']['totalamount']; ?>
+                                    ]
+                                },
+                                {
+                                    name: 'Pending',
+                                    type: 'bar',
+                                    label: labelOption,
+                                    data:   [                                       
+                                        <?php echo $monthArray[0]['pendingYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[1]['pendingYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[2]['pendingYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[3]['pendingYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[4]['pendingYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[5]['pendingYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[6]['pendingYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[7]['pendingYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[8]['pendingYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[9]['pendingYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[10]['pendingYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[11]['pendingYearly']['totalamount']; ?>
+                                    ]
+                                },
+                                {
+                                    name: 'Failed',
+                                    type: 'bar',
+                                    label: labelOption,
+                                     data:   [                                        
+                                        <?php echo $monthArray[0]['failedYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[1]['failedYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[2]['failedYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[3]['failedYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[4]['failedYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[5]['failedYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[6]['failedYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[7]['failedYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[8]['failedYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[9]['failedYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[10]['failedYearly']['totalamount']; ?>,
+                                        <?php echo $monthArray[11]['failedYearly']['totalamount']; ?>                                         
+                                     ]
+                                }
+                        ]
+                })
+            }  
         }
     }    
     $(document).ready(function () {
-    init_echarts()
+        init_echarts();
     });                     
 </script>

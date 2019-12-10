@@ -98,13 +98,13 @@ return md5($genString);
 *@param double amount, bigint referenceNum, int application_id, string name_of_applicant
 *@return string
 */
-function constructRequestedString($amount=0,$referenceNum,$subId,$fullName){
+function constructRequestedString($amount=0,$referenceNum,$subId,$fullName,$PeriodFrom,$PeriodTo){
+//    echo $PeriodFrom.'\n'.$PeriodTo;die;
 if($amount<=0)
 throw new Exception("Amount must be greater than 0.", 401);
-$mString="DeptID=".$this->dept_id."|DeptRefNo=".$referenceNum."|TotalAmount=".$amount."|TenderBy=".$fullName."|AppRefNo=".$subId."|Head1=".$this->head."|Amount1=".$amount."|Ddo=".$this->DDO."|PeriodFrom=01-01-".date("Y")."|PeriodTo=31-12-".date("Y")."|Service_code=".$this->service_code."|return_url=".$this->return_url;
+$mString="DeptID=".$this->dept_id."|DeptRefNo=".$referenceNum."|TotalAmount=".$amount."|TenderBy=".$fullName."|AppRefNo=".$subId."|Head1=".$this->head."|Amount1=".$amount."|Ddo=".$this->DDO."|PeriodFrom=$PeriodFrom|PeriodTo=$PeriodTo|Service_code=".$this->service_code."|return_url=".$this->return_url;
 $mString.="|checkSum=".$this->genCheckSum($mString);
 return $mString;
-
 }
 /**
 * this function is used to generate the get the key used for the treasury payment.

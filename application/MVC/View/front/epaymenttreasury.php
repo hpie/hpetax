@@ -28,44 +28,6 @@
     <div class="middle-area box-shadow">
         <h1 class="heading" style="text-align: center;">e-Payments</h1>        
         <br>      
-        <!-- The Modal -->
-<!--        <div class="modal fade" id="details-remarks">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                     Modal Header 
-                    <div class="modal-header bg-success mb-0">
-                        <h4 class="modal-title  text-white">Details / Remarks</h4>
-                        <button type="button" class="close text-white"
-                                data-dismiss="modal">&times;</button>
-                    </div>
-
-                     Modal body 
-                    <div class="modal-body">
-                        <table class="table table-responsive">
-                            <tr>
-                                <td>Subject</td>
-                                <td>MRP Order dated 03-04-2019-IMFS for the Year 2019-20</td>
-                            </tr>
-                            <tr>
-                                <td> Detail</td>
-                                <td>MRP Order dated 03-04-2019-IMFS for the Year 2019-20</td>
-                            </tr>
-                            <tr>
-                                <td>Publish Date</td>
-                                <td>03/04/2019</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2"><a href="#">
-                                        <i class="fa fa-download color-white" aria-hidden="true"></i> &nbsp;Download (English Version)
-                                    </a> </td>
-                            </tr>
-                        </table>
-                        <button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>       -->
         <div class="row section-row">
             <div class="col-md-12 col-sm-12 col-12">                
                 <center><h4 class="sm-heading">Challan Form</h4></center>  
@@ -73,10 +35,30 @@
                 <table class="table" border="1">
                     <tr>                        
                         <td>Tax Type</td>
-                        <td><input type="text" id="type_code"  required="required" readonly="" value="<?php echo $result['tax_type_id']; ?>"></td>
+                        <td><input type="text" id="type_code"  required="required" readonly="" value="<?php echo $result['tax_type_id']; ?>">
+                            <input type="hidden" id="tax_type_head"  required="required" readonly="" value="<?php echo $result['tax_type_head']; ?>">
+                            <input type="hidden" id="tax_commodity_head"  required="required" readonly="" value="<?php echo $comodityHead['tax_commodity_subhead'];?>">
+                        </td> 
+                        <td>Receipt For*</td>
+                        <td>
+                            <select class="" required="" id="receipt">                                            
+                                <option class="" value="0" selected="" disabled="">Select</option> 
+                                <?php
+                                 foreach ($headReceipt as $row){
+                                     ?>
+                                     <option class="" value="<?php echo $row['tax_receipt_head']; ?>"><?php echo $row['tax_revenue_receipt_name']; ?></option>
+                                <?php
+                                 }
+                                ?>                                 
+                            </select>                            
+                        </td>
+                    </tr>
+                    <tr>                        
                         <td>Name Of Person*</td>
-                        <td><input type="text" id="name" value=""  required="required"></td>                        
-                    </tr>  
+                        <td><input type="text" id="name" value=""  required="required"></td>
+                        <td></td>
+                        <td></td>                       
+                    </tr>
                     <tr>                        
                         <td>Mobile No.*</td>
                         <td><input type="text" readonly="" value="+91" style="width:30px;">&nbsp;
@@ -90,11 +72,14 @@
                         <td>Location Name*</td>
                         <td>
                             <select class="" required="" id="location">                                            
-                                <option class="" value="0" selected="">Select</option> 
-                                <option class="" value="Shimla">Shimla</option> 
-                                <option class="" value="Solan">Solan</option>
-                                <option class="" value="Baddi">Baddi</option>
-                                <option class="" value="Sirmour">Sirmour</option> 
+                                <option class="" value="0" selected="" disabled="">Select</option> 
+                                <?php
+                                 foreach ($locationDDO as $row){
+                                     ?>
+                                     <option class="" value="<?php echo $row['tax_location_ddo_code']; ?>"><?php echo $row['tax_location_ddo_location']; ?> - <?php echo $row['tax_location_ddo_code']; ?></option>
+                                <?php
+                                 }
+                                ?>                                 
                             </select>                            
                         </td>                        
                     </tr>
@@ -113,8 +98,8 @@
                     <tr>                        
                         <td>Dealer Type *</td>
                         <td><select class="" required="" id="day">                                            
-                                <option class="" value="0" selected="">Select</option> 
-                                <option class="" value="daily" selected="">Daily</option> 
+                                <option class="" value="0" selected="" disabled="">Select</option> 
+                                <option class="" value="daily">Daily</option> 
                                  <!--<option class="" value="weekly" selected="">weekly</option>--> 
                             </select>
                         </td>
@@ -148,7 +133,7 @@
                     </td>
                     <td>RECEIPTS FROM <?php echo $result['tax_type_name']; ?></td>
                     <td>&nbsp;</td>
-                    <td><input type="text" id="total" value="<?php echo $total; ?>"></td>
+                    <td><input type="text" id="total" value="<?php echo round($total); ?>"></td>
                     </tr>
                 </table>
                 <p>Sum of amount in all head should be <b id="sumofamount"></b> as per tax calculation.</p>

@@ -136,16 +136,47 @@ class home_m extends Models {
     }
 
     public function getTaxDetails($taxItemSession) {
-        $q = "  SELECT tt.tax_type_id,tt.tax_type_name FROM tax_item_queue tiq
+        $q = "  SELECT tt.tax_type_id,tt.tax_type_name,tt.tax_type_head FROM tax_item_queue tiq
                 INNER JOIN tax_type tt
                 ON tiq.tax_type_id=tt.tax_type_id
-                WHERE tax_queue_session='$taxItemSession'";
+                WHERE tiq.tax_queue_session='$taxItemSession'";
         $result = $this->query->select($q);
         if ($row = $this->query->fetch($result)) {
             return $row;
         }
         return false;
     }
+    
+    public function receiptHead() {
+        $q = "  SELECT * FROM tax_revenue_receipt";
+        $result = $this->query->select($q);
+        if ($data = $this->query->fetch_array($result)) {
+            return $data;
+        }
+        return false;
+    }
+    
+    public function getLocationDDO() {
+        $q = "  SELECT * FROM tax_location_ddo";
+        $result = $this->query->select($q);
+        if ($data = $this->query->fetch_array($result)) {
+            return $data;
+        }
+        return false;
+    }
+    
+    public function getTaxDetailsComodityHead($taxItemSession) {
+        $q = "  SELECT tc.tax_commodity_id,tc.tax_commodity_name,tc.tax_commodity_subhead FROM tax_item_queue tiq
+                INNER JOIN tax_commodity tc
+                ON tiq.tax_commodity_id=tc.tax_commodity_id
+                WHERE tiq.tax_queue_session='$taxItemSession'";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row;
+        }
+        return false;
+    }
+    
 
     public function checkExistTaxItemQue($taxItemSession) {
         $q = "SELECT COUNT(tax_item_queue_id) as total FROM tax_item_queue WHERE tax_queue_session='$taxItemSession'";

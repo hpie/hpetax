@@ -55,6 +55,14 @@ $route['tax-commodity-edit/(:any)'] = 'admin_c/editTaxCommodity';
 
 
 
+$route['employee-list'] = 'admin_c/employeeList';
+$route['employee-add-form'] = 'admin_c/employeeAddForm';
+$route['employee-insert'] = 'admin_c/employeeInsert';
+$route['employee-edit-form/(:any)'] = 'admin_c/employeeEditForm';
+$route['employee-edit/(:any)'] = 'admin_c/editEmployee';
+$route['employee-approve'] = 'admin_c/approve_employee';
+
+
 $route['dealer-list'] = 'admin_c/dealerList';
 $route['dealer-list-pending'] = 'admin_c/dealerListPending';
 $route['dealer-approve'] = 'admin_c/approve_dealer';
@@ -62,11 +70,12 @@ $route['tax-delaer-credential-edit-form/(:any)'] = 'admin_c/taxDealerCredentialE
 $route['tax-delaer-credential-edit/(:any)'] = 'admin_c/editDealerCredential';
 
 //**************************reports*******************//
-$route['tax-reports'] = 'admin_c/reports';
+$route['tax-reports/(:any)'] = 'admin_c/reports';
 
 //**************************challan*******************//
 $route['addChalan'] = 'home_c/addChalan';
 $route['verify-epayment'] = 'home_c/epaymentVerify';
+$route['viewChallan/(:any)'] = 'home_c/viewChallan';
 
 
 

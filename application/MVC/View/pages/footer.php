@@ -157,6 +157,30 @@
             });
             <?php echo $_SESSION['tax_commodity_name'] = 0; ?>;
         }
+           if (<?php if (isset($_SESSION['empMobileExist'])) { echo $_SESSION['empMobileExist']; } ?> == 1) {
+            var d = new PNotify({
+                title: 'Mobile number is allready exist',
+                type: 'error',
+                styling: 'bootstrap3'
+            });
+            <?php echo $_SESSION['empMobileExist'] = 0; ?>;
+        }
+           if (<?php if (isset($_SESSION['empEmailExist'])) { echo $_SESSION['empEmailExist']; } ?> == 1) {
+            var d = new PNotify({
+                title: 'Email is allready exist',
+                type: 'error',
+                styling: 'bootstrap3'
+            });
+            <?php echo $_SESSION['empEmailExist'] = 0; ?>;
+        }
+          if (<?php if (isset($_SESSION['empCodeExist'])) { echo $_SESSION['empCodeExist']; } ?> == 1) {
+            var d = new PNotify({
+                title: 'Employee code is allready exist',
+                type: 'error',
+                styling: 'bootstrap3'
+            });
+            <?php echo $_SESSION['empCodeExist'] = 0; ?>;
+        }
     });
 </script>
 <script>
@@ -274,13 +298,13 @@
                     success: function (res) {
                         var res = $.parseJSON(res);
                         if (res.suceess) {
-                            var title = 'Click to deactivate student';
+                            var title = 'Click to deactivate dealer';
                             var class_ = 'btn_approve_reject btn btn-success btn-xs';
                             var text = 'Active';
                             var isactive = 1;
 
                             if(status == 1){
-                                title = 'Click to active student';
+                                title = 'Click to active dealer';
                                 class_ = 'btn_approve_reject btn btn-danger btn-xs';
                                 text  = 'Inactive';
                                 isactive = 0;
@@ -295,6 +319,97 @@
                             else{
                                 new PNotify({
                                     title: 'Dealer Actived Successfully',
+                                    type: 'success',
+                                    styling: 'bootstrap3'
+                                });
+                            }
+                            self.removeClass().addClass(class_);
+                            self.attr({
+                               'data-status' :isactive,
+                               'title':title
+                           });
+                           self.removeAttr('disabled');
+                           self.html(text);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+<?php } ?>
+<?php if($TITLE===TITLE_TAX_EMPLOYEE_LIST){ ?>
+<script>
+        $(document).ready(function () {
+            $('#example').DataTable({                
+                 responsive: {
+                    details: {
+                        type: 'column',
+                        target: 'tr'
+                    }
+                },
+                columnDefs: [ {
+                    className: 'control',
+                    orderable: false,
+                    targets: 0
+                } ],                             
+                "processing": true,
+                "serverSide": true,
+                "paginationType": "full_numbers",
+                "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "ajax": {
+                    'type': 'POST',
+                    'url': "<?php echo BASE_URL . '/assets/front/DataTablesSrc-master/empList.php' ?>",                  
+                },
+                    "columns": [
+                    {"data": "index"},
+                    {"data": "tax_employee_code"},
+                    {"data": "tax_employee_name"},
+                    {"data": "tax_employee_email"},
+                    {"data": "tax_employee_mobile"},
+                    {"data": "tax_employee_status"},
+                    {"data": "edit"}
+                  
+                ]
+            });              
+            $(document).on('click', '.btn_approve_reject', function () {
+                var self = $(this);
+                var status = self.attr('data-status');
+                var user_status = 'ACTIVE';                
+                if(status == 1)
+                    user_status = 'INACTIVE';
+                if(!confirm('Are you sure want to '+user_status.toLocaleLowerCase()+' employee?')) return;
+                self.attr('disabled','disabled');
+                var data = {
+                    'tax_employee_id' : self.data('id'),
+                    'tax_employee_status'  : user_status
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo ADMIN_EMPLOYEE_APPROVE_LINK ?>",
+                    data: data,
+                    success: function (res) {
+                        var res = $.parseJSON(res);
+                        if (res.suceess) {
+                            var title = 'Click to deactivate employee';
+                            var class_ = 'btn_approve_reject btn btn-success btn-xs';
+                            var text = 'Active';
+                            var isactive = 1;
+
+                            if(status == 1){
+                                title = 'Click to active employee';
+                                class_ = 'btn_approve_reject btn btn-danger btn-xs';
+                                text  = 'Inactive';
+                                isactive = 0;                                
+                                new PNotify({
+                                    title: 'Employee InActived Successfully',
+                                    type: 'success',
+                                    styling: 'bootstrap3'
+                                });
+                                
+                            }
+                            else{
+                                new PNotify({
+                                    title: 'Employee Actived Successfully',
                                     type: 'success',
                                     styling: 'bootstrap3'
                                 });

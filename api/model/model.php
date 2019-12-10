@@ -13,7 +13,7 @@ class Model extends Models {
             return true;
         return false;
     }
-     public function addTransaction($params, $table) {      
+    public function addTransaction($params, $table) {      
         $columns = $this->insertMaker($params, $values);
         if ($columns) {
             $q = "INSERT INTO $table($columns) VALUES($values)";

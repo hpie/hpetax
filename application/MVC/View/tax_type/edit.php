@@ -18,9 +18,14 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" value="<?php echo $result['tax_type_name']; ?>" name="tax_type_name"  placeholder="Enter tax type name" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
-                            </div> 
-                            
-                                          
+                            </div>    
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_type_head">Head<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="<?php echo $result['tax_type_head']; ?>" name="tax_type_head"  placeholder="Enter Head" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_type_status">Status
                                 </label>
