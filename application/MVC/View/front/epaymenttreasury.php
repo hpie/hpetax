@@ -132,7 +132,7 @@
                     <center> <input type="checkbox" value="1" id="reciptscheck"></center>                        
                     </td>
                     <td>RECEIPTS FROM <?php echo $result['tax_type_name']; ?></td>
-                    <td>&nbsp;</td>
+                    <td id="receiptCode"></td>
                     <td><input type="text" id="total" value="<?php echo round($total); ?>"></td>
                     </tr>
                 </table>

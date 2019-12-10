@@ -9,9 +9,16 @@
             todayHighlight: true,
             format: "dd/mm/yyyy"
         });
+        $('#receipt').on('change', function () {            
+            var receiptHead = $('#receipt').children("option:selected").val();
+            var tax_type_head = $("#tax_type_head").val();
+            var tax_commodity_head = $("#tax_commodity_head").val();
+//            alert(tax_type_head+'-'+tax_commodity_head+'-'+receiptHead);
+            $("#receiptCode").text(tax_type_head+'-'+tax_commodity_head+'-'+receiptHead);
+            
+        });
 
-        $('#confirm').on('click', function () {
-        
+        $('#confirm').on('click', function () {        
             if (confirm('Are you sure you want confirm?')) {
             var alertstr = [];
             var returnval = 0;
