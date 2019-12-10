@@ -77,5 +77,9 @@ $route['addChalan'] = 'home_c/addChalan';
 $route['verify-epayment'] = 'home_c/epaymentVerify';
 $route['viewChallan/(:any)'] = 'home_c/viewChallan';
 
+//********************** app payment ********************//
+$route['app-payment/(:any)'] = 'app_c/app_payment';
+$route['payment_new/updateTreasuryPayment/(:any)'] = 'app_c/updateTreasuryPayment';
+
 
 
