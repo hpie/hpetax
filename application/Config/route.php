@@ -4,8 +4,6 @@ $route = array();
 $route['login'] = 'login_c';
 $route['logout'] = 'login_c/logout';
 $route['dashboard'] = 'admin_c';
-
-
 //**************************************************************************************//
 //********************************Front side********************************************//
 $route[''] = 'home_c';
@@ -71,11 +69,17 @@ $route['tax-delaer-credential-edit/(:any)'] = 'admin_c/editDealerCredential';
 
 //**************************reports*******************//
 $route['tax-reports/(:any)'] = 'admin_c/reports';
+$route['tax-reports-list/(:any)'] = 'admin_c/reportsList';
 
 //**************************challan*******************//
 $route['addChalan'] = 'home_c/addChalan';
 $route['verify-epayment'] = 'home_c/epaymentVerify';
 $route['viewChallan/(:any)'] = 'home_c/viewChallan';
+$route['employee-login-form'] = 'login_c/employeeLoginForm';
+$route['login-employee'] = 'login_c/employeeLogin';
+$route['edt'] = 'employee_c';
 
+$route['app-payment/(:any)'] = 'app_c/app_payment';
+$route['payment_new/updateTreasuryPayment/(:any)'] = 'app_c/updateTreasuryPayment';
 
 
