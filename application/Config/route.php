@@ -83,5 +83,3 @@ $route['edt'] = 'employee_c';
 //********************** app payment ********************//
 $route['app-payment/(:any)'] = 'app_c/app_payment';
 $route['payment_new/updateTreasuryPayment/(:any)'] = 'app_c/updateTreasuryPayment';
-
-
