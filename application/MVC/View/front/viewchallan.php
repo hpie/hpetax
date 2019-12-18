@@ -5,7 +5,10 @@
         <div class="row section-row">
             <div class="col-md-12 col-sm-12 col-12">                
                 <center><h4 class="sm-heading">Challan Details</h4></center>                               
-                <table class="table" border="1">                                    
+                <table class="table" border="1">
+                    <tr>
+                        <td></td>
+                    </tr>
                 </table>
             </div>                     
         </div>       

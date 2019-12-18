@@ -717,6 +717,8 @@ EOF;
                 $url = urlencode($urlStr);
                 $url = PAYMENT_POST_API_URL . '?' . $url;               
                 
+                echo $url;die;
+                
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => $url,
                     CURLOPT_RETURNTRANSFER => true,

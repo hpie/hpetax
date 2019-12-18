@@ -59,5 +59,17 @@ class login_m extends Models {
         }
         return false;
     }
+    public function login_employee($email, $password) {
+        $password = md5($password);
+        $q = "SELECT * FROM tax_employee WHERE tax_employee_code='$email' AND tax_employee_password='$password' AND tax_employee_status='ACTIVE'";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            if ($email == $row['tax_employee_code'] && $password == $row['tax_employee_password']) {
+                sessionEmployee($row);
+                return true;
+            }
+        }
+        return false;
+    }
 }
 ?>

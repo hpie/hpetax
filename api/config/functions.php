@@ -17,4 +17,10 @@ function dateFormatterDMY($old_date) {
     $new_date = date_format($date, 'd-m-Y');
     return $new_date;
 }
+function stringToDatetime($old_date) {
+    $date = DateTime::createFromFormat('dmYHis',$old_date);                      
+    $payment_date = $date->format('d-m-Y h:i:s');     
+    $date1 = strtotime($payment_date);
+    return date('Y-m-d h:i:s', $date1);
+}
 ?>

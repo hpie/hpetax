@@ -50,6 +50,7 @@ class SSP {
      *  @return array          Formatted data in a row based format
      */
     static function data_output($columns, $data) {
+//      print_r($columns);die;
         $out = array();
         for ($i = 0, $ien = count($data); $i < $ien; $i++) {
             $row = array();
@@ -58,8 +59,8 @@ class SSP {
                 // Is there a formatter?
                 if (isset($column['formatter'])) {
                     $row[$column['dt']] = $column['formatter']($data[$i][$column['db']], $data[$i]);
-                } else {
-                    $row[$column['dt']] = $data[$i][$columns[$j]['db']];
+                } else {                  
+                    $row[$column['dt']] = $data[$i][$columns[$j]['dt']];
                 }
             }
             $out[] = $row;
@@ -128,7 +129,7 @@ class SSP {
                     $dir = $request['order'][$i]['dir'] === 'asc' ?
                             'ASC' :
                             'DESC';
-                    $orderBy[] = '`' . $column['db'] . '` ' . $dir;
+                    $orderBy[] = '' . $column['db'] . ' ' . $dir;
                 }
             }
             if (count($orderBy)) {
@@ -165,7 +166,7 @@ class SSP {
                 $column = $columns[$columnIdx];
                 if ($requestColumn['searchable'] == 'true') {
                     $binding = self::bind($bindings, '%' . $str . '%', PDO::PARAM_STR);
-                    $globalSearch[] = "`" . $column['db'] . "` LIKE " . $binding;
+                    $globalSearch[] = "" . $column['db'] . " LIKE " . $binding;
                 }
             }
         }
@@ -179,7 +180,7 @@ class SSP {
                 if ($requestColumn['searchable'] == 'true' &&
                         $str != '') {
                     $binding = self::bind($bindings, '%' . $str . '%', PDO::PARAM_STR);
-                    $columnSearch[] = "`" . $column['db'] . "` LIKE " . $binding;
+                    $columnSearch[] = "" . $column['db'] . " LIKE " . $binding;
                 }
             }
         }
@@ -228,21 +229,21 @@ class SSP {
             }
         }
         // Main query to actually get the data
-        $data = self::sql_exec($db, $bindings, "SELECT `" . implode("`, `", self::pluck($columns, 'db')) . "`
-			 FROM `$table`
+        $data = self::sql_exec($db, $bindings, "SELECT " . implode(", ", self::pluck($columns, 'db')) . "
+			 FROM $table
 			 $where
 			 $order
 			 $limit"
         );
         // Data set length after filtering
-        $resFilterLength = self::sql_exec($db, $bindings, "SELECT COUNT(`{$primaryKey}`)
-			 FROM   `$table`
+        $resFilterLength = self::sql_exec($db, $bindings, "SELECT COUNT({$primaryKey})
+			 FROM   $table
 			 $where"
         );
         $recordsFiltered = $resFilterLength[0][0];
         // Total data set length
-        $resTotalLength = self::sql_exec($db, "SELECT COUNT(`{$primaryKey}`)
-			 FROM   `$table`"
+        $resTotalLength = self::sql_exec($db, "SELECT COUNT({$primaryKey})
+			 FROM   $table"
         );
         $recordsTotal = $resTotalLength[0][0];
 
@@ -280,6 +281,117 @@ class SSP {
         );
     }
 
+     static function edtList($request, $conn, $table, $primaryKey, $columns, $where_custom = '') {       
+        $bindings = array();
+        $db = self::db($conn);
+        // Build the SQL query string from the request
+        $limit = self::limit($request, $columns);
+        $order = self::order($request, $columns);
+        $where = self::filter($request, $columns, $bindings);
+        if ($where_custom) {
+            if ($where) {
+                $where .= ' AND ' . $where_custom;
+            } else {
+                $where .= 'WHERE ' . $where_custom;
+            }
+        }                        
+        // Main query to actually get the data
+        $data = self::sql_exec($db, $bindings, "SELECT " . implode(", ", self::pluck($columns, 'db')) . "
+			 FROM $table                      
+			 $where
+			 $order
+			 $limit"
+        );
+        // Data set length after filtering
+        $resFilterLength = self::sql_exec($db, $bindings, "SELECT COUNT({$primaryKey})
+			 FROM $table                       
+			 $where"
+        );
+        $recordsFiltered = $resFilterLength[0][0];
+        // Total data set length
+        $resTotalLength = self::sql_exec($db, "SELECT COUNT({$primaryKey})
+			 FROM $table"    
+        );
+        $recordsTotal = $resTotalLength[0][0];
+        $result = self::data_output($columns, $data);
+        $resData = array();
+
+        if (!empty($result)) {
+            foreach ($result as $row) {                               
+                $row['index'] = '';
+                array_push($resData, $row);
+            }
+        }
+        /*
+         * Output
+         */
+        return array(
+            "draw" => isset($request['draw']) ? intval($request['draw']) : 0,
+            "recordsTotal" => intval($recordsTotal),
+            "recordsFiltered" => intval($recordsFiltered),
+            "data" => $resData
+        );
+    }    
+     static function reportsList($request, $conn, $table, $primaryKey, $columns, $where_custom = '') {       
+        $bindings = array();
+        $db = self::db($conn);
+        // Build the SQL query string from the request
+        $limit = self::limit($request, $columns);
+        $order = self::order($request, $columns);
+        $where = self::filter($request, $columns, $bindings);
+        if ($where_custom) {
+            if ($where) {
+                $where .= ' AND ' . $where_custom;
+            } else {
+                $where .= 'WHERE ' . $where_custom;
+            }
+        }
+                        
+        // Main query to actually get the data
+        $data = self::sql_exec($db, $bindings, "SELECT " . implode(", ", self::pluck($columns, 'db')) . "
+			 FROM $table
+                         INNER JOIN tax_challan tc
+                         ON tc.tax_challan_id=ttq.tax_challan_id
+			 $where
+			 $order
+			 $limit"
+        );
+        // Data set length after filtering
+        $resFilterLength = self::sql_exec($db, $bindings, "SELECT COUNT({$primaryKey})
+			 FROM $table
+                         INNER JOIN tax_challan tc
+                         ON tc.tax_challan_id=ttq.tax_challan_id    
+			 $where"
+        );
+        $recordsFiltered = $resFilterLength[0][0];
+        // Total data set length
+        $resTotalLength = self::sql_exec($db, "SELECT COUNT({$primaryKey})
+			 FROM $table
+                         INNER JOIN tax_challan tc
+                         ON tc.tax_challan_id=ttq.tax_challan_id"    
+        );
+        $recordsTotal = $resTotalLength[0][0];
+
+        $result = self::data_output($columns, $data);
+
+        $resData = array();
+
+        if (!empty($result)) {
+            foreach ($result as $row) {                               
+                $row['index'] = '';
+                array_push($resData, $row);
+            }
+        }
+        /*
+         * Output
+         */
+        return array(
+            "draw" => isset($request['draw']) ? intval($request['draw']) : 0,
+            "recordsTotal" => intval($recordsTotal),
+            "recordsFiltered" => intval($recordsFiltered),
+            "data" => $resData
+        );
+    }    
     static function simple($request, $conn, $table, $primaryKey, $columns, $where_custom = '') {
         $bindings = array();
         $db = self::db($conn);
@@ -295,21 +407,21 @@ class SSP {
             }
         }
         // Main query to actually get the data
-        $data = self::sql_exec($db, $bindings, "SELECT `" . implode("`, `", self::pluck($columns, 'db')) . "`
-			 FROM `$table`
+        $data = self::sql_exec($db, $bindings, "SELECT " . implode(", ", self::pluck($columns, 'db')) . "
+			 FROM $table
 			 $where
 			 $order
 			 $limit"
         );
         // Data set length after filtering
-        $resFilterLength = self::sql_exec($db, $bindings, "SELECT COUNT(`{$primaryKey}`)
-			 FROM   `$table`
+        $resFilterLength = self::sql_exec($db, $bindings, "SELECT COUNT({$primaryKey})
+			 FROM $table
 			 $where"
         );
         $recordsFiltered = $resFilterLength[0][0];
         // Total data set length
-        $resTotalLength = self::sql_exec($db, "SELECT COUNT(`{$primaryKey}`)
-			 FROM   `$table`"
+        $resTotalLength = self::sql_exec($db, "SELECT COUNT({$primaryKey})
+			 FROM $table"
         );
         $recordsTotal = $resTotalLength[0][0];
 
@@ -362,21 +474,21 @@ class SSP {
             }
         }
         // Main query to actually get the data
-        $data = self::sql_exec($db, $bindings, "SELECT `" . implode("`, `", self::pluck($columns, 'db')) . "`
-			 FROM `$table`
+        $data = self::sql_exec($db, $bindings, "SELECT " . implode(", ", self::pluck($columns, 'db')) . "
+			 FROM $table
 			 $where
 			 $order
 			 $limit"
         );
         // Data set length after filtering
-        $resFilterLength = self::sql_exec($db, $bindings, "SELECT COUNT(`{$primaryKey}`)
-			 FROM   `$table`
+        $resFilterLength = self::sql_exec($db, $bindings, "SELECT COUNT({$primaryKey})
+			 FROM   $table
 			 $where"
         );
         $recordsFiltered = $resFilterLength[0][0];
         // Total data set length
-        $resTotalLength = self::sql_exec($db, "SELECT COUNT(`{$primaryKey}`)
-			 FROM   `$table`"
+        $resTotalLength = self::sql_exec($db, "SELECT COUNT({$primaryKey})
+			 FROM   $table"
         );
         $recordsTotal = $resTotalLength[0][0];
 
@@ -415,8 +527,8 @@ class SSP {
     }
 
     /**
-     * The difference between this method and the `simple` one, is that you can
-     * apply additional `where` conditions to the SQL queries. These can be in
+     * The difference between this method and the simple one, is that you can
+     * apply additional where conditions to the SQL queries. These can be in
      * one of two forms:
      *
      * * 'Result condition' - This is applied to the result set, but not the
@@ -461,21 +573,21 @@ class SSP {
             $whereAllSql = 'WHERE ' . $whereAll;
         }
         // Main query to actually get the data
-        $data = self::sql_exec($db, $bindings, "SELECT `" . implode("`, `", self::pluck($columns, 'db')) . "`
-			 FROM `$table`
+        $data = self::sql_exec($db, $bindings, "SELECT " . implode(", ", self::pluck($columns, 'db')) . "
+			 FROM $table
 			 $where
 			 $order
 			 $limit"
         );
         // Data set length after filtering
-        $resFilterLength = self::sql_exec($db, $bindings, "SELECT COUNT(`{$primaryKey}`)
-			 FROM   `$table`
+        $resFilterLength = self::sql_exec($db, $bindings, "SELECT COUNT({$primaryKey})
+			 FROM   $table
 			 $where"
         );
         $recordsFiltered = $resFilterLength[0][0];
         // Total data set length
-        $resTotalLength = self::sql_exec($db, $bindings, "SELECT COUNT(`{$primaryKey}`)
-			 FROM   `$table` " .
+        $resTotalLength = self::sql_exec($db, $bindings, "SELECT COUNT({$primaryKey})
+			 FROM   $table " .
                         $whereAllSql
         );
         $recordsTotal = $resTotalLength[0][0];
@@ -532,6 +644,9 @@ class SSP {
         if ($sql === null) {
             $sql = $bindings;
         }
+        
+//        echo $sql;die;
+        
         $stmt = $db->prepare($sql);
         //echo $sql;
         // Bind parameters

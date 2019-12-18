@@ -9,5 +9,12 @@
             todayHighlight: true,
             format: "dd/mm/yyyy"
         });
+        $('#invoice_date').datepicker({
+            todayBtn: "linked",
+            clearBtn: true,
+            autoclose: true,
+            todayHighlight: true,
+            format: "yyyy-mm-dd"
+        });
     });
 </script>

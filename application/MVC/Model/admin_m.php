@@ -7,6 +7,81 @@ class admin_m extends Models {
     public function __construct() {
         $this->query = new Query();
     }
+    public function getSum($status) {
+        $q =    "SELECT SUM(tax_payment_amount) as totalamount FROM tax_transaction_queue
+                 WHERE tax_transaction_status='$status'";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row['totalamount'];
+        }
+        return false;
+    }
+    
+    public function getCountEmployee() {
+        $q =    "SELECT COUNT(tax_employee_id) as totalCount FROM tax_employee";                
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row['totalCount'];
+        }
+        return false;
+    }
+    
+     public function getCountStsEmployee($status) {
+        $q =    "SELECT COUNT(tax_employee_id) as totalCount FROM tax_employee WHERE tax_employee_status='$status'";                
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row['totalCount'];
+        }
+        return false;
+    }
+    
+    public function getCountDealers() {
+        $q =    "SELECT COUNT(tax_dealer_id) as totalCount FROM tax_dealer";                
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row['totalCount'];
+        }
+        return false;
+    }
+    public function getCountDealersSts($status) {
+        $q = "SELECT COUNT(tax_dealer_id) as totalCount FROM tax_dealer WHERE tax_delaer_status='$status' AND tax_dealer_code!='' AND tax_dealer_password!=''";                
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row['totalCount'];
+        }
+        return false;
+    }
+    public function getCountDealersPendingAproval() {
+        $q = "SELECT COUNT(tax_dealer_id) as totalCount FROM tax_dealer WHERE tax_dealer_code='' AND tax_dealer_password=''";                
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row['totalCount'];
+        }
+        return false;
+    }
+    
+    
+    public function getCount($status) {
+        $q =    "SELECT COUNT(tax_payment_amount) as totalCount FROM tax_transaction_queue
+                 WHERE tax_transaction_status='$status'";
+        $result = $this->query->select($q);
+        if ($row = $this->query->fetch($result)) {
+            return $row['totalCount'];
+        }
+        return false;
+    }
+    
+    
+//    public function getCount($status) {
+//        $q =    "SELECT SUM(ttq.tax_payment_amount) as totalStatus, SUM(ttq.tax_payment_amount) as totalamount FROM tax_transaction_queue
+//                 WHERE ttq.tax_transaction_status='$status' AND tc.tax_type_id IN('$taxType')";
+//        $result = $this->query->select($q);
+//        if ($row = $this->query->fetch($result)) {
+//            return $row;
+//        }
+//        return false;
+//    }
+    
     
 //    public function getDealerList() {
 //        $q = "SELECT * FROM tax_dealer";

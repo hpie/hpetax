@@ -36,9 +36,13 @@ define('FRONT_VERIFY_E_PAYMENT_LINK', BASE_URL ."verify-epayment");
 define('FRONT_SIGN_UP_LINK', BASE_URL ."signup");
 define('FRONT_SIGN_UP_INSERT_LINK', BASE_URL ."registration");
 define('FRONT_LOGIN_DEALER_LINK', BASE_URL ."login-dealer");
+define('FRONT_LOGIN_EMPLOYEE_LINK', BASE_URL ."login-employee");
+define('FRONT_LOGIN_EMPLOYEE_LOGIN_FORM_LINK', BASE_URL ."employee-login-form");
+
 define('FRONT_CHANE_PASSWORD_DEALER_FORM_LINK', BASE_URL ."change-password");
 define('FRONT_CHANE_PASSWORD_DEALER_LINK', BASE_URL ."update-password");
 define('LOGOUT_DEALER', BASE_URL ."logout-dealer");
+define('FRONT_EMPLOYEE_EDT_LINK', BASE_URL ."edt");
 
 
 //**************************Front Title*********************//
@@ -50,6 +54,7 @@ define('TITLE_FRONT_COMMON','Welcome to hptax.gov.in');
 define('TITLE_FRONT_SIGNUP_FORM', "Signup");
 define('TITLE_FRONT_VERIFY_E_PAYMENT', "Verify e-Payment");
 define('TITLE_FRONT_CHANGE_PASSWORD', "Change Password");
+define('TITLE_FRONT_EMPLOYEE_LOGIN','Employee login');
 
 
 //***********************************************************************End Level percent********************//
@@ -111,6 +116,7 @@ define('ADMIN_TAX_DEALER_CREDENTIAL_EDIT_LINK', BASE_URL."tax-delaer-credential-
 //**************************reports*******************//
 define('TITLE_TAX_TRANSACTION_REPORTS', "Tax Transaction Reports");
 define('ADMIN_TAX_REPORTS_LINK', BASE_URL."tax-reports/");
+define('ADMIN_TAX_REPORTS_LIST_LINK', BASE_URL."tax-reports-list/");
 define('ADMIN_TAX_EMPLOYEE_INSERT_LINK', BASE_URL."employee-insert");
 
 define('TITLE_TAX_DEALER_LIST', "Tax Dealer List");
@@ -119,4 +125,6 @@ define('TITLE_TAX_DEALER_LIST_PENDING', "Tax Dealer List Pending");
 define('TITLE_TAX_EMPLOYEE_LIST', "Employee List");
 define('TITLE_TAX_EMPLOYEE_ADD_FORM', "Employee Add");
 define('TITLE_TAX_EMPLOYEE_EDIT_FORM', "Employee Edit");
+define('TITLE_TAX_REPORTS_LIST', "reports-list");
+define('TITLE_TAX_EMPLOYEE_EDT', "EDT");
 ?>

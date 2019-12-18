@@ -26,14 +26,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text"  name="tax_employee_code" value="<?php echo $result['tax_employee_code']; ?>"  placeholder="Enter employee code" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
-                            </div> 
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_employee_password">Password<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="password"  name="tax_employee_password" value="<?php echo $result['tax_employee_password']; ?>"  placeholder="Enter password" required="required" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
+                            </div>                            
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_employee_mobile">Mobile No.<span class="required">*</span>
                                 </label>

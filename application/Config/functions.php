@@ -66,13 +66,14 @@ function dateFormatterComma($old_date) {
     return $new_date;
 }
 
-function dateFormatterMysql($old_date) {    
+function dateFormatterMysql($old_date) {
     $old_date = str_replace('/', '-', $old_date);
 //    echo date('Y-m-d', strtotime($date));    
-    $old_date = date_create($old_date.' 00:00:00');
+    $old_date = date_create($old_date . ' 00:00:00');
     $new_date = date_format($old_date, 'Y-m-d');
     return $new_date;
 }
+
 
 function datetimeFormatter($old_date) {
     $date = date_create($old_date);
@@ -120,25 +121,26 @@ function returnSingleImage($imgArray, $field) {
     }
     return $arr;
 }
-function gen_uuid() {  
-        
+
+function gen_uuid() {
+
 //      return hexdec(uniqid (rand ()));  
 //      return base_convert(md5(hexdec(uniqid (rand ()))), 8, 10);
     return base_convert(hexdec(md5(sprintf('%04x%04x%04x%04x%04x%04x%04x%04x',
-            // 32 bits for "time_low"
-            mt_rand(0, 0xffff), mt_rand(0, 0xffff),
-            // 16 bits for "time_mid"
-            mt_rand(0, 0xffff),
-            // 16 bits for "time_hi_and_version",
-            // four most significant bits holds version number 4
-            mt_rand(0, 0x0fff) | 0x4000,
-            // 16 bits, 8 bits for "clk_seq_hi_res",
-            // 8 bits for "clk_seq_low",
-            // two most significant bits holds zero and one for variant DCE1.1
-            mt_rand(0, 0x3fff) | 0x8000,
-            // 48 bits for "node"
-            mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
-    ).time() . uniqid(rand() . mt_rand(1, 10000000), true))), 16, 10);
+                                    // 32 bits for "time_low"
+                                    mt_rand(0, 0xffff), mt_rand(0, 0xffff),
+                                    // 16 bits for "time_mid"
+                                    mt_rand(0, 0xffff),
+                                    // 16 bits for "time_hi_and_version",
+                                    // four most significant bits holds version number 4
+                                    mt_rand(0, 0x0fff) | 0x4000,
+                                    // 16 bits, 8 bits for "clk_seq_hi_res",
+                                    // 8 bits for "clk_seq_low",
+                                    // two most significant bits holds zero and one for variant DCE1.1
+                                    mt_rand(0, 0x3fff) | 0x8000,
+                                    // 48 bits for "node"
+                                    mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
+                            ) . time() . uniqid(rand() . mt_rand(1, 10000000), true))), 16, 10);
 //    
 //    return sprintf('%04x%04x%04x%04x%04x%04x%04x%04x',
 //            // 32 bits for "time_low"

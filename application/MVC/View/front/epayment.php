@@ -31,7 +31,7 @@
         <!-- The Modal -->     
         <div class="row section-row">
             <div class="col-md-12 col-sm-12 col-12">                
-                <center><h4 class="sm-heading">e-Payment (Unregistered)</h4></center>   
+                <center><h4 class="sm-heading">e-Payment <?php if(!isset($_SESSION['dealerDetails']['tax_dealer_id'])){ ?>(Unregistered)<?php } ?></h4></center>   
 
                 <input type="hidden" id="tax_commodity_rate_unit">    
                 <input type="hidden" id="hiderate">

@@ -47,7 +47,18 @@ if (isset($_SESSION['valid']) && isset($_SESSION['valid'])) {
             });
 <?php echo $_SESSION['valid'] = 0; ?>;
         }
- 
+   if (<?php
+if (isset($_SESSION['invalid']) && isset($_SESSION['valid'])) {
+    echo $_SESSION['invalid'];
+}
+?> == 1) {
+            var d = new PNotify({
+                title: 'Wrong credentials',
+                type: 'error',
+                styling: 'bootstrap3'
+            });
+<?php echo $_SESSION['invalid'] = 0; ?>;
+        } 
  
    if (<?php
 if (isset($_SESSION['existemail']) && isset($_SESSION['valid'])) {
@@ -128,7 +139,7 @@ if ($TITLE == TITLE_FRONT_EPAYMENT_TREASURY) {
 if ($TITLE == TITLE_FRONT_SIGNUP_FORM) {
     include_once(APP_INCLUDE_V . "frontcommon/signupjs.php");
 }
-if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT) {
+if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) {
     include_once(APP_INCLUDE_V . "frontcommon/epaymentverifyjs.php");
 }
 ?>

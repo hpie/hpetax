@@ -2,9 +2,7 @@
 //ini_set("memory_limit",-1);
 
 
-class Query {
-	
-	
+class Query {		
 	public $db;
 	public function __construct()
 	{
@@ -39,7 +37,7 @@ class Query {
 	{	
 			$con = $this->db->getConnection();
 			//$res = mysql_query($q,$con);
-			$res = mysqli_query($con,$q) ;
+			$res = mysqli_query($con,$q);
 			if (!$res)
 			{
 				echo "Error Selecting: " . $q . "<br>" . mysqli_error($con);die;

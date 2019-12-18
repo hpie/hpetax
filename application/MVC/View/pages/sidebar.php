@@ -14,7 +14,7 @@
             <li>
                 <a href="<?php echo ADMIN_TAX_COMMODITY_LIST_LINK; ?>"><i class="fa fa-dashboard"></i> Tax Commodity <span class="fa fa-chevron-right"></span></a>                    
             </li>                                   
-            <li><a><i class="fa fa-file"></i> Reports <span class="fa fa-chevron-right"></span></a>
+            <li><a><i class="fa fa-file"></i> Reports Graph<span class="fa fa-chevron-right"></span></a>
                 <ul class="nav child_menu" style="display: none">
                     <li><a href="<?php echo ADMIN_TAX_REPORTS_LINK; ?>ALL">ALL Reports</a>
                     </li>
@@ -27,7 +27,19 @@
                     <li><a href="<?php echo ADMIN_TAX_REPORTS_LINK; ?>CGCR">CGCR Reports</a>
                     </li>                   
                 </ul>
-            </li>            
+            </li>
+            <li><a><i class="fa fa-file"></i> Reports List<span class="fa fa-chevron-right"></span></a>
+                <ul class="nav child_menu" style="display: none">
+                    <li><a href="<?php echo ADMIN_TAX_REPORTS_LIST_LINK; ?>ALL">ALL Reports</a>
+                    </li>
+                    <li><a href="<?php echo ADMIN_TAX_REPORTS_LIST_LINK; ?>SUCCESS">Success</a>
+                    </li>
+                    <li><a href="<?php echo ADMIN_TAX_REPORTS_LIST_LINK; ?>PENDING">Pending</a>
+                    </li>
+                    <li><a href="<?php echo ADMIN_TAX_REPORTS_LIST_LINK; ?>FAILURE">Fail</a>
+                    </li>                                    
+                </ul>
+            </li>
             <li><a><i class="fa fa-users"></i> Dealers <span class="fa fa-chevron-right"></span></a>
                 <ul class="nav child_menu" style="display: none">
                     <li><a href="<?php echo ADMIN_TAX_DEALER_LIST_LINK; ?>">Approved</a>

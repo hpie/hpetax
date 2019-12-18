@@ -4,9 +4,8 @@ session_start();
 $r = $_SERVER['SCRIPT_NAME'];
 $subdomain = explode('/', $r);
 array_pop($subdomain);
-
-define('BASE_URL', 'https://'.$_SERVER['HTTP_HOST'].  implode('/', $subdomain).'/'); 
-define('BASE_URL_API', 'http://'.$_SERVER['HTTP_HOST'].  implode('/', $subdomain).'/');  
+define('BASE_URL', 'https://'.$_SERVER['HTTP_HOST'].  implode('/', $subdomain).'/');
+define('BASE_URL_API', 'http://'.$_SERVER['HTTP_HOST'].  implode('/', $subdomain).'/');
 define('IMG_URL', BASE_URL.'uploads/');
 define('IMG_DIR', 'uploads/');
 define('IS_LOGS', false);
@@ -22,7 +21,6 @@ define('DEFAULT_LANG', 'en');
  *
  */
 $system_path = 'System';
-
 /*
  * ---------------------------------------------------------------
  * APPLICATION FOLDER NAME
@@ -33,7 +31,6 @@ $system_path = 'System';
  */
 $application_folder = 'application';
 
-
 /*
  * ---------------------------------------------------------------
  * CONFIG FOLDER NAME
@@ -43,8 +40,6 @@ $application_folder = 'application';
  *
  */
 $config_folder = 'Config';
-
-
 
 /*
  * ---------------------------------------------------------------

@@ -11,7 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/font-awesome.css">
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/main.css">
-        <?php if ($TITLE == TITLE_FRONT_EPAYMENT_TREASURY || $TITLE == TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_VERIFY_E_PAYMENT) { ?>    
+        <?php if ($TITLE == TITLE_FRONT_EPAYMENT_TREASURY || $TITLE == TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) { ?>    
             <link href="<?php echo ASSETS_FRONT; ?>datetime/css/bootstrap-datepicker3.min.css" rel="stylesheet">
         <?php } ?>
         <script src="<?php echo ASSETS_FRONT; ?>js/jquery.min.js"></script>
@@ -163,9 +163,19 @@
                                         <li class="nav-item"><a href="#" class="nav-link">Tax Rates</a></li>
                                         <li class="nav-item"><a href="#" class="nav-link">Help</a></li>
                                         <li class="nav-item"><a href="#" class="nav-link">Quick Links</a></li>
+                                        <?php if(!isset($_SESSION['dealerDetails']) && !isset($_SESSION['employeeDetails'])){ ?>
+                                        <li class="nav-item"><a href="<?php echo FRONT_LOGIN_EMPLOYEE_LOGIN_FORM_LINK ?>" class="nav-link">Employee LOgin</a></li>
+                                        <?php } ?>
                                         
-                                        
-                                         
+                                        <?php if(isset($_SESSION['employeeDetails']['tax_employee_id'])){ ?>
+                                        <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdowm">Employee</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item"><a href="<?php echo LOGOUT_DEALER; ?>" class="nav-link">Logout</a></li>
+<!--                                                <li class="nav-item"><a href="<?php echo FRONT_CHANE_PASSWORD_DEALER_FORM_LINK; ?>" class="nav-link">Change Password</a>
+                                                </li>                                                -->
+                                            </ul>
+                                        </li>
+                                       <?php } ?> 
                                         
                                        <?php if(isset($_SESSION['dealerDetails']['tax_dealer_id'])){ ?>
                                         <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdowm">User</a>
@@ -175,9 +185,6 @@
                                                 </li>                                                
                                             </ul>
                                         </li>
-                                        
-                                        
-<!--                                        <li class="nav-item"><a href="<?php //echo LOGOUT_DEALER; ?>" class="nav-link">Logout</a></li>-->
                                        <?php } ?>
                                     </ul>
                                 </div>
@@ -187,7 +194,7 @@
                 </div>
             </header>
             <section class="main">
-                <?php if ($TITLE == TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_EPAYMENT_UNREGISTER || $TITLE == TITLE_FRONT_EPAYMENT_TREASURY || $TITLE == TITLE_FRONT_VERIFY_E_PAYMENT) {
+                <?php if ($TITLE == TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_EPAYMENT_UNREGISTER || $TITLE == TITLE_FRONT_EPAYMENT_TREASURY || $TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) {
                     ?>
                     <div class="">
                         <?php
@@ -200,7 +207,7 @@
                         <div class="row mob-v-c-order">
                             <div class="col-md-3 col-sm-12 col-12 ">
                                 <div class="right-side-area box-shadow">
-                                    <?php if(!isset($_SESSION['dealerDetails']['tax_dealer_id'])){ ?>
+                                    <?php if(!isset($_SESSION['dealerDetails']['tax_dealer_id']) && !isset($_SESSION['employeeDetails'])){ ?>
                                     <h4> Sign In (Registered Users)</h4>
                                     <form action="<?php echo FRONT_LOGIN_DEALER_LINK; ?>" method="post">
                                         <div class="form-group">

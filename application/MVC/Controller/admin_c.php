@@ -11,6 +11,40 @@ class admin_c extends Controllers {
         $this->admin_m = $this->loadModel('admin_m');
     }
     public function invoke() {
+        $totalSuccessCollectionRs = $this->admin_m->getSum('SUCCESS');
+        $totalPendingCollectionRs = $this->admin_m->getSum('PENDING');
+        $totalFailedCollectionRs = $this->admin_m->getSum('FAILURE');
+        
+        $totalEmployee=$this->admin_m->getCountEmployee();
+        $totalActiveEmployee=$this->admin_m->getCountStsEmployee('ACTIVE');
+        $totalInActiveEmployee=$this->admin_m->getCountStsEmployee('INACTIVE');
+        
+        $totalDealers=$this->admin_m->getCountDealers();
+        $totalDealersPendingAproval=$this->admin_m->getCountDealersPendingAproval();
+        $totalActiveDealers=$this->admin_m->getCountDealersSts('ACTIVE');
+        $totalInActiveDealers=$this->admin_m->getCountDealersSts('INACTIVE');
+        
+        $totalSuccessCollectionNumber = $this->admin_m->getCount('SUCCESS');
+        $totalPendingCollectionNumber = $this->admin_m->getCount('PENDING');
+        $totalFailedCollectionNumber = $this->admin_m->getCount('FAILURE');
+
+        $this->data['totalSuccessCollectionRs'] = $totalSuccessCollectionRs;
+        $this->data['totalPendingCollectionRs'] = $totalPendingCollectionRs;
+        $this->data['totalFailedCollectionRs'] = $totalFailedCollectionRs;
+        
+        $this->data['totalSuccessCollectionNumber'] = $totalSuccessCollectionNumber;
+        $this->data['totalPendingCollectionNumber'] = $totalPendingCollectionNumber;
+        $this->data['totalFailedCollectionNumber'] = $totalFailedCollectionNumber;
+        
+        $this->data['totalDealers'] = $totalDealers;
+        $this->data['totalDealersPendingAproval'] = $totalDealersPendingAproval;
+        $this->data['totalActiveDealers'] = $totalActiveDealers;
+        $this->data['totalInActiveDealers'] = $totalInActiveDealers;        
+        
+        $this->data['totalEmployee'] = $totalEmployee;
+        $this->data['totalActiveEmployee'] = $totalActiveEmployee;
+        $this->data['totalInActiveEmployee'] = $totalInActiveEmployee;
+        
         $this->data['TITLE'] = TITLE_DASHBOARD;
         loadview('dashboard/', 'dashboard.php', $this->data);
     }
@@ -222,6 +256,15 @@ class admin_c extends Controllers {
     }
     
     //**************************Reports*******************//
+    
+    
+    public function reportsList($status) {
+        $taxTypeList = $this->admin_m->getTaxTypeList();
+        $this->data['taxTypeList'] = $taxTypeList;
+        $this->data['status'] = $status;
+        $this->data['TITLE'] = TITLE_TAX_REPORTS_LIST;
+        loadview('reports/', 'reportsList.php', $this->data);
+    }
     public function reports($taxType) {
         /*********all over reports********/
         $taxTypeInArray=array();
