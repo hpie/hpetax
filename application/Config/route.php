@@ -79,7 +79,6 @@ $route['employee-login-form'] = 'login_c/employeeLoginForm';
 $route['login-employee'] = 'login_c/employeeLogin';
 $route['edt'] = 'employee_c';
 
-
 //********************** app payment ********************//
 $route['app-payment/(:any)'] = 'app_c/app_payment';
 $route['payment_new/updateTreasuryPayment/(:any)'] = 'app_c/updateTreasuryPayment';
