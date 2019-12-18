@@ -1,0 +1,9 @@
+[05-Dec-2019 17:07:10 Etc/UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 's7hpiein_etax'@'localhost' (using password: YES) in E:\xampp\htdocs\hpetax\api2\config\config.php on line 9
+[05-Dec-2019 17:07:10 Etc/UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 's7hpiein_etax'@'localhost' (using password: YES) in E:\xampp\htdocs\hpetax\api2\config\config.php on line 9
+[05-Dec-2019 17:07:10 Etc/UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in E:\xampp\htdocs\hpetax\api2\System\sys_db\classes.php on line 42
+[05-Dec-2019 17:07:11 Etc/UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in E:\xampp\htdocs\hpetax\api2\System\sys_db\classes.php on line 42
+[05-Dec-2019 17:07:11 Etc/UTC] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, boolean given in E:\xampp\htdocs\hpetax\api2\System\sys_db\classes.php on line 45
+[05-Dec-2019 17:07:11 Etc/UTC] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, boolean given in E:\xampp\htdocs\hpetax\api2\System\sys_db\classes.php on line 45
+[10-Dec-2019 17:18:05 Etc/UTC] PHP Warning:  Illegal string offset 'error' in E:\xampp\htdocs\hpetax\api2\System\sys_app\authentication.php on line 563
+[10-Dec-2019 17:18:05 Etc/UTC] PHP Warning:  Illegal string offset 'success' in E:\xampp\htdocs\hpetax\api2\System\sys_app\authentication.php on line 564
+[10-Dec-2019 17:18:05 Etc/UTC] PHP Warning:  Illegal string offset 'message' in E:\xampp\htdocs\hpetax\api2\System\sys_app\authentication.php on line 565

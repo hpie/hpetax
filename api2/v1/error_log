@@ -1,0 +1,3 @@
+[05-Dec-2019 15:29:48 Etc/UTC] PHP Warning:  mysqli_error() expects exactly 1 parameter, 0 given in /home/s7hpiein/public_html/hpetax/api2/System/sys_db/classes.php on line 79
+[05-Dec-2019 15:38:08 Etc/UTC] PHP Warning:  mysqli_error() expects exactly 1 parameter, 0 given in /home/s7hpiein/public_html/hpetax/api2/System/sys_db/classes.php on line 79
+[05-Dec-2019 15:50:02 Etc/UTC] PHP Parse error:  syntax error, unexpected '"' in /home/s7hpiein/public_html/hpetax/api2/model/model.php on line 36
