@@ -147,8 +147,8 @@ class home_m extends Models {
         return false;
     }
     
-    public function receiptHead() {
-        $q = "  SELECT * FROM tax_revenue_receipt";
+    public function receiptHead($tax_revenue_receipt_head) {
+        $q = "  SELECT * FROM tax_revenue_receipt WHERE tax_revenue_receipt_head='$tax_revenue_receipt_head'";
         $result = $this->query->select($q);
         if ($data = $this->query->fetch_array($result)) {
             return $data;

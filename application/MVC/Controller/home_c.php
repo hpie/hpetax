@@ -230,9 +230,12 @@ EOF;
             $this->data['dealerDetails'] = $dealerDetails;
         }
         $result = $this->home_m->getTaxDetails($_SESSION['unregistered']);  
-        $locationDDO = $this->home_m->getLocationDDO();  
-        $headReceipt = $this->home_m->receiptHead();  
-        $comodityHead = $this->home_m->getTaxDetailsComodityHead($_SESSION['unregistered']);
+        $locationDDO = $this->home_m->getLocationDDO();          
+        $comodityHead = $this->home_m->getTaxDetailsComodityHead($_SESSION['unregistered']); 
+        
+       // echo $result['tax_type_head'].'-'.$comodityHead['tax_commodity_subhead'];die;
+        
+        $headReceipt = $this->home_m->receiptHead($result['tax_type_head'].'-'.$comodityHead['tax_commodity_subhead']);          
         $total = $this->home_m->getTaxTotal($_SESSION['unregistered']);
         $this->data['TITLE'] = TITLE_FRONT_EPAYMENT_TREASURY;
         $this->data['total'] = $total;

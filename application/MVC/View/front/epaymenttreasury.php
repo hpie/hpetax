@@ -46,7 +46,7 @@
                                 <?php
                                  foreach ($headReceipt as $row){
                                      ?>
-                                     <option class="" value="<?php echo $row['tax_receipt_head']; ?>"><?php echo $row['tax_revenue_receipt_name']; ?></option>
+                                    <option class="" value="<?php echo $row['tax_receipt_head']; ?>"><?php echo $row['tax_revenue_receipt_name']; ?></option>
                                 <?php
                                  }
                                 ?>                                 
