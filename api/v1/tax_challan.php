@@ -34,6 +34,7 @@ $APP->post('add-tax-challan', false, function() use($APP) {
             global $ID;
             
             $VARS=json_decode(file_get_contents("php://input"),true);
+         //   print_r($VARS);die;
 //                        
 //            $APP->generateApiKey();
 //             promocode();                        

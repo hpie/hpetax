@@ -618,7 +618,7 @@ EOF;
         loadLoginView('front/', 'wrfapplicationuser.php', $this->data);
     }
 
-    public function addChalan() {
+    public function addChalan() {         
         $challan_id = gen_uuid();        
         $mainHead=$_POST['tax_type_head'].'-'.$_POST['tax_commodity_head'].'-'.$_POST['challan_receipt_head'];
         $ddo=$_POST['challan_ddo'];                
@@ -641,8 +641,7 @@ EOF;
         $challan_status = $_POST['challan_status'];
         $type_code = $_POST['type_code'];
         $token = $_POST['token'];
-        $device = $_POST['device'];
-
+        $device = $_POST['device'];      
 //*********************add tax challan**************************************//
         $curl = curl_init();
         $url = ADD_TAX_CHALLAN;
@@ -661,8 +660,10 @@ EOF;
         curl_close($curl);
         $res = json_decode($response);
 
+       // echo $response;die; 
 //*********************end add tax challan**************************************//                
         if ($res->success == TRUE) {
+          //  echo 'hi';die;
             $taxItemQueeRes = $this->home_m->getTaxItemList($_SESSION['unregistered']);
             if ($taxItemQueeRes) {
                 foreach ($taxItemQueeRes as $row) {
@@ -717,7 +718,7 @@ EOF;
                 $url = urlencode($urlStr);
                 $url = PAYMENT_POST_API_URL . '?' . $url;               
                 
-                echo $url;die;
+               // echo $url;die;
                 
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => $url,
