@@ -34,3 +34,9 @@ CREATE TABLE IF NOT EXISTS `tax_commodity` (
 ALTER TABLE `tax_commodity`
   ADD PRIMARY KEY (`tax_commodity_id`),
   ADD UNIQUE KEY `tax_commodity_name_UK` (`tax_commodity_name`);
+ 
+
+--
+-- Added tax_commodity_subhead  for Tax Collection Sub-Heads 
+--  
+ALTER TABLE `tax_commodity` ADD `tax_commodity_subhead` VARCHAR(10) NOT NULL COMMENT 'Tax Collection Sub-Heads ' AFTER `tax_commodity_isdistancedependent`;

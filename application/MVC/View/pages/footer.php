@@ -1,7 +1,7 @@
 <!-- footer content -->
 <footer>
     <div class="pull-right">
-        <h4>Designe by <a href="http://www.codexives.com">Codexives.com</a></h4>
+        <h4>Designed by <a href="http://hpie.in" target="_blank">H.P.I.E</a></h4>
     </div>
     <div class="clearfix"></div>
 </footer>

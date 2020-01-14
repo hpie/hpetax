@@ -4,7 +4,7 @@
 <footer>
     <div class="wapper">
         <div>
-            <img src="<?php echo ASSETS_FRONT; ?>img/tata.png" alt="tata consultancy services" title="tata consultancy services">
+            <img width="50%" height="50%" src="<?php echo ASSETS_FRONT; ?>img/hpie-logo.png" alt="H.P.I.E" title="HPIE">
         </div>
         <div>
             <h4>Thank You for Visiting </h4>
@@ -17,8 +17,8 @@
                 <li><a href="#">FAQ</a></li>
                 <li><a href="#">Contact Us </a></li>
             </ul>
-            <p> This site is designed to view in 1024 X 768 resolution and IE 7.0 and above. Site is
-                designed,developed and managed by TCS. ©2010-2011
+            <p> This site is designed to view in and IE 9.0 and above. Site is
+                designed,developed and managed by <a href="http://hpie.in" target="_blank">H.P.I.E</a> ©2020
             </p>
         </div>
     </div>

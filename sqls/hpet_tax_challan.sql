@@ -38,3 +38,13 @@ CREATE TABLE IF NOT EXISTS `tax_challan` (
 --
 ALTER TABLE `tax_challan`
   ADD PRIMARY KEY (`tax_challan_id`);
+
+--
+-- Modification table `tax_challan`
+--  
+ALTER TABLE `tax_challan` ADD `tax_dealer_id` BIGINT NOT NULL COMMENT 'Foreign key from tax_dealer' AFTER `tax_type_id`;
+  
+ALTER TABLE `tax_challan` ADD `tax_depositors_city` VARCHAR(20) NOT NULL COMMENT 'Post Code of Depisitor' AFTER `tax_depositors_address`;
+
+ALTER TABLE `tax_challan` ADD `tax_depositors_zip` VARCHAR(10) NOT NULL COMMENT 'Post Code of Depisitor' AFTER `tax_depositors_city`;
+

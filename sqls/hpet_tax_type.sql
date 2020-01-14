@@ -28,3 +28,9 @@ CREATE TABLE IF NOT EXISTS `tax_type` (
 ALTER TABLE `tax_type`
   ADD PRIMARY KEY (`tax_type_id`),
   ADD UNIQUE KEY `tax_type_name_UK` (`tax_type_name`);
+
+  
+--
+-- Added tax_type_head  for Tax Collection Heads 
+--  
+ALTER TABLE `tax_type` ADD `tax_type_head` VARCHAR(10) NOT NULL COMMENT ' Tax Collection Heads for Accounts' AFTER `tax_type_description`;  

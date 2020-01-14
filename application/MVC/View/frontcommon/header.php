@@ -26,7 +26,7 @@
                         <img src="<?php echo ASSETS_FRONT; ?>img/header-logo.png" alt="logo" title="hptax.gov.in">
                     </a>
                 </div>
-                <div class="header-change">
+                <!--<div class="header-change">
                     <div class="wapper">
                         <div class="row">
                             <div class="col-sm-6 col-12">
@@ -51,7 +51,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <div class=" nav-main">
                     <div class="wapper">
                         <nav class="navbar-expand-lg navbar navbar  navbar-dark default-color">
@@ -72,24 +72,51 @@
                                 </div>
                                 <div class="nav-bar collapse navbar-collapse" id="navbarSupportedContent">
                                     <ul class="navbar-nav">
+                                        <li class="nav-item"><a href="<?php echo BASE_URL; ?>" class="nav-link">Home</a></li>
+
+                                        <?php if(!isset($_SESSION['dealerDetails']) && !isset($_SESSION['employeeDetails'])){ ?>
+                                            <li class="nav-item"><a href="<?php echo FRONT_LOGIN_EMPLOYEE_LOGIN_FORM_LINK ?>" class="nav-link">Employee Login</a></li>
+                                        <?php } ?>
+
+                                        <?php if(isset($_SESSION['employeeDetails']['tax_employee_id'])){ ?>
+                                            <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdowm">Employee</a>
+                                                <ul class="dropdown-menu">
+                                                    <li class="nav-item"><a href="<?php echo LOGOUT_DEALER; ?>" class="nav-link">Logout</a></li>
+                                                    <!--                                                <li class="nav-item"><a href="<?php echo FRONT_CHANE_PASSWORD_DEALER_FORM_LINK; ?>" class="nav-link">Change Password</a>
+                                                </li>                                                -->
+                                                </ul>
+                                            </li>
+                                        <?php } ?>
+
+                                        <?php if(isset($_SESSION['dealerDetails']['tax_dealer_id'])){ ?>
+                                            <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdowm">User</a>
+                                                <ul class="dropdown-menu">
+                                                    <li class="nav-item"><a href="<?php echo LOGOUT_DEALER; ?>" class="nav-link">Logout</a></li>
+                                                    <li class="nav-item"><a href="<?php echo FRONT_CHANE_PASSWORD_DEALER_FORM_LINK; ?>" class="nav-link">Change Password</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        <?php } ?>
+
                                         <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdowm">Organization</a>
                                             <ul class="dropdown-menu">
-                                                <li class="nav-item"><a href="introduction.html" class="nav-link">Introduction</a></li>
-                                                <li class="nav-item"><a href="#" class="nav-link">Organisational Chart</a>
+                                                <li class="nav-item"><a href="introduction.php" class="nav-link">Introduction</a></li>
+                                                <li class="nav-item"><a href="organisation.php" class="nav-link">Organisational Chart</a>
                                                 </li>
-                                                <li class="nav-item"><a href="#" class="nav-link">Revenue Data</a></li>
-                                                <li class="nav-item"><a href="#" class="nav-link">ETD Contacts</a></li>
+                                                <li class="nav-item"><a href="revenuedata.php" class="nav-link">Revenue Data</a></li>
+                                                <li class="nav-item"><a href="edtcontacts.php" class="nav-link">ETD Contacts</a></li>
 
-                                                <li class="nav-item dropdown-submenu"><a href="#" class="nav-link"
+                                                <!--<li class="nav-item dropdown-submenu"><a href="#" class="nav-link"
                                                                                          data-toggle="dropdowm">Media</a>
                                                     <ul class="dropdown-menu">
                                                         <li class="nav-item"><a href="#" class="nav-link">Advertisement</a>
                                                         </li>
                                                         <li class="nav-item"><a href="#" class="nav-link">Tenders</a></li>
                                                     </ul>
-                                                </li>
+                                                </li> -->
                                             </ul>
                                         </li>
+                                        <!--
                                         <li class="nav-item dropdown"><a href="#" class="nav-link"
                                                                          data-toggle="dropdowm">GST</a>
                                             <ul class="dropdown-menu">
@@ -162,30 +189,9 @@
                                         <li class="nav-item"><a href="#" class="nav-link">RTI</a></li>
                                         <li class="nav-item"><a href="#" class="nav-link">Tax Rates</a></li>
                                         <li class="nav-item"><a href="#" class="nav-link">Help</a></li>
-                                        <li class="nav-item"><a href="#" class="nav-link">Quick Links</a></li>
-                                        <?php if(!isset($_SESSION['dealerDetails']) && !isset($_SESSION['employeeDetails'])){ ?>
-                                        <li class="nav-item"><a href="<?php echo FRONT_LOGIN_EMPLOYEE_LOGIN_FORM_LINK ?>" class="nav-link">Employee LOgin</a></li>
-                                        <?php } ?>
-                                        
-                                        <?php if(isset($_SESSION['employeeDetails']['tax_employee_id'])){ ?>
-                                        <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdowm">Employee</a>
-                                            <ul class="dropdown-menu">
-                                                <li class="nav-item"><a href="<?php echo LOGOUT_DEALER; ?>" class="nav-link">Logout</a></li>
-<!--                                                <li class="nav-item"><a href="<?php echo FRONT_CHANE_PASSWORD_DEALER_FORM_LINK; ?>" class="nav-link">Change Password</a>
-                                                </li>                                                -->
-                                            </ul>
-                                        </li>
-                                       <?php } ?> 
-                                        
-                                       <?php if(isset($_SESSION['dealerDetails']['tax_dealer_id'])){ ?>
-                                        <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdowm">User</a>
-                                            <ul class="dropdown-menu">
-                                                <li class="nav-item"><a href="<?php echo LOGOUT_DEALER; ?>" class="nav-link">Logout</a></li>
-                                                <li class="nav-item"><a href="<?php echo FRONT_CHANE_PASSWORD_DEALER_FORM_LINK; ?>" class="nav-link">Change Password</a>
-                                                </li>                                                
-                                            </ul>
-                                        </li>
-                                       <?php } ?>
+                                        <li class="nav-item"><a href="#" class="nav-link">Quick Links</a></li> -->
+
+
                                     </ul>
                                 </div>
                             </div> 
@@ -223,7 +229,7 @@
                                         </div>
                                         <div class="forgot-pass">
                                             <a href="<?php echo FRONT_SIGN_UP_LINK; ?>">New User? SignUp</a> &nbsp;
-                                            <a href="#">Forgot Password</a>
+                                            <!--<a href="#">Forgot Password</a>-->
                                         </div>
                                         <div>
                                             <button type="submit" class="btn btn-primary  btn-block">Login</button>
@@ -240,10 +246,12 @@
                                                     <?php if(!isset($_SESSION['dealerDetails']['tax_dealer_id'])){ ?>
                                                     <li><a href="<?php echo FRONT_EPAYMENT_UNREGISTERE; ?>">e-Payment (Unregistered)</a></li>
                                                     <?php } ?>
-                                                    <li><a href="#">e-Registration</a></li>
+
                                                     <?php if(isset($_SESSION['dealerDetails']['tax_dealer_id'])){ ?>
                                                     <li><a href="<?php echo FRONT_EPAYMENT_UNREGISTERE; ?>">e-Payment</a></li>
                                                     <?php } ?>
+                                                    <!--
+                                                    <li><a href="#">e-Registration</a></li>
                                                     <li><a href="#">e-Returns</a></li>
                                                     <li><a href="#">Removal of Excisable Intoxicants</a></li>
                                                     <li><a href="#">e-Declaration (VAT-XXVI-A)</a></li>
@@ -254,6 +262,7 @@
                                                     <li><a href="#">Validate Signed PDF</a></li>
                                                     <li><a href="#">e-Track Status</a></li>
                                                     <li><a href="#">e-Communication</a></li>
+                                                    -->
                                                 </ul>
                                             </li>
                                             <li>
@@ -263,6 +272,7 @@
                                                     <li><a href="#">Dealer Search</a></li>
                                                 </ul>
                                             </li>
+                                            <!--
                                             <li>
                                                 <div class="link"><i class="fa fa-mobile"></i>Referral Websites<i
                                                         class="fa fa-chevron-down"></i></div>
@@ -279,6 +289,7 @@
                                                     <li><a href="#">PMIS</a></li>
                                                 </ul>
                                             </li>
+                                            -->
                                         </ul>
                                     </div>
                                 </div>

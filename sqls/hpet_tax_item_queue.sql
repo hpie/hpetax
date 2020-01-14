@@ -40,10 +40,10 @@ CREATE TABLE IF NOT EXISTS `tax_item_queue` (
 --
 ALTER TABLE `tax_item_queue`
   ADD PRIMARY KEY (`tax_item_queue_id`),
-  ADD UNIQUE KEY `tax_queue_vehicle_UK` (`tax_queue_session`, `tax_vehicle_number`, `tax_commodity_name`);
+  ADD UNIQUE KEY `tax_queue_vehicle_UK` (`tax_queue_session`, `tax_vehicle_number`, `tax_commodity_id`);
   
 
-  --
+--
 -- AUTO_INCREMENT for table `tax_item_queue`
 --
 ALTER TABLE `tax_item_queue`
