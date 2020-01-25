@@ -8,7 +8,8 @@
         <!--<title>Welcome to hptax.gov.in</title>-->
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/font-awesome.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700" rel="stylesheet">
+        <!--<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700" rel="stylesheet">-->
+    	<link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/googlefont.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/font-awesome.css">
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/main.css">
         <?php if ($TITLE == TITLE_FRONT_EPAYMENT_TREASURY || $TITLE == TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) { ?>    
@@ -97,7 +98,7 @@
                                                 </ul>
                                             </li>
                                         <?php } ?>
-
+					<!--
                                         <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdowm">Organization</a>
                                             <ul class="dropdown-menu">
                                                 <li class="nav-item"><a href="introduction.php" class="nav-link">Introduction</a></li>
@@ -106,16 +107,17 @@
                                                 <li class="nav-item"><a href="revenuedata.php" class="nav-link">Revenue Data</a></li>
                                                 <li class="nav-item"><a href="edtcontacts.php" class="nav-link">ETD Contacts</a></li>
 
-                                                <!--<li class="nav-item dropdown-submenu"><a href="#" class="nav-link"
+                                                <li class="nav-item dropdown-submenu"><a href="#" class="nav-link"
                                                                                          data-toggle="dropdowm">Media</a>
                                                     <ul class="dropdown-menu">
                                                         <li class="nav-item"><a href="#" class="nav-link">Advertisement</a>
                                                         </li>
                                                         <li class="nav-item"><a href="#" class="nav-link">Tenders</a></li>
                                                     </ul>
-                                                </li> -->
+                                                </li>
                                             </ul>
-                                        </li>
+                                        </li> 
+					--?
                                         <!--
                                         <li class="nav-item dropdown"><a href="#" class="nav-link"
                                                                          data-toggle="dropdowm">GST</a>

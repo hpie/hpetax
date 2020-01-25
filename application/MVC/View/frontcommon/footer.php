@@ -143,7 +143,7 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
     include_once(APP_INCLUDE_V . "frontcommon/epaymentverifyjs.php");
 }
 ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
+<script src="<?php echo ASSETS_FRONT; ?>js/bootstrapValidator.min.js"></script>
 <script>
         $(document).ready(function () {         
             $('#frm_change_password').bootstrapValidator({
