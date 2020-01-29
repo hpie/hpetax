@@ -20,7 +20,7 @@ define('DEFAULT_LANG', 'en');
  * as this file.
  *
  */
-$system_path = 'System';
+$system_path = 'system';
 /*
  * ---------------------------------------------------------------
  * APPLICATION FOLDER NAME
