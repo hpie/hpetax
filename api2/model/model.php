@@ -69,6 +69,18 @@ class Model extends Models {
         return false;
     }
     
+    public function getAllRecordByParameter($table, $column, $search_text) {
+        
+       // $query = "SELECT * FROM $table WHERE ".$column."='".$search_text."'";
+       
+        $query = "SELECT * FROM $table WHERE $column = '".$search_text."'";
+        $result = $this->query->select($query);
+        if ($data = $this->query->fetch_array($result))
+            return $data;
+        return false;
+    }
+    
+    
 //*******************************//  
 //***Get Single record by username and password*****//
 //*****************************// 
@@ -231,7 +243,7 @@ class Model extends Models {
         
        // $query = "SELECT * FROM $table WHERE tax_queue_session = '".$session."'
        
-       $query = "SELECT tax_type_id, tax_type_name, SUM(tax_item_tax_amount) as tax_amount FROM $table WHERE tax_queue_session = '".$session."'";
+       $query = "SELECT tax_type_id, tax_type_name, SUM(tax_item_tax_amount) as tax_amount, tax_commodity_id FROM $table WHERE tax_queue_session = '".$session."'";
        
         $result = $this->query->select($query);
         if ($data = $this->query->fetch_array($result))
@@ -286,13 +298,27 @@ class Model extends Models {
 	//*******************************//  
 	//***Get commodity list based on tax type*****//
 	//*****************************// 
-    public function receiptHead() {        
-        $query = "SELECT * FROM tax_revenue_receipt";
+    public function receiptHead($query) {        
+        //$query = "SELECT * FROM tax_revenue_receipt";
+        $query = "SELECT * FROM tax_revenue_receipt WHERE tax_revenue_receipt_head = '".$query."'";
         $result = $this->query->select($query);
         if ($data = $this->query->fetch_array($result))
             return $data;
         return false;
     } 
+    
+       //*******************************//  
+//***Get dealer search results*****//
+//*****************************//    
+    public function getSimilarRecordById($table, $search_query) {        
+        
+       $query = "SELECT * FROM $table WHERE unique_id LIKE '%".$search_query."%'";
+       
+        $result = $this->query->select($query);
+        if ($data = $this->query->fetch_array($result))
+            return $data;
+        return false;
+    }
     
 }
 

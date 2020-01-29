@@ -20,9 +20,15 @@ class Controller extends Controllers {
     public function getSingleRecordById($table,$id) {
         return $this->model->getSingleRecordById($table,$id);
     } 
+    public function getSimilarRecordById($table,$id) {
+        return $this->model->getSimilarRecordById($table,$id);
+    }
     public function getSingleRecordByparameter($table,$id, $column="") {
         return $this->model->getSingleRecordByParameter($table,$id,$column);
-    }
+    } 
+    public function getAllRecordByParameter($table, $column, $search_text) {
+        return $this->model->getAllRecordByParameter($table, $column, $search_text);
+    } 
     public function deleteSingleRecordById($table,$id, $id_field_name="") {
         return $this->model->deleteSingleRecordById($table,$id,$id_field_name);
     } 
@@ -61,8 +67,8 @@ class Controller extends Controllers {
     public function getLocationDDO() {
         return $this->model->getLocationDDO();
     }
-    public function receiptHead() {
-        return $this->model->receiptHead();
+    public function receiptHead($query) {
+        return $this->model->receiptHead($query);
     }
     
 }

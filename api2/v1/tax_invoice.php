@@ -36,31 +36,43 @@ $APP->post('add-invoice', false, function() use($APP) {
 //                        
 //            $APP->generateApiKey();
 //             promocode();                        
-            verifyRequiredParams(array('invoice_no', 'firm_name', 'token', 'device'));
+            verifyRequiredParams(array('invoice_no', 'consigner_firm_name', 'token', 'device'));
             if (!in_array($VARS['device'], array('iphone', 'android'))) {
                 return array(false, "device name is invalid", $data);
             }                          
             // print_r($VARS);die;
             
-            $params = array();           
+            $params = array();    
+            
+       
             $params['invoice_no'] = $VARS['invoice_no'];
             $params['invoice_date'] = $VARS['invoice_date'];
             $params['invoice_amount'] = $VARS['invoice_amount'];
             $params['vehicle_number'] = $VARS['vehicle_number'];
             $params['transaction_type'] = $VARS['transaction_type'];           
-            $params['consigner_gst'] =$VARS['consigner_gst'];                 
-            $params['firm_name'] =$VARS['firm_name']; 
-            $params['firm_address'] = $VARS['firm_address'];
+            $params['consigner_gst'] =$VARS['consigner_gst'];    
+            
+            $params['consigner_firm_name'] =$VARS['consigner_firm_name']; 
+            $params['consigner_firm_address'] = $VARS['consigner_firm_address'];
+            
             $params['consignee_gst'] = $VARS['consignee_gst'];
             $params['consignee_firm_name'] = $VARS['consignee_firm_name'];
-            $params['bill_to'] =   $VARS['bill_to'];            
-            $params['ship_to'] =   $VARS['ship_to'];
+            $params['consignee_bill_to'] =   $VARS['consignee_bill_to'];            
+            $params['consignee_ship_to'] =   $VARS['consignee_ship_to'];
+            
             $params['identification_type'] =   $VARS['identification_type'];  
             $params['identification_number'] =   $VARS['identification_number'];
             $params['is_registered'] =   $VARS['is_registered'];
             $params['created_by'] =   $VARS['created_by'];
-            //$params['created_dt'] =   $VARS['created_dt'];                     
-            $res = $controller->addData($params,'tax_invoice');           
+            
+            $params['tax_dealer_code'] =   $VARS['tax_dealer_code'];
+            $params['inspected_date'] =   $VARS['inspected_date'];
+            $params['tax_employee_code'] =   $VARS['tax_employee_code'];
+            
+             $params['file'] =   isset($VARS['file']) ? $VARS['file'] : "";
+            $params['file_name'] =   isset($VARS['file_name']) ? $VARS['file_name'] : "";
+            
+            $res = $controller->addData($params,'tax_edt_invoice');           
             
             if(!empty($res)){  
                 //echo "============in if>>>>>>>>> <pre>"; print_r($res); exit;
@@ -77,6 +89,79 @@ $APP->post('add-invoice', false, function() use($APP) {
             //echo "=========in else===>>>>>>>>> <pre>"; print_r($res); exit;
             return array(false, "Invoice recording failed", $data);
         }); 
+        
+        
+        $APP->post('search-record', false, function() use($APP) {
+            $data = array();
+            global $USERID;
+            global $controller;
+            global $VARS;
+            global $ID;
+            
+            
+            $VARS=json_decode(file_get_contents("php://input"),true);
+            
+             
+            
+            //issetID();            
+            verifyRequiredParams(array('token', 'device'));
+            if (!in_array($VARS['device'], array('iphone', 'android'))) {
+                return array(false, "device name is invalid", $data);
+            }    
+            
+            
+            
+            $table = "tax_edt_invoice";
+            $search_column = $VARS['search_field'];
+            $search_text = $VARS['search_text'];
+            
+           //return array(false, "SELECT * FROM $table WHERE $search_column = '".$search_text."'", $VARS);
+           
+            $result=$controller->getAllRecordByParameter($table, $search_column, $search_text);
+            
+             //return array(false, "SELECT * FROM $table WHERE $search_column = '".$search_text."'", $result);
+            
+            
+            if ($result) {
+                $data['Result']=$result;
+                return array(true, "SELECT * FROM $table WHERE $search_column = '".$search_text."'", $data);
+            }
+            return array(false, "No Record found", $data);
+        });
+        
+        $APP->post('get-record', false, function() use($APP) {
+            $data = array();
+            global $USERID;
+            global $controller;
+            global $VARS;
+            global $ID;
+            
+            $VARS=json_decode(file_get_contents("php://input"),true);
+            //issetID();            
+            verifyRequiredParams(array('token', 'device'));
+            if (!in_array($VARS['device'], array('iphone', 'android'))) {
+                return array(false, "device name is invalid", $data);
+            }    
+            
+            
+            
+            $table = "tax_edt_invoice";
+            $search_column = "tax_edt_invoice_id";
+            $search_text = $VARS['search_text'];
+            
+           //return array(false, "SELECT * FROM $table WHERE $search_column = '".$search_text."'", $VARS);
+           
+            $result=$controller->getSingleRecordByParameter($table, $search_text, $search_column);
+            
+             //return array(false, "SELECT * FROM $table WHERE $search_column = '".$search_text."'", $result);
+            
+            
+            if ($result) {
+                $data['Result']=$result;
+                return array(true, "Data Loaded successfully", $data);
+            }
+            return array(false, "No Record found", $data);
+        });
 
 /******************************************************************************************* */
 /************************************GET tax item queue****************************** */
@@ -245,6 +330,9 @@ $APP->post('get-challan-data', false, function() use($APP) {
             }
             return array(false, "No Record found", $data);
         });
+        
+       
+        
 $APP->stop();
 /* * *******
  * * finish all the function working

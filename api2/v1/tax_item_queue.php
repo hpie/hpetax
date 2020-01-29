@@ -237,11 +237,20 @@ $APP->post('get-challan-data', false, function() use($APP) {
                 return array(false, "device name is invalid", $data);
             }                                  
             $result=$controller->getChallanData('tax_item_queue_suresh', $VARS['queue_session']);
+            
+            $tax_type = $controller->getSingleRecordByparameter('tax_type', $result[0]["tax_type_id"], "tax_type_id");
+            
+            $tax_commodity = $controller->getSingleRecordByparameter('tax_commodity', $result[0]["tax_commodity_id"], "tax_commodity_id");
+            
+            $tax_type_head = $tax_type["tax_type_head"];
+            
+            $tax_commodity_subhead = $tax_commodity["tax_commodity_subhead"];
+            
             if ($result) {
                 
                 
                 $result[0]["LocationDDO"] = $controller->getLocationDDO();
-                $result[0]["receiptHead"] = $controller->receiptHead();
+                $result[0]["receiptHead"] = $controller->receiptHead($tax_type_head.'-'.$tax_commodity_subhead);
 
 				
 				

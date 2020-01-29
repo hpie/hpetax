@@ -137,7 +137,7 @@
             var transaction_status="PENDING";
             var challan_status="ACTIVE";
             var type_code=$("#type_code").val();            
-            var token='123';
+            var token=0;
             var device="android";            
             $.ajax({
                 type: "POST",

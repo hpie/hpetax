@@ -70,7 +70,39 @@ $APP->post('login', false, function() use($APP) {
         }); 
         
         
-$APP->post('get_user', false, function() use($APP) {
+$APP->post('get_dealer', false, function() use($APP) {
+                $data = array();
+            global $USERID;
+            global $controller;
+            global $VARS;
+            global $ID;
+              
+            $VARS=json_decode(file_get_contents("php://input"),true);
+            
+            //return array(true, json_encode($_POST), $data);
+//                        
+//            $APP->generateApiKey();
+//             promocode();                        
+            verifyRequiredParams(array('dealerid', 'token', 'device'));
+            if (!in_array($VARS['device'], array('iphone', 'android'))) {
+                return array(false, "device name is invalid", $data);
+            }                          
+            // print_r($VARS);die;
+            
+            $params = array();           
+            $params['dealerid'] = $VARS['dealerid'];
+            
+        $res=$controller->getSimilarRecordById('tax_invoice', $params['dealerid']);
+            
+            if($res){  
+                $data['Result']=$res;
+                return array(true, "Data Loaded successfully", $data);
+            }    
+            //echo "=========in else===>>>>>>>>> <pre>"; print_r($res); exit;
+            return array(false, "User not exists", $data);
+        }); 
+        
+        $APP->post('get_user', false, function() use($APP) {
                 $data = array();
             global $USERID;
             global $controller;
