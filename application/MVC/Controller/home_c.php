@@ -413,7 +413,7 @@ EOF;
             $params['tax_item_tax_amount'] = $_POST['totaltax'];
             $params['tax_item_status'] = 'ACTIVE';
             $params['tax_commodity_id'] = $_POST['commodityid'];
-            $params['tax_item_commodity_cess'] = $_POST['cess'];
+            $params['tax_item_cess'] = $_POST['cess'];
             $params['tax_type_id'] = $_POST['taxtypeid'];
             $result = $this->home_m->taxItemQueueInsert($params);
             if ($result['res'] == 1 || !empty($result['id'])) {
@@ -431,7 +431,7 @@ EOF;
                         . '<td class="">' . $res["tax_item_source_location"] . '</td>'
                         . '<td class="">' . $res["tax_item_destination_location"] . '</td>'
                         . '<td class="">' . $res["tax_item_distanceinkm"] . '</td>'
-                         . '<td class="">' . $res["tax_item_commodity_cess"] . '</td>'
+                         . '<td class="">' . $res["tax_item_cess"] . '</td>'
                         . '<td class="">' . $res["tax_item_tax_amount"] . '</td>'                       
                         . '</tr>';
             }
@@ -466,7 +466,7 @@ EOF;
             $params['tax_item_tax_amount'] = $_POST['totaltax'];
             $params['tax_item_status'] = 'ACTIVE';
             $params['tax_commodity_id'] = $_POST['commodityid'];
-            $params['tax_item_commodity_cess'] = $_POST['cess'];
+            $params['tax_item_cess'] = $_POST['cess'];
             $params['tax_type_id'] = $_POST['taxtypeid'];
             $result = $this->home_m->taxItemQueueUpdate($_POST['tax_item_quee_id'], $params);
             if ($result == 1 || !empty($result)) {
@@ -483,7 +483,7 @@ EOF;
                         . '<td class="">' . $res["tax_item_source_location"] . '</td>'
                         . '<td class="">' . $res["tax_item_destination_location"] . '</td>'
                         . '<td class="">' . $res["tax_item_distanceinkm"] . '</td>'
-                        . '<td class="">' . $res["tax_item_commodity_cess"] . '</td>'
+                        . '<td class="">' . $res["tax_item_cess"] . '</td>'
                         . '<td class="">' . $res["tax_item_tax_amount"] . '</td>'
                         . '';
             }
@@ -746,7 +746,7 @@ EOF;
                     $tax_item_distanceinkm = $row['tax_item_distanceinkm'];
                     $tax_item_tax_amount = $row['tax_item_tax_amount'];
                     $tax_item_status = $row['tax_item_status'];
-                    $tax_item_commodity_cess = $row['tax_item_commodity_cess'];
+                    $tax_item_commodity_cess = $row['tax_item_cess'];
                     $tax_challan_id = $challan_id;
                     $tax_commodity_id = $row['tax_commodity_id'];
                     $tax_type_code = $row['tax_type_id'];
@@ -761,7 +761,7 @@ EOF;
                         CURLOPT_TIMEOUT => 30,
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                         CURLOPT_CUSTOMREQUEST => "POST",
-                        CURLOPT_POSTFIELDS => "{\t\"challan_item_id\":\"$challan_item_id\",\r\n\t\"type_name\":\"$tax_type_name\",\r\n\t\"commodity_name\":\"$tax_commodity_name\",\r\n\t\"vehicle_number\":\"$tax_vehicle_number\",\r\n\t\"item_weight\":\"$tax_item_weight\",\r\n\t\"item_weight_units\":\"$tax_item_weight_units\",\r\n\t\"item_quantity\":\"$tax_item_quantity\",\r\n\t\"item_quantity_units\":\"$tax_item_quantity_units\",\r\n\t\"item_source_location\":\"$tax_item_source_location\",\r\n\t\"item_destination_location\":\"$tax_item_destination_location\",\r\n\t\"item_distanceinkm\":\"$tax_item_distanceinkm\",\r\n\t\"item_tax_amount\":\"$tax_item_tax_amount\",\r\n\t\"item_status\":\"$tax_item_status\",\r\n\t\"challan_id\":\"$tax_challan_id\",\r\n\t\"commodity_id\":\"$tax_commodity_id\",\r\n\t\"type_code\":\"$tax_type_code\",\r\n\t\"created_by\":\"SYSTEM\",\r\n\t\"modified_by\":\"SYSTEM\",\r\n\t\"token\":\"123\",\r\n\t\"device\":\"android\"\r\n,\r\n\t\"tax_challan_item_cess\":\"$tax_item_commodity_cess\",\r\n}",
+                        CURLOPT_POSTFIELDS => "{\t\"challan_item_id\":\"$challan_item_id\",\r\n\t\"type_name\":\"$tax_type_name\",\r\n\t\"commodity_name\":\"$tax_commodity_name\",\r\n\t\"vehicle_number\":\"$tax_vehicle_number\",\r\n\t\"item_weight\":\"$tax_item_weight\",\r\n\t\"item_weight_units\":\"$tax_item_weight_units\",\r\n\t\"item_quantity\":\"$tax_item_quantity\",\r\n\t\"item_quantity_units\":\"$tax_item_quantity_units\",\r\n\t\"item_source_location\":\"$tax_item_source_location\",\r\n\t\"item_destination_location\":\"$tax_item_destination_location\",\r\n\t\"item_distanceinkm\":\"$tax_item_distanceinkm\",\r\n\t\"item_tax_amount\":\"$tax_item_tax_amount\",\r\n\t\"item_status\":\"$tax_item_status\",\r\n\t\"challan_id\":\"$tax_challan_id\",\r\n\t\"commodity_id\":\"$tax_commodity_id\",\r\n\t\"type_code\":\"$tax_type_code\",\r\n\t\"created_by\":\"SYSTEM\",\r\n\t\"modified_by\":\"SYSTEM\",\r\n\t\"token\":\"123\",\r\n\t\"device\":\"android\"\r\n,\r\n\t\"tax_item_cess\":\"$tax_item_commodity_cess\",\r\n}",
                     ));
                     $response1 = curl_exec($curl);
                     $err = curl_error($curl);
@@ -770,8 +770,7 @@ EOF;
                     if ($err) {
                         echo "cURL Error #:" . $err;
                     }
-                }
-                
+                }                
                 if(isset($_SESSION['dealerDetails']['tax_dealer_id'])){
                     $DeptRefNo=$_SESSION['dealerDetails']['tax_dealer_code'];                    
                 }else{
@@ -780,8 +779,7 @@ EOF;
                 $curl = curl_init();
                 $urlStr = "challan_id=" . $challan_id . "&depositorname=" . $depositors_name . "&amount=" . $challan_amount . "&PeriodFrom=" .$challan_from_dt. "&PeriodTo=" .$challan_to_dt. "&head=" .$mainHead. "&ddo=" .$ddo. "&DeptRefNo=" .$DeptRefNo. "&token=123&device=web";
                 $url = urlencode($urlStr);
-                $url = PAYMENT_POST_API_URL . '?' . $url;               
-                
+                $url = PAYMENT_POST_API_URL . '?' . $url;                               
                // echo $url;die;
                 
                 curl_setopt_array($curl, array(
