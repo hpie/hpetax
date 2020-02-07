@@ -326,6 +326,7 @@ EOF;
     public function commodityFieldAjax() {
         $commodityId = $_POST['id'];
         $result = $this->home_m->commodityFieldAjax($commodityId);
+//        print_r($result);die;
         $html = '';
         if (!empty($result)) {
             if($result['tax_commodity_taxcalculation']=='BY_COUNT')  {
@@ -356,6 +357,32 @@ EOF;
                         </tr>';
                 }
             }
+            if($result['tax_commodity_cess']>0)  {
+                $cessValue=($result['tax_commodity_rate']/100)*20;
+                $totaltax=$cessValue+$result['tax_commodity_rate'];
+                $result['totaltax']=$totaltax;
+                $html .= '<tr class="removetr2">
+                        <td>&nbsp;</td>
+                        <td>Tax in(Rs.)</td>
+                        <td><input type="text" id="tax" class="clearalltext" required="required" value="'.$result['tax_commodity_rate'].'" readonly></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>                  
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr class="removetr2">
+                        <td>&nbsp;</td>
+                        <td>Cess in(Rs.) '.$result['tax_commodity_cess'].'%</td>
+                        <td><input type="text" id="cessValue" class="clearalltext" value="'.$cessValue.'" required="required" readonly></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>                  
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>                    
+                    ';                
+            }          
         }
         $newArray = array();
         $newArray['result'] = 'success';

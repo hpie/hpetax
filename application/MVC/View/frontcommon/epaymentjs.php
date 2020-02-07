@@ -69,7 +69,13 @@
                     if (_returnData.result == "success") {
                         $('.removetr2').remove();
                         $("#commoditytr").after($(_returnData.html));
-                        $('#totaltax').val(_returnData.commodity['tax_commodity_rate']);
+                        
+                        if(_returnData.commodity['tax_commodity_cess']>0){
+                            $('#totaltax').val(_returnData.commodity['totaltax']);
+                        }
+                        else{
+                            $('#totaltax').val(_returnData.commodity['tax_commodity_rate']);
+                        }
                         $('#hiderate').val(_returnData.commodity['tax_commodity_rate']);
                         $('#tax_commodity_rate_unit').val(_returnData.commodity['tax_commodity_rate_unit']);                        
                         $("#sourcelocation").val('');

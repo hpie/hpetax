@@ -296,7 +296,6 @@
                 }
             }
         });
-
         $('.single_cal1').daterangepicker({
 //            placeholder: "Select from to date",
             singleClasses: "picker_1",
