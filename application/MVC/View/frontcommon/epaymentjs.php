@@ -170,6 +170,7 @@
             var commodityid = $('#commodity').children("option:selected").val();
             var alertstr = [];
             var returnval = 0;
+            var cess=0;
             var weight = 0;
             var quintityBY_COUNT = 0;
             var mesuare = '';
@@ -193,7 +194,8 @@
                             returnval = 1;
                         }
                     }
-                }
+                }                                
+                
                 if ($("#vehicleno").length) {
                     vehicleno = $("#vehicleno").val();
                     if (vehicleno === '' || vehicleno === 0) {
@@ -243,9 +245,12 @@
                         returnval = 1;
                     }
                 }
+                if ($("#cessValue").length) {
+                    cess = $("#cessValue").val();                    
+                }                
                 if ($("#totaltax").length) {
                     totaltax = $("#totaltax").val();
-                }
+                }                                                
                 if (returnval == 1) {
                     var text = "";
                     var i;
@@ -263,7 +268,7 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                data: {taxtypeid: taxtypeid, commodityid: commodityid, quintityBY_COUNT:quintityBY_COUNT, weight: weight, mesuare: mesuare, sourcelocation: sourcelocation, destinationlocation: destinationlocation, distance: distance, vehicleno: vehicleno, totaltax: totaltax, noofpassenger: noofpassenger},
+                data: {taxtypeid: taxtypeid, commodityid: commodityid, quintityBY_COUNT:quintityBY_COUNT, weight: weight, mesuare: mesuare, sourcelocation: sourcelocation, destinationlocation: destinationlocation, distance: distance, vehicleno: vehicleno, totaltax: totaltax,cess:cess, noofpassenger: noofpassenger},
                 url: urlReq,
                 success: function (_returnData) {
                     if (_returnData.result == "success") {
@@ -354,6 +359,7 @@
             var tax_item_quee_id = $('#modifyIdInput').val();          
             var alertstr = [];
             var returnval = 0;
+            var cess=0;
             var weight = 0;
             var quintityBY_COUNT=0;
             var mesuare = '';
@@ -428,6 +434,9 @@
                         returnval = 1;
                     }
                 }
+                if ($("#cessValue").length) {
+                    cess = $("#cessValue").val();                    
+                }                
                 if ($("#totaltax").length) {
                     totaltax = $("#totaltax").val();
                 }
@@ -448,7 +457,7 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                data: {tax_item_quee_id:tax_item_quee_id,taxtypeid: taxtypeid, quintityBY_COUNT:quintityBY_COUNT, commodityid: commodityid, weight: weight, mesuare: mesuare, sourcelocation: sourcelocation, destinationlocation: destinationlocation, distance: distance, vehicleno: vehicleno, totaltax: totaltax, noofpassenger: noofpassenger},
+                data: {tax_item_quee_id:tax_item_quee_id,taxtypeid: taxtypeid, quintityBY_COUNT:quintityBY_COUNT, commodityid: commodityid, weight: weight, mesuare: mesuare, sourcelocation: sourcelocation, destinationlocation: destinationlocation, distance: distance, vehicleno: vehicleno, totaltax: totaltax,cess:cess,  noofpassenger: noofpassenger},
                 url: urlReq,
                 success: function (_returnData) {
                     if (_returnData.result == "success") {
@@ -463,8 +472,7 @@
                         $("#addbuttondiv").css("display","block");
                         $("#modifybuttondiv").css("display","none");
                         $("#modifyIdInput").val("");
-                        $("#taxType").change(); 
-                        
+                        $("#taxType").change();                         
                         $("#sourcelocation").val('');
                         $("#destinationlocation").val(''); 
                         initMap();

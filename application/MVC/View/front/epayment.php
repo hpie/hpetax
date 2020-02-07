@@ -138,6 +138,7 @@
                             <th class="custometh">Source Location</th>
                             <th class="custometh">Destination Location</th>
                             <th class="custometh">Distance (in Km) within HP</th>
+                            <th class="custometh">Cess</th>
                             <th class="custometh">Total Tax (in Rs.)</th>
                         </tr>
                     </thead>
