@@ -730,9 +730,7 @@ EOF;
             $taxItemQueeRes = $this->home_m->getTaxItemList($_SESSION['unregistered']);
             if ($taxItemQueeRes) {
                 foreach ($taxItemQueeRes as $row) {
-
 //                    print_r($row);die;
-
                     $challan_item_id = $row['tax_item_queue_id'];
                     $tax_type_name = $row['tax_type_name'];
                     $tax_commodity_name = $row['tax_commodity_name'];
