@@ -144,6 +144,21 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
 }
 ?>
 <script src="<?php echo ASSETS_FRONT; ?>js/bootstrapValidator.min.js"></script>
+<?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT) { ?>
+<script src="<?php echo BASE_URL ?>assets/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script type="text/javascript" language="javascript" src="<?php echo BASE_URL; ?>/assets/front/js/dataTables.responsive.min.js"></script>
+<?php } ?>
 <script>
         $(document).ready(function () {         
             $('#frm_change_password').bootstrapValidator({
@@ -211,7 +226,69 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
                 }, 'json');
             });
         });
+    </script>    
+    <?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT) { ?>
+    <script>
+        $(document).ready(function () {  
+//            fill_datatable();
+            function fill_datatable(from = '',to = '',status='',transactionNo='',mobileNo='',email='')
+            {    
+                $('#example').DataTable({
+                    responsive: {
+                        details: {
+                            type: 'column',
+                            target: 'tr'
+                        }
+                    },
+                    columnDefs: [{
+                            className: 'control',
+                            orderable: false,
+                            targets: 0
+                        }],
+                    "processing": true,
+                    "serverSide": true,
+                    "paginationType": "full_numbers",
+                    "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                    "ajax": {
+                        'type': 'POST',
+                        'url': "<?php echo BASE_URL . '/assets/front/DataTablesSrc-master/verifyepayment.php' ?>",
+                        'data': {
+                            from:from,
+                            to:to,                            
+                            transactionNo:transactionNo,
+                            status:status,
+                            mobileNo:mobileNo,
+                            email:email
+                        }
+                    },
+                    "columns": [
+                        {"data": "index"},
+                        {"data": "tax_transaction_dept"},
+                        {"data": "tax_AppRefNo"},
+                        {"data": "tax_transaction_dt"},
+                        {"data": "tax_payment_dt"},
+                        {"data": "tax_payment_bank"},
+                        {"data": "tax_payment_amount"},
+                        {"data": "tax_transaction_status"},
+                        {"data": "tax_challan_brn"},
+                        {"data": "tax_challan_himgrn"},
+                        {"data": "tax_challan_id"},
+                        {"data": "tax_type_id"}
+                    ]
+                });
+            }
+            $('#search').click(function () {
+                var from = $('#startdate').val();                
+                var to = $('#enddate').val();                
+                var status=$("#status option:selected").val();              
+                var transactionno = $('#tax_transaction_no').val(); 
+                var email = $('#email').val(); 
+                var mobileNo = $('#mobileNo').val(); 
+                $('#example').DataTable().destroy();                    
+                fill_datatable(from,to,status,transactionno,mobileNo,email);
+            });           
+        });
     </script>
-
+<?php } ?>    
 </body>
 </html>

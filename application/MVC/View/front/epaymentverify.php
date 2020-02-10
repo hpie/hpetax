@@ -36,30 +36,30 @@
                 <table class="table" border="1">
                     <tr>                        
                         <td>Transaction No.</td>
-                        <td><input type="text" id="tax_transaction_no"  required="required"></td>
-                        <td></td>                      
-                        <td></td>                      
+                        <td><input type="text" id="tax_transaction_no"></td>
+                        <td>Vehicle No</td>                      
+                        <td><input type="email" id="email"></td>                     
                     </tr>  
                     <tr>                        
                         <td>Status</td>
                         <td>
-                            <select class="" required="" id="status">                                            
+                            <select class="" id="status">                                            
                                 <option class="" value="0" selected="" disabled="">Select</option> 
-                                <option class="" value="Success">Success</option> 
-                                <option class="" value="Failed">Failed</option>
-                                <option class="" value="Awaiting Confirmation">Awaiting Confirmation</option>
-                                <option class="" value="Pending">Pending</option> 
+                                <option class="" value="SUCCESS">Success</option> 
+                                <option class="" value="FAILURE">Failed</option>
+                                <option class="" value="AWAITING CONFIRMATION">Awaiting Confirmation</option>
+                                <option class="" value="PENDING">Pending</option> 
                             </select>                            
                         </td>
-                        <td></td>
-                        <td></td>                        
+                        <td>Mobile No</td>                      
+                        <td><input type="text" id="mobileNo"></td>                      
                     </tr>                                                              
                     <tr class="input-daterange">
                         <!--<div class="input-daterange input-group" id="datepicker">-->                                                                                                                                
                         <td>From Date</td>                                               
-                        <td><input type="text" id="startdate" name="start" value="<?php echo date('d/m/Y'); ?>"/></td>
+                        <td><input type="text" id="startdate" name="start"/></td>
                         <td>To Date</td>
-                        <td><input type="text" id="enddate" name="end" value="<?php echo date('d/m/Y'); ?>"/></td>  
+                        <td><input type="text" id="enddate" name="end"/></td>  
                         <!--</div>-->    
                     </tr>
                 </table>               
@@ -75,7 +75,54 @@
                     }
                 </style><center><button id="search">Search</button>&nbsp;&nbsp;<button id="back">Back</button></center>
             </div>                                                                                    
-        </div>
+        </div>       
+<!-- page content -->        
+        <div class="row">            
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">                                       
+                    <div class="x_content">                    					
+                        <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Index</th> 
+                                    <th>Department</th> 
+                                    <th>App RefNo</th> 
+                                    <th>Transaction Date</th> 
+                                    <th>Payment Date</th> 
+                                    <th>Bank</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>BRN</th>
+                                    <th>Himgrn</th>
+                                    <th>Challan Id</th>
+                                    <th>TaxType Id</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Index</th> 
+                                    <th>Department</th> 
+                                    <th>App RefNo</th> 
+                                    <th>Transaction Date</th> 
+                                    <th>Payment Date</th> 
+                                    <th>Bank</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>BRN</th>
+                                    <th>Himgrn</th>
+                                    <th>Challan Id</th> 
+                                    <th>TaxType Id</th>
+                                </tr>
+                            </tfoot>
+                        </table>					
+                    </div>
+                </div>
+            </div>
+        </div>          
+<!-- /page content -->
+
+
+        
     </div>
 </div>
 

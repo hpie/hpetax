@@ -778,8 +778,7 @@ EOF;
                 $urlStr = "challan_id=" . $challan_id . "&depositorname=" . $depositors_name . "&amount=" . $challan_amount . "&PeriodFrom=" .$challan_from_dt. "&PeriodTo=" .$challan_to_dt. "&head=" .$mainHead. "&ddo=" .$ddo. "&DeptRefNo=" .$DeptRefNo. "&token=123&device=web";
                 $url = urlencode($urlStr);
                 $url = PAYMENT_POST_API_URL . '?' . $url;                               
-               // echo $url;die;
-                
+               // echo $url;die;                
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => $url,
                     CURLOPT_RETURNTRANSFER => true,

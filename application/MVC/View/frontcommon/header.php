@@ -12,6 +12,16 @@
     	<link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/googlefont.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/font-awesome.css">
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/main.css">
+    
+    <?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT) { ?>
+    <link href="<?php echo BASE_URL; ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo BASE_URL; ?>assets/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo BASE_URL; ?>assets/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo BASE_URL; ?>assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo BASE_URL; ?>assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">  
+    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/assets/front/css/dataTables.responsive.css"> 
+    <?php } ?>    
+        
         <?php if ($TITLE == TITLE_FRONT_EPAYMENT_TREASURY || $TITLE == TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) { ?>    
             <link href="<?php echo ASSETS_FRONT; ?>datetime/css/bootstrap-datepicker3.min.css" rel="stylesheet">
         <?php } ?>
