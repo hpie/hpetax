@@ -56,7 +56,12 @@ $columns = array(
 );
 include 'conn.php';
 
-$where='';
+$delear=$_REQUEST['delear'];
+
+echo $delear;die;
+
+$where =" tc.tax_dealer_id=$delear ";
+
 $status=$_REQUEST['status'];
 $from=$_REQUEST['from'];
 $to=$_REQUEST['to'];
@@ -64,20 +69,38 @@ $transactionNo=$_REQUEST['transactionNo'];
 $mobileNo=$_REQUEST['mobileNo'];
 $email=$_REQUEST['email'];
 if(!empty($status)){
-    $where =" ttq.tax_transaction_status='$status' ";
+    $where .=" AND ttq.tax_transaction_status='$status' ";
 }
 if(!empty($from) && !empty($to)){
-    $where.=" AND ttq.tax_transaction_dt BETWEEN '$from' AND '$to' ";    
+    
+    $fromdate = str_replace('/', '-', $from); 
+    $fromdate = date_create($fromdate . ' 00:00:00');
+    $fromdate = date_format($fromdate, 'Y-m-d');
+    
+    $todate = str_replace('/', '-', $to); 
+    $todate = date_create($todate . ' 00:00:00');
+    $todate = date_format($todate, 'Y-m-d');
+    
+//    $fromdate = date_create($from);
+//    $fromdate = date_format($fromdate, "d-m-Y");
+//    
+//    $todate = date_create($to);
+//    $todate = date_format($todate, "d-m-Y");
+    
+//    echo $todate;die;
+    
+    $where.=" AND ttq.tax_transaction_dt BETWEEN '$fromdate' AND '$todate' ";    
 }
 if(!empty($transactionNo)){
-    $where =" ttq.tax_challan_himgrn='$transactionNo' ";
+    $where .=" AND ttq.tax_challan_himgrn='$transactionNo' ";
 }
 if(!empty($mobileNo)){
-    $where =" tc.tax_depositors_phone='$mobileNo' ";
+    $where .=" AND tc.tax_depositors_phone='$mobileNo' ";
 }
 if(!empty($email)){
-    $where =" tc.tax_depositors_email='$email' ";
+    $where .=" AND tc.tax_depositors_email='$email' ";
 }
+//echo $where;die;
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * If you just want to use the basic configuration for DataTables with PHP
  * server-side, there is no need to edit below this line.

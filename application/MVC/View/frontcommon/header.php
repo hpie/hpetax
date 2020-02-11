@@ -7,26 +7,29 @@
         <title><?php echo $TITLE; ?></title>
         <!--<title>Welcome to hptax.gov.in</title>-->
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/bootstrap.min.css">
-        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/font-awesome.css">
+        <link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <!--<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700" rel="stylesheet">-->
-    	<link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/googlefont.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/font-awesome.css">
-        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/main.css">
-    
-    <?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT) { ?>
-    <link href="<?php echo BASE_URL; ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>assets/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>assets/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">  
-    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/assets/front/css/dataTables.responsive.css"> 
-    <?php } ?>    
-        
+        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/googlefont.css" rel="stylesheet" type="text/css"/>
+        <!--<link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">-->        
+
+
+        <?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT) { ?>
+            <link href="<?php echo BASE_URL; ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+            <link href="<?php echo BASE_URL; ?>assets/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+            <link href="<?php echo BASE_URL; ?>assets/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+            <link href="<?php echo BASE_URL; ?>assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+            <link href="<?php echo BASE_URL; ?>assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">  
+            <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/assets/front/css/dataTables.responsive.css"> 
+        <?php } ?>            
+
+
         <?php if ($TITLE == TITLE_FRONT_EPAYMENT_TREASURY || $TITLE == TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) { ?>    
             <link href="<?php echo ASSETS_FRONT; ?>datetime/css/bootstrap-datepicker3.min.css" rel="stylesheet">
         <?php } ?>
         <script src="<?php echo ASSETS_FRONT; ?>js/jquery.min.js"></script>
         <script src="<?php echo ASSETS_FRONT; ?>js/bootstrap.min.js"></script>         
+
+        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/main.css">
         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/pnotify/dist/pnotifiadmin.css">
     </head>
     <body>
@@ -85,21 +88,18 @@
                                     <ul class="navbar-nav">
                                         <li class="nav-item"><a href="<?php echo BASE_URL; ?>" class="nav-link">Home</a></li>
 
-                                        <?php if(!isset($_SESSION['dealerDetails']) && !isset($_SESSION['employeeDetails'])){ ?>
+                                        <?php if (!isset($_SESSION['dealerDetails']) && !isset($_SESSION['employeeDetails'])) { ?>
                                             <li class="nav-item"><a href="<?php echo FRONT_LOGIN_EMPLOYEE_LOGIN_FORM_LINK ?>" class="nav-link">Employee Login</a></li>
                                         <?php } ?>
 
-                                        <?php if(isset($_SESSION['employeeDetails']['tax_employee_id'])){ ?>
+                                        <?php if (isset($_SESSION['employeeDetails']['tax_employee_id'])) { ?>
                                             <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdowm">Employee</a>
                                                 <ul class="dropdown-menu">
-                                                    <li class="nav-item"><a href="<?php echo LOGOUT_DEALER; ?>" class="nav-link">Logout</a></li>
-                                                    <!--                                                <li class="nav-item"><a href="<?php echo FRONT_CHANE_PASSWORD_DEALER_FORM_LINK; ?>" class="nav-link">Change Password</a>
-                                                </li>                                                -->
+                                                    <li class="nav-item"><a href="<?php echo LOGOUT_DEALER; ?>" class="nav-link">Logout</a></li>                                                
                                                 </ul>
                                             </li>
                                         <?php } ?>
-
-                                        <?php if(isset($_SESSION['dealerDetails']['tax_dealer_id'])){ ?>
+                                        <?php if (isset($_SESSION['dealerDetails']['tax_dealer_id'])) { ?>
                                             <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdowm">User</a>
                                                 <ul class="dropdown-menu">
                                                     <li class="nav-item"><a href="<?php echo LOGOUT_DEALER; ?>" class="nav-link">Logout</a></li>
@@ -108,7 +108,7 @@
                                                 </ul>
                                             </li>
                                         <?php } ?>
-					<!--
+                                        <!--
                                         <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdowm">Organization</a>
                                             <ul class="dropdown-menu">
                                                 <li class="nav-item"><a href="introduction.php" class="nav-link">Introduction</a></li>
@@ -127,7 +127,7 @@
                                                 </li>
                                             </ul>
                                         </li> 
-					--?
+                                        --?
                                         <!--
                                         <li class="nav-item dropdown"><a href="#" class="nav-link"
                                                                          data-toggle="dropdowm">GST</a>
@@ -225,28 +225,28 @@
                         <div class="row mob-v-c-order">
                             <div class="col-md-3 col-sm-12 col-12 ">
                                 <div class="right-side-area box-shadow">
-                                    <?php if(!isset($_SESSION['dealerDetails']['tax_dealer_id']) && !isset($_SESSION['employeeDetails'])){ ?>
-                                    <h4> Sign In (Registered Users)</h4>
-                                    <form action="<?php echo FRONT_LOGIN_DEALER_LINK; ?>" method="post">
-                                        <div class="form-group">
-                                            <label for="code">Logins Id:</label>
-                                            <input type="text" name="code" class="form-control" id="login_id" required="">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="pwd">Password:</label>
-                                            <input type="password" name="password" class="form-control" id="pwd" required="">
-                                        </div>
-                                        <div class="form-group form-check">
-                                            <div class="g-recaptcha">Recaptcha</div>
-                                        </div>
-                                        <div class="forgot-pass">
-                                            <a href="<?php echo FRONT_SIGN_UP_LINK; ?>">New User? SignUp</a> &nbsp;
-                                            <!--<a href="#">Forgot Password</a>-->
-                                        </div>
-                                        <div>
-                                            <button type="submit" class="btn btn-primary  btn-block">Login</button>
-                                        </div>
-                                    </form>
+                                    <?php if (!isset($_SESSION['dealerDetails']['tax_dealer_id']) && !isset($_SESSION['employeeDetails'])) { ?>
+                                        <h4> Sign In (Registered Users)</h4>
+                                        <form action="<?php echo FRONT_LOGIN_DEALER_LINK; ?>" method="post">
+                                            <div class="form-group">
+                                                <label for="code">Logins Id:</label>
+                                                <input type="text" name="code" class="form-control" id="login_id" required="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pwd">Password:</label>
+                                                <input type="password" name="password" class="form-control" id="pwd" required="">
+                                            </div>
+                                            <div class="form-group form-check">
+                                                <div class="g-recaptcha">Recaptcha</div>
+                                            </div>
+                                            <div class="forgot-pass">
+                                                <a href="<?php echo FRONT_SIGN_UP_LINK; ?>">New User? SignUp</a> &nbsp;
+                                                <!--<a href="#">Forgot Password</a>-->
+                                            </div>
+                                            <div>
+                                                <button type="submit" class="btn btn-primary  btn-block">Login</button>
+                                            </div>
+                                        </form>
                                     <?php } ?>
                                     <div class="list collapse navbar-collapse" id="slide-navbar-collapse">
                                         <ul id="accordion" class="accordion">
@@ -255,12 +255,12 @@
                                                         class="fa fa-chevron-down"></i></div>
                                                 <ul class="submenu">
                                                     <li><a href="<?php echo FRONT_VERIFY_E_PAYMENT_LINK; ?>">View / Verify e-Payment</a></li>
-                                                    <?php if(!isset($_SESSION['dealerDetails']['tax_dealer_id'])){ ?>
-                                                    <li><a href="<?php echo FRONT_EPAYMENT_UNREGISTERE; ?>">e-Payment (Unregistered)</a></li>
+                                                    <?php if (!isset($_SESSION['dealerDetails']['tax_dealer_id'])) { ?>
+                                                        <li><a href="<?php echo FRONT_EPAYMENT_UNREGISTERE; ?>">e-Payment (Unregistered)</a></li>
                                                     <?php } ?>
 
-                                                    <?php if(isset($_SESSION['dealerDetails']['tax_dealer_id'])){ ?>
-                                                    <li><a href="<?php echo FRONT_EPAYMENT_UNREGISTERE; ?>">e-Payment</a></li>
+                                                    <?php if (isset($_SESSION['dealerDetails']['tax_dealer_id'])) { ?>
+                                                        <li><a href="<?php echo FRONT_EPAYMENT_UNREGISTERE; ?>">e-Payment</a></li>
                                                     <?php } ?>
                                                     <!--
                                                     <li><a href="#">e-Registration</a></li>

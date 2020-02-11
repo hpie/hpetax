@@ -145,6 +145,7 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
 ?>
 <script src="<?php echo ASSETS_FRONT; ?>js/bootstrapValidator.min.js"></script>
 <?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT) { ?>
+<script src="<?php echo BASE_URL ?>assets/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="<?php echo BASE_URL ?>assets/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo BASE_URL ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
@@ -232,7 +233,8 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
         $(document).ready(function () {  
 //            fill_datatable();
             function fill_datatable(from = '',to = '',status='',transactionNo='',mobileNo='',email='')
-            {    
+            {                
+                var delear=<?php if(isset($_SESSION['dealerDetails']['tax_dealer_id'])){echo $_SESSION['dealerDetails']['tax_dealer_id'];}else{echo 0;} ?>                
                 $('#example').DataTable({
                     responsive: {
                         details: {
@@ -258,7 +260,8 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
                             transactionNo:transactionNo,
                             status:status,
                             mobileNo:mobileNo,
-                            email:email
+                            email:email,
+                            delear:delear
                         }
                     },
                     "columns": [
