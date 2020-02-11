@@ -23,6 +23,23 @@
     .location{
         display: none;
     }
+    #example_length label{
+        float: left;
+        padding: 10px;
+    }
+    #example_filter label{
+        float: right;
+        padding: 10px;
+    }
+    .pagination{
+        float: right;
+    }
+    .paginate_button {
+        margin: 4px;        
+    }
+    table.dataTable thead .sorting:after{
+        opacity: 0;
+    }
 </style>
 <div class="col-md-9 col-sm-12  col-12 ">
     <div class="middle-area box-shadow">
