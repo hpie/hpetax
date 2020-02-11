@@ -58,7 +58,7 @@ include 'conn.php';
 
 $delear=$_REQUEST['delear'];
 
-echo $delear;die;
+//echo $delear;die;
 
 $where =" tc.tax_dealer_id=$delear ";
 
