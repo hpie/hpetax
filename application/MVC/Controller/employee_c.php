@@ -8,6 +8,11 @@ class employee_c extends Controllers {
     public function __construct() {
         parent::__construct();
         sessionCheckEmployee();
+        
+        $_POST['token']=$_SESSION['tokenchekvalue'];
+        sessionCheckToken($_POST);
+        $_SESSION['token'] = bin2hex(random_bytes(24));
+        
         $this->employee_m = $this->loadModel('employee_m');
     }
    

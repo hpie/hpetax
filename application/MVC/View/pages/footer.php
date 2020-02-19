@@ -112,9 +112,11 @@
             autoclose: true
         });
 
-        if (<?php if (isset($_SESSION['Error'])) {
+        if (<?php
+if (isset($_SESSION['Error'])) {
     echo $_SESSION['Error'];
-} ?> == 1) {
+}
+?> == 1) {
             var d = new PNotify({
                 title: 'Please try again you are not change any data',
                 type: 'error',
@@ -123,9 +125,11 @@
 <?php echo $_SESSION['Error'] = 0; ?>;
         }
 
-        if (<?php if (isset($_SESSION['existrecord1'])) {
+        if (<?php
+if (isset($_SESSION['existrecord1'])) {
     echo $_SESSION['existrecord1'];
-} ?> == 1) {
+}
+?> == 1) {
             var d = new PNotify({
                 title: 'This Name is allready exist',
                 type: 'error',
@@ -134,9 +138,11 @@
 <?php echo $_SESSION['existrecord1'] = 0; ?>;
         }
 
-        if (<?php if (isset($_SESSION['existrecord'])) {
+        if (<?php
+if (isset($_SESSION['existrecord'])) {
     echo $_SESSION['existrecord'];
-} ?> == 1) {
+}
+?> == 1) {
             var d = new PNotify({
                 title: 'This ID is allready exist',
                 type: 'error',
@@ -145,9 +151,11 @@
 <?php echo $_SESSION['existrecord'] = 0; ?>;
         }
 
-        if (<?php if (isset($_SESSION['adddata'])) {
+        if (<?php
+if (isset($_SESSION['adddata'])) {
     echo $_SESSION['adddata'];
-} ?> == 1) {
+}
+?> == 1) {
             var d = new PNotify({
                 title: 'Record added successful',
                 type: 'success',
@@ -155,9 +163,11 @@
             });
 <?php echo $_SESSION['adddata'] = 0; ?>;
         }
-        if (<?php if (isset($_SESSION['dataupdate'])) {
+        if (<?php
+if (isset($_SESSION['dataupdate'])) {
     echo $_SESSION['dataupdate'];
-} ?> == 1) {
+}
+?> == 1) {
             var d = new PNotify({
                 title: 'Record updated successful',
                 type: 'success',
@@ -166,9 +176,11 @@
 <?php echo $_SESSION['dataupdate'] = 0; ?>;
         }
 
-        if (<?php if (isset($_SESSION['tax_transaction_head_exisit'])) {
+        if (<?php
+if (isset($_SESSION['tax_transaction_head_exisit'])) {
     echo $_SESSION['tax_transaction_head_exisit'];
-} ?> == 1) {
+}
+?> == 1) {
             var d = new PNotify({
                 title: 'This transaction head allready exist',
                 type: 'error',
@@ -176,9 +188,11 @@
             });
 <?php echo $_SESSION['tax_transaction_head_exisit'] = 0; ?>;
         }
-        if (<?php if (isset($_SESSION['tax_transaction_dept_exisit'])) {
+        if (<?php
+if (isset($_SESSION['tax_transaction_dept_exisit'])) {
     echo $_SESSION['tax_transaction_dept_exisit'];
-} ?> == 1) {
+}
+?> == 1) {
             var d = new PNotify({
                 title: 'This transaction dept allready exist',
                 type: 'error',
@@ -186,9 +200,11 @@
             });
 <?php echo $_SESSION['tax_transaction_dept_exisit'] = 0; ?>;
         }
-        if (<?php if (isset($_SESSION['tax_transaction_ddo_exisit'])) {
+        if (<?php
+if (isset($_SESSION['tax_transaction_ddo_exisit'])) {
     echo $_SESSION['tax_transaction_ddo_exisit'];
-} ?> == 1) {
+}
+?> == 1) {
             var d = new PNotify({
                 title: 'This transaction ddo allready exist',
                 type: 'error',
@@ -196,9 +212,11 @@
             });
 <?php echo $_SESSION['tax_transaction_ddo_exisit'] = 0; ?>;
         }
-        if (<?php if (isset($_SESSION['tax_type_name_exist'])) {
+        if (<?php
+if (isset($_SESSION['tax_type_name_exist'])) {
     echo $_SESSION['tax_type_name_exist'];
-} ?> == 1) {
+}
+?> == 1) {
             var d = new PNotify({
                 title: 'This tax type name allready exist',
                 type: 'error',
@@ -206,9 +224,11 @@
             });
 <?php echo $_SESSION['tax_type_name_exist'] = 0; ?>;
         }
-        if (<?php if (isset($_SESSION['tax_commodity_name'])) {
+        if (<?php
+if (isset($_SESSION['tax_commodity_name'])) {
     echo $_SESSION['tax_commodity_name'];
-} ?> == 1) {
+}
+?> == 1) {
             var d = new PNotify({
                 title: 'This tax commodity name allready exist',
                 type: 'error',
@@ -216,9 +236,11 @@
             });
 <?php echo $_SESSION['tax_commodity_name'] = 0; ?>;
         }
-        if (<?php if (isset($_SESSION['empMobileExist'])) {
+        if (<?php
+if (isset($_SESSION['empMobileExist'])) {
     echo $_SESSION['empMobileExist'];
-} ?> == 1) {
+}
+?> == 1) {
             var d = new PNotify({
                 title: 'Mobile number is allready exist',
                 type: 'error',
@@ -226,9 +248,11 @@
             });
 <?php echo $_SESSION['empMobileExist'] = 0; ?>;
         }
-        if (<?php if (isset($_SESSION['empEmailExist'])) {
+        if (<?php
+if (isset($_SESSION['empEmailExist'])) {
     echo $_SESSION['empEmailExist'];
-} ?> == 1) {
+}
+?> == 1) {
             var d = new PNotify({
                 title: 'Email is allready exist',
                 type: 'error',
@@ -236,9 +260,11 @@
             });
 <?php echo $_SESSION['empEmailExist'] = 0; ?>;
         }
-        if (<?php if (isset($_SESSION['empCodeExist'])) {
+        if (<?php
+if (isset($_SESSION['empCodeExist'])) {
     echo $_SESSION['empCodeExist'];
-} ?> == 1) {
+}
+?> == 1) {
             var d = new PNotify({
                 title: 'Employee code is allready exist',
                 type: 'error',
@@ -410,8 +436,9 @@
     <script>
         $(document).ready(function () {
             fill_datatable();
-            function fill_datatable(year = '',month = '',taxtype='',searchFromToDate='')
-            {    var status = $('#status').val();      
+            function fill_datatable(year = '', month = '', taxtype = '', searchFromToDate = '')
+            {
+                var status = $('#status').val();
                 $('#example').DataTable({
                     responsive: {
                         details: {
@@ -432,11 +459,11 @@
                         'type': 'POST',
                         'url': "<?php echo BASE_URL . '/assets/front/DataTablesSrc-master/reportsList.php' ?>",
                         'data': {
-                            year:year,
-                            month:month,
-                            taxtype:taxtype,
-                            searchFromToDate:searchFromToDate,
-                            status:status
+                            year: year,
+                            month: month,
+                            taxtype: taxtype,
+                            searchFromToDate: searchFromToDate,
+                            status: status
                         }
                     },
                     "columns": [
@@ -456,11 +483,11 @@
                 });
             }
             $('#searchYear').click(function () {
-                var year = $('#dp4').val();                
+                var year = $('#dp4').val();
                 if (year != '')
                 {
                     $('#example').DataTable().destroy();
-                    fill_datatable(year,'');
+                    fill_datatable(year, '');
                 } else
                 {
                     alert('Select Year');
@@ -469,11 +496,11 @@
                 }
             });
             $('#searchMonth').click(function () {
-                var month = $('#dp5').val();               
+                var month = $('#dp5').val();
                 if (month != '')
                 {
                     $('#example').DataTable().destroy();
-                    fill_datatable('',month);
+                    fill_datatable('', month);
                 } else
                 {
                     alert('Select Month');
@@ -482,11 +509,11 @@
                 }
             });
             $('#searchTaxType').click(function () {
-                var taxtype = $('#selectTaxType').children("option:selected").val();                             
+                var taxtype = $('#selectTaxType').children("option:selected").val();
                 if (taxtype != '')
                 {
                     $('#example').DataTable().destroy();
-                    fill_datatable('','',taxtype);
+                    fill_datatable('', '', taxtype);
                 } else
                 {
                     alert('Select Tax Type');
@@ -495,11 +522,11 @@
                 }
             });
             $('#searchFromToDate').click(function () {
-                var searchFromToDate = $('.single_cal1').val();               
+                var searchFromToDate = $('.single_cal1').val();
                 if (searchFromToDate != '')
                 {
                     $('#example').DataTable().destroy();
-                    fill_datatable('','','',searchFromToDate);
+                    fill_datatable('', '', '', searchFromToDate);
                 } else
                 {
                     alert('Select Proper Date');
@@ -507,7 +534,7 @@
                     fill_datatable();
                 }
             });
-            
+
 
             $(document).on('click', '.btn_approve_reject', function () {
                 var self = $(this);

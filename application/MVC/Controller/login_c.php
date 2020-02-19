@@ -7,12 +7,16 @@ class login_c extends Controllers {
         parent::__construct();
         $this->login_m = $this->loadModel('login_m');
     }
-    public function invoke() {
+    public function invoke() {                        
         $error = '';
         $_SESSION['valid'] = 0;
         $count = $this->login_m->getAttemptCount();
         if ($count==false) {        
-            if (isset($_POST['email']) && isset($_POST['password'])) {
+            if (isset($_POST['email']) && isset($_POST['password'])) {                
+                $_POST['token']=$_SESSION['tokenchekvalue'];
+                sessionCheckTokenAdmin($_POST);
+                $_SESSION['token'] = bin2hex(random_bytes(24));
+                
                 $result = $this->login_m->login_select($_POST['email'], $_POST['password']);                                
               
                 if ($result==true) {                    
@@ -25,15 +29,27 @@ class login_c extends Controllers {
                     redirect(LOGIN);
                 }               
             }              
-        }      
+        }        
+        $_SESSION['token'] = bin2hex(random_bytes(24));
+        $_SESSION['tokenchekvalue']=$_SESSION['token'];        
         $this->data['count'] = $count;
         loadLoginView('login/', 'login.php', $this->data);
     }        
-    public function employeeLoginForm() {        
+    public function employeeLoginForm() {
+        
+        $_POST['token']=$_SESSION['tokenchekvalue'];
+        sessionCheckToken($_POST);
+        $_SESSION['token'] = bin2hex(random_bytes(24));
+        
         $this->data['TITLE'] = TITLE_FRONT_EMPLOYEE_LOGIN;
         loadviewFront('front/', 'employeeLogin.php', $this->data);
     }    
     public function loginDealer() {
+        
+        $_POST['token']=$_SESSION['tokenchekvalue'];
+        sessionCheckToken($_POST);
+        $_SESSION['token'] = bin2hex(random_bytes(24));
+        
         if(!isset($_SESSION['employeeDetails'])){
         $error = '';
         $_SESSION['valid'] = 0;       
@@ -49,6 +65,11 @@ class login_c extends Controllers {
         redirect(BASE_URL);
     }
     public function employeeLogin() {
+        
+        $_POST['token']=$_SESSION['tokenchekvalue'];
+        sessionCheckToken($_POST);
+        $_SESSION['token'] = bin2hex(random_bytes(24));
+        
         if(!isset($_SESSION['dealerDetails'])){
         $error = '';
         $_SESSION['valid'] = 0;       

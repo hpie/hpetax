@@ -19,6 +19,24 @@ function addYearInDate($date, $year) {
     return $date;
 }
 
+function sessionCheckTokenAdmin($array) {
+    if (hash_equals($_SESSION['token'], $array['token'])) {
+        unset($_POST['token']);
+    } else {
+        redirect(LOGIN);
+    }
+    return true;
+}
+
+function sessionCheckToken($array) {
+    if (hash_equals($_SESSION['token'], $array['token'])) {
+        unset($_POST['token']);
+    } else {
+        redirect(BASE_URL);
+    }
+    return true;
+}
+
 function dbDatetime($prefix) {
     $_POST[$prefix . '_datetime'] = date('Y-m-d H:i:s');
     $_POST[$prefix . '_date'] = date('Y-m-d');
@@ -73,7 +91,6 @@ function dateFormatterMysql($old_date) {
     $new_date = date_format($old_date, 'Y-m-d');
     return $new_date;
 }
-
 
 function datetimeFormatter($old_date) {
     $date = date_create($old_date);
