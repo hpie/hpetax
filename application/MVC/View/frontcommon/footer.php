@@ -47,7 +47,7 @@ if (isset($_SESSION['valid']) && isset($_SESSION['valid'])) {
             });
 <?php echo $_SESSION['valid'] = 0; ?>;
         }
-   if (<?php
+        if (<?php
 if (isset($_SESSION['invalid']) && isset($_SESSION['valid'])) {
     echo $_SESSION['invalid'];
 }
@@ -58,9 +58,9 @@ if (isset($_SESSION['invalid']) && isset($_SESSION['valid'])) {
                 styling: 'bootstrap3'
             });
 <?php echo $_SESSION['invalid'] = 0; ?>;
-        } 
- 
-   if (<?php
+        }
+
+        if (<?php
 if (isset($_SESSION['existemail']) && isset($_SESSION['valid'])) {
     echo $_SESSION['existemail'];
 }
@@ -71,8 +71,8 @@ if (isset($_SESSION['existemail']) && isset($_SESSION['valid'])) {
                 styling: 'bootstrap3',
             });
 <?php echo $_SESSION['existemail'] = 0; ?>;
-        }  
- 
+        }
+
         if (<?php
 if (isset($_SESSION['existmobile']) && isset($_SESSION['valid'])) {
     echo $_SESSION['existmobile'];
@@ -84,9 +84,9 @@ if (isset($_SESSION['existmobile']) && isset($_SESSION['valid'])) {
                 styling: 'bootstrap3',
             });
 <?php echo $_SESSION['existmobile'] = 0; ?>;
-        }   
- 
- 
+        }
+
+
         if (<?php
 if (isset($_SESSION['existrecord']) && isset($_SESSION['valid'])) {
     echo $_SESSION['existrecord'];
@@ -98,8 +98,8 @@ if (isset($_SESSION['existrecord']) && isset($_SESSION['valid'])) {
                 styling: 'bootstrap3',
             });
 <?php echo $_SESSION['existrecord'] = 0; ?>;
-        }  
- 
+        }
+
 
         if (<?php
 if (isset($_SESSION['updatedata']) && isset($_SESSION['valid'])) {
@@ -112,9 +112,9 @@ if (isset($_SESSION['updatedata']) && isset($_SESSION['valid'])) {
                 styling: 'bootstrap3',
             });
 <?php echo $_SESSION['updatedata'] = 0; ?>;
-        } 
- 
- 
+        }
+
+
         if (<?php
 if (isset($_SESSION['adddata']) && isset($_SESSION['valid'])) {
     echo $_SESSION['adddata'];
@@ -126,7 +126,7 @@ if (isset($_SESSION['adddata']) && isset($_SESSION['valid'])) {
                 styling: 'bootstrap3',
             });
 <?php echo $_SESSION['adddata'] = 0; ?>;
-        }        
+        }
     });
 </script>
 <?php
@@ -145,96 +145,121 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
 ?>
 <script src="<?php echo ASSETS_FRONT; ?>js/bootstrapValidator.min.js"></script>
 <?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT) { ?>
-<script src="<?php echo BASE_URL ?>assets/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.flash.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-<script type="text/javascript" language="javascript" src="<?php echo BASE_URL; ?>/assets/front/js/dataTables.responsive.min.js"></script>
+    <script src="<?php echo BASE_URL ?>assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="<?php echo BASE_URL ?>assets/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo BASE_URL ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="<?php echo BASE_URL ?>assets/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="<?php echo BASE_URL ?>assets/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="<?php echo BASE_URL ?>assets/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="<?php echo BASE_URL ?>assets/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="<?php echo BASE_URL ?>assets/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="<?php echo BASE_URL ?>assets/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script type="text/javascript" language="javascript" src="<?php echo BASE_URL; ?>/assets/front/js/dataTables.responsive.min.js"></script>
 <?php } ?>
+
+
+<script type="text/javascript">
+    $(function () {
+        if($('form input[type=password]').length){
+            $( "form input[type=password]" ).after('<span id="lblError" style="color: red"></span>');
+        }
+        $('form input[type=password]').keypress(function (e) {
+            var keyCode = e.keyCode || e.which;
+            $("#lblError").html("");
+            //Regex for Valid Characters i.e. Alphabets and Numbers.
+            var regex = /^[A-Za-z0-9]+$/;
+            //Validate TextBox value against the Regex.
+            var isValid = regex.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                $("#lblError").html("Only Alphabets and Numbers allowed.");
+            }
+            return isValid;
+        });
+    });
+</script>
 <script>
-        $(document).ready(function () {         
-            $('#frm_change_password').bootstrapValidator({
-                // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-                feedbackIcons: {
-                    valid: 'glyphicon glyphicon-ok',
-                    invalid: 'glyphicon glyphicon-remove',
-                    validating: 'glyphicon glyphicon-refresh'
-                },
-                fields: {
-                    new_password: {
-                        validators: {
-                            stringLength: {
-                                min: 6,
-                            },
-                            identical: {
-                                field: 'rmsa_user_confirm_password',
-                                message: 'The password and its confirm are not the same'
-                            },
-                            notEmpty: {
-                                message: 'Please supply your new password'
-                            }
+    $(document).ready(function () {
+        $('#frm_change_password').bootstrapValidator({
+            // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                new_password: {
+                    validators: {
+                        stringLength: {
+                            min: 6,
+                        },
+                        identical: {
+                            field: 'rmsa_user_confirm_password',
+                            message: 'The password and its confirm are not the same'
+                        },
+                        notEmpty: {
+                            message: 'Please supply your new password'
                         }
-                    },
-                    confirm_password: {
-                        validators: {
-                            stringLength: {
-                                min: 6,
-                            },
-                            identical: {
-                                field: 'rmsa_user_new_password',
-                                message: 'The password and its confirm are not the same'
-                            },
-                            notEmpty: {
-                                message: 'Please supply your confirm password'
-                            }
+                    }
+                },
+                confirm_password: {
+                    validators: {
+                        stringLength: {
+                            min: 6,
+                        },
+                        identical: {
+                            field: 'rmsa_user_new_password',
+                            message: 'The password and its confirm are not the same'
+                        },
+                        notEmpty: {
+                            message: 'Please supply your confirm password'
                         }
                     }
                 }
-            }).on('success.form.bv', function (e) {
-                $('#success_message').slideDown({opacity: "show"}, "slow") // Do something ...
-                $('#frm_change_password').data('bootstrapValidator').resetForm();
+            }
+        }).on('success.form.bv', function (e) {
+            $('#success_message').slideDown({opacity: "show"}, "slow") // Do something ...
+            $('#frm_change_password').data('bootstrapValidator').resetForm();
 
-                // Prevent form submission
-                e.preventDefault();
+            // Prevent form submission
+            e.preventDefault();
 
-                // Get the form instance
-                var $form = $(e.target);
+            // Get the form instance
+            var $form = $(e.target);
 
-                // Get the BootstrapValidator instance
-                var bv = $form.data('bootstrapValidator');
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
 
-                // Use Ajax to submit form data
-                $.post($form.attr('action'), $form.serialize(), function (result) {
-                    if(result['success']=="success"){                        
-                            location.href = "<?php echo BASE_URL; ?>";                                           
-                    }
-                    if(result['success']=="fail"){                    
-                        var d = new PNotify({
-                            title: 'Old Password not match',
-                            type: 'error',
-                            styling: 'bootstrap3',
-                        });                          
-                    }
-                }, 'json');
-            });
+            // Use Ajax to submit form data
+            $.post($form.attr('action'), $form.serialize(), function (result) {
+                if (result['success'] == "success") {
+                    location.href = "<?php echo BASE_URL; ?>";
+                }
+                if (result['success'] == "fail") {
+                    var d = new PNotify({
+                        title: 'Old Password not match',
+                        type: 'error',
+                        styling: 'bootstrap3',
+                    });
+                }
+            }, 'json');
         });
-    </script>    
-    <?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT) { ?>
+    });
+</script>    
+<?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT) { ?>
     <script>
-        $(document).ready(function () {  
-//            fill_datatable();
-            function fill_datatable(from = '',to = '',status='',transactionNo='',mobileNo='',email='')
-            {                
-                var delear=<?php if(isset($_SESSION['dealerDetails']['tax_dealer_id'])){echo $_SESSION['dealerDetails']['tax_dealer_id'];}else{echo 0;} ?>                
+        $(document).ready(function () {
+    //            fill_datatable();
+            function fill_datatable(from = '', to = '', status = '', transactionNo = '', mobileNo = '', email = '')
+            {
+                var delear =<?php if (isset($_SESSION['dealerDetails']['tax_dealer_id'])) {
+        echo $_SESSION['dealerDetails']['tax_dealer_id'];
+    } else {
+        echo 0;
+    } ?>
                 $('#example').DataTable({
                     responsive: {
                         details: {
@@ -255,13 +280,13 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
                         'type': 'POST',
                         'url': "<?php echo BASE_URL . '/assets/front/DataTablesSrc-master/verifyepayment.php' ?>",
                         'data': {
-                            from:from,
-                            to:to,                            
-                            transactionNo:transactionNo,
-                            status:status,
-                            mobileNo:mobileNo,
-                            email:email,
-                            delear:delear
+                            from: from,
+                            to: to,
+                            transactionNo: transactionNo,
+                            status: status,
+                            mobileNo: mobileNo,
+                            email: email,
+                            delear: delear
                         }
                     },
                     "columns": [
@@ -281,15 +306,15 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
                 });
             }
             $('#search').click(function () {
-                var from = $('#startdate').val();                
-                var to = $('#enddate').val();                
-                var status=$("#status option:selected").val();              
-                var transactionno = $('#tax_transaction_no').val(); 
-                var email = $('#email').val(); 
-                var mobileNo = $('#mobileNo').val(); 
-                $('#example').DataTable().destroy();                    
-                fill_datatable(from,to,status,transactionno,mobileNo,email);
-            });           
+                var from = $('#startdate').val();
+                var to = $('#enddate').val();
+                var status = $("#status option:selected").val();
+                var transactionno = $('#tax_transaction_no').val();
+                var email = $('#email').val();
+                var mobileNo = $('#mobileNo').val();
+                $('#example').DataTable().destroy();
+                fill_datatable(from, to, status, transactionno, mobileNo, email);
+            });
         });
     </script>
 <?php } ?>    
