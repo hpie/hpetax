@@ -33,6 +33,7 @@
             return false;
         return true;
     }
+    
     $(document).ready(function () {
         if (<?php
 if (isset($_SESSION['valid']) && isset($_SESSION['valid'])) {
@@ -44,7 +45,7 @@ if (isset($_SESSION['valid']) && isset($_SESSION['valid'])) {
                 type: 'success',
                 styling: 'bootstrap3',
             });
-<?php echo $_SESSION['valid'] = 0; ?>;
+<?php echo $_SESSION['valid'] = 0; ?>
         }
         if (<?php
 if (isset($_SESSION['invalid']) && isset($_SESSION['valid'])) {
@@ -56,7 +57,7 @@ if (isset($_SESSION['invalid']) && isset($_SESSION['valid'])) {
                 type: 'error',
                 styling: 'bootstrap3'
             });
-<?php echo $_SESSION['invalid'] = 0; ?>;
+<?php echo $_SESSION['invalid'] = 0; ?>
         }
 
         if (<?php
@@ -69,7 +70,7 @@ if (isset($_SESSION['existemail']) && isset($_SESSION['valid'])) {
                 type: 'error',
                 styling: 'bootstrap3',
             });
-<?php echo $_SESSION['existemail'] = 0; ?>;
+<?php echo $_SESSION['existemail'] = 0; ?>
         }
 
         if (<?php
@@ -82,7 +83,7 @@ if (isset($_SESSION['existmobile']) && isset($_SESSION['valid'])) {
                 type: 'error',
                 styling: 'bootstrap3',
             });
-<?php echo $_SESSION['existmobile'] = 0; ?>;
+<?php echo $_SESSION['existmobile'] = 0; ?>
         }
 
 
@@ -96,7 +97,7 @@ if (isset($_SESSION['existrecord']) && isset($_SESSION['valid'])) {
                 type: 'error',
                 styling: 'bootstrap3',
             });
-<?php echo $_SESSION['existrecord'] = 0; ?>;
+<?php echo $_SESSION['existrecord'] = 0; ?>
         }
 
 
@@ -110,7 +111,7 @@ if (isset($_SESSION['updatedata']) && isset($_SESSION['valid'])) {
                 type: 'success',
                 styling: 'bootstrap3',
             });
-<?php echo $_SESSION['updatedata'] = 0; ?>;
+<?php echo $_SESSION['updatedata'] = 0; ?>
         }
 
 
@@ -124,7 +125,7 @@ if (isset($_SESSION['adddata']) && isset($_SESSION['valid'])) {
                 type: 'success',
                 styling: 'bootstrap3',
             });
-<?php echo $_SESSION['adddata'] = 0; ?>;
+<?php $_SESSION['adddata'] = 0; ?>
         }
     });
 </script>
@@ -159,7 +160,8 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
     <script src="<?php echo BASE_URL ?>assets/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
     <script type="text/javascript" language="javascript" src="<?php echo BASE_URL; ?>/assets/front/js/dataTables.responsive.min.js"></script>
 <?php } ?>
-<script type="text/javascript">
+
+ <script type="text/javascript">
     $(function () {
         if($('form input[type=text], textarea').length){
             $( "form input[type=text], textarea" ).after('<span id="lblError" style="color: red"></span>');
@@ -176,7 +178,9 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
             return true;
         });
     });
-</script>
+</script>   
+    
+    
 <script>
     $(document).ready(function () {
         $('#frm_change_password').bootstrapValidator({

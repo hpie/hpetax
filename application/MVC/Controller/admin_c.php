@@ -12,6 +12,7 @@ class admin_c extends Controllers {
         $_POST['token']=$_SESSION['tokenchekvalue'];
         sessionCheckTokenAdmin($_POST);
         $_SESSION['token'] = bin2hex(random_bytes(24));
+        $_SESSION['tokenchekvalue']=$_SESSION['token'];
         
         $this->admin_m = $this->loadModel('admin_m');
     }

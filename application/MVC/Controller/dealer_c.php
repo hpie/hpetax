@@ -12,6 +12,7 @@ class dealer_c extends Controllers {
         $_POST['token']=$_SESSION['tokenchekvalue'];
         sessionCheckToken($_POST);
         $_SESSION['token'] = bin2hex(random_bytes(24));
+        $_SESSION['tokenchekvalue']=$_SESSION['token'];
         
         $this->dealer_m = $this->loadModel('dealer_m');
     }

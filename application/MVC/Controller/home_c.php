@@ -11,6 +11,7 @@ class home_c extends Controllers {
         $_POST['token']=$_SESSION['tokenchekvalue'];
         sessionCheckToken($_POST);
         $_SESSION['token'] = bin2hex(random_bytes(24));
+        $_SESSION['tokenchekvalue']=$_SESSION['token'];
         
         $this->home_m = $this->loadModel('home_m');
     }
