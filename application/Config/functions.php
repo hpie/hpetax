@@ -27,7 +27,6 @@ function sessionCheckTokenAdmin($array) {
     }
     return true;
 }
-
 function sessionCheckToken($array) {
     if (hash_equals($_SESSION['tokenvalue'], $array['tokenvalue'])) {
         unset($_POST['tokenvalue']);
