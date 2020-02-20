@@ -28,12 +28,11 @@
 <script src="<?php echo ASSETS_FRONT; ?>js/main.js"></script>
 <script>
     function isNumberKey(evt) {
-        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
         if (charCode > 31 && (charCode < 48 || charCode > 57))
             return false;
         return true;
     }
-
     $(document).ready(function () {
         if (<?php
 if (isset($_SESSION['valid']) && isset($_SESSION['valid'])) {
@@ -160,24 +159,21 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
     <script src="<?php echo BASE_URL ?>assets/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
     <script type="text/javascript" language="javascript" src="<?php echo BASE_URL; ?>/assets/front/js/dataTables.responsive.min.js"></script>
 <?php } ?>
-
-
 <script type="text/javascript">
     $(function () {
         if($('form input[type=password]').length){
             $( "form input[type=password]" ).after('<span id="lblError" style="color: red"></span>');
         }
         $('form input[type=password]').keypress(function (e) {
-            var keyCode = e.keyCode || e.which;
-            $("#lblError").html("");
-            //Regex for Valid Characters i.e. Alphabets and Numbers.
-            var regex = /^[A-Za-z0-9]+$/;
-            //Validate TextBox value against the Regex.
-            var isValid = regex.test(String.fromCharCode(keyCode));
-            if (!isValid) {
-                $("#lblError").html("Only Alphabets and Numbers allowed.");
-            }
-            return isValid;
+//            var keyCode = e.keyCode || e.which;
+            $("#lblError").html("");            
+            var charCode = (e.which) ? e.which : e.keyCode;            
+            if (charCode == 60 || charCode == 96 || charCode == 126 || charCode == 33 || charCode == 35 || charCode == 36 || charCode == 37 || charCode == 94 || charCode == 96 || charCode == 38 || charCode == 42 || charCode == 40 || charCode == 41 || charCode == 61 || charCode == 43 || charCode == 123 || charCode == 125 || charCode == 91 || charCode == 93 || charCode == 124 || charCode == 92 || charCode == 58 || charCode == 59 || charCode == 34 || charCode == 39 || charCode == 44 || charCode == 63 || charCode == 47 || charCode == 62)
+            {                
+                $("#lblError").html("Not Allowed");
+                return false;
+            }                
+            return true;
         });
     });
 </script>
