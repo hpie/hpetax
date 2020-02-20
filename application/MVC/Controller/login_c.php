@@ -14,10 +14,10 @@ class login_c extends Controllers {
         if ($count==false) {        
             if (isset($_POST['email']) && isset($_POST['password'])) {                
                 
-                $_POST['token']=$_SESSION['tokenchekvalue'];
+                $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
                 sessionCheckTokenAdmin($_POST);
-                $_SESSION['token'] = bin2hex(random_bytes(24));
-                $_SESSION['tokenchekvalue']=$_SESSION['token'];                
+                $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
+                $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];                
                 $result = $this->login_m->login_select($_POST['email'], $_POST['password']);                                              
                 if ($result==true) {                    
                     redirect(ADMIN_DASHBOARD_LINK);
@@ -37,20 +37,20 @@ class login_c extends Controllers {
     }        
     public function employeeLoginForm() {
         
-        $_POST['token']=$_SESSION['tokenchekvalue'];
+        $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
         sessionCheckToken($_POST);
-        $_SESSION['token'] = bin2hex(random_bytes(24));
-        $_SESSION['tokenchekvalue']=$_SESSION['token'];
+        $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
+        $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];
         
         $this->data['TITLE'] = TITLE_FRONT_EMPLOYEE_LOGIN;
         loadviewFront('front/', 'employeeLogin.php', $this->data);
     }    
     public function loginDealer() {
         
-        $_POST['token']=$_SESSION['tokenchekvalue'];
+        $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
         sessionCheckToken($_POST);
-        $_SESSION['token'] = bin2hex(random_bytes(24));
-        $_SESSION['tokenchekvalue']=$_SESSION['token'];
+        $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
+        $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];
         
         if(!isset($_SESSION['employeeDetails'])){
         $error = '';
@@ -68,10 +68,10 @@ class login_c extends Controllers {
     }
     public function employeeLogin() {
         
-        $_POST['token']=$_SESSION['tokenchekvalue'];
+        $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
         sessionCheckToken($_POST);
-        $_SESSION['token'] = bin2hex(random_bytes(24));
-        $_SESSION['tokenchekvalue']=$_SESSION['token'];
+        $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
+        $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];
         
         if(!isset($_SESSION['dealerDetails'])){
         $error = '';

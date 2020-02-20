@@ -29,8 +29,8 @@ function sessionCheckTokenAdmin($array) {
 }
 
 function sessionCheckToken($array) {
-    if (hash_equals($_SESSION['token'], $array['token'])) {
-        unset($_POST['token']);
+    if (hash_equals($_SESSION['tokenvalue'], $array['tokenvalue'])) {
+        unset($_POST['tokenvalue']);
     } else {
         redirect(BASE_URL);
     }

@@ -10,6 +10,12 @@ define('IMG_URL', BASE_URL.'uploads/');
 define('IMG_DIR', 'uploads/');
 define('IS_LOGS', false);
 define('DEFAULT_LANG', 'en');
+
+if(!isset($_SESSION['token'])){
+    $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
+    $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];
+}
+
 /*
  * ---------------------------------------------------------------
  * SYSTEM FOLDER NAME

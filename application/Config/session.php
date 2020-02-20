@@ -9,7 +9,7 @@
  */
 function getLanguage() {
     if (!isset($_SESSION['SYSTEM_LANGUAGE'])) {
-        $_SESSION['SYSTEM_LANGUAGE'] = DEFAULT_LANG;
+        $_SESSION['SYSTEM_LANGUAGE'] = DEFAULT_LANG;                
     }
     return $_SESSION['SYSTEM_LANGUAGE'];
 }
