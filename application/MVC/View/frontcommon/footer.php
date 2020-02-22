@@ -307,7 +307,9 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
                         {"data": "tax_challan_brn"},
                         {"data": "tax_challan_himgrn"},
                         {"data": "tax_challan_id"},
-                        {"data": "tax_type_id"}
+                        {"data": "tax_type_id"},
+                        {"data": "downloadpdf"},
+                        {"data": "viewpdf"}
                     ]
                 });
             }

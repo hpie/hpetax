@@ -214,14 +214,15 @@
             <section class="main">
                 <?php if ($TITLE == TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_EPAYMENT_UNREGISTER || $TITLE == TITLE_FRONT_EPAYMENT_TREASURY || $TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) {
                     ?>
-                    <div class="">
+<!--                    <div class="">-->
                         <?php
                     } else {
                         ?>
-                        <div class="wapper">
+<!--                        <div class="wapper">-->
                             <?php
                         }
-                        ?>    
+                        ?> 
+                        <div class="">    
                         <div class="row mob-v-c-order">
                             <div class="col-md-3 col-sm-12 col-12 ">
                                 <div class="right-side-area box-shadow">

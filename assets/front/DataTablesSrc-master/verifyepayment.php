@@ -52,7 +52,7 @@ $columns = array(
     array('db' => 'ttq.tax_challan_id', 'dt' =>'tax_challan_id'),
     array('db' => 'tc.tax_type_id', 'dt' =>'tax_type_id'), 
     array('db' => 'tc.tax_depositors_email', 'dt' =>'tax_depositors_email'), 
-    array('db' => 'tc.tax_depositors_phone', 'dt' =>'tax_depositors_phone'), 
+    array('db' => 'tc.tax_depositors_phone', 'dt' =>'tax_depositors_phone')    
 );
 include 'conn.php';
 

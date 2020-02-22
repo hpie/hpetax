@@ -113,6 +113,8 @@
                                     <th>Himgrn</th>
                                     <th>Challan Id</th>
                                     <th>TaxType Id</th>
+                                    <th>Download</th>
+                                    <th>View</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -129,6 +131,8 @@
                                     <th>Himgrn</th>
                                     <th>Challan Id</th> 
                                     <th>TaxType Id</th>
+                                    <th>Download</th>
+                                    <th>View</th>
                                 </tr>
                             </tfoot>
                         </table>					

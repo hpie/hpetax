@@ -332,7 +332,7 @@ class SSP {
             "data" => $resData
         );
     }    
-     static function verifyepayment($request, $conn, $table, $primaryKey, $columns, $where_custom = '') {       
+    static function verifyepayment($request, $conn, $table, $primaryKey, $columns, $where_custom = '') {       
         $bindings = array();
         $db = self::db($conn);
         // Build the SQL query string from the request
@@ -381,6 +381,8 @@ class SSP {
         if (!empty($result)) {
             foreach ($result as $row) {                               
                 $row['index'] = '';
+                $row['downloadpdf'] = '<a href="https://himkosh.hp.nic.in/eChallan/challan_reports/reportViewer.aspx?reportName=PaidChallan&TransId='.$row["tax_challan_brn"].' download">Download</a>';
+                $row['viewpdf'] = '<a href="https://himkosh.hp.nic.in/eChallan/challan_reports/reportViewer.aspx?reportName=PaidChallan&TransId='.$row["tax_challan_brn"].'">View</a>';                
                 array_push($resData, $row);
             }
         }
