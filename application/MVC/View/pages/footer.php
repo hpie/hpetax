@@ -139,102 +139,102 @@
         if (<?php
 if (isset($_SESSION['Error'])) {
     echo $_SESSION['Error'];
-}
+}else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'Please try again you are not change any data',
                 type: 'error',
                 styling: 'bootstrap3'
             });
-<?php echo $_SESSION['Error'] = 0; ?>;
+<?php $_SESSION['Error'] = 0; ?>
         }
 
         if (<?php
 if (isset($_SESSION['existrecord1'])) {
     echo $_SESSION['existrecord1'];
-}
+}else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'This Name is allready exist',
                 type: 'error',
                 styling: 'bootstrap3'
             });
-<?php echo $_SESSION['existrecord1'] = 0; ?>;
+<?php $_SESSION['existrecord1'] = 0; ?>
         }
 
         if (<?php
 if (isset($_SESSION['existrecord'])) {
     echo $_SESSION['existrecord'];
-}
+}else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'This ID is allready exist',
                 type: 'error',
                 styling: 'bootstrap3'
             });
-<?php echo $_SESSION['existrecord'] = 0; ?>;
+<?php $_SESSION['existrecord'] = 0; ?>
         }
 
         if (<?php
 if (isset($_SESSION['adddata'])) {
     echo $_SESSION['adddata'];
-}
+}else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'Record added successful',
                 type: 'success',
                 styling: 'bootstrap3'
             });
-<?php echo $_SESSION['adddata'] = 0; ?>;
+<?php $_SESSION['adddata'] = 0; ?>
         }
         if (<?php
 if (isset($_SESSION['dataupdate'])) {
     echo $_SESSION['dataupdate'];
-}
+}else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'Record updated successful',
                 type: 'success',
                 styling: 'bootstrap3'
             });
-<?php echo $_SESSION['dataupdate'] = 0; ?>;
+<?php $_SESSION['dataupdate'] = 0; ?>
         }
 
         if (<?php
 if (isset($_SESSION['tax_transaction_head_exisit'])) {
     echo $_SESSION['tax_transaction_head_exisit'];
-}
+}else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'This transaction head allready exist',
                 type: 'error',
                 styling: 'bootstrap3'
             });
-<?php echo $_SESSION['tax_transaction_head_exisit'] = 0; ?>;
+<?php $_SESSION['tax_transaction_head_exisit'] = 0; ?>
         }
         if (<?php
 if (isset($_SESSION['tax_transaction_dept_exisit'])) {
     echo $_SESSION['tax_transaction_dept_exisit'];
-}
+}else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'This transaction dept allready exist',
                 type: 'error',
                 styling: 'bootstrap3'
             });
-<?php echo $_SESSION['tax_transaction_dept_exisit'] = 0; ?>;
+<?php $_SESSION['tax_transaction_dept_exisit'] = 0; ?>
         }
         if (<?php
 if (isset($_SESSION['tax_transaction_ddo_exisit'])) {
     echo $_SESSION['tax_transaction_ddo_exisit'];
-}
+}else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'This transaction ddo allready exist',
                 type: 'error',
                 styling: 'bootstrap3'
             });
-<?php echo $_SESSION['tax_transaction_ddo_exisit'] = 0; ?>;
+<?php $_SESSION['tax_transaction_ddo_exisit'] = 0; ?>
         }
         if (<?php
 if (isset($_SESSION['tax_type_name_exist'])) {
@@ -246,55 +246,55 @@ if (isset($_SESSION['tax_type_name_exist'])) {
                 type: 'error',
                 styling: 'bootstrap3'
             });
-<?php echo $_SESSION['tax_type_name_exist'] = 0; ?>;
+<?php $_SESSION['tax_type_name_exist'] = 0; ?>
         }
         if (<?php
 if (isset($_SESSION['tax_commodity_name'])) {
     echo $_SESSION['tax_commodity_name'];
-}
+}else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'This tax commodity name allready exist',
                 type: 'error',
                 styling: 'bootstrap3'
             });
-<?php echo $_SESSION['tax_commodity_name'] = 0; ?>;
+<?php $_SESSION['tax_commodity_name'] = 0; ?>
         }
         if (<?php
 if (isset($_SESSION['empMobileExist'])) {
     echo $_SESSION['empMobileExist'];
-}
+}else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'Mobile number is allready exist',
                 type: 'error',
                 styling: 'bootstrap3'
             });
-<?php echo $_SESSION['empMobileExist'] = 0; ?>;
+<?php $_SESSION['empMobileExist'] = 0; ?>
         }
         if (<?php
 if (isset($_SESSION['empEmailExist'])) {
     echo $_SESSION['empEmailExist'];
-}
+}else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'Email is allready exist',
                 type: 'error',
                 styling: 'bootstrap3'
             });
-<?php echo $_SESSION['empEmailExist'] = 0; ?>;
+<?php $_SESSION['empEmailExist'] = 0; ?>
         }
         if (<?php
 if (isset($_SESSION['empCodeExist'])) {
     echo $_SESSION['empCodeExist'];
-}
+}else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'Employee code is allready exist',
                 type: 'error',
                 styling: 'bootstrap3'
             });
-<?php echo $_SESSION['empCodeExist'] = 0; ?>;
+<?php $_SESSION['empCodeExist'] = 0; ?>
         }
     });
 </script>
