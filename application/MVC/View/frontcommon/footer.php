@@ -265,7 +265,7 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
         echo $_SESSION['dealerDetails']['tax_dealer_id'];
     } else {
         echo 0;
-    } ?>
+    } ?>;
                 $('#example').DataTable({
                     responsive: {
                         details: {
