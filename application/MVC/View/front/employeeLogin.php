@@ -16,7 +16,17 @@
                     <tr>                        
                         <td width='30%'>Password</td>
                         <td width='70%'><input type="password" name="password" required="required"></td>                       
-                    </tr>                  
+                    </tr>
+                    <tr>
+                        <td width='30%'>Recaptcha</td>
+                        <td width='70%'>                                                
+                                                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                                                <script>function enableLogin() { document.getElementById("btnLogin").disabled = false; }
+                                                    </script>
+                                                <label class="control-label col-sm-4 col-xs-12" for="ptsp"></label>                                                
+                                                <div class="g-recaptcha" style="" data-sitekey="6LdnvCQUAAAAAGmHBukXVzjs5NupVLlaIHJdpFWo" data-callback="enableLogin"></div>                                                
+                                            </td>                       
+                    </tr>
                 </table>
             </div>         
             <div>
@@ -27,7 +37,7 @@
                         color:#fff !important;
                     }
                 </style>
-                <center><button type="submit" name="submit">Login</button></center>                
+                <center><button type="submit" name="submit" disabled="true" id="btnLogin">Login</button></center>                
             </div> 
             </form>
         </div>       

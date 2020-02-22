@@ -252,7 +252,7 @@
                                                 <!--<a href="#">Forgot Password</a>-->
                                             </div>
                                             <div>
-                                                <button type="submit" class="btn btn-primary  btn-block" disabled="true" id="btnLogin">Login</button>
+                                                <button type="submit" class="btn btn-primary btn-block" disabled="true" id="btnLogin" style="width:100%">Login</button>
                                             </div>
                                         </form>
                                     <?php } ?>

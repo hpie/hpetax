@@ -425,8 +425,8 @@ header .navbar-header{
     display: none;
 }
 .btn-primary{
-    background: #264a62;
-    border-color: #e0e4e5;
+    background: #264a62 !important;
+    border-color: #e0e4e5 !important;
     font-size: 14px;
 }
 .btn-primary:hover{
