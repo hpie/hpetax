@@ -145,7 +145,7 @@
                 data: {depositors_email:depositors_email,tax_type_head:tax_type_head,tax_commodity_head:tax_commodity_head,challan_receipt_head:challan_receipt_head,challan_ddo:challan_ddo,challan_title:challan_title,tax_dealer_id:tax_dealer_id,depositors_name:depositors_name,depositors_phone:depositors_phone,depositors_city:depositors_city,depositors_zip:depositors_zip,depositors_address:depositors_address,challan_location:challan_location,challan_duration:challan_duration,challan_from_dt:challan_from_dt,challan_to_dt:challan_to_dt,challan_purpose:challan_purpose,challan_amount:challan_amount,transaction_no:transaction_no,transaction_status:transaction_status,challan_status:challan_status,type_code:type_code,token:token,device:device},
                 url: '<?php echo FRONT_ADD_CHALLAN_LINK; ?>',
                 success: function (_returnData) {
-                    if (_returnData.result == "success") {
+                    if (_returnData.result === "success") {
                         window.location = "<?php echo TITLE_FRONT_MAKE_EPAYMENT; ?>";
                     } else {
                         alert('Please complete the add tax process');
