@@ -238,15 +238,7 @@
                                                 <input type="password" name="password" class="form-control" id="pwd" required="">
                                             </div>                                                             
                                             
-                                            <div class="form-group form-check">                                                
-                                                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-                                                <script>function enableLogin() { document.getElementById("btnLogin").disabled = false; }
-                                                    </script>
-                                                <label class="control-label col-sm-4 col-xs-12" for="ptsp"></label>
-                                                <div class="col-sm-12 col-xs-12">
-                                                    <div class="g-recaptcha" style="" data-sitekey="6LdnvCQUAAAAAGmHBukXVzjs5NupVLlaIHJdpFWo" data-callback="enableLogin"></div>
-                                                </div>
-                                            </div>
+                                            
                                             <div class="forgot-pass">
                                                 <a href="<?php echo FRONT_SIGN_UP_LINK; ?>">New User? SignUp</a> &nbsp;
                                                 <!--<a href="#">Forgot Password</a>-->
