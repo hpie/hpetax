@@ -8,12 +8,7 @@ class admin_c extends Controllers {
     public function __construct() {
         parent::__construct();
         sessionCheck();
-        
-        $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
-        sessionCheckTokenAdmin($_POST);
-        $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
-        $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];
-        
+                        
         $this->admin_m = $this->loadModel('admin_m');
     }
     public function invoke() {

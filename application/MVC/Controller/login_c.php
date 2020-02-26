@@ -12,12 +12,7 @@ class login_c extends Controllers {
         $_SESSION['valid'] = 0;
         $count = $this->login_m->getAttemptCount();
         if ($count==false) {        
-            if (isset($_POST['email']) && isset($_POST['password'])) {                
-                
-                $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
-                sessionCheckTokenAdmin($_POST);
-                $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
-                $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];                
+            if (isset($_POST['email']) && isset($_POST['password'])) {                                                
                 $result = $this->login_m->login_select($_POST['email'], $_POST['password']);                                              
                 if ($result==true) {                    
                     redirect(ADMIN_DASHBOARD_LINK);
@@ -66,8 +61,7 @@ class login_c extends Controllers {
         $_SESSION['invalid']=1;
         redirect(BASE_URL);
     }
-    public function employeeLogin() {
-        
+    public function employeeLogin() {        
         $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
         sessionCheckToken($_POST);
         $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
