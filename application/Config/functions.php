@@ -27,7 +27,7 @@ function sessionCheckTokenAdmin($array) {
     }
     return true;
 }
- function sessionCheckToken($array) {
+ function sessionCheckToken() {
     if (hash_equals($_SESSION['securityToken1'], $_SESSION['securityToken2'])) {
         return true;
     } else {
