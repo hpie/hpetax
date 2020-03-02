@@ -37,20 +37,20 @@ class login_c extends Controllers {
     }        
     public function employeeLoginForm() {
         
-        $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
-        sessionCheckToken($_POST);
-        $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
-        $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];
+//        $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
+//        sessionCheckToken($_POST);
+//        $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
+//        $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];
         
         $this->data['TITLE'] = TITLE_FRONT_EMPLOYEE_LOGIN;
         loadviewFront('front/', 'employeeLogin.php', $this->data);
     }    
     public function loginDealer() {
         
-        $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
-        sessionCheckToken($_POST);
-        $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
-        $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];
+//        $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
+//        sessionCheckToken($_POST);
+//        $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
+//        $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];
         
         if(!isset($_SESSION['employeeDetails'])){
         $error = '';
@@ -67,10 +67,10 @@ class login_c extends Controllers {
         redirect(BASE_URL);
     }
     public function employeeLogin() {        
-        $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
-        sessionCheckToken($_POST);
-        $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
-        $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];
+//        $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
+//        sessionCheckToken($_POST);
+//        $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
+//        $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];
         
         if(!isset($_SESSION['dealerDetails'])){
         $error = '';
