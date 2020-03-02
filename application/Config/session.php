@@ -40,15 +40,19 @@ function sessionCheckEmployee() {
 }
 
 function sessionDestroy() {
+    session_regenerate_id();        
     session_destroy();
 }
 function sessionAdmin($row) {
+    session_regenerate_id();        
     $_SESSION['adminDetails']=$row;
 }
 function sessionDealer($row) {
+    session_regenerate_id();        
     $_SESSION['dealerDetails']=$row;
 }
 function sessionEmployee($row) {
+    session_regenerate_id();        
     $_SESSION['employeeDetails']=$row;
 }
 function get_AdminName($name) {

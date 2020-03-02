@@ -1,5 +1,5 @@
 <?php
-date_default_timezone_set('UTC');
+date_default_timezone_set('UTC');      
 session_start();
 if(!isset($_SESSION['securityToken1'])){
     $_SESSION['securityToken1']=bin2hex(random_bytes(24));
