@@ -9,10 +9,9 @@ class dealer_c extends Controllers {
         parent::__construct();
         sessionCheckDealer();
         
-        $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
-        sessionCheckToken($_POST);
-        $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
-        $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];
+        $_SESSION['securityToken2']=$_SESSION['securityToken1'];
+        sessionCheckToken();
+        $_SESSION['securityToken1'] = bin2hex(random_bytes(24)); 
         
         $this->dealer_m = $this->loadModel('dealer_m');
     }

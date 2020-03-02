@@ -5,6 +5,11 @@ class login_c extends Controllers {
     public $login_m;
     public function __construct() {
         parent::__construct();
+        
+        $_SESSION['securityToken2']=$_SESSION['securityToken1'];
+        sessionCheckToken();
+        $_SESSION['securityToken1'] = bin2hex(random_bytes(24)); 
+        
         $this->login_m = $this->loadModel('login_m');
     }
     public function invoke() {                        

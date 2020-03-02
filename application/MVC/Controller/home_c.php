@@ -8,10 +8,9 @@ class home_c extends Controllers {
     public function __construct() {
         parent::__construct();
         
-        $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
-        sessionCheckToken($_POST);
-        $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
-        $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];
+        $_SESSION['securityToken2']=$_SESSION['securityToken1'];
+        sessionCheckToken();
+        $_SESSION['securityToken1'] = bin2hex(random_bytes(24)); 
         
         $this->home_m = $this->loadModel('home_m');
     }

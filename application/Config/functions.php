@@ -27,10 +27,11 @@ function sessionCheckTokenAdmin($array) {
     }
     return true;
 }
-function sessionCheckToken($array) {
-    if (hash_equals($_SESSION['tokenvalue'], $array['tokenvalue'])) {
-        unset($_POST['tokenvalue']);
+ function sessionCheckToken($array) {
+    if (hash_equals($_SESSION['securityToken1'], $_SESSION['securityToken2'])) {
+        return true;
     } else {
+        session_destroy();
         redirect(BASE_URL);
     }
     return true;

@@ -1,6 +1,14 @@
 <?php
 date_default_timezone_set('UTC');
 session_start();
+if(!isset($_SESSION['securityToken1'])){
+    $_SESSION['securityToken1']=bin2hex(random_bytes(24));
+}
+header("X-XSS-Protection: 1; mode=block");
+header('X-Content-Type-Options: nosniff');
+header('X-Frame-Options: deny');
+header('X-Powered-By:');
+
 $r = $_SERVER['SCRIPT_NAME'];
 $subdomain = explode('/', $r);
 array_pop($subdomain);

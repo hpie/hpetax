@@ -6,8 +6,8 @@ $route['logout'] = 'login_c/logout';
 $route['dashboard'] = 'admin_c';
 //**************************************************************************************//
 //********************************Front side********************************************//
-$route[''] = 'token_c';
-$route['home'] = 'token_c';
+$route[''] = 'home_c';
+$route['home'] = 'home_c';
 $route['epayment'] = 'home_c/epayment';
 $route['makepayment'] = 'home_c/makepayment';
 $route['payment/updateTreasuryPayment/(:any)'] = 'home_c/updateTreasuryPayment';
