@@ -18,7 +18,6 @@ function addYearInDate($date, $year) {
     $date = date('Y-m-d', strtotime($date . '+' . $year . ' years'));
     return $date;
 }
-
 function sessionCheckTokenAdmin($array) {
     if (hash_equals($_SESSION['token'], $array['token'])) {
         unset($_POST['token']);

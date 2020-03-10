@@ -4,6 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+        <meta http-equiv="Content-Security-Policy" content="object-src 'self'; script-src 'nonce-S51U26wMQz'">
         <title><?php echo $TITLE; ?></title>
         <!--<title>Welcome to hptax.gov.in</title>-->
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/bootstrap.min.css">
@@ -26,8 +28,8 @@
         <?php if ($TITLE == TITLE_FRONT_EPAYMENT_TREASURY || $TITLE == TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) { ?>    
             <link href="<?php echo ASSETS_FRONT; ?>datetime/css/bootstrap-datepicker3.min.css" rel="stylesheet">
         <?php } ?>
-        <script src="<?php echo ASSETS_FRONT; ?>js/jquery.min.js"></script>
-        <script src="<?php echo ASSETS_FRONT; ?>js/bootstrap.min.js"></script>         
+        <script nonce='S51U26wMQz' src="<?php echo ASSETS_FRONT; ?>js/jquery.min.js"></script>
+        <script nonce='S51U26wMQz' src="<?php echo ASSETS_FRONT; ?>js/bootstrap.min.js"></script>         
 
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/main.css">
         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/pnotify/dist/pnotifiadmin.css">
@@ -235,12 +237,12 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="pwd">Password:</label>
-                                                <input type="password" name="password" class="form-control" id="pwd" required="">
+                                                <input type="password" minlength="8" name="password" class="form-control" id="pwd" required="">
                                             </div> 
                                             <div class="form-group">
                                                 
-                                                    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-                                                    <script>function enableLogin1() {
+                                                    <script nonce='S51U26wMQz' src="https://www.google.com/recaptcha/api.js" async defer></script>
+                                                    <script nonce='S51U26wMQz'>function enableLogin1() {
                                                             document.getElementById("btnLoginDealer").disabled = false;
                                                         }</script>
                                                     <label class="control-label col-sm-4 col-xs-12" for="ptsp"></label>

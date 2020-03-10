@@ -1,4 +1,4 @@
-<script>
+<script nonce='S51U26wMQz'>
     $(document).ready(function () {        
         $('#confirm').on('click', function () {
             if (confirm('Are you sure you want to confirm?')) {
@@ -597,4 +597,4 @@
                 });
     };
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOo8VS-DubgppGE3b94PsvweQyYqzrKGI&libraries=places&callback=initMap" async defer></script>
+<script nonce='S51U26wMQz' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOo8VS-DubgppGE3b94PsvweQyYqzrKGI&libraries=places&callback=initMap" async defer></script>

@@ -216,7 +216,7 @@ foreach ($route as $key => $value) {
 
 if(count($con_array) <= 0)
 {
-    echo "<b style='color:red;'>Failed</b>  :-  <strong>IN-VALID URL</strong> : failed to open url: <strong> " . $_SERVER['QUERY_STRING'] . "</strong> please check with your route file  at <b>route.php</b>";
+        redirect(FRONT_404_LINK);
         die;
 }
 else if (count($con_array) == 1) {

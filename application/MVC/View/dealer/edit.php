@@ -24,7 +24,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tax_dealer_password">Password<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" value="<?php if(isset($_SESSION['data']['tax_dealer_password'])){echo $_SESSION['data']['tax_dealer_password'];} ?>" name="tax_dealer_password"  placeholder="Enter tax dealer password" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" minlength="8" value="<?php if(isset($_SESSION['data']['tax_dealer_password'])){echo $_SESSION['data']['tax_dealer_password'];} ?>" name="tax_dealer_password"  placeholder="Enter tax dealer password" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="ln_solid" style="visibility: hidden"></div>

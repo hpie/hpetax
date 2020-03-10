@@ -6,6 +6,7 @@ $route['logout'] = 'login_c/logout';
 $route['dashboard'] = 'admin_c';
 //**************************************************************************************//
 //********************************Front side********************************************//
+$route['404'] = 'login_c/page_404';
 $route[''] = 'home_c';
 $route['home'] = 'home_c';
 $route['epayment'] = 'home_c/epayment';

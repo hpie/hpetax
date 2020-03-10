@@ -119,6 +119,8 @@ define('ADMIN_TAX_REPORTS_LINK', BASE_URL."tax-reports/");
 define('ADMIN_TAX_REPORTS_LIST_LINK', BASE_URL."tax-reports-list/");
 define('ADMIN_TAX_EMPLOYEE_INSERT_LINK', BASE_URL."employee-insert");
 
+define('FRONT_404_LINK', BASE_URL."404");
+
 define('TITLE_TAX_DEALER_LIST', "Tax Dealer List");
 define('TITLE_TAX_DEALER_LIST_PENDING', "Tax Dealer List Pending");
 

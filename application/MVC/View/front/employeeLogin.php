@@ -15,7 +15,7 @@
                         </tr>
                         <tr>                        
                             <td width='30%'>Password</td>
-                            <td width='70%'><input type="password" name="password" required="required"></td>                       
+                            <td width='70%'><input type="password" minlength="8" name="password" required="required"></td>                       
                         </tr>
                         <tr>
                             <td width='30%'>Recaptcha</td>

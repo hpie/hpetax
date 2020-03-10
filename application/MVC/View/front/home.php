@@ -30,7 +30,7 @@
                 <div class="marque ">
                     <h4 class="sm-heading">News</h4>
                     <div class="marque">
-                        <marquee style="height:150px;" direction="up" behaviour="scroll" scrollamount="4" title="Holding your cursor over this stops the marquee" onmouseover="this.stop();" onmouseout="this.start();">
+                        <marquee style="height:150px;" direction="up" behaviour="scroll" scrollamount="4" title="Holding your cursor over this stops the marquee">
                             <ul>
                                 <li><a href="#">
                                         Corrigendum regarding the rate of Excise Duty may be read as

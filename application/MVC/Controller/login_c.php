@@ -12,6 +12,10 @@ class login_c extends Controllers {
         
         $this->login_m = $this->loadModel('login_m');
     }
+    
+    public function page_404() {  
+        loadLoginView('front/', '404.php', $this->data);
+    }                      
     public function invoke() {                        
         $error = '';
         $_SESSION['valid'] = 0;

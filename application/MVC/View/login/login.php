@@ -54,7 +54,7 @@
                                 <input type="text" class="form-control" placeholder="Username" required="" name="email"/>
                             </div>
                             <div>
-                                <input type="password" class="form-control" placeholder="Password" required="" name="password"/>
+                                <input type="password" minlength="8" class="form-control" placeholder="Password" required="" name="password"/>
                             </div>
                             <div>
                                 <input type="submit" class="btn btn-default submit col-xs-12 btn-info" value="Log in" name="login"/>
