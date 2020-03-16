@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-        <meta http-equiv="Content-Security-Policy" content="object-src 'self'; script-src 'nonce-S51U26wMQz'">
+        <meta http-equiv="Content-Security-Policy" content="object-src 'self'; script-src 'nonce-S51U26wMQz'">  
         <title><?php echo $TITLE; ?></title>
         <!--<title>Welcome to hptax.gov.in</title>-->
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/bootstrap.min.css">

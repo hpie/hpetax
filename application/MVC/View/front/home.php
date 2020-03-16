@@ -92,7 +92,8 @@
                         <li><a href="#">Downloads</a></li>
                         <li><a href="#">Checklist & Procedure</a></li>
                         <li><a href="#">Draft GST Return Design, Principles And Formats</a></li>
-                        <li><a href="#">Comment / Feedback input on GST Returns and Design forms <img src="https://hptax.gov.in/HPPortal/pages/common/images/new0712.gif" alt="">
+                        <li><a href="#">Comment / Feedback input on GST Returns and Design forms <img src="<?php echo ASSETS_FRONT; ?>img/new0712.gif" alt="">
+                                <!--<img src="../../../../assets/front/img/new0712.gif" alt=""/>-->
                             </a>
                             <label for="">Download
                                 (please be sent in prescribed format only by email.)<br>
