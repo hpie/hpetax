@@ -13,7 +13,7 @@
                     <div class="row">
                         <label class="control-label col-sm-4 col-xs-12" for="current_password">Current Password:</label>
                         <div class="col-sm-8 col-xs-12">
-                            <input type="text" minlength="8" class="form-control" name="current_password" id="current_password" placeholder="Enter Current Password">
+                            <input type="text" class="form-control" name="current_password" id="current_password" placeholder="Enter Current Password">
                         </div>
                     </div>
                 </div>

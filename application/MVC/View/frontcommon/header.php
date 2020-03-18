@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/bootstrap.min.css">
         <link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <!--<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700" rel="stylesheet">-->
-        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/googlefont.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/googlefont.css" type="text/css"/>
         <!--<link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">-->        
 
 
@@ -76,7 +76,7 @@
                                     <button type="button" class="navbar-toggle collapsed" id="side-menu-btn"
                                             data-toggle="slide-collapse" data-target="#slide-navbar-collapse"
                                             aria-expanded="false">
-                                        <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i>
+                                        <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
                                     </button>
 
                                     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -128,9 +128,7 @@
                                                     </ul>
                                                 </li>
                                             </ul>
-                                        </li> 
-                                        --?
-                                        <!--
+                                        </li>                                                                                 
                                         <li class="nav-item dropdown"><a href="#" class="nav-link"
                                                                          data-toggle="dropdowm">GST</a>
                                             <ul class="dropdown-menu">
@@ -237,7 +235,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="pwd">Password:</label>
-                                                <input type="password" minlength="8" name="password" class="form-control" id="pwd" required="">
+                                                <input type="password" name="password" class="form-control" id="pwd" required="">
                                             </div> 
                                             <div class="form-group">
                                                 

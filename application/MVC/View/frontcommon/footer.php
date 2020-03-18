@@ -36,19 +36,19 @@
     
     $(document).ready(function () {
         if (<?php
-if (isset($_SESSION['valid']) && isset($_SESSION['valid'])) {
+if (isset($_SESSION['valid'])) {
     echo $_SESSION['valid'];
 }else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'Login Successfully',
                 type: 'success',
-                styling: 'bootstrap3',
+                styling: 'bootstrap3'
             });
 <?php $_SESSION['valid'] = 0; ?>
         }
         if (<?php
-if (isset($_SESSION['invalid']) && isset($_SESSION['valid'])) {
+if (isset($_SESSION['invalid'])) {
     echo $_SESSION['invalid'];
 }else{echo 0;}
 ?> == 1) {
@@ -61,69 +61,69 @@ if (isset($_SESSION['invalid']) && isset($_SESSION['valid'])) {
         }
 
         if (<?php
-if (isset($_SESSION['existemail']) && isset($_SESSION['valid'])) {
+if (isset($_SESSION['existemail'])) {
     echo $_SESSION['existemail'];
 }else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'Email Allready Exist',
                 type: 'error',
-                styling: 'bootstrap3',
+                styling: 'bootstrap3'
             });
 <?php $_SESSION['existemail'] = 0; ?>
         }
 
         if (<?php
-if (isset($_SESSION['existmobile']) && isset($_SESSION['valid'])) {
+if (isset($_SESSION['existmobile'])) {
     echo $_SESSION['existmobile'];
 }else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'Mobile number Allready Exist',
                 type: 'error',
-                styling: 'bootstrap3',
+                styling: 'bootstrap3'
             });
 <?php $_SESSION['existmobile'] = 0; ?>
         }
 
 
         if (<?php
-if (isset($_SESSION['existrecord']) && isset($_SESSION['valid'])) {
+if (isset($_SESSION['existrecord'])) {
     echo $_SESSION['existrecord'];
 }else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'TIN Allready Exist',
                 type: 'error',
-                styling: 'bootstrap3',
+                styling: 'bootstrap3'
             });
 <?php $_SESSION['existrecord'] = 0; ?>
         }
 
 
         if (<?php
-if (isset($_SESSION['updatedata']) && isset($_SESSION['valid'])) {
+if (isset($_SESSION['updatedata'])) {
     echo $_SESSION['updatedata'];
 }else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'Password updated successfully',
                 type: 'success',
-                styling: 'bootstrap3',
+                styling: 'bootstrap3'
             });
 <?php $_SESSION['updatedata'] = 0; ?>
         }
 
 
         if (<?php
-if (isset($_SESSION['adddata']) && isset($_SESSION['valid'])) {
+if (isset($_SESSION['adddata'])) {
     echo $_SESSION['adddata'];
 }else{echo 0;}
 ?> == 1) {
             var d = new PNotify({
                 title: 'Registration Successfully. You will receive email',
                 type: 'success',
-                styling: 'bootstrap3',
+                styling: 'bootstrap3'
             });
 <?php $_SESSION['adddata'] = 0; ?>
         }

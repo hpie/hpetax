@@ -15,13 +15,13 @@
                         </tr>
                         <tr>                        
                             <td width='30%'>Password</td>
-                            <td width='70%'><input type="password" minlength="8" name="password" required="required"></td>                       
+                            <td width='70%'><input type="password" name="password" required="required"></td>                       
                         </tr>
                         <tr>
                             <td width='30%'>Recaptcha</td>
                             <td width='70%'>                                                
-                                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-                                <script>function enableLogin() {
+                                <script nonce='S51U26wMQz' src="https://www.google.com/recaptcha/api.js" async defer></script>
+                                <script nonce='S51U26wMQz'>function enableLogin() {
                                         document.getElementById("btnLogin").disabled = false;
                                     }
                                 </script>
