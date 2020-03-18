@@ -46,14 +46,20 @@ function sessionDestroy() {
 function sessionAdmin($row) {
     session_regenerate_id();        
     $_SESSION['adminDetails']=$row;
+    $_SESSION['user_id']=$row['admin_user_id'];
+    $_SESSION['usertype']='admin_token';
 }
 function sessionDealer($row) {
     session_regenerate_id();        
     $_SESSION['dealerDetails']=$row;
+    $_SESSION['user_id']=$row['tax_dealer_id'];
+    $_SESSION['usertype']='dealer_token';
 }
 function sessionEmployee($row) {
     session_regenerate_id();        
     $_SESSION['employeeDetails']=$row;
+    $_SESSION['user_id']=$row['tax_employee_id'];
+    $_SESSION['usertype']='employee_token';
 }
 function get_AdminName($name) {
     if (isset($_SESSION['adminDetails'][$name])) {

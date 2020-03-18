@@ -10,7 +10,17 @@ class login_c extends Controllers {
         sessionCheckToken();
         $_SESSION['securityToken1'] = bin2hex(random_bytes(24)); 
         
-        $this->login_m = $this->loadModel('login_m');
+        $this->login_m = $this->loadModel('login_m');        
+        if (isset($_SESSION['user_id'])) {
+            $result = $this->login_m->getTokenAndCheck($_SESSION['usertype'], $_SESSION['user_id']);
+            if ($result) {
+                $token = $result['token'];
+                if ($_SESSION['tokencheck'] != $token) {
+                    session_destroy();
+                    redirect(BASE_URL);
+                }
+            }
+        }
     }
     
     public function page_404() {  
@@ -40,22 +50,10 @@ class login_c extends Controllers {
         loadLoginView('login/', 'login.php', $this->data);
     }        
     public function employeeLoginForm() {
-        
-//        $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
-//        sessionCheckToken($_POST);
-//        $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
-//        $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];
-        
         $this->data['TITLE'] = TITLE_FRONT_EMPLOYEE_LOGIN;
         loadviewFront('front/', 'employeeLogin.php', $this->data);
     }    
     public function loginDealer() {
-        
-//        $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
-//        sessionCheckToken($_POST);
-//        $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
-//        $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];
-        
         if(!isset($_SESSION['employeeDetails'])){
         $error = '';
         $_SESSION['valid'] = 0;       
@@ -71,11 +69,6 @@ class login_c extends Controllers {
         redirect(BASE_URL);
     }
     public function employeeLogin() {        
-//        $_POST['tokenvalue']=$_SESSION['tokenchekvalue'];
-//        sessionCheckToken($_POST);
-//        $_SESSION['tokenvalue'] = bin2hex(random_bytes(24));
-//        $_SESSION['tokenchekvalue']=$_SESSION['tokenvalue'];
-        
         if(!isset($_SESSION['dealerDetails'])){
         $error = '';
         $_SESSION['valid'] = 0;       

@@ -41,6 +41,26 @@ class login_m extends Models {
                 $q4 = "UPDATE admin_users SET last_login=now() WHERE admin_user_id=$admin_id";
                 $this->query->update($q4);
                 sessionAdmin($row);
+                
+                
+                $token = "";
+                $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                $codeAlphabet .= "abcdefghijklmnopqrstuvwxyz";
+                $codeAlphabet .= "0123456789";
+                $max = strlen($codeAlphabet); // edited
+                for ($i = 0; $i < 10; $i++) {
+                    $token .= $codeAlphabet[random_int(0, $max - 1)];
+                }                
+                $_SESSION['tokencheck'] = $token;
+                $uid=$_SESSION['adminDetails']['admin_user_id'];   
+                
+                $result_token = $this->query->select("select count(*) as allcount from admin_token");
+                $row_token = $this->query->fetch($result_token);
+                if ($row_token['allcount'] > 0) {                    
+                    $this->query->update("update admin_token set token='$token' where user_id='$uid'");
+                } else {
+                    $this->query->insert("insert into admin_token(user_id,token) values('$uid','$token')");
+                }                                                                                
                 return true;
             }
         }
@@ -54,6 +74,25 @@ class login_m extends Models {
         if ($row = $this->query->fetch($result)) {
             if ($email == $row['tax_dealer_code'] && $password == $row['tax_dealer_password']) {
                 sessionDealer($row);
+                
+                $token = "";
+                $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                $codeAlphabet .= "abcdefghijklmnopqrstuvwxyz";
+                $codeAlphabet .= "0123456789";
+                $max = strlen($codeAlphabet); // edited
+                for ($i = 0; $i < 10; $i++) {
+                    $token .= $codeAlphabet[random_int(0, $max - 1)];
+                }                
+                $_SESSION['tokencheck'] = $token;
+                $uid=$_SESSION['dealerDetails']['tax_dealer_id'];   
+                
+                $result_token = $this->query->select("select count(*) as allcount from dealer_token");
+                $row_token = $this->query->fetch($result_token);
+                if ($row_token['allcount'] > 0) {                    
+                    $this->query->update("update dealer_token set token='$token' where user_id='$uid'");
+                } else {
+                    $this->query->insert("insert into dealer_token(user_id,token) values('$uid','$token')");
+                }                                                                                                                
                 return true;
             }
         }
@@ -66,8 +105,36 @@ class login_m extends Models {
         if ($row = $this->query->fetch($result)) {
             if ($email == $row['tax_employee_code'] && $password == $row['tax_employee_password']) {
                 sessionEmployee($row);
+                
+                $token = "";
+                $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                $codeAlphabet .= "abcdefghijklmnopqrstuvwxyz";
+                $codeAlphabet .= "0123456789";
+                $max = strlen($codeAlphabet); // edited
+                for ($i = 0; $i < 10; $i++) {
+                    $token .= $codeAlphabet[random_int(0, $max - 1)];
+                }                
+                $_SESSION['tokencheck'] = $token;
+                $uid=$_SESSION['employeeDetails']['tax_employee_id'];   
+                
+                $result_token = $this->query->select("select count(*) as allcount from employee_token");
+                $row_token = $this->query->fetch($result_token);
+                if ($row_token['allcount'] > 0) {                    
+                    $this->query->update("update employee_token set token='$token' where user_id='$uid'");
+                } else {
+                    $this->query->insert("insert into employee_token(user_id,token) values('$uid','$token')");
+                }                                                                
                 return true;
             }
+        }
+        return false;
+    }
+    
+    public function getTokenAndCheck($table,$user_id) {        
+        $result = $this->query->select("SELECT token FROM $table where user_id='$user_id'");
+        $data = $this->query->fetch($result);
+        if($data){
+            return $data;
         }
         return false;
     }
