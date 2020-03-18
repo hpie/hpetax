@@ -1,3 +1,13 @@
+<?php
+if(isset($_SESSION['user_id'])){
+    if (auto_logout("user_time")) {
+        session_unset();
+        session_destroy();    
+        redirect(BASE_URL);
+        exit;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -215,106 +225,106 @@
             <section class="main">
                 <?php if ($TITLE == TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_EPAYMENT_UNREGISTER || $TITLE == TITLE_FRONT_EPAYMENT_TREASURY || $TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) {
                     ?>
-<!--                    <div class="">-->
-                        <?php
-                    } else {
-                        ?>
-<!--                        <div class="wapper">-->
-                            <?php
-                        }
-                        ?> 
-                        <div class="">    
-                        <div class="row mob-v-c-order">
-                            <div class="col-md-3 col-sm-12 col-12 ">
-                                <div class="right-side-area box-shadow">
-                                    <?php if (!isset($_SESSION['dealerDetails']['tax_dealer_id']) && !isset($_SESSION['employeeDetails'])) { ?>
-                                        <h4> Sign In (Registered Users)</h4>
-                                        <form action="<?php echo FRONT_LOGIN_DEALER_LINK; ?>" method="post">
-                                            <div class="form-group">
-                                                <label for="code">Logins Id:</label>
-                                                <input type="text" name="code" class="form-control" id="login_id" required="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="pwd">Password:</label>
-                                                <input type="password" name="password" class="form-control" id="pwd" required="">
-                                            </div> 
-                                            <div class="form-group">
-                                                
-                                                    <script nonce='S51U26wMQz' src="https://www.google.com/recaptcha/api.js" async defer></script>
-                                                    <script nonce='S51U26wMQz'>function enableLogin1() {
-                                                            document.getElementById("btnLoginDealer").disabled = false;
-                                                        }</script>
-                                                    <label class="control-label col-sm-4 col-xs-12" for="ptsp"></label>
-                                                    <div class="col-sm-8 col-xs-12">
-                                                        <div class="g-recaptcha" style="" data-sitekey="6LdnvCQUAAAAAGmHBukXVzjs5NupVLlaIHJdpFWo" data-callback="enableLogin1"></div>
-                                                    </div>
-                                                
-                                            </div>
-                                            <div class="forgot-pass">
-                                                <a href="<?php echo FRONT_SIGN_UP_LINK; ?>">New User? SignUp</a> &nbsp;
-                                                <!--<a href="#">Forgot Password</a>-->
-                                            </div>
-                                            <div>
-                                                <button type="submit" class="btn btn-primary btn-block" disabled="true" id="btnLoginDealer" style="width:100%">Login</button>
-                                            </div>
-                                        </form>
-                                    <?php } ?>
-                                    <div class="list collapse navbar-collapse" id="slide-navbar-collapse">
-                                        <ul id="accordion" class="accordion">
-                                            <li>
-                                                <div class="link"><i class="fa fa-database"></i>e-Services<i
-                                                        class="fa fa-chevron-down"></i></div>
-                                                <ul class="submenu">
-                                                    <li><a href="<?php echo FRONT_VERIFY_E_PAYMENT_LINK; ?>">View / Verify e-Payment</a></li>
-                                                    <?php if (!isset($_SESSION['dealerDetails']['tax_dealer_id'])) { ?>
-                                                        <li><a href="<?php echo FRONT_EPAYMENT_UNREGISTERE; ?>">e-Payment (Unregistered)</a></li>
-                                                    <?php } ?>
+                    <!--                    <div class="">-->
+                    <?php
+                } else {
+                    ?>
+                    <!--                        <div class="wapper">-->
+                    <?php
+                }
+                ?> 
+                <div class="">    
+                    <div class="row mob-v-c-order">
+                        <div class="col-md-3 col-sm-12 col-12 ">
+                            <div class="right-side-area box-shadow">
+                                <?php if (!isset($_SESSION['dealerDetails']['tax_dealer_id']) && !isset($_SESSION['employeeDetails'])) { ?>
+                                    <h4> Sign In (Registered Users)</h4>
+                                    <form action="<?php echo FRONT_LOGIN_DEALER_LINK; ?>" method="post">
+                                        <div class="form-group">
+                                            <label for="code">Logins Id:</label>
+                                            <input type="text" name="code" class="form-control" id="login_id" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pwd">Password:</label>
+                                            <input type="password" name="password" class="form-control" id="pwd" required="">
+                                        </div> 
+                                        <div class="form-group">
 
-                                                    <?php if (isset($_SESSION['dealerDetails']['tax_dealer_id'])) { ?>
-                                                        <li><a href="<?php echo FRONT_EPAYMENT_UNREGISTERE; ?>">e-Payment</a></li>
-                                                    <?php } ?>
-                                                    <!--
-                                                    <li><a href="#">e-Registration</a></li>
-                                                    <li><a href="#">e-Returns</a></li>
-                                                    <li><a href="#">Removal of Excisable Intoxicants</a></li>
-                                                    <li><a href="#">e-Declaration (VAT-XXVI-A)</a></li>
-                                                    <li><a href="#">e-Declaration (VAT-XXVI)</a></li>
-                                                    <li><a href="#">e-CST Forms Request</a></li>
-                                                    <li><a href="#">e-CST Forms Cancellation</a></li>
-                                                    <li><a href="#">Validate e-CST Forms</a></li>
-                                                    <li><a href="#">Validate Signed PDF</a></li>
-                                                    <li><a href="#">e-Track Status</a></li>
-                                                    <li><a href="#">e-Communication</a></li>
-                                                    -->
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <div class="link"><i class="fa fa-code"></i> Dealer Listing<i
-                                                        class="fa fa-chevron-down"></i></div>
-                                                <ul class="submenu">
-                                                    <li><a href="#">Dealer Search</a></li>
-                                                </ul>
-                                            </li>
-                                            <!--
-                                            <li>
-                                                <div class="link"><i class="fa fa-mobile"></i>Referral Websites<i
-                                                        class="fa fa-chevron-down"></i></div>
-                                                <ul class="submenu">
-                                                    <li><a href="#">Govt. of Himachal Pradesh</a></li>
-                                                    <li><a href="#">Finance Department</a></li>
-                                                    <li><a href="#">Budget-India</a></li>
-                                                    <li><a href="#">Budget of Himachal Pradesh</a></li>
-                                                    <li><a href="#">VAT Related Sites</a></li>
-                                                    <li><a href="#">TINXSYS</a></li>
-                                                    <li><a href="#">GST Website</a></li>
-                                                    <li><a href="#">e-Samadhan</a></li>
-                                                    <li><a href="#">e-Salary</a></li>
-                                                    <li><a href="#">PMIS</a></li>
-                                                </ul>
-                                            </li>
-                                            -->
-                                        </ul>
-                                    </div>
+                                            <script nonce='S51U26wMQz' src="https://www.google.com/recaptcha/api.js" async defer></script>
+                                            <script nonce='S51U26wMQz'>function enableLogin1() {
+                                                    document.getElementById("btnLoginDealer").disabled = false;
+                                                }</script>
+                                            <label class="control-label col-sm-4 col-xs-12" for="ptsp"></label>
+                                            <div class="col-sm-8 col-xs-12">
+                                                <div class="g-recaptcha" style="" data-sitekey="6LdnvCQUAAAAAGmHBukXVzjs5NupVLlaIHJdpFWo" data-callback="enableLogin1"></div>
+                                            </div>
+
+                                        </div>
+                                        <div class="forgot-pass">
+                                            <a href="<?php echo FRONT_SIGN_UP_LINK; ?>">New User? SignUp</a> &nbsp;
+                                            <!--<a href="#">Forgot Password</a>-->
+                                        </div>
+                                        <div>
+                                            <button type="submit" class="btn btn-primary btn-block" disabled="true" id="btnLoginDealer" style="width:100%">Login</button>
+                                        </div>
+                                    </form>
+                                <?php } ?>
+                                <div class="list collapse navbar-collapse" id="slide-navbar-collapse">
+                                    <ul id="accordion" class="accordion">
+                                        <li>
+                                            <div class="link"><i class="fa fa-database"></i>e-Services<i
+                                                    class="fa fa-chevron-down"></i></div>
+                                            <ul class="submenu">
+                                                <li><a href="<?php echo FRONT_VERIFY_E_PAYMENT_LINK; ?>">View / Verify e-Payment</a></li>
+                                                <?php if (!isset($_SESSION['dealerDetails']['tax_dealer_id'])) { ?>
+                                                    <li><a href="<?php echo FRONT_EPAYMENT_UNREGISTERE; ?>">e-Payment (Unregistered)</a></li>
+                                                <?php } ?>
+
+                                                <?php if (isset($_SESSION['dealerDetails']['tax_dealer_id'])) { ?>
+                                                    <li><a href="<?php echo FRONT_EPAYMENT_UNREGISTERE; ?>">e-Payment</a></li>
+                                                <?php } ?>
+                                                <!--
+                                                <li><a href="#">e-Registration</a></li>
+                                                <li><a href="#">e-Returns</a></li>
+                                                <li><a href="#">Removal of Excisable Intoxicants</a></li>
+                                                <li><a href="#">e-Declaration (VAT-XXVI-A)</a></li>
+                                                <li><a href="#">e-Declaration (VAT-XXVI)</a></li>
+                                                <li><a href="#">e-CST Forms Request</a></li>
+                                                <li><a href="#">e-CST Forms Cancellation</a></li>
+                                                <li><a href="#">Validate e-CST Forms</a></li>
+                                                <li><a href="#">Validate Signed PDF</a></li>
+                                                <li><a href="#">e-Track Status</a></li>
+                                                <li><a href="#">e-Communication</a></li>
+                                                -->
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <div class="link"><i class="fa fa-code"></i> Dealer Listing<i
+                                                    class="fa fa-chevron-down"></i></div>
+                                            <ul class="submenu">
+                                                <li><a href="#">Dealer Search</a></li>
+                                            </ul>
+                                        </li>
+                                        <!--
+                                        <li>
+                                            <div class="link"><i class="fa fa-mobile"></i>Referral Websites<i
+                                                    class="fa fa-chevron-down"></i></div>
+                                            <ul class="submenu">
+                                                <li><a href="#">Govt. of Himachal Pradesh</a></li>
+                                                <li><a href="#">Finance Department</a></li>
+                                                <li><a href="#">Budget-India</a></li>
+                                                <li><a href="#">Budget of Himachal Pradesh</a></li>
+                                                <li><a href="#">VAT Related Sites</a></li>
+                                                <li><a href="#">TINXSYS</a></li>
+                                                <li><a href="#">GST Website</a></li>
+                                                <li><a href="#">e-Samadhan</a></li>
+                                                <li><a href="#">e-Salary</a></li>
+                                                <li><a href="#">PMIS</a></li>
+                                            </ul>
+                                        </li>
+                                        -->
+                                    </ul>
                                 </div>
-                                <div class="menu-overlay"></div>
-                            </div>            
+                            </div>
+                            <div class="menu-overlay"></div>
+                        </div>            

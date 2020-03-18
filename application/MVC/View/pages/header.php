@@ -1,3 +1,13 @@
+<?php
+if(isset($_SESSION['user_id'])){
+    if (auto_logout("user_time")) {
+        session_unset();
+        session_destroy();    
+        redirect(LOGIN);
+        exit;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

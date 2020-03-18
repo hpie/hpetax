@@ -9,7 +9,20 @@ function accountnumber($userid) {
     $str = $str . $userid;
     return $str;
 }
-
+function auto_logout($field)
+{    
+    $t = time();    
+    $t0 = $_SESSION[$field];
+    $diff = $t - $t0;
+    if ($diff > 300 || !isset($t0))
+    {          
+        return true;
+    }
+    else
+    {
+        $_SESSION[$field] = time();
+    }
+}
 function uniqueMd5() {
     return md5(time() . uniqid(rand() . mt_rand(1, 10000000), true));
 }
