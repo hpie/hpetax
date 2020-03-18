@@ -97,7 +97,8 @@
                                         <?php if (isset($_SESSION['employeeDetails']['tax_employee_id'])) { ?>
                                             <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdowm">Employee</a>
                                                 <ul class="dropdown-menu">
-                                                    <li class="nav-item"><a href="<?php echo LOGOUT_DEALER; ?>" class="nav-link">Logout</a></li>                                                
+                                                    <li class="nav-item"><a href="<?php echo LOGOUT_DEALER; ?>" class="nav-link">Logout</a></li> 
+                                                    <li class="nav-item"><a href="<?php echo FRONT_CHANE_PASSWORD_EMPLOYEE_FORM_LINK; ?>" class="nav-link">Change Password</a>
                                                 </ul>
                                             </li>
                                         <?php } ?>

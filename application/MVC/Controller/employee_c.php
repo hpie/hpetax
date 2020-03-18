@@ -34,5 +34,26 @@ class employee_c extends Controllers {
         $this->data['TITLE'] = TITLE_TAX_EMPLOYEE_EDT;
         loadviewFront('front/', 'edt.php', $this->data);
     } 
+    public function changePassword() {
+        $this->data['TITLE'] = TITLE_FRONT_CHANGE_PASSWORD;
+        loadviewFront('front/', 'changepassword_employee.php', $this->data);
+    }
+    public function update_profile(){       
+        $result=array();               
+        if(isset($_POST['current_password']) && $_POST['current_password']!=''){             
+            if($this->employee_m->check_current_password($_POST['current_password'])){                
+                $res = $this->employee_m->update_password($_POST);                    
+                if($res){
+                    $_SESSION['updatedata']=1;
+                    $result['success']="success";                   
+                }                
+            }
+            else{
+                $result['success']="fail";
+            }
+            echo json_encode($result);die;            
+        }   
+        redirect(FRONT_CHANE_PASSWORD_EMPLOYEE_FORM_LINK);
+    }
 }
 ?>

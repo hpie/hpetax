@@ -39,6 +39,9 @@ define('FRONT_LOGIN_DEALER_LINK', BASE_URL ."login-dealer");
 define('FRONT_LOGIN_EMPLOYEE_LINK', BASE_URL ."login-employee");
 define('FRONT_LOGIN_EMPLOYEE_LOGIN_FORM_LINK', BASE_URL ."employee-login-form");
 
+define('FRONT_CHANE_PASSWORD_EMPLOYEE_FORM_LINK', BASE_URL ."change-password-employee");
+define('FRONT_CHANE_PASSWORD_EMPLOYEE_LINK', BASE_URL ."update-password-employee");
+
 define('FRONT_CHANE_PASSWORD_DEALER_FORM_LINK', BASE_URL ."change-password");
 define('FRONT_CHANE_PASSWORD_DEALER_LINK', BASE_URL ."update-password");
 define('LOGOUT_DEALER', BASE_URL ."logout-dealer");

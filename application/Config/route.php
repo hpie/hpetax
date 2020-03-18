@@ -27,6 +27,8 @@ $route['login-dealer'] = 'login_c/loginDealer';
 $route['logout-dealer'] = 'login_c/logoutDealer';
 $route['change-password'] = 'dealer_c/changePassword';
 $route['update-password'] = 'dealer_c/update_profile';
+$route['change-password-employee'] = 'employee_c/changePassword';
+$route['update-password-employee'] = 'employee_c/update_profile';
 //**************************************************************************************//
 
 //**************************tax_master*******************//
