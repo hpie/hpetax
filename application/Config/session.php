@@ -38,7 +38,6 @@ function sessionCheckEmployee() {
     }
     return true;
 }
-
 function sessionDestroy() {
     session_regenerate_id();        
     session_destroy();

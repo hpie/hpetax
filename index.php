@@ -9,7 +9,7 @@ header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: deny');
 header('X-Powered-By:');
 //header('Set-Cookie: same-site-cookie=foo; SameSite=None');
-header('Set-Cookie: cross-site-cookie=bar; SameSite=None; Secure');
+header('Set-Cookie:cross-site-cookie=bar; SameSite=None; Secure;HttpOnly');
 //header('Set-Cookie:HttpOnly;Secure;SameSite=Strict');
 //response.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
 
