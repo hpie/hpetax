@@ -53,7 +53,7 @@
                 <table class="table" border="1">
                     <tr>                        
                         <td>Transaction No.</td>
-                        <td><input type="text" id="tax_transaction_no"></td>
+                        <td><input type="text" id="tax_transaction_no" maxlength="20"></td>
                         <td>Vehicle No</td>                      
                         <td><input type="email" id="email"></td>                     
                     </tr>  
@@ -69,7 +69,7 @@
                             </select>                            
                         </td>
                         <td>Mobile No</td>                      
-                        <td><input type="text" id="mobileNo"></td>                      
+                        <td><input type="text" id="mobileNo" class="mobileno"></td>                      
                     </tr>                                                              
                     <tr class="input-daterange">
                         <!--<div class="input-daterange input-group" id="datepicker">-->                                                                                                                                

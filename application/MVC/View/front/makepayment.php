@@ -9,7 +9,7 @@
     <input type="hidden" name="merchant_code" value="HIMKOSH114"/>
 <!--    <input type="Submit" name="btn_submit" value="Make Payment"/>-->
 </form>
-<script type="text/javascript">
+<script type="text/javascript" nonce='S51U26wMQz'>
     document.getElementById("aspnetForm").submit();
 </script>
 </body>

@@ -14,7 +14,7 @@
         </div>       
     </div>
 </div>
-<script>
+<script type="text/javascript" nonce='S51U26wMQz'>
     function popupWin() {
         window.open('https://himkosh.hp.nic.in/eChallan/challan_reports/reportViewer.aspx?reportName=PaidChallan&TransId=A19L111077','popup','width=700,height=700');
         return false;

@@ -9,22 +9,22 @@
 
         <title><?php echo APPNAME; ?></title>
         <!-- Bootstrap -->
-        <script src="<?php echo BASE_URL; ?>assets/jquery/dist/jquery.min.js"></script>
-        <link href="<?php echo BASE_URL; ?>assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="<?php echo BASE_URL; ?>assets/jquery/dist/jquery.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
+        <link href="<?php echo BASE_URL; ?>assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <!-- Font Awesome -->
-        <link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <!-- NProgress -->
-        <link href="<?php echo BASE_URL; ?>assets/nprogress/nprogress.css" rel="stylesheet">
+        <link href="<?php echo BASE_URL; ?>assets/nprogress/nprogress.css" rel="stylesheet" type="text/css">
         <!-- Animate.css -->
         <!--<link href="<?php echo BASE_URL; ?>assets/animate.css/animate.min.css" rel="stylesheet">-->
 
         <!-- Custom Theme Style -->
-        <link href="<?php echo BASE_URL; ?>assets/build/css/custom.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/jqueryui/jquery-ui.css">
-        <script src="<?php echo BASE_URL; ?>assets/jquery/dist/jquery.js"></script>
-        <script src="<?php echo BASE_URL; ?>assets/jqueryui/jquery-ui.js"></script>
+        <link href="<?php echo BASE_URL; ?>assets/build/css/custom.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/jqueryui/jquery-ui.css" type="text/css">
+        <script src="<?php echo BASE_URL; ?>assets/jquery/dist/jquery.js" type="text/javascript" nonce='S51U26wMQz'></script>
+        <script src="<?php echo BASE_URL; ?>assets/jqueryui/jquery-ui.js" type="text/javascript" nonce='S51U26wMQz'></script>
         
-        <script type="text/javascript">
+        <script type="text/javascript" nonce='S51U26wMQz'>
             $(document).ready(function () {               
                 var valid =<?php if($_SESSION['valid']==1){echo $_SESSION['valid'];} else{ echo '0';} ?>;
                 if (valid)

@@ -1,5 +1,5 @@
 
-<script>
+<script type="text/javascript" nonce='S51U26wMQz'>
     function init_echarts() {
         if ("undefined" != typeof echarts) {
 //            console.log("init_echarts");

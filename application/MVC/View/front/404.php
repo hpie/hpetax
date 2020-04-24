@@ -6,15 +6,15 @@
   <meta http-equiv="Content-Security-Policy" content="object-src 'self'; script-src 'nonce-S51U26wMQz'">
   <title>404 error page</title> 
   <meta name="viewport" content="width=device-width, initial-scale=1" /> 
-   <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/bootstrap.min.css">
-   <link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">   
+   <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/bootstrap.min.css" type="text/css">
+   <link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">   
 <!--  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" /> 
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" /> -->
   <link href="<?php echo BASE_URL; ?>assets/front/css/css/style.css" type="text/css" rel="stylesheet" media="all" /> 
-  <script nonce='S51U26wMQz' src="<?php echo ASSETS_FRONT; ?>js/jquery.min.js"></script>
+  <script nonce='S51U26wMQz' src="<?php echo ASSETS_FRONT; ?>js/jquery.min.js" type="text/javascript"></script>
    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>--> 
   <!--<script src="../../../../assets/front/js/particles.min.js" type="text/javascript"></script>-->
-    <script nonce='S51U26wMQz' src="<?php echo ASSETS_FRONT; ?>js/particles.min.js"></script> 
+    <script nonce='S51U26wMQz' src="<?php echo ASSETS_FRONT; ?>js/particles.min.js" type="text/javascript"></script> 
  </head> 
  <body>
   <div id="particles-js"> 

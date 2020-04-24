@@ -24,17 +24,37 @@
     </div>
 </footer>
 </div>
-<script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/pnotify/dist/pnotifyadmin.js"></script>   
-<script nonce='S51U26wMQz' src="<?php echo ASSETS_FRONT; ?>js/main.js"></script>
-<script nonce='S51U26wMQz'>
-    function isNumberKey(evt) {
-        var charCode = (evt.which) ? evt.which : evt.keyCode;
-        if (charCode > 31 && (charCode < 48 || charCode > 57))
-            return false;
-        return true;
-    }
+<script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/pnotify/dist/pnotifyadmin.js"></script>   
+<script nonce='S51U26wMQz' type="text/javascript" src="<?php echo ASSETS_FRONT; ?>js/main.js"></script>
+<script nonce='S51U26wMQz' type="text/javascript">     
+//    function isNumberKey(evt) {       
+//        var charCode = (evt.which) ? evt.which : evt.keyCode;
+//        if (charCode > 31 && (charCode < 48 || charCode > 57))
+//            return false;
+//        return true;
+//    }
     
-    $(document).ready(function () {
+    $(document).ready(function () {        
+        $(".mobileno").keyup(function (e) {
+            var str=$(this).val();
+            for (var i = 0; i < str.length; i++) {
+                var charCode=str.charAt(i).charCodeAt(0);                  
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                {                                    
+                    $(this).val('');
+                    return false;
+                }                                       
+            }               
+            return true;
+        });
+        
+        
+        
+        
+        
+        
+        
+        
         if (<?php
 if (isset($_SESSION['valid'])) {
     echo $_SESSION['valid'];
@@ -143,51 +163,61 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
     include_once(APP_INCLUDE_V . "frontcommon/epaymentverifyjs.php");
 }
 ?>
-<script nonce='S51U26wMQz' src="<?php echo ASSETS_FRONT; ?>js/bootstrapValidator.min.js"></script>
+<script nonce='S51U26wMQz' type="text/javascript" src="<?php echo ASSETS_FRONT; ?>js/bootstrapValidator.min.js"></script>
 <?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT) { ?>
-    <script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
     <script nonce='S51U26wMQz' type="text/javascript" language="javascript" src="<?php echo BASE_URL; ?>/assets/front/js/dataTables.responsive.min.js"></script>
 <?php } ?>
 
  <script nonce='S51U26wMQz' type="text/javascript">
     $(document).ready(function () {                
-        $('input[type=text]').keypress(function (e) {                 
-            var keyCode = e.keyCode || e.which;            
-            var charCode = (e.which) ? e.which : e.keyCode;            
-            if (charCode == 60 || charCode == 96 || charCode == 126 || charCode == 33 || charCode == 35 || charCode == 36 || charCode == 37 || charCode == 94 || charCode == 96 || charCode == 38 || charCode == 42 || charCode == 40 || charCode == 41 || charCode == 61 || charCode == 43 || charCode == 123 || charCode == 125 || charCode == 91 || charCode == 93 || charCode == 124 || charCode == 92 || charCode == 58 || charCode == 59 || charCode == 34 || charCode == 39 || charCode == 44 || charCode == 63 || charCode == 47 || charCode == 62)
-            {                
-                alert('Special Characters are not allowed. Only use A-Z, a-z and 0-9');
-                return false;
-            }                
+        $('input[type=text]').keyup(function (e) {
+            var str=$(this).val();
+            for (var i = 0; i < str.length; i++) {
+                var charCode=str.charAt(i).charCodeAt(0);                  
+                if (charCode === 60 || charCode === 96 || charCode === 126 || charCode === 33 || charCode === 35 || charCode === 36 || charCode === 37 || charCode === 94 || charCode === 96 || charCode === 38 || charCode === 42 || charCode == 40 || charCode === 41 || charCode === 61 || charCode === 43 || charCode === 123 || charCode === 125 || charCode === 91 || charCode === 93 || charCode === 124 || charCode === 92 || charCode === 58 || charCode === 59 || charCode === 34 || charCode === 39 || charCode === 44 || charCode === 63 || charCode === 47 || charCode === 62)
+                {                
+                    alert('Special Characters are not allowed. Only use A-Z, a-z and 0-9');
+                    $(this).val('');
+                    return false;
+                }       
+                
+                
+            }               
             return true;
         });
-        $('textarea').keypress(function (e) {                 
-            var keyCode = e.keyCode || e.which;            
-            var charCode = (e.which) ? e.which : e.keyCode;            
-            if (charCode == 60 || charCode == 96 || charCode == 126 || charCode == 33 || charCode == 35 || charCode == 36 || charCode == 37 || charCode == 94 || charCode == 96 || charCode == 38 || charCode == 42 || charCode == 40 || charCode == 41 || charCode == 61 || charCode == 43 || charCode == 123 || charCode == 125 || charCode == 91 || charCode == 93 || charCode == 124 || charCode == 92 || charCode == 58 || charCode == 59 || charCode == 34 || charCode == 39 || charCode == 44 || charCode == 63 || charCode == 47 || charCode == 62)
-            {                
-                alert('Special Characters are not allowed. Only use A-Z, a-z and 0-9');
-                return false;
-            }                
+        $('textarea').keyup(function (e) {                 
+           var str=$(this).val();
+            for (var i = 0; i < str.length; i++) {
+                var charCode=str.charAt(i).charCodeAt(0);                  
+                if (charCode === 60 || charCode === 96 || charCode === 126 || charCode === 33 || charCode === 35 || charCode === 36 || charCode === 37 || charCode === 94 || charCode === 96 || charCode === 38 || charCode === 42 || charCode == 40 || charCode === 41 || charCode === 61 || charCode === 43 || charCode === 123 || charCode === 125 || charCode === 91 || charCode === 93 || charCode === 124 || charCode === 92 || charCode === 58 || charCode === 59 || charCode === 34 || charCode === 39 || charCode === 44 || charCode === 63 || charCode === 47 || charCode === 62)
+                {                
+                    alert('Special Characters are not allowed. Only use A-Z, a-z and 0-9');
+                    $(this).val('');
+                    return false;
+                }       
+                
+                
+            }               
             return true;
         });
     });
 </script>   
     
     
-<script nonce='S51U26wMQz'>
+<script nonce='S51U26wMQz' type="text/javascript">
     $(document).ready(function () {
         $('#frm_change_password').bootstrapValidator({
             // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -256,7 +286,7 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
     });
 </script>    
 <?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT) { ?>
-    <script nonce='S51U26wMQz'>
+    <script nonce='S51U26wMQz' type="text/javascript">
         $(document).ready(function () {
     //            fill_datatable();
             function fill_datatable(from = '', to = '', status = '', transactionNo = '', mobileNo = '', email = '')

@@ -214,22 +214,22 @@
         </div> 
     </div>
         </div> 
-<script src="<?php echo BASE_URL ?>assets/jquery/dist/jquery.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.flash.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-<script type="text/javascript" language="javascript" src="<?php echo BASE_URL; ?>/assets/front/js/dataTables.responsive.min.js"></script>
-    <script>
+<script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/jquery/dist/jquery.min.js" type="text/javascript"></script>
+<script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+<script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/dataTables.buttons.min.js" type="text/javascript"></script>
+<script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-buttons-bs/js/buttons.bootstrap.min.js" type="text/javascript"></script>
+<script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.flash.min.js" type="text/javascript"></script>
+<script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.html5.min.js" type="text/javascript"></script>
+<script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.print.min.js" type="text/javascript"></script>
+<script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js" type="text/javascript"></script>
+<script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-keytable/js/dataTables.keyTable.min.js" type="text/javascript"></script>
+<script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-responsive/js/dataTables.responsive.min.js" type="text/javascript"></script>
+<script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-responsive-bs/js/responsive.bootstrap.js" type="text/javascript"></script>
+<script nonce='S51U26wMQz' src="<?php echo BASE_URL ?>assets/datatables.net-scroller/js/dataTables.scroller.min.js" type="text/javascript"></script>
+<script nonce='S51U26wMQz' type="text/javascript" language="javascript" src="<?php echo BASE_URL; ?>/assets/front/js/dataTables.responsive.min.js"></script>
+    <script nonce='S51U26wMQz' type="text/javascript">
         $(document).ready(function () {              
             function fill_datatable()
             {    

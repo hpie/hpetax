@@ -24,48 +24,48 @@
 </div>
 <!-- jQuery -->
 
-<script src="<?php echo BASE_URL ?>assets/jquery/dist/jquery.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/icheck/icheck.min.js"></script>
+<script src="<?php echo BASE_URL ?>assets/jquery/dist/jquery.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="<?php echo BASE_URL ?>assets/bootstrap/dist/js/bootstrap.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="<?php echo BASE_URL ?>assets/icheck/icheck.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
 <!-- FastClick -->
-<script src="<?php echo BASE_URL ?>assets/fastclick/lib/fastclick.js"></script>
+<script src="<?php echo BASE_URL ?>assets/fastclick/lib/fastclick.js" type="text/javascript" nonce='S51U26wMQz'></script>
 <!-- NProgress -->
-<script src="<?php echo BASE_URL ?>assets/nprogress/nprogress.js"></script>
+<script src="<?php echo BASE_URL ?>assets/nprogress/nprogress.js" type="text/javascript" nonce='S51U26wMQz'></script>
 
 <!-- DateJS -->
-<script src="<?php echo BASE_URL ?>assets/moment/min/moment.min.js"></script>
+<script src="<?php echo BASE_URL ?>assets/moment/min/moment.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
 <!-- PNotify -->
-<script src="<?php echo BASE_URL ?>assets/bootstrap-daterangepicker/daterangepicker.js"></script>
-<script src="<?php echo BASE_URL ?>assets/pnotify/dist/pnotifyadmin.js"></script>    
+<script src="<?php echo BASE_URL ?>assets/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="<?php echo BASE_URL ?>assets/pnotify/dist/pnotifyadmin.js" type="text/javascript" nonce='S51U26wMQz'></script>    
 <!-- bootstrap-wysiwyg -->
-<script src="<?php echo BASE_URL ?>assets/editor/jquery.hotkeys.js"></script>
-<script src="<?php echo BASE_URL ?>assets/editor/prettify.js"></script>
+<script src="<?php echo BASE_URL ?>assets/editor/jquery.hotkeys.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="<?php echo BASE_URL ?>assets/editor/prettify.js" type="text/javascript" nonce='S51U26wMQz'></script>
 <!-- Datatables -->
-<script src="<?php echo BASE_URL ?>assets/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.flash.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-<script src="<?php echo BASE_URL ?>assets/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>
+<script src="<?php echo BASE_URL ?>assets/datatables.net/js/jquery.dataTables.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/dataTables.buttons.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons-bs/js/buttons.bootstrap.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.flash.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.html5.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.print.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-keytable/js/dataTables.keyTable.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-responsive/js/dataTables.responsive.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-responsive-bs/js/responsive.bootstrap.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="<?php echo BASE_URL ?>assets/datatables.net-scroller/js/dataTables.scroller.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet" type="text/css" />
 <!--<script src="<?php echo BASE_URL; ?>/assets/front/js/jquery.dataTables.min.js" type="text/javascript"></script>-->
-<script type="text/javascript" language="javascript" src="<?php echo BASE_URL; ?>/assets/front/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" nonce='S51U26wMQz' language="javascript" src="<?php echo BASE_URL; ?>/assets/front/js/dataTables.responsive.min.js"></script>
 <!--Slider--> 
 <!-- ECharts -->
-<script src="<?php echo BASE_URL ?>assets/echarts/dist/echarts.min.js"></script>
-<script src="<?php echo BASE_URL ?>assets/echarts/map/js/world.js"></script>
+<script src="<?php echo BASE_URL ?>assets/echarts/dist/echarts.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="<?php echo BASE_URL ?>assets/echarts/map/js/world.js" type="text/javascript" nonce='S51U26wMQz'></script>
 <!-- Custom Theme Scripts -->
-<script src="<?php echo BASE_URL ?>assets/build/js/custom.min.js"></script>
-<script src="<?php echo BASE_URL; ?>assets/moment/moment.min.js"></script>
+<script src="<?php echo BASE_URL ?>assets/build/js/custom.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
+<script src="<?php echo BASE_URL; ?>assets/moment/moment.min.js" type="text/javascript" nonce='S51U26wMQz'></script>
 <!--<script src="<?php echo BASE_URL; ?>assets/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>-->
-<script>
+<script type="text/javascript" nonce='S51U26wMQz'>
     function isNumberKey(evt) {
         var charCode = (evt.which) ? evt.which : event.keyCode;
         if (charCode > 31 && (charCode < 48 || charCode > 57))
@@ -73,7 +73,7 @@
         return true;
     }
 </script>
-<script type="text/javascript">
+<script type="text/javascript" nonce='S51U26wMQz'>
     $(document).ready(function () {                
         $('input[type=text]').keypress(function (e) {                 
             var keyCode = e.keyCode || e.which;            
@@ -97,7 +97,7 @@
         });
     });
 </script>   
-<script>
+<script type="text/javascript" nonce='S51U26wMQz'>
 
 //    $(function () {
 //        $('input[name="datefilter"]').daterangepicker({
@@ -298,7 +298,7 @@ if (isset($_SESSION['empCodeExist'])) {
         }
     });
 </script>
-<script>
+<script type="text/javascript" nonce='S51U26wMQz'>
     $(document).ready(function () {
         $(".myTable").DataTable({
             dom: "Bfrtip",
@@ -363,7 +363,7 @@ if (isset($_SESSION['empCodeExist'])) {
     });
 </script>
 <?php if ($TITLE === TITLE_TAX_DEALER_LIST) { ?>
-    <script>
+    <script type="text/javascript" nonce='S51U26wMQz'>
         $(document).ready(function () {
             $('#example').DataTable({
                 responsive: {
@@ -457,7 +457,7 @@ if (isset($_SESSION['empCodeExist'])) {
 <?php } ?>
 
 <?php if ($TITLE === TITLE_TAX_REPORTS_LIST) { ?>
-    <script>
+    <script type="text/javascript" nonce='S51U26wMQz'>
         $(document).ready(function () {
             fill_datatable();
             function fill_datatable(year = '', month = '', taxtype = '', searchFromToDate = '')
@@ -619,7 +619,7 @@ if (isset($_SESSION['empCodeExist'])) {
 <?php } ?>    
 
 <?php if ($TITLE === TITLE_TAX_EMPLOYEE_LIST) { ?>
-    <script>
+    <script type="text/javascript" nonce='S51U26wMQz'>
         $(document).ready(function () {
             $('#example').DataTable({
                 responsive: {
@@ -710,7 +710,7 @@ if (isset($_SESSION['empCodeExist'])) {
     </script>
 <?php } ?>
 <?php if ($TITLE === TITLE_TAX_DEALER_LIST_PENDING) { ?>
-    <script>
+    <script type="text/javascript" nonce='S51U26wMQz'>
         $(document).ready(function () {
             $('#example').DataTable({
                 responsive: {

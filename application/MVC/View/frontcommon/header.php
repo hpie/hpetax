@@ -18,31 +18,31 @@ if(isset($_SESSION['user_id'])){
         <meta http-equiv="Content-Security-Policy" content="object-src 'self'; script-src 'nonce-S51U26wMQz'">  
         <title><?php echo $TITLE; ?></title>
         <!--<title>Welcome to hptax.gov.in</title>-->
-        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/bootstrap.min.css">
-        <link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/bootstrap.min.css" type="text/css">
+        <link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <!--<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700" rel="stylesheet">-->
         <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/googlefont.css" type="text/css"/>
         <!--<link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">-->        
 
 
         <?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT) { ?>
-            <link href="<?php echo BASE_URL; ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-            <link href="<?php echo BASE_URL; ?>assets/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-            <link href="<?php echo BASE_URL; ?>assets/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-            <link href="<?php echo BASE_URL; ?>assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-            <link href="<?php echo BASE_URL; ?>assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">  
+            <link href="<?php echo BASE_URL; ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css">
+            <link href="<?php echo BASE_URL; ?>assets/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" type="text/css">
+            <link href="<?php echo BASE_URL; ?>assets/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css">
+            <link href="<?php echo BASE_URL; ?>assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css">
+            <link href="<?php echo BASE_URL; ?>assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" type="text/css">  
             <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/assets/front/css/dataTables.responsive.css"> 
         <?php } ?>            
 
 
         <?php if ($TITLE == TITLE_FRONT_EPAYMENT_TREASURY || $TITLE == TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) { ?>    
-            <link href="<?php echo ASSETS_FRONT; ?>datetime/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+            <link href="<?php echo ASSETS_FRONT; ?>datetime/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css">
         <?php } ?>
-        <script nonce='S51U26wMQz' src="<?php echo ASSETS_FRONT; ?>js/jquery.min.js"></script>
-        <script nonce='S51U26wMQz' src="<?php echo ASSETS_FRONT; ?>js/bootstrap.min.js"></script>         
+        <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo ASSETS_FRONT; ?>js/jquery.min.js"></script>
+        <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo ASSETS_FRONT; ?>js/bootstrap.min.js"></script>         
 
-        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/main.css">
-        <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/pnotify/dist/pnotifiadmin.css">
+        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/main.css" type="text/css">
+        <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/pnotify/dist/pnotifiadmin.css" type="text/css">
     </head>
     <body>
         <div class="">
@@ -250,8 +250,8 @@ if(isset($_SESSION['user_id'])){
                                         </div> 
                                         <div class="form-group">
 
-                                            <script nonce='S51U26wMQz' src="https://www.google.com/recaptcha/api.js" async defer></script>
-                                            <script nonce='S51U26wMQz'>function enableLogin1() {
+                                            <script nonce='S51U26wMQz' type="text/javascript" src="https://www.google.com/recaptcha/api.js" async defer></script>
+                                            <script nonce='S51U26wMQz' type="text/javascript">function enableLogin1() {
                                                     document.getElementById("btnLoginDealer").disabled = false;
                                                 }</script>
                                             <label class="control-label col-sm-4 col-xs-12" for="ptsp"></label>

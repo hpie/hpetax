@@ -32,7 +32,7 @@
                         </tr>
                         <tr>                        
                             <td width='30%'>Mobile No</td>
-                            <td width='70%'><input type="text" name="tax_dealer_mobile" required="required"></td>                       
+                            <td width='70%'><input class="mobileno" type="text" name="tax_dealer_mobile" required="required" maxlength="10" minlength="10"></td>                       
                         </tr>
                         <tr>                        
                             <td width='30%'>Tax Type *  :</td>

@@ -19,29 +19,29 @@ if(isset($_SESSION['user_id'])){
 
     <title><?php echo $TITLE ?></title>
     <!-- Bootstrap -->
-    <link href="<?php echo BASE_URL; ?>assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo BASE_URL; ?>assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!-- Font Awesome -->
-    <link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
 
      <!--<link href="<?php echo BASE_URL; ?>assets/datepicker1/css/datepicker.css" rel="stylesheet">--> 
     <!-- NProgress -->
-    <link href="<?php echo BASE_URL; ?>assets/nprogress/nprogress.css" rel="stylesheet">        
-    <link href="<?php echo BASE_URL; ?>assets/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">    
-    <link href="<?php echo BASE_URL; ?>assets/icheck/green.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>assets/editor/prettify.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>assets/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>assets/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">  
+    <link href="<?php echo BASE_URL; ?>assets/nprogress/nprogress.css" rel="stylesheet" type="text/css">        
+    <link href="<?php echo BASE_URL; ?>assets/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css">    
+    <link href="<?php echo BASE_URL; ?>assets/icheck/green.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo BASE_URL; ?>assets/editor/prettify.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo BASE_URL; ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo BASE_URL; ?>assets/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo BASE_URL; ?>assets/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo BASE_URL; ?>assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo BASE_URL; ?>assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" type="text/css">  
     
     <!--<link href="<?php echo BASE_URL; ?>/assets/front/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>-->
     <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/assets/front/css/dataTables.responsive.css">        
        <!-- PNotify -->             
-    <link href="<?php echo BASE_URL; ?>assets/pnotify/dist/pnotifiadmin.css" rel="stylesheet">     
+    <link href="<?php echo BASE_URL; ?>assets/pnotify/dist/pnotifiadmin.css" rel="stylesheet" type="text/css">     
     <!-- Custom Theme Style -->
-    <link href="<?php echo BASE_URL; ?>assets/build/css/custom.min.css" rel="stylesheet">              
+    <link href="<?php echo BASE_URL; ?>assets/build/css/custom.min.css" rel="stylesheet" type="text/css">              
   </head>
   <body class="nav-md">
     <div class="container body">

@@ -62,7 +62,7 @@
                     <tr>                        
                         <td>Mobile No.*</td>
                         <td><input type="text" readonly="" value="+91" style="width:30px;">&nbsp;
-                            <input type="text" id="mobileno" required="required" maxlength="10" minlength="10" value="<?php if(isset($dealerDetails)){ echo $dealerDetails['tax_dealer_mobile']; } ?>" onkeypress="return isNumberKey(event)"></td>
+                            <input class="mobileno" type="text" id="mobileno" required="required" maxlength="10" minlength="10" value="<?php if(isset($dealerDetails)){ echo $dealerDetails['tax_dealer_mobile']; } ?>"></td>
                         <td>Email Id</td>
                         <td><input type="email" id="email" value="<?php if(isset($dealerDetails)){ echo $dealerDetails['tax_dealer_email']; } ?>"  required="required"></td>                        
                     </tr> 
@@ -87,7 +87,7 @@
                         <td>City</td>
                         <td><input type="text" id="city" value=""  required="required"></td>
                         <td>PIN</td>
-                        <td><input type="text" id="pin" required="required" maxlength="6" minlength="6" onkeypress="return isNumberKey(event)"></td></td>
+                        <td><input class="mobileno" type="text" id="pin" required="required" maxlength="6" minlength="6"></td></td>
                     </tr>
                      <tr>                        
                         <td><br></td>

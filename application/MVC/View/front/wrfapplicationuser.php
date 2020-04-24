@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head><title>
         </title>
-<!--        <script type="text/javascript">
+<!--        <script type="text/javascript" nonce='S51U26wMQz'>
             function ConfirmOn() {
             if (confirm("Are you sure to submit and make Payment.") == true)
                     return true;
@@ -16,7 +16,7 @@
                     return false;
             }
         </script>
-        <script type="text/javascript">
+        <script type="text/javascript" nonce='S51U26wMQz'>
 
             function preventMultipleSubmissions() {
             $('#ContentPlaceHolder1_btnSubmit').prop('disabled', true);
@@ -194,9 +194,9 @@
         </style>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" /><link rel="icon" href="../Masters/img/favicon.ico" type="image/png" />
         <!-- Include Bootstrap CSS -->
-        <link href="<?php echo ASSETS_FRONT; ?>css/bootstrap.min.css" rel="stylesheet" />
+        <link href="<?php echo ASSETS_FRONT; ?>css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- Include Font Awesome CSS -->
-        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/font-awesome.css" />
+        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/font-awesome.css" type="text/css" />
         <link href="<?php echo ASSETS_FRONT; ?>css/style.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="<?php echo ASSETS_FRONT; ?>css/settings.css" media="screen" />
         <link href="<?php echo ASSETS_FRONT; ?>css/liMarquee.css" rel="stylesheet" type="text/css" />
@@ -576,13 +576,13 @@
             </section>
 
 
-            <script type="text/javascript">
+            <script type="text/javascript" nonce='S51U26wMQz'>
             //<![CDATA[
                 var Page_Validators = new Array(document.getElementById("ContentPlaceHolder1_RequiredFieldValidator7"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidator11"));
             //]]>
             </script>
 
-            <script type="text/javascript">
+            <script type="text/javascript" nonce='S51U26wMQz'>
             //<![CDATA[
                 var ContentPlaceHolder1_RequiredFieldValidator7 = document.all ? document.all["ContentPlaceHolder1_RequiredFieldValidator7"] : document.getElementById("ContentPlaceHolder1_RequiredFieldValidator7");
                 ContentPlaceHolder1_RequiredFieldValidator7.controltovalidate = "ContentPlaceHolder1_ddBank";
@@ -602,12 +602,12 @@
             </script>
 
 
-            <script type="text/javascript">
+            <script type="text/javascript" nonce='S51U26wMQz'>
             //<![CDATA[
                 javascript:alert('Wrong Verification Code'); //]]>
             </script>
-            <script type='text/javascript'>new Sys.WebForms.Menu({ element: 'Menu1', disappearAfter: 500, orientation: 'horizontal', tabIndex: 0, disabled: false });</script>
-            <script type="text/javascript">
+            <script type='text/javascript' nonce='S51U26wMQz'>new Sys.WebForms.Menu({ element: 'Menu1', disappearAfter: 500, orientation: 'horizontal', tabIndex: 0, disabled: false });</script>
+            <script type="text/javascript" nonce='S51U26wMQz'>
             //<![CDATA[
 
                 var Page_ValidationActive = false;
