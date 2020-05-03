@@ -86,8 +86,7 @@
                 }
             });
         });
-              
-              
+                                      
         if ($("table").delegate("#quintityBY_COUNT").length) {            
             $("table").delegate("#quintityBY_COUNT", "keyup", function () {              
                 var taxtypeid = $('#taxType').children("option:selected").val();
@@ -105,7 +104,7 @@
             });
         }        
         $("table").delegate("#rateunit", "keyup", function () { 
-            if (!($("table").delegate("#quintityBY_COUNT").length)) {                                        
+            if (!($("#quintityBY_COUNT").length)) {                                        
                 var taxtypeid = $('#taxType').children("option:selected").val();
                 var price = $('#totaltax').val();
                 var ratehideDb = $('#hiderate').val();
@@ -204,8 +203,8 @@
                         returnval = 1;
                     }
                 }                
-                if ($("table").delegate("#quintityBY_COUNT").length) {
-                    quintityBY_COUNT = $("table").delegate("#quintityBY_COUNT").val();
+                if ($("#quintityBY_COUNT").length) {
+                    quintityBY_COUNT = $("#quintityBY_COUNT").val();
                     if (quintityBY_COUNT === '' || quintityBY_COUNT === 0) {
                         alertstr.push("Please enter quintity.");
                         returnval = 1;
@@ -392,8 +391,8 @@
                     }
                 }
                 
-                if ($("table").delegate("#quintityBY_COUNT").length) {
-                    quintityBY_COUNT = $("table").delegate("#quintityBY_COUNT").val();
+                if ($("#quintityBY_COUNT").length) {
+                    quintityBY_COUNT = $("#quintityBY_COUNT").val();
                     if (quintityBY_COUNT === '' || quintityBY_COUNT === 0) {
                         alertstr.push("Please enter quintity.");
                         returnval = 1;
