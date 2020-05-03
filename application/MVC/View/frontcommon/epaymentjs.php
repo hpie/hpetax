@@ -86,8 +86,10 @@
                 }
             });
         });
-                                      
-        if ($("table").delegate("#quintityBY_COUNT").length) {            
+        
+//        $('#commodity').on('change', function () {
+        if ($("#quintityBY_COUNT").length) {           
+//        if ($("table").delegate("#quintityBY_COUNT").length) {            
             $("table").delegate("#quintityBY_COUNT", "keyup", function () {              
                 var taxtypeid = $('#taxType').children("option:selected").val();
                 var price = $('#totaltax').val();
@@ -102,8 +104,8 @@
                     $('#totaltax').val(ratehideDb);
                 }
             });
-        }        
-        $("table").delegate("#rateunit", "keyup", function () { 
+        }           
+        $("table").delegate("#rateunit", "keyup", function () {             
             if (!($("#quintityBY_COUNT").length)) {                                        
                 var taxtypeid = $('#taxType').children("option:selected").val();
                 var price = $('#totaltax').val();
@@ -165,6 +167,7 @@
                 $(this).val('');
             }
         });
+        
         $("#add").click(function () {
             var taxtypeid = $('#taxType').children("option:selected").val();
             var commodityid = $('#commodity').children("option:selected").val();
@@ -340,6 +343,9 @@
             });
             return false;
         });
+        
+        
+        
          $("#clearModify").click(function () {
 //        $("div").delegate("#clearModify", "click", function () {
 //            alert('hi');
@@ -350,6 +356,11 @@
             $("#modifyIdInput").val("");
             $("#taxType").change();            
         });
+        
+        
+        
+        
+        
         $("#clearAdd").click(function () { 
             $("#taxType").change();            
         });
@@ -596,5 +607,6 @@
                     }
                 });
     };
+       
 </script>
 <script nonce='S51U26wMQz' type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOo8VS-DubgppGE3b94PsvweQyYqzrKGI&libraries=places&callback=initMap" async defer></script>
