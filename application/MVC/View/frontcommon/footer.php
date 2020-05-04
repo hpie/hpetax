@@ -193,8 +193,6 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
                     $(this).val('');
                     return false;
                 }       
-                
-                
             }               
             return true;
         });
