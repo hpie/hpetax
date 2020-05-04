@@ -105,7 +105,13 @@
                 }
             });
         }           
-        $("table").delegate("#rateunit", "keyup", function () {             
+        $("table").delegate("#rateunit", "keyup", function () { 
+            
+            if (this.value.match(/[^0-9]/g)) {
+                this.value = '';
+            }
+            
+            
             if (!($("#quintityBY_COUNT").length)) {                                        
                 var taxtypeid = $('#taxType').children("option:selected").val();
                 var price = $('#totaltax').val();
@@ -140,6 +146,11 @@
             }
         });
         $("table").delegate("#distance", "keyup", function () {
+            
+            if (this.value.match(/[^a-zA-Z0-9]/g)) {
+                this.value = '';
+            }
+            
             var taxtypeid = $('#taxType').children("option:selected").val();
             var price = $('#totaltax').val();
             var passenger = $('#noofpassenger').val();
@@ -157,15 +168,36 @@
             }
         });
 
-        $('#vehicleno').on('focusout', function () {
-            var number = $(this).val();
-            var pattern = new RegExp("(([A-Za-z]){2,3}(|-| |.)(?:[0-9]){1,2}(|-| |.)(?:[A-Za-z]){2}(|-| |.)([0-9]){1,4})|(([A-Za-z]){2,3}(|-| |.)([0-9]){1,4})");
-            if (pattern.test(number)) {
-                return true;
-            } else {
-                alert('Please enter valid vehicle no');
-                $(this).val('');
+        $('#vehicleno').on('keyup', function (e) { 
+            
+            if (this.value.match(/[^a-zA-Z0-9]/g)) {
+                this.value = '';
             }
+            
+            
+//            var str=$(this).val();
+//            for (var i = 0; i < str.length; i++) {
+//                var charCode=str.charAt(i).charCodeAt(0);                  
+//                if (charCode === 60 || charCode === 96 || charCode === 126 || charCode === 33 || charCode === 35 || charCode === 36 || charCode === 37 || charCode === 94 || charCode === 96 || charCode === 38 || charCode === 42 || charCode == 40 || charCode === 41 || charCode === 61 || charCode === 43 || charCode === 123 || charCode === 125 || charCode === 91 || charCode === 93 || charCode === 124 || charCode === 92 || charCode === 58 || charCode === 59 || charCode === 34 || charCode === 39 || charCode === 44 || charCode === 63 || charCode === 47 || charCode === 62)
+//                {                
+//                    alert('Special Characters are not allowed. Only use A-Z, a-z and 0-9');
+//                    $(this).val('');
+//                    return false;
+//                }                                       
+//            }               
+//            return true;
+//            
+//            
+//            
+//            
+//            var number = $(this).val();
+//            var pattern = new RegExp("(([A-Za-z]){2,3}(|-| |.)(?:[0-9]){1,2}(|-| |.)(?:[A-Za-z]){2}(|-| |.)([0-9]){1,4})|(([A-Za-z]){2,3}(|-| |.)([0-9]){1,4})");
+//            if (pattern.test(number)) {
+//                return true;
+//            } else {
+//                alert('Please enter valid vehicle no');
+//                $(this).val('');
+//            }
         });
         
         $("#add").click(function () {
