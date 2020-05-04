@@ -286,6 +286,14 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
 <?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT) { ?>
     <script nonce='S51U26wMQz' type="text/javascript">
         $(document).ready(function () {
+            
+            $("table").delegate("#email", "keyup", function () {            
+                if (this.value.match(/[^a-zA-Z0-9]/g)) {
+                    this.value = '';
+                }
+            });
+            
+            
     //            fill_datatable();
             function fill_datatable(from = '', to = '', status = '', transactionNo = '', mobileNo = '', email = '')
             {
