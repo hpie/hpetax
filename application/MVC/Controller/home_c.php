@@ -8,6 +8,10 @@ class home_c extends Controllers {
     public function __construct() {
         parent::__construct();
         
+        
+        if(!isset($_SESSION['unregistered'])){
+            $_SESSION['unregistered'] = $_SERVER["REMOTE_ADDR"];
+        }
         $_SESSION['securityToken2']=$_SESSION['securityToken1'];
         sessionCheckToken();
         $_SESSION['securityToken1'] = bin2hex(random_bytes(24)); 
@@ -235,8 +239,7 @@ EOF;
 
     public function epayment() {
         $_SESSION['vehicleno_session'] = '';
-        $deleteData = $this->home_m->deleteTaxItemQue($_SERVER["REMOTE_ADDR"]);
-        $_SESSION['unregistered'] = $_SERVER["REMOTE_ADDR"];
+        $deleteData = $this->home_m->deleteTaxItemQue($_SERVER["REMOTE_ADDR"]);        
         $result = $this->home_m->getTaxType();
         $this->data['TITLE'] = TITLE_FRONT_EPAYMENT_UNREGISTER;
         $this->data['result'] = $result;

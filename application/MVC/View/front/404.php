@@ -14,7 +14,7 @@
   <script nonce='S51U26wMQz' src="<?php echo ASSETS_FRONT; ?>js/jquery.min.js" type="text/javascript"></script>
    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>--> 
   <!--<script src="../../../../assets/front/js/particles.min.js" type="text/javascript"></script>-->
-    <script nonce='S51U26wMQz' src="<?php echo ASSETS_FRONT; ?>js/particles.min.js" type="text/javascript"></script> 
+    <!--<script nonce='S51U26wMQz' src="<?php //echo ASSETS_FRONT; ?>js/particles.min.js" type="text/javascript"></script>--> 
  </head> 
  <body>
   <div id="particles-js"> 
@@ -36,7 +36,7 @@
   </div> 
   <!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--> 
   <script nonce='S51U26wMQz' src="<?php echo ASSETS_FRONT; ?>js/bootstrap.min.js" type="text/javascript"></script>
-  <script nonce='S51U26wMQz' type="text/javascript">
+<!--  <script nonce='S51U26wMQz' type="text/javascript">
 	
 particlesJS("particles-js", {
     "particles": {
@@ -148,6 +148,6 @@ particlesJS("particles-js", {
 	},
 	"retina_detect": true
 });
-</script>  
+</script>  -->
  </body>
 </html>

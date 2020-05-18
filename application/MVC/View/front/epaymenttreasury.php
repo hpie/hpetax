@@ -44,10 +44,12 @@
                             <select class="" required="" id="receipt">                                            
                                 <option class="" value="0" selected="" disabled="">Select</option> 
                                 <?php
+                                if(isset($headReceipt) && !empty($headReceipt)){
                                  foreach ($headReceipt as $row){
                                      ?>
                                     <option class="" value="<?php echo $row['tax_receipt_head']; ?>"><?php echo $row['tax_revenue_receipt_name']; ?></option>
                                 <?php
+                                    }
                                  }
                                 ?>                                 
                             </select>                            
