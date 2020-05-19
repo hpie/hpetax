@@ -2,6 +2,7 @@
 date_default_timezone_set('UTC'); 
 $lifetime=600;
 session_set_cookie_params($lifetime);
+ini_set( 'session.cookie_httponly', 1 );
 session_start();
 setcookie(session_name(),session_id(),time()+$lifetime,'/',null,null,TRUE);
 if(!isset($_SESSION['securityToken1'])){
