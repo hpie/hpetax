@@ -13,36 +13,36 @@ if(isset($_SESSION['user_id'])){
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
         <meta http-equiv="Content-Security-Policy" content="object-src 'self'; script-src 'nonce-S51U26wMQz'">  
         <title><?php echo $TITLE; ?></title>
         <!--<title>Welcome to hptax.gov.in</title>-->
-        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/bootstrap.min.css" type="text/css">
-        <link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="<?php echo ASSETS_FRONT; ?>css/bootstrap.min.css?v=1.0" rel="stylesheet" type="text/css">
+        <link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css?v=1.0" rel="stylesheet" type="text/css">
         <!--<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700" rel="stylesheet">-->
-        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/googlefont.css" type="text/css"/>
+        <link href="<?php echo ASSETS_FRONT; ?>css/googlefont.css?v=1.0" rel="stylesheet" type="text/css"/>
         <!--<link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">-->        
 
 
         <?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT) { ?>
-            <link href="<?php echo BASE_URL; ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css">
-            <link href="<?php echo BASE_URL; ?>assets/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" type="text/css">
-            <link href="<?php echo BASE_URL; ?>assets/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css">
-            <link href="<?php echo BASE_URL; ?>assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css">
-            <link href="<?php echo BASE_URL; ?>assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" type="text/css">  
-            <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/assets/front/css/dataTables.responsive.css"> 
+            <link href="<?php echo BASE_URL; ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css?v=1.0" rel="stylesheet" type="text/css">
+            <link href="<?php echo BASE_URL; ?>assets/datatables.net-buttons-bs/css/buttons.bootstrap.min.css?v=1.0" rel="stylesheet" type="text/css">
+            <link href="<?php echo BASE_URL; ?>assets/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css?v=1.0" rel="stylesheet" type="text/css">
+            <link href="<?php echo BASE_URL; ?>assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css?v=1.0" rel="stylesheet" type="text/css">
+            <link href="<?php echo BASE_URL; ?>assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css?v=1.0" rel="stylesheet" type="text/css">
+            <link href="<?php echo BASE_URL; ?>/assets/front/css/dataTables.responsive.css?v=1.0" rel="stylesheet" type="text/css">
         <?php } ?>            
 
 
         <?php if ($TITLE == TITLE_FRONT_EPAYMENT_TREASURY || $TITLE == TITLE_FRONT_SIGNUP_FORM || $TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) { ?>    
-            <link href="<?php echo ASSETS_FRONT; ?>datetime/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css">
+            <link href="<?php echo ASSETS_FRONT; ?>datetime/css/bootstrap-datepicker3.min.css?v=1.0" rel="stylesheet" type="text/css">
         <?php } ?>
-        <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo ASSETS_FRONT; ?>js/jquery.min.js"></script>
-        <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo ASSETS_FRONT; ?>js/bootstrap.min.js"></script>         
+        <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo ASSETS_FRONT; ?>js/jquery.min.js?v=1.0"></script>
+        <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo ASSETS_FRONT; ?>js/bootstrap.min.js?v=1.0"></script>
 
-        <link rel="stylesheet" href="<?php echo ASSETS_FRONT; ?>css/main.css" type="text/css">
-        <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/pnotify/dist/pnotifiadmin.css" type="text/css">
+        <link href="<?php echo ASSETS_FRONT; ?>css/main.css?v=1.0" rel="stylesheet" type="text/css">
+        <link href="<?php echo BASE_URL; ?>assets/pnotify/dist/pnotifiadmin.css?v=1.0" rel="stylesheet" type="text/css">
     </head>
     <body>
         <div class="">

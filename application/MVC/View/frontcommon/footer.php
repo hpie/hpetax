@@ -10,22 +10,22 @@
             <h4>Thank You for Visiting </h4>
             <ul>
                 <li><a target="_blank" href="https://hptax.gov.in/HPPortal/pages/documents/HP-ETD-Terms&Conditions.pdf">Terms of use </a></li>
-                <li><a  target="_blank" href="https://hptax.gov.in/HPPortal/pages/documents/HP-ETD-Portal-Disclaimer.pdf">Disclaimer</a></li>
+                <li><a target="_blank" href="https://hptax.gov.in/HPPortal/pages/documents/HP-ETD-Portal-Disclaimer.pdf">Disclaimer</a></li>
                 <li><a href="#">Feedback</a></li>
                 <li><a href="#">SiteMap</a></li>
                 <li><a href="#">Bookmark this Website</a></li>
                 <li><a href="#">FAQ</a></li>
                 <li><a href="#">Contact Us </a></li>
             </ul>
-            <p> This site is designed to view in and IE 9.0 and above. Site is
+            <p> This site is designed to view in and IE 11 and above. Site is
                 designed,developed and managed by <a href="http://hpie.in" target="_blank">H.P.I.E</a> ©2020
             </p>
         </div>
     </div>
 </footer>
 </div>
-<script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/pnotify/dist/pnotifyadmin.js"></script>   
-<script nonce='S51U26wMQz' type="text/javascript" src="<?php echo ASSETS_FRONT; ?>js/main.js"></script>
+<script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/pnotify/dist/pnotifyadmin.js?v=1.0"></script>
+<script nonce='S51U26wMQz' type="text/javascript" src="<?php echo ASSETS_FRONT; ?>js/main.js?v=1.0"></script>
 <script nonce='S51U26wMQz' type="text/javascript">     
 //    function isNumberKey(evt) {       
 //        var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -163,22 +163,22 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
     include_once(APP_INCLUDE_V . "frontcommon/epaymentverifyjs.php");
 }
 ?>
-<script nonce='S51U26wMQz' type="text/javascript" src="<?php echo ASSETS_FRONT; ?>js/bootstrapValidator.min.js"></script>
+<script nonce='S51U26wMQz' type="text/javascript" src="<?php echo ASSETS_FRONT; ?>js/bootstrapValidator.min.js?v=1.0"></script>
 <?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT) { ?>
-    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-    <script nonce='S51U26wMQz' type="text/javascript" language="javascript" src="<?php echo BASE_URL; ?>/assets/front/js/dataTables.responsive.min.js"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/bootstrap/dist/js/bootstrap.min.js?v=1.0"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net/js/jquery.dataTables.min.js?v=1.0"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js?v=1.0"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/dataTables.buttons.min.js?v=1.0"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-buttons-bs/js/buttons.bootstrap.min.js?v=1.0"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.flash.min.js?v=1.0"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.html5.min.js?v=1.0"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/buttons.print.min.js?v=1.0"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js?v=1.0"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-keytable/js/dataTables.keyTable.min.js?v=1.0"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-responsive/js/dataTables.responsive.min.js?v=1.0"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-responsive-bs/js/responsive.bootstrap.js?v=1.0"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-scroller/js/dataTables.scroller.min.js?v=1.0"></script>
+    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>/assets/front/js/dataTables.responsive.min.js?v=1.0"></script>
 <?php } ?>
 
  <script nonce='S51U26wMQz' type="text/javascript">
