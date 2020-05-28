@@ -39,203 +39,203 @@ class home_c extends Controllers {
     }
 
 //    public function invoke() {
-    public function pdf() {
-        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-// set document information
-        $pdf->SetCreator("HPETAX");
-        $pdf->SetHeaderData(PDF_HEADER_LOGO, 22, 'E-CHALLAN', "Govt Of Himachal Pradesh\nDepartment Of Finance\nTreasuries,Accounts & Lotteries");
-
-// set header and footer fonts
-        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
-
-// set default monospaced font
-        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-
-// set margins
-        $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-
-// set auto page breaks
-        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
-// set image scale factor
-        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-
-// set some language-dependent strings (optional)
-//        if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
-//            require_once(dirname(__FILE__) . '/lang/eng.php');
-//            $pdf->setLanguageArray($l);
-//        }
-// ---------------------------------------------------------
-// set font
-        $pdf->SetFont('helvetica', '', 10);
-
-// add a page
-        $pdf->AddPage();
-
-        /* NOTE:
-         * *********************************************************
-         * You can load external XHTML using :
-         *
-         * $html = file_get_contents('/path/to/your/file.html');
-         *
-         * External CSS files will be automatically loaded.
-         * Sometimes you need to fix the path of the external CSS.
-         * *********************************************************
-         */
-
-// define some HTML content with style
-        $html = <<<EOF
-<table cellpadding="3" cellspacing="3" style="font-size:11px;">
- <tr>
-  <td width="13%" align="left">HIMGRN:</td>
-  <td width="40%" align="left"><u><b>A19G145689</b></u></td>
-  <td width="15%" align="right">Date:</td>
-  <td width="35%" align="right"><b>21-07-2019  09:25:45PM</b></td>
- </tr>
- <tr>
-  <td width="13%" align="left">Book No.</td>
-  <td width="40%" align="left"><u><b></b></u></td>
-  <td width="15%" align="right">Book Date:</td>
-  <td width="35%" align="right"><b></b></td>
- </tr>
-<tr>
-  <td width="15%" align="left">*Tender By.</td>
-  <td width="85%" align="left"><b>AVTAR SINGH</b></td>
-  <td width="" align="right"></td>
-  <td width="" align="right"></td>
- </tr>  
-<tr>
-  <td width="15%" align="left">Dept. Ref No.</td>
-  <td width="85%" align="left"><b>DL1Z2779[VAH TXN-HPY1907210643166]</b></td>
-  <td width="" align="right"></td>
-  <td width="" align="right"></td>
- </tr>
-<tr>
-  <td width="15%" align="left">Receipt Type</td>
-  <td width="85%" align="left"><b>COMPOSITE FEE PENALTY(TOKEN TAX) REGISTRATION FEE INSPECTION FEE PENALTY</b></td>
-  <td width="" align="right"></td>
-  <td width="" align="right"></td>
- </tr> 
-<tr>
-  <td width="15%" align="left">&nbsp;</td>
-  <td width="85%" align="left"></td>
-  <td width="" align="right"></td>
-  <td width="" align="right"></td>
- </tr>  
- <tr>
-  <td width="15%" align="left">Amount(*GC)</td>
-  <td width="85%" align="left"><b>200 (Two Hundred)</b></td>
-  <td width="" align="right"></td>
-  <td width="" align="right"></td>
- </tr> 
-</table>
-<h1 style="color:#00000047">Transaction Success..    </h1>
-<br>
-<hr>
-   <table cellpadding="3" cellspacing="3" style="font-size:11px;">
- <tr>
-  <td width="15%" align="left">Treasury</td>
-  <td width="85%" align="left"><b>CTO00</b></td>
-  <td width="" align="right"></td>
-  <td width="" align="right"></td>
- </tr>
-<tr>
-  <td width="15%" align="left">DDO</td>
-  <td width="85%" align="left"><b>317</b>&nbsp;&nbsp;&nbsp;(On whose behalf the money is tendered)</td>
-  <td width="" align="right"></td>
-  <td width="" align="right"></td>
- </tr>
-<tr>
-  <td width="15%" align="left">&nbsp;</td>
-  <td width="85%" align="left"><b>ASST CONTT F AND A TRANSPORT DEPTT SHIMLA</b></td>
-  <td width="" align="right"></td>
-  <td width="" align="right"></td>
- </tr>
-<tr>
-  <td width="100%" align="right"><b>For the Period [21-07-2019 To 22-07-2019]</b></td>
-  <td width="" align="left"></td>
-  <td width="" align="right"></td>
-  <td width="" align="right"></td>
- </tr>
-</table>   
-<table style="font-size:11px;">
- <tr>
-  <td width="60%" align="left">MajCd-SmjCd-MinCd-SmnCd</td>
-  <td width="20%" align="left">Book No.</td>
-  <td width="20%" align="left">Amount(Rs.)</td>  
- </tr>
- <tr>
-  <td width="60%" align="left"><b>0041-00-101-02(REGISTRATION FEE INSPECTION FEE)</b></td>
-  <td width="20%" align="left"><b></b></td>
-  <td width="20%" align="left"><b>0</b></td>  
- </tr>
-<tr>
-  <td width="60%" align="left"><b>0041-00-101-04(PENALTY)</b></td>
-  <td width="20%" align="left"><b></b></td>
-  <td width="20%" align="left"><b>0</b></td>  
- </tr>
-<tr>
-  <td width="60%" align="left"><b>0041-00-102-02(PENALTY (TOKEN TAX))</b></td>
-  <td width="20%" align="left"><b></b></td>
-  <td width="20%" align="left"><b>0</b></td>  
- </tr>
-                <tr>
-  <td width="60%" align="left"><b>0041-00-102-04(COMPOSITE FEE)</b></td>
-  <td width="20%" align="left"><b></b></td>
-  <td width="20%" align="left"><b>200</b></td>  
- </tr>
-</table>
-<br><br>
-<hr>
-<table cellpadding="3" cellspacing="3" style="font-size:11px;">
- <tr>
-  <td width="30%" align="left"><b>Bank Transaction Details</b></td>
-  <td width="70%" align="left"></td>
- </tr>
-</table>
-                <hr>
-<table cellpadding="4" cellspacing="4" style="font-size:11px;">
- <tr>
-  <td width="30%" align="left">Bank Reference No.</td>
-  <td width="70%" align="left"><b>CPT5744262</b></td>
- </tr>
-                <tr>
-  <td width="30%" align="left">HIMGRN</td>
-  <td width="70%" align="left"><b>A19G145689</b></td>
- </tr>
-                <tr>
-  <td width="30%" align="left">Amount (*GC + *SC)</td>
-  <td width="70%" align="left"><b>Rs. 220 (200+20)</b></td>
- </tr>
-                            <tr>
-  <td width="30%" align="left">Amount in Words</td>
-  <td width="70%" align="left"><b>Two Hundred Twenty</b></td>
- </tr>
-                                           <tr>
-  <td width="30%" align="left">Status</td>
-  <td width="70%" align="left"><b>Completed Successfully</b></td>
- </tr>
-                                                         <tr>
-  <td width="30%" align="left">Date-Time</td>
-  <td width="70%" align="left"><b>21-07-2019 09:27:19PM</b></td>
- </tr>
-</table>
-<p><b>*</b> Service Providers Should Verify the identity of Remmiter before Delivering Services.</p>
-<p><b>*</b> GC-Govt. Free Collected, *SC-Service Charge Paid</p>  
-<hr style="border-top: 1px dashed red !important;">
-                
-EOF;
-
-// output the HTML content
-        $pdf->writeHTML($html, true, false, true, false, '');
-        $pdf->Output('example_061.pdf', 'I');
-
-        $this->data['TITLE'] = TITLE_FRONT_COMMON;
-        loadviewFront('front/', 'home.php', $this->data);
-    }
+//    public function pdf() {
+//        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+//// set document information
+//        $pdf->SetCreator("HPETAX");
+//        $pdf->SetHeaderData(PDF_HEADER_LOGO, 22, 'E-CHALLAN', "Govt Of Himachal Pradesh\nDepartment Of Finance\nTreasuries,Accounts & Lotteries");
+//
+//// set header and footer fonts
+//        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+//        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+//
+//// set default monospaced font
+//        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+//
+//// set margins
+//        $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+//        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+//        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+//
+//// set auto page breaks
+//        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+//
+//// set image scale factor
+//        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+//
+//// set some language-dependent strings (optional)
+////        if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
+////            require_once(dirname(__FILE__) . '/lang/eng.php');
+////            $pdf->setLanguageArray($l);
+////        }
+//// ---------------------------------------------------------
+//// set font
+//        $pdf->SetFont('helvetica', '', 10);
+//
+//// add a page
+//        $pdf->AddPage();
+//
+//        /* NOTE:
+//         * *********************************************************
+//         * You can load external XHTML using :
+//         *
+//         * $html = file_get_contents('/path/to/your/file.html');
+//         *
+//         * External CSS files will be automatically loaded.
+//         * Sometimes you need to fix the path of the external CSS.
+//         * *********************************************************
+//         */
+//
+//// define some HTML content with style
+//        $html = <<<EOF
+//<table cellpadding="3" cellspacing="3" style="font-size:11px;">
+// <tr>
+//  <td width="13%" align="left">HIMGRN:</td>
+//  <td width="40%" align="left"><u><b>A19G145689</b></u></td>
+//  <td width="15%" align="right">Date:</td>
+//  <td width="35%" align="right"><b>21-07-2019  09:25:45PM</b></td>
+// </tr>
+// <tr>
+//  <td width="13%" align="left">Book No.</td>
+//  <td width="40%" align="left"><u><b></b></u></td>
+//  <td width="15%" align="right">Book Date:</td>
+//  <td width="35%" align="right"><b></b></td>
+// </tr>
+//<tr>
+//  <td width="15%" align="left">*Tender By.</td>
+//  <td width="85%" align="left"><b>AVTAR SINGH</b></td>
+//  <td width="" align="right"></td>
+//  <td width="" align="right"></td>
+// </tr>  
+//<tr>
+//  <td width="15%" align="left">Dept. Ref No.</td>
+//  <td width="85%" align="left"><b>DL1Z2779[VAH TXN-HPY1907210643166]</b></td>
+//  <td width="" align="right"></td>
+//  <td width="" align="right"></td>
+// </tr>
+//<tr>
+//  <td width="15%" align="left">Receipt Type</td>
+//  <td width="85%" align="left"><b>COMPOSITE FEE PENALTY(TOKEN TAX) REGISTRATION FEE INSPECTION FEE PENALTY</b></td>
+//  <td width="" align="right"></td>
+//  <td width="" align="right"></td>
+// </tr> 
+//<tr>
+//  <td width="15%" align="left">&nbsp;</td>
+//  <td width="85%" align="left"></td>
+//  <td width="" align="right"></td>
+//  <td width="" align="right"></td>
+// </tr>  
+// <tr>
+//  <td width="15%" align="left">Amount(*GC)</td>
+//  <td width="85%" align="left"><b>200 (Two Hundred)</b></td>
+//  <td width="" align="right"></td>
+//  <td width="" align="right"></td>
+// </tr> 
+//</table>
+//<h1 style="color:#00000047">Transaction Success..    </h1>
+//<br>
+//<hr>
+//   <table cellpadding="3" cellspacing="3" style="font-size:11px;">
+// <tr>
+//  <td width="15%" align="left">Treasury</td>
+//  <td width="85%" align="left"><b>CTO00</b></td>
+//  <td width="" align="right"></td>
+//  <td width="" align="right"></td>
+// </tr>
+//<tr>
+//  <td width="15%" align="left">DDO</td>
+//  <td width="85%" align="left"><b>317</b>&nbsp;&nbsp;&nbsp;(On whose behalf the money is tendered)</td>
+//  <td width="" align="right"></td>
+//  <td width="" align="right"></td>
+// </tr>
+//<tr>
+//  <td width="15%" align="left">&nbsp;</td>
+//  <td width="85%" align="left"><b>ASST CONTT F AND A TRANSPORT DEPTT SHIMLA</b></td>
+//  <td width="" align="right"></td>
+//  <td width="" align="right"></td>
+// </tr>
+//<tr>
+//  <td width="100%" align="right"><b>For the Period [21-07-2019 To 22-07-2019]</b></td>
+//  <td width="" align="left"></td>
+//  <td width="" align="right"></td>
+//  <td width="" align="right"></td>
+// </tr>
+//</table>   
+//<table style="font-size:11px;">
+// <tr>
+//  <td width="60%" align="left">MajCd-SmjCd-MinCd-SmnCd</td>
+//  <td width="20%" align="left">Book No.</td>
+//  <td width="20%" align="left">Amount(Rs.)</td>  
+// </tr>
+// <tr>
+//  <td width="60%" align="left"><b>0041-00-101-02(REGISTRATION FEE INSPECTION FEE)</b></td>
+//  <td width="20%" align="left"><b></b></td>
+//  <td width="20%" align="left"><b>0</b></td>  
+// </tr>
+//<tr>
+//  <td width="60%" align="left"><b>0041-00-101-04(PENALTY)</b></td>
+//  <td width="20%" align="left"><b></b></td>
+//  <td width="20%" align="left"><b>0</b></td>  
+// </tr>
+//<tr>
+//  <td width="60%" align="left"><b>0041-00-102-02(PENALTY (TOKEN TAX))</b></td>
+//  <td width="20%" align="left"><b></b></td>
+//  <td width="20%" align="left"><b>0</b></td>  
+// </tr>
+//                <tr>
+//  <td width="60%" align="left"><b>0041-00-102-04(COMPOSITE FEE)</b></td>
+//  <td width="20%" align="left"><b></b></td>
+//  <td width="20%" align="left"><b>200</b></td>  
+// </tr>
+//</table>
+//<br><br>
+//<hr>
+//<table cellpadding="3" cellspacing="3" style="font-size:11px;">
+// <tr>
+//  <td width="30%" align="left"><b>Bank Transaction Details</b></td>
+//  <td width="70%" align="left"></td>
+// </tr>
+//</table>
+//                <hr>
+//<table cellpadding="4" cellspacing="4" style="font-size:11px;">
+// <tr>
+//  <td width="30%" align="left">Bank Reference No.</td>
+//  <td width="70%" align="left"><b>CPT5744262</b></td>
+// </tr>
+//                <tr>
+//  <td width="30%" align="left">HIMGRN</td>
+//  <td width="70%" align="left"><b>A19G145689</b></td>
+// </tr>
+//                <tr>
+//  <td width="30%" align="left">Amount (*GC + *SC)</td>
+//  <td width="70%" align="left"><b>Rs. 220 (200+20)</b></td>
+// </tr>
+//                            <tr>
+//  <td width="30%" align="left">Amount in Words</td>
+//  <td width="70%" align="left"><b>Two Hundred Twenty</b></td>
+// </tr>
+//                                           <tr>
+//  <td width="30%" align="left">Status</td>
+//  <td width="70%" align="left"><b>Completed Successfully</b></td>
+// </tr>
+//                                                         <tr>
+//  <td width="30%" align="left">Date-Time</td>
+//  <td width="70%" align="left"><b>21-07-2019 09:27:19PM</b></td>
+// </tr>
+//</table>
+//<p><b>*</b> Service Providers Should Verify the identity of Remmiter before Delivering Services.</p>
+//<p><b>*</b> GC-Govt. Free Collected, *SC-Service Charge Paid</p>  
+//<hr style="border-top: 1px dashed red !important;">
+//                
+//EOF;
+//
+//// output the HTML content
+//        $pdf->writeHTML($html, true, false, true, false, '');
+//        $pdf->Output('example_061.pdf', 'I');
+//
+//        $this->data['TITLE'] = TITLE_FRONT_COMMON;
+//        loadviewFront('front/', 'home.php', $this->data);
+//    }
 
     public function epayment() {
         $_SESSION['vehicleno_session'] = '';

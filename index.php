@@ -8,24 +8,15 @@ setcookie(session_name(),session_id(),time()+$lifetime,'/',null,null,TRUE);
 if(!isset($_SESSION['securityToken1'])){
     $_SESSION['securityToken1']=bin2hex(random_bytes(24));
 }
-//header('Set-Cookie:cross-site-cookie=bar; SameSite=None; Secure;HttpOnly');
 header("X-XSS-Protection: 1; mode=block");
 header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: deny');
 header('X-Powered-By:');
-//header('Set-Cookie: same-site-cookie=foo; SameSite=None');
-//header('Set-Cookie:cross-site-cookie=bar; SameSite=None; Secure;HttpOnly');
-//header('Set-Cookie: cross-site-cookie=bar; SameSite=None; Secure');
-//header('Set-Cookie:HttpOnly;Secure;SameSite=Strict');
-//response.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-$r = $_SERVER['SCRIPT_NAME'];
-$subdomain = explode('/', $r);
-array_pop($subdomain);
-define('BASE_URL', $protocol.$_SERVER['HTTP_HOST'].  implode('/', $subdomain).'/');
-define('BASE_URL_API', 'http://'.$_SERVER['HTTP_HOST'].  implode('/', $subdomain).'/');
-define('IMG_URL', BASE_URL.'uploads/');
-define('IMG_DIR', 'uploads/');
+
+
+include 'common_url.php';
+
+
 define('IS_LOGS', false);
 define('DEFAULT_LANG', 'en');
 

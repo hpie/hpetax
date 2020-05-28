@@ -16,25 +16,28 @@
  */
 //$protocol = (!empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS'])!== 'off') ? 'https' : 'http';
 //$base_url = $protocol.'://'.$_SERVER['HTTP_HOST'];
-$base_url = $_SERVER['SERVER_NAME'];
-$url = '';
-if ($base_url == 'localhost') {
-    $url .= '/rmsa';
-}
-define('IMG_URL', $url);
-$protocol = (!empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off') ? 'https' : 'http';
-$r = $_SERVER['SCRIPT_NAME'];
-$subdomain = explode('/', $r);
-array_pop($subdomain);
-$urllink = $protocol . '://' . $_SERVER['HTTP_HOST'];
-if ($urllink == "https://localhost") {
-    $urllink .= '/hpetax';
-}
-define('BASE_URL', $urllink);
-$filepath = "/assets/front/fileupload/server/php/files";
-define('FILE_URL', $filepath);
+//$base_url = $_SERVER['SERVER_NAME'];
+//$url = '';
+//if ($base_url == 'localhost') {
+//    $url .= '/hpetax';
+//}
+//define('IMG_URL', $url);
+//$protocol = (!empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off') ? 'https' : 'http';
+//$r = $_SERVER['SCRIPT_NAME'];
+//$subdomain = explode('/', $r);
+//array_pop($subdomain);
+//$urllink = $protocol . '://' . $_SERVER['HTTP_HOST'];
+//if ($urllink == "https://localhost") {
+//    $urllink .= '/hpetax';
+//}
+//define('BASE_URL', $urllink);
+//$filepath = "/assets/front/fileupload/server/php/files";
+//define('FILE_URL', $filepath);
 //define('BASE_URL', $url);
 // REMOVE THIS BLOCK - used for DataTables test environment only!
+
+include '../../../common_url.php';
+
 $file = $_SERVER['DOCUMENT_ROOT'] . '/datatables/pdo.php';
 if (is_file($file)) {
     include( $file );
@@ -265,7 +268,7 @@ class SSP {
                     $isactive = 0;
                 }
                 $row['tax_employee_status'] = "<button type='button' data-id='" . $row['tax_employee_id'] . "' data-status = '" . $isactive . "' title='" . $title . "' class='" . $class . " btn-xs'>" . $text . "</button>";
-                $row['edit'] = "<a href='".BASE_URL."/employee-edit-form/$emp_id' class='btn btn-xs btn-warning'> Edit <i class='fa fa-pencil'></i></a>";
+                $row['edit'] = "<a href='".BASE_URL."employee-edit-form/$emp_id' class='btn btn-xs btn-warning'> Edit <i class='fa fa-pencil'></i></a>";
                 $row['index'] = '';
                 array_push($resData, $row);
             }
@@ -380,8 +383,8 @@ class SSP {
 
         if (!empty($result)) {
             foreach ($result as $row) {                               
-                $row['index'] = '';
-                $row['downloadpdf'] = '<a href="https://himkosh.hp.nic.in/eChallan/challan_reports/reportViewer.aspx?reportName=PaidChallan&TransId='.$row["tax_challan_brn"].' download">Download</a>';
+                $row['index'] = '';                                
+                $row['downloadpdf'] = '<a href="https://himkosh.hp.nic.in/eChallan/challan_reports/reportViewer.aspx?reportName=PaidChallan&TransId='.$row["tax_challan_brn"].'" download>Download</a>';
                 $row['viewpdf'] = '<a href="https://himkosh.hp.nic.in/eChallan/challan_reports/reportViewer.aspx?reportName=PaidChallan&TransId='.$row["tax_challan_brn"].'">View</a>';                
                 array_push($resData, $row);
             }
@@ -507,7 +510,7 @@ class SSP {
                     $isactive = 0;
                 }
                 $row['tax_delaer_status'] = "<button type='button' data-id='" . $row['tax_dealer_id'] . "' data-status = '" . $isactive . "' title='" . $title . "' class='" . $class . " btn-xs'>" . $text . "</button>";
-//                $row['creditional'] = "<a href='".BASE_URL."/tax-delaer-credential-edit-form/$delear_id' class='btn btn-xs btn-warning'>Edit Credential  <i class='fa fa-pencil'></i></a>";
+//                $row['creditional'] = "<a href='".BASE_URL."tax-delaer-credential-edit-form/$delear_id' class='btn btn-xs btn-warning'>Edit Credential  <i class='fa fa-pencil'></i></a>";
                 $row['index'] = '';
                 array_push($resData, $row);
             }
@@ -574,7 +577,7 @@ class SSP {
                     $isactive = 0;
                 }
                 $row['tax_delaer_status'] = "<button type='button' data-id='" . $row['tax_dealer_id'] . "' data-status = '" . $isactive . "' title='" . $title . "' class='" . $class . " btn-xs'>" . $text . "</button>";
-                $row['creditional'] = "<a href='" . BASE_URL . "/tax-delaer-credential-edit-form/$delear_id' class='btn btn-xs btn-warning'>Add Credential  <i class='fa fa-pencil'></i></a>";
+                $row['creditional'] = "<a href='" . BASE_URL . "tax-delaer-credential-edit-form/$delear_id' class='btn btn-xs btn-warning'>Add Credential  <i class='fa fa-pencil'></i></a>";
                 $row['index'] = '';
                 array_push($resData, $row);
             }
