@@ -566,12 +566,12 @@ class SSP {
             foreach ($result as $row) {
                 $delear_id = $row['tax_dealer_id'];
                 $title = 'Click to deactivate dealer';
-                $class = 'btn_approve_reject btn btn-success btn-xs';
+                $class = 'btn_approve_reject btn btn-success ';
                 $text = 'Active';
                 $isactive = 1;
                 if ($row['tax_delaer_status'] == 'INACTIVE') {
                     $title = 'Click to active dealer';
-                    $class = 'btn_approve_reject btn btn-danger btn-xs';
+                    $class = 'btn_approve_reject btn btn-danger ';
                     $text = 'Inactive';
                     $isactive = 0;
                 }
