@@ -55,5 +55,10 @@ class employee_c extends Controllers {
         }   
         redirect(FRONT_CHANE_PASSWORD_EMPLOYEE_FORM_LINK);
     }
+    
+    public function dealerlist() {
+        $this->data['TITLE'] = TITLE_TAX_DEALER_LIST;
+        loadviewFront('front/', 'dealerlist.php', $this->data);
+    } 
 }
 ?>

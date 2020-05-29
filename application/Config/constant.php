@@ -46,6 +46,8 @@ define('FRONT_CHANE_PASSWORD_DEALER_FORM_LINK', BASE_URL ."change-password");
 define('FRONT_CHANE_PASSWORD_DEALER_LINK', BASE_URL ."update-password");
 define('LOGOUT_DEALER', BASE_URL ."logout-dealer");
 define('FRONT_EMPLOYEE_EDT_LINK', BASE_URL ."edt");
+define('FRONT_DEALER_LIST_LINK', BASE_URL ."tax-dealer-list");
+
 
 
 //**************************Front Title*********************//

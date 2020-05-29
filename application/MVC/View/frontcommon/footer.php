@@ -164,7 +164,7 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
 }
 ?>
 <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo ASSETS_FRONT; ?>js/bootstrapValidator.min.js?v=1.0"></script>
-<?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT) { ?>
+<?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE==TITLE_TAX_DEALER_LIST) { ?>
     <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/bootstrap/dist/js/bootstrap.min.js?v=1.0"></script>
     <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net/js/jquery.dataTables.min.js?v=1.0"></script>
     <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js?v=1.0"></script>
@@ -361,6 +361,45 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
             });
         });
     </script>
-<?php } ?>    
+<?php } ?> 
+    <?php if ($TITLE === TITLE_TAX_DEALER_LIST) { ?>
+    <script type="text/javascript" nonce='S51U26wMQz'>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                responsive: {
+                    details: {
+                        type: 'column',
+                        target: 'tr'
+                    }
+                },
+                columnDefs: [{
+                        className: 'control',
+                        orderable: false,
+                        targets: 0
+                    }],
+                "processing": true,
+                "serverSide": true,
+                "paginationType": "full_numbers",
+                "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "ajax": {
+                    'type': 'POST',
+                    'url': "<?php echo BASE_URL . '/assets/front/DataTablesSrc-master/dealerListFront.php' ?>"
+                },
+                "columns": [
+                    {"data": "index"},                    
+                    {"data": "tax_dealer_name"},
+                    {"data": "tax_dealer_code"},
+                    {"data": "tax_dealer_tin"},
+                    {"data": "tax_dealer_pan"},
+                    {"data": "tax_dealer_aadhar"},
+                    {"data": "tax_dealer_email"},
+                    {"data": "tax_dealer_mobile"},
+                    {"data": "tax_delaer_status"},
+                    {"data": "tax_dealer_lastlogin"}                    
+                ]
+            });            
+        });
+    </script>
+<?php } ?>
 </body>
 </html>

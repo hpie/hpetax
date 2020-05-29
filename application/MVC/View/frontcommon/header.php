@@ -26,7 +26,7 @@ if(isset($_SESSION['user_id'])){
         <!--<link href="<?php echo BASE_URL; ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">-->        
 
 
-        <?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT) { ?>
+        <?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE==TITLE_TAX_DEALER_LIST) { ?>
             <link href="<?php echo BASE_URL; ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css?v=1.0" rel="stylesheet" type="text/css">
             <link href="<?php echo BASE_URL; ?>assets/datatables.net-buttons-bs/css/buttons.bootstrap.min.css?v=1.0" rel="stylesheet" type="text/css">
             <link href="<?php echo BASE_URL; ?>assets/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css?v=1.0" rel="stylesheet" type="text/css">
@@ -299,13 +299,20 @@ if(isset($_SESSION['user_id'])){
                                                 -->
                                             </ul>
                                         </li>
+                                        <?php if (isset($_SESSION['employeeDetails']['tax_employee_id'])) { ?>
                                         <li>
-                                            <div class="link"><i class="fa fa-code"></i> Dealer Listing<i
-                                                    class="fa fa-chevron-down"></i></div>
+                                            <div class="link"><i class="fa fa-code"></i>Dealer Listing<i class="fa fa-chevron-down"></i></div>
                                             <ul class="submenu">
-                                                <li><a href="#">Dealer Search</a></li>
+                                                <li><a href="<?php echo FRONT_DEALER_LIST_LINK; ?>">Dealer Search</a></li>
                                             </ul>
                                         </li>
+                                        <li>
+                                            <div class="link"><i class="fa fa-code"></i>EDT<i class="fa fa-chevron-down"></i></div>
+                                            <ul class="submenu">
+                                                <li><a href="<?php echo FRONT_EMPLOYEE_EDT_LINK; ?>">EDT Search</a></li>
+                                            </ul>
+                                        </li>
+                                        <?php } ?>
                                         <!--
                                         <li>
                                             <div class="link"><i class="fa fa-mobile"></i>Referral Websites<i

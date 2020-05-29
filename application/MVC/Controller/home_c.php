@@ -28,9 +28,7 @@ class home_c extends Controllers {
                     redirect(BASE_URL);
                 }
             }
-        }
-        
-        
+        }                
     }
 
     public function invoke() {
@@ -416,6 +414,7 @@ class home_c extends Controllers {
     public function addTaxItemQueAjax() {
         $newArray = array();
         $html = '';
+//        echo $_POST['mesuare'];die;
         $existcomodity = $this->home_m->checkExistCommodityForAddNewTax($_POST['taxtypeid'], $_POST['commodityid'], $_SESSION['unregistered']);
         if (empty($existcomodity)) {
             $params = array();

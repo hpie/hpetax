@@ -81,6 +81,7 @@ $route['viewChallan/(:any)'] = 'home_c/viewChallan';
 $route['employee-login-form'] = 'login_c/employeeLoginForm';
 $route['login-employee'] = 'login_c/employeeLogin';
 $route['edt'] = 'employee_c';
+$route['tax-dealer-list'] = 'employee_c/dealerlist';
 
 //********************** app payment ********************//
 $route['app-payment/(:any)'] = 'app_c/app_payment';
