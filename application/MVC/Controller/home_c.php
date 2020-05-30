@@ -703,9 +703,17 @@ class home_c extends Controllers {
     }
 
     public function addChalan() {         
-        $challan_id = gen_uuid();        
-        $mainHead=$_POST['tax_type_head'].'-'.$_POST['tax_commodity_head'].'-'.$_POST['challan_receipt_head'];
-        $ddo=$_POST['challan_ddo'];                
+        $challan_id = gen_uuid();
+
+        if (isset($_POST))
+        {
+            $mainHead=$_POST['tax_type_head'].'-'.$_POST['tax_commodity_head'].'-'.$_POST['challan_receipt_head'];
+        }else
+        {
+            $mainHead=$_POST['000-000'.'000-000'];
+        }
+
+        $ddo=$_POST['challan_ddo'];
         $challan_title = $_POST['challan_title'];
         $tax_dealer_id = $_POST['tax_dealer_id'];
         $depositors_name = $_POST['depositors_name'];
@@ -867,26 +875,32 @@ class home_c extends Controllers {
 
     public function registration() {
         unset($_POST['submit']);
-        $date = $_POST['tax_dealer_tin_expiry'];
-        $_POST['tax_dealer_tin_expiry'] = dateFormatterMysql("$date");
-        $existRecord = $this->home_m->getExistRecordByColumn($_POST['tax_dealer_tin'], 'tax_dealer_tin', 'tax_dealer');
-        $existMobile = $this->home_m->getExistRecordByColumn($_POST['tax_dealer_mobile'], 'tax_dealer_mobile', 'tax_dealer');
-        $existEmail = $this->home_m->getExistRecordByColumn($_POST['tax_dealer_email'], 'tax_dealer_email', 'tax_dealer');
-        if ($existRecord) {
-            $_SESSION['data'] = $_POST;
-            $_SESSION['existrecord'] = 1;
-            redirect(FRONT_SIGN_UP_LINK);
+
+        if (isset($_POST))
+        {
+            $date = $_POST['tax_dealer_tin_expiry'];
+            $_POST['tax_dealer_tin_expiry'] = dateFormatterMysql("$date");
+            $existRecord = $this->home_m->getExistRecordByColumn($_POST['tax_dealer_tin'], 'tax_dealer_tin', 'tax_dealer');
+            $existMobile = $this->home_m->getExistRecordByColumn($_POST['tax_dealer_mobile'], 'tax_dealer_mobile', 'tax_dealer');
+            $existEmail = $this->home_m->getExistRecordByColumn($_POST['tax_dealer_email'], 'tax_dealer_email', 'tax_dealer');
+
+            if ($existRecord) {
+                $_SESSION['data'] = $_POST;
+                $_SESSION['existrecord'] = 1;
+                redirect(FRONT_SIGN_UP_LINK);
+            }
+            if ($existMobile) {
+                $_SESSION['data'] = $_POST;
+                $_SESSION['existmobile'] = 1;
+                redirect(FRONT_SIGN_UP_LINK);
+            }
+            if ($existEmail) {
+                $_SESSION['data'] = $_POST;
+                $_SESSION['existemail'] = 1;
+                redirect(FRONT_SIGN_UP_LINK);
+            }
         }
-        if ($existMobile) {
-            $_SESSION['data'] = $_POST;
-            $_SESSION['existmobile'] = 1;
-            redirect(FRONT_SIGN_UP_LINK);
-        }
-        if ($existEmail) {
-            $_SESSION['data'] = $_POST;
-            $_SESSION['existemail'] = 1;
-            redirect(FRONT_SIGN_UP_LINK);
-        }
+
         $result = $this->home_m->registerationInsert($_POST);
         if ($result['res'] == 1 || !empty($result['id'])) {
             $_SESSION['adddata'] = 1;
