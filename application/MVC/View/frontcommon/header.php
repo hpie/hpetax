@@ -14,7 +14,8 @@ if(isset($_SESSION['user_id'])){
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+        <meta http-equiv="X-Content-Type-Options" content="nosniff">
+        <!--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
         <!-- <meta http-equiv="Content-Security-Policy" content="object-src 'self'; script-src 'nonce-S51U26wMQz'"> -->
         <meta http-equiv="Content-Security-Policy" content="script-src 'strict-dynamic' 'nonce-S51U26wMQz' 'unsafe-inline' http: https: https://www.gstatic.com https://csp.withgoogle.com https://www.google.com; object-src 'none'; base-uri 'none'; require-trusted-types-for 'script'; ">
         <title><?php echo $TITLE; ?></title>
