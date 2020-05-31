@@ -17,7 +17,8 @@ if(isset($_SESSION['user_id'])){
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <!--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
     <!--<meta http-equiv="Content-Security-Policy" content="object-src 'self'; script-src 'nonce-S51U26wMQz' https://www.gstatic.com; "> -->
-    <meta http-equiv="Content-Security-Policy" content="script-src 'strict-dynamic' 'nonce-S51U26wMQz' 'unsafe-inline' http: https: https://www.gstatic.com https://csp.withgoogle.com https://www.google.com; object-src 'none'; base-uri 'none'; require-trusted-types-for 'script'; ">
+    <!--<meta http-equiv="Content-Security-Policy" content="script-src 'strict-dynamic' 'nonce-S51U26wMQz' 'unsafe-inline' http: https: https://www.gstatic.com https://csp.withgoogle.com https://www.google.com; object-src 'none'; base-uri 'none'; require-trusted-types-for 'script'; ">-->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'strict-dynamic' 'nonce-S51U26wMQz' 'unsafe-inline' http: https: https://www.gstatic.com https://csp.withgoogle.com https://www.google.com; object-src 'none'; base-uri 'none';">
 
       <title><?php echo $TITLE ?></title>
     <!-- Bootstrap -->
