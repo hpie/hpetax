@@ -79,10 +79,10 @@
                     <tr class="location" id="locationtr">
                         <td>&nbsp;</td>
                         <td>Source Location*</td>
-                        <td><input id="sourcelocation" class="clearalltext" type="text" placeholder="Source Location" required="required"></td>
+                        <td><input id="sourcelocation" class="clearalltext novalidation" type="text" placeholder="Source Location" required="required"></td>
                         <td>&nbsp;</td>
                         <td>Destination Location*</td>
-                        <td><input id="destinationlocation" class="clearalltext" type="text" placeholder="Destination Location" required="required"></td>
+                        <td><input id="destinationlocation" class="clearalltext novalidation" type="text" placeholder="Destination Location" required="required"></td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
