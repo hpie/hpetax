@@ -165,7 +165,7 @@ if ($TITLE == TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE == TITLE_TAX_EMPLOYEE_EDT) 
 ?>
 <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo ASSETS_FRONT; ?>js/bootstrapValidator.min.js?v=1.0"></script>
 <?php if ($TITLE === TITLE_FRONT_VERIFY_E_PAYMENT || $TITLE==TITLE_TAX_DEALER_LIST) { ?>
-    <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/bootstrap/dist/js/bootstrap.min.js?v=1.0"></script>
+    <!--<script nonce='S51U26wMQz' type="text/javascript" src="<?php //echo BASE_URL ?>assets/bootstrap/dist/js/bootstrap.min.js?v=1.0"></script>-->
     <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net/js/jquery.dataTables.min.js?v=1.0"></script>
     <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js?v=1.0"></script>
     <script nonce='S51U26wMQz' type="text/javascript" src="<?php echo BASE_URL ?>assets/datatables.net-buttons/js/dataTables.buttons.min.js?v=1.0"></script>
