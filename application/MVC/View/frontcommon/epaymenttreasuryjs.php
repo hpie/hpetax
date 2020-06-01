@@ -112,13 +112,11 @@
             }
         });
         $('#submit').on('click', function () {
-            if (confirm('Are you sure you want to pay?')) { 
-            
+            if (confirm('Are you sure you want to pay?')) {             
             var tax_type_head=$("#tax_type_head").val();
             var tax_commodity_head=$("#tax_commodity_head").val();
             var challan_receipt_head = $('#receipt').children("option:selected").val();
-            var challan_ddo = $('#location').children("option:selected").val();
-            
+            var challan_ddo = $('#location').children("option:selected").val();            
             var challan_location = $('#location').children("option:selected").text();           
             var challan_title="dummy"; 
             var challan_purpose="dummy";
@@ -146,9 +144,9 @@
                 url: '<?php echo FRONT_ADD_CHALLAN_LINK; ?>',
                 success: function (_returnData) {
                     if (_returnData.result === "success") {
-                        window.location = "<?php echo TITLE_FRONT_MAKE_EPAYMENT; ?>";
+                        window.location = "<?php echo FRONT_MAKE_EPAYMENT_TREASURY; ?>";
                     } else {
-                        alert('Please complete the add tax process');
+                        alert('Something wrong!');
                     }
                 }
             });
